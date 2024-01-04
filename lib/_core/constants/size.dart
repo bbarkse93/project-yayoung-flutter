@@ -2,7 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:team_project/_core/constants/color.dart';
 
 /// 마진 및 간격의 크기
-const double gapMain = 16.0; // 기본 Padding
+const double gapMain = 16.0; // 기본 화면 padding
 
 const double gapXSmall = 5.0;
 const double gapSmall = 10.0;
