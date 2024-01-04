@@ -9,7 +9,7 @@ const double gapSmall = 10.0;
 const double gapMedium = 15.0;
 const double gapSemiMedium = 20.0;
 const double gapLarge = 30.0;
-const double gapXLargeGap = 50.0;
+const double gapXLarge = 50.0;
 
 /// 글씨 크기
 const double fontXSmall = 10.0;

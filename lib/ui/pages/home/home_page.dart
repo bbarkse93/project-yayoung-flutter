@@ -86,7 +86,7 @@ class HomePage extends StatelessWidget {
                 symbol: "#",
                 title: "내 캠핑장",
                 subTitle: "내 캠핑장은 어떤게 있을가요?",
-                pageAddress: "/my_camping_schedule",
+                pageAddress: Move.myCampingList,
               ),
             ],
           ),
