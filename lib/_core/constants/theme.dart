@@ -28,8 +28,8 @@ ThemeData theme() {
 
 AppBarTheme appBarTheme() {
   return const AppBarTheme(
-    titleTextStyle:
-        TextStyle(color: kFontBlack, fontSize: fontLarge, fontFamily: 'yayoung'),
+    titleTextStyle: TextStyle(
+        color: kFontTitle, fontSize: fontLarge, fontFamily: 'yayoung'),
     centerTitle: true,
     backgroundColor: Colors.white,
     elevation: 1,

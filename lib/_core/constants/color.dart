@@ -1,34 +1,27 @@
 import 'dart:ui';
 
 /// main color
-const Color kPrimaryColor = Color(0xFF104C3A);
-const Color kPointColor = Color(0xFFFEEA61);
+const Color kPrimaryColor = Color(0xFF104B3A);
+const Color kSubColor = Color(0xFFF6F5EA);
 
 /// font color
-const Color kFontBlack = Color(0xFF222222);
-const Color kFontWhite = Color(0xFFFFFFFF);
-const Color kFontGray = Color(0xFF6F6F6F);
-const Color kFontLightGray = Color(0xFFC8C8C9);
+const Color kFontTitle = Color(0xFF2C2C34);
+const Color kFontContent = Color(0xFF6C6A6B);
+const Color kFontGray = Color(0xFFBFBFC1);
+const Color kFontBlue = Color(0xFF87BFCE);
+const Color kFontRed = Color(0xFFAE5A2A);
+
+/// button color
+const Color kButtonPrimary = Color(0xFF104B3A);
+const Color kButtonGray = Color(0xFFF1F1F2);
+
+/// choice color
+const Color kChoiceGray = Color(0xFFD1D1D5);
 
 /// background color
 const Color kBackWhite = Color(0xFFFFFFFF);
-const Color kBackBlack = Color(0xFF222222);
-const Color kBackIbory = Color(0xFFFAFAF6);
-const Color kBackIbory2 = Color(0xFFF4F5F8);
-const Color kBackIbory3 = Color(0xFFFAFDDC);
-const Color kBackLightGray = Color(0xFFF4F5F8);
-const Color kBackLightBlue = Color(0xFFBEC4D0);
-const Color kBackGray = Color(0xFFC1C1C1);
-const Color kBackMain = Color(0xFFF5F1E8);
-
-/// validate color
-const Color kBlue = Color(0xFF288DDB);
-const Color kRed = Color(0xFFF43131);
-
-
-/// 그라데이션 color
-const Color kStartColor = Color(0xFFea67ff);
-const Color kEndColor = Color(0xfffcda90);
+const Color kBackLightGray = Color(0xFFF1F1F2);
+const Color kBackLightIbory = Color(0xFFFCFBF8);
 
 /// brand logo color
 const Color kKakaoColor = Color(0xFFFFE810);
