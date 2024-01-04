@@ -3,7 +3,7 @@ import 'package:team_project/_core/constants/color.dart';
 import 'package:team_project/_core/constants/icon.dart';
 import 'package:team_project/_core/constants/move.dart';
 import 'package:team_project/_core/constants/size.dart';
-import 'package:team_project/ui/pages/campsite/search_campsite_page.dart';
+import 'package:team_project/ui/pages/campsite/search_campsite/search_campsite_page.dart';
 import 'package:team_project/ui/pages/home/widget/explain_bar_form.dart';
 import 'package:team_project/ui/pages/home/widget/home_carousel_slider.dart';
 

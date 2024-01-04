@@ -14,7 +14,7 @@ const Color kFontRed = Color(0xFFAE5A2A);
 
 /// button color
 const Color kButtonPrimary = Color(0xFF104B3A);
-const Color kButtonGray = Color(0xFFF1F1F2);
+const Color kButtonGray = Color(0xC7C7CAF2);
 
 /// choice color
 const Color kChoiceGray = Color(0xFFD1D1D5);

@@ -1,6 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:team_project/ui/pages/auth/login_page.dart';
-import 'package:team_project/ui/pages/campsite/search_campsite_page.dart';
+import 'package:team_project/ui/pages/campsite/search_campsite/search_campsite_page.dart';
 import 'package:team_project/ui/pages/home/home_page.dart';
 import 'package:team_project/ui/pages/home/my_camping_schedule.dart';
 import 'package:team_project/ui/pages/my_page/MainScreen.dart';
