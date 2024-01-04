@@ -47,6 +47,15 @@ Icon iconEmptyHeart({Color mColor = kPrimaryColor, double mSize = 25}) {
   return Icon(Icons.favorite_border_rounded, color: mColor, size: mSize);
 }
 
+Icon iconSearch({Color mColor = Colors.black, double mSize = 25}) {
+  return Icon(CupertinoIcons.search, color: mColor, size: mSize);
+}
+
+/// TODO : 바텀네비게이션 - 투데이 아이콘 결정하기
+Icon iconBottomToday({Color mColor = kPrimaryColor, double mSize = 25}) {
+  return Icon(Icons.accessibility, color: mColor, size: mSize);
+}
+
 // 꽉찬 하트
 Icon iconFullHeart({Color mColor = kPrimaryColor, double mSize = 25}) {
   return Icon(Icons.favorite_rounded, color: mColor, size: mSize);
@@ -70,7 +79,7 @@ Icon iconSearch({Color mColor = kFontTitle, double mSize = 25}) {
   return Icon(CupertinoIcons.search, color: mColor, size: mSize);
 }
 
-// 창 닫기 icon
+// 창 닫기 Icon
 Icon iconClose({Color mColor = kPrimaryColor, double mSize = 25}) {
   return Icon(Icons.close, color: mColor, size: mSize);
 }
@@ -120,7 +129,6 @@ Image imageDetailCharcoal({Color mColor = kPrimaryColor, double mWidth = 25, dou
   return Image.asset("assets/images/detail_charcoal.png", width: mWidth, height: mHeight, color: mColor);
 }
 
-// 여기부터 하기
 // 디테일 파쇄석 Icon
 Image imageDetailCrushedStone({Color mColor = kPrimaryColor, double mWidth = 25, double mHeight = 25}) {
   return Image.asset("assets/images/detail_crushed_stone.png", width: mWidth, height: mHeight, color: mColor);
@@ -275,9 +283,3 @@ Image imageMyPageRefund({Color mColor = kPrimaryColor, double mWidth = 25, doubl
 Image imageMyPageUser({Color mColor = kPrimaryColor, double mWidth = 25, double mHeight = 25}) {
   return Image.asset("assets/images/my_page_user.png", width: mWidth, height: mHeight, color: mColor);
 }
-
-
-
-
-
-
