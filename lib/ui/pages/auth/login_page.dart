@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:team_project/ui/pages/auth/login_page_widgets/login_page_body.dart';
 
 class LoginPage extends StatelessWidget {
   const LoginPage({super.key});
@@ -6,12 +7,7 @@ class LoginPage extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return const Scaffold(
-      body: Center(
-        child: Text(
-          "나눔스퀘어",
-          style: TextStyle(fontSize: 50),
-        ),
-      ),
+      body: LoginPageBody(),
     );
   }
 }
