@@ -13,6 +13,7 @@ class Test extends StatelessWidget {
         children: [
           imageBottomBarCamping(mColor: Colors.red),
           iconCity()
+
         ],
       ),
     );
