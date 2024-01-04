@@ -74,11 +74,6 @@ Icon iconHamburgerMenu({Color mColor = kPrimaryColor, double mSize = 25}) {
   return Icon(Icons.density_medium_rounded, color: mColor, size: mSize);
 }
 
-// 검색 Icon
-Icon iconSearch({Color mColor = kFontTitle, double mSize = 25}) {
-  return Icon(CupertinoIcons.search, color: mColor, size: mSize);
-}
-
 // 창 닫기 Icon
 Icon iconClose({Color mColor = kPrimaryColor, double mSize = 25}) {
   return Icon(Icons.close, color: mColor, size: mSize);
@@ -89,14 +84,29 @@ Image imageBottomBarHome({Color mColor = kPrimaryColor, double mWidth = 25, doub
   return Image.asset("assets/images/bottom_bar_home.png", width: mWidth, height: mHeight, color: mColor);
 }
 
+// 바텀바 홈선택 Icon
+Image imageBottomBarHomeActive({Color mColor = kPrimaryColor, double mWidth = 25, double mHeight = 25}) {
+  return Image.asset("assets/images/bottom_bar_home_active.png", width: mWidth, height: mHeight, color: mColor);
+}
+
 // 바텀 바 캠핑 Icon
 Image imageBottomBarCamping({Color mColor = kPrimaryColor, double mWidth = 25, double mHeight = 25}) {
   return Image.asset("assets/images/bottom_bar_tent.png", width: mWidth, height: mHeight, color: mColor);
 }
 
+// 바텀 바 캠핑선택 Icon
+Image imageBottomBarCampingActive({Color mColor = kPrimaryColor, double mWidth = 25, double mHeight = 25}) {
+  return Image.asset("assets/images/bottom_bar_tent_active.png", width: mWidth, height: mHeight, color: mColor);
+}
+
 // 바텀 바 유저 Icon
 Image imageBottomBarUser({Color mColor = kPrimaryColor, double mWidth = 25, double mHeight = 25}) {
   return Image.asset("assets/images/bottom_bar_user.png", width: mWidth, height: mHeight, color: mColor);
+}
+
+// 바텀 바 유저선택 Icon
+Image imageBottomBarUserActive({Color mColor = kPrimaryColor, double mWidth = 25, double mHeight = 25}) {
+  return Image.asset("assets/images/bottom_bar_user_active.png", width: mWidth, height: mHeight, color: mColor);
 }
 
 // 디테일 바베큐 Icon
