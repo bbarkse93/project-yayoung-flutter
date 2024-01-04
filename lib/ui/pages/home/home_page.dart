@@ -3,10 +3,9 @@ import 'package:team_project/_core/constants/color.dart';
 import 'package:team_project/_core/constants/icon.dart';
 import 'package:team_project/_core/constants/move.dart';
 import 'package:team_project/_core/constants/size.dart';
+import 'package:team_project/ui/pages/campsite/search_campsite_page.dart';
 import 'package:team_project/ui/pages/home/widget/explain_bar_form.dart';
 import 'package:team_project/ui/pages/home/widget/home_carousel_slider.dart';
-
-import 'my_camping_schedule.dart';
 
 class HomePage extends StatelessWidget {
   const HomePage({super.key});
@@ -36,7 +35,16 @@ class HomePage extends StatelessWidget {
           ],
         ),
         actions: [
-          IconButton(onPressed: () {}, icon: iconSearch()),
+          IconButton(
+              onPressed: () {
+                Navigator.push(
+                  context,
+                  MaterialPageRoute(
+                    builder: (_) => SearchCampsitePage(),
+                  ),
+                );
+              },
+              icon: iconSearch()),
           SizedBox(width: gapMedium),
         ],
         elevation: 0,
