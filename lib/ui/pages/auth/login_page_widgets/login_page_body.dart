@@ -9,7 +9,7 @@ class LoginPageBody extends StatelessWidget {
       child: Center(
         child: SizedBox(
           width: MediaQuery.of(context).size.width * 0.6,
-          child: Image.asset("assets/images/yayoung_logo.png"),
+          child: Image.asset("assets/images/yayoung_logo.png")
         ),
       ),
     );
