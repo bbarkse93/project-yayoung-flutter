@@ -26,8 +26,11 @@ Icon iconEmptyHeart({Color mColor = kPrimaryColor, double mSize = 25}) {
   return Icon(Icons.favorite_border_rounded, color: mColor, size: mSize);
 }
 
+Icon iconSearch({Color mColor = Colors.black, double mSize = 25}) {
+  return Icon(CupertinoIcons.search, color: mColor, size: mSize);
 
-// TODO : 바텀네비게이션 - 투데이 아이콘 결정하기
+/// TODO : 바텀네비게이션 - 투데이 아이콘 결정하기
 Icon iconBottomToday({Color mColor = kPrimaryColor, double mSize = 25}) {
   return Icon(Icons.accessibility, color: mColor, size: mSize);
+}
 }
