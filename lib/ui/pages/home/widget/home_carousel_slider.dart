@@ -19,8 +19,6 @@ class _HomeCarouselSliderState extends State<HomeCarouselSlider> {
     "assets/images/yayoung_logo.png",
   ];
 
-
-
   @override
   Widget build(BuildContext context) {
     return Column(

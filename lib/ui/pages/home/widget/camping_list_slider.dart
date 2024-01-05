@@ -1,7 +1,7 @@
 import 'package:carousel_slider/carousel_slider.dart';
 import 'package:flutter/material.dart';
-import 'package:team_project/_core/constants/color.dart';
-import 'package:team_project/_core/constants/size.dart';
+import 'package:team_project/data/mock/camping_record.dart';
+import 'package:team_project/ui/pages/home/widget/camping_list_card_form.dart';
 
 class CampingListSlider extends StatefulWidget {
   const CampingListSlider({super.key});
@@ -18,30 +18,30 @@ class _CampingListSliderState extends State<CampingListSlider> {
     super.initState();
   }
 
+
   @override
   Widget build(BuildContext context) {
-    return CarouselSlider(
+    return CarouselSlider.builder(
       // Set carousel controller
       carouselController: carouselController,
-      items: [1, 2, 3, 4, 5].map((i) {
+      itemCount: CampingRecordList.length,
+      itemBuilder: (BuildContext context, int index, int realIndex) {
+        final record = CampingRecordList[index];
+
         return Builder(
           builder: (BuildContext context) {
-            return Container(
-                width: MediaQuery.of(context).size.width,
-                margin: const EdgeInsets.symmetric(horizontal: 5.0),
-                decoration: BoxDecoration(
-                  color: kButtonGray,
-                  borderRadius: BorderRadius.circular(gapMain),
-                ),
-                child: Center(
-                  child: Text(
-                    'text $i',
-                    style: const TextStyle(fontSize: 16.0),
-                  ),
-                ));
+            return CampingListCardForm(
+              campingImage: record.campingImage,
+              campsite: record.campsite,
+              campsiteAddress: record.campsiteAddress,
+              startDate: record.startDate,
+              endDate: record.endDate,
+              rating: record.rating,
+              index: index,
+            );
           },
         );
-      }).toList(),
+      },
       options: CarouselOptions(
         height: 450,
         aspectRatio: 16 / 9,
@@ -71,3 +71,4 @@ class _CampingListSliderState extends State<CampingListSlider> {
     );
   }
 }
+

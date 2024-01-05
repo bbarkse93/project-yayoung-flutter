@@ -4,19 +4,17 @@ import 'package:team_project/_core/constants/icon.dart';
 import 'package:team_project/_core/constants/size.dart';
 
 class MyScheduleForm extends StatelessWidget {
-  final String date;
+  final String startDate;
   final String dDay;
   final String campsite;
   final String campsiteAddress;
-  final String weather;
 
   const MyScheduleForm({
     super.key,
-    required this.date,
+    required this.startDate,
     required this.dDay,
     required this.campsite,
     required this.campsiteAddress,
-    required this.weather,
   });
 
   @override
@@ -24,7 +22,7 @@ class MyScheduleForm extends StatelessWidget {
     return Container(
       decoration: BoxDecoration(
           color: kBackLightGray, borderRadius: BorderRadius.circular(gapMain)),
-      height: 200,
+      height: 170,
       child: Padding(
         padding: const EdgeInsets.all(gapMain),
         child: Column(
@@ -36,7 +34,7 @@ class MyScheduleForm extends StatelessWidget {
                 Row(
                   children: [
                     Text(
-                      "${date}",
+                      "${startDate}",
                       style: subTitle1(mFontWeight: FontWeight.bold),
                     ),
                     SizedBox(width: gapMain),
@@ -62,12 +60,6 @@ class MyScheduleForm extends StatelessWidget {
             Text(
               "${campsiteAddress}",
               style: subTitle2(mFontWeight: FontWeight.normal),
-            ),
-            SizedBox(height: gapLarge),
-            Text(
-              "${weather}",
-              style:
-                  subTitle2(mColor: kFontContent, mFontWeight: FontWeight.bold),
             ),
           ],
         ),
