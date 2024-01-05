@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:logger/logger.dart';
 import 'package:team_project/_core/constants/color.dart';
 import 'package:team_project/_core/constants/icon.dart';
 import 'package:team_project/_core/constants/move.dart';
@@ -37,6 +38,7 @@ class HomePage extends StatelessWidget {
         actions: [
           IconButton(
               onPressed: () {
+                Logger().d("검색페이지로 이동!");
                 Navigator.push(
                   context,
                   MaterialPageRoute(

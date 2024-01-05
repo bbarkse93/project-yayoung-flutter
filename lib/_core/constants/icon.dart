@@ -47,6 +47,7 @@ Icon iconEmptyHeart({Color mColor = kPrimaryColor, double mSize = 25}) {
   return Icon(Icons.favorite_border_rounded, color: mColor, size: mSize);
 }
 
+// 검색
 Icon iconSearch({Color mColor = Colors.black, double mSize = 25}) {
   return Icon(CupertinoIcons.search, color: mColor, size: mSize);
 }
@@ -77,6 +78,16 @@ Icon iconHamburgerMenu({Color mColor = kPrimaryColor, double mSize = 25}) {
 // 창 닫기 Icon
 Icon iconClose({Color mColor = kPrimaryColor, double mSize = 25}) {
   return Icon(Icons.close, color: mColor, size: mSize);
+}
+
+// 채팅 지우기 Icon
+Icon iconChattingClose({Color mColor = kPrimaryColor, double mSize = 25}) {
+  return Icon(Icons.cancel, color: mColor, size: mSize);
+}
+
+// 설정
+Image imageMyPageSetting({Color mColor = kPrimaryColor, double mWidth = 25, double mHeight = 25}) {
+  return Image.asset("assets/images/my_page_setting.png", width: mWidth, height: mHeight, color: mColor);
 }
 
 // 바텀 바 홈 Icon
