@@ -1,10 +1,12 @@
 
+
+
 import 'package:flutter/material.dart';
 import 'package:team_project/_core/constants/color.dart';
 import 'package:team_project/ui/pages/auth/login_page.dart';
 import 'package:team_project/ui/pages/home/home_page.dart';
 import 'package:team_project/ui/pages/my_page/test.dart';
-import 'package:team_project/ui/widgets/NavigationItem.dart';
+import 'package:team_project/ui/widgets/navigation_Item.dart';
 
 class MainScreen extends StatefulWidget {
   const MainScreen({Key? key}) : super(key: key);
@@ -34,8 +36,6 @@ class _MainScreenState extends State<MainScreen>
   Widget build(BuildContext context) {
     return Scaffold(
       body: SafeArea(
-        child: Padding(
-          padding: const EdgeInsets.symmetric(horizontal: 16.0),
           child: IndexedStack(
             index: _currentIndex,
             children: [
@@ -45,7 +45,6 @@ class _MainScreenState extends State<MainScreen>
             ],
           ),
         ),
-      ),
       bottomNavigationBar: BottomNavigationBar(
         items: List.generate(
           navigationItem.length,

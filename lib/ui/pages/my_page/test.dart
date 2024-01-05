@@ -1,7 +1,8 @@
+
+
+
 import 'package:flutter/material.dart';
 import 'package:team_project/_core/constants/icon.dart';
-
-
 
 class Test extends StatelessWidget {
   const Test({super.key});
@@ -13,7 +14,6 @@ class Test extends StatelessWidget {
         children: [
           imageBottomBarCamping(mColor: Colors.red),
           iconCity()
-
         ],
       ),
     );
