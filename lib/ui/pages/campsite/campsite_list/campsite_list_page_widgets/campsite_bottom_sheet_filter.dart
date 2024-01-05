@@ -16,7 +16,7 @@ class CampsiteBottomSheetFilter extends StatelessWidget {
           color: kBackWhite, borderRadius: BorderRadius.circular(gapMedium)),
       child: Padding(
         padding:
-            EdgeInsets.symmetric(horizontal: gapMain, vertical: gapXxLargeGap),
+            EdgeInsets.symmetric(horizontal: gapMain, vertical: gapXxLarge),
         child: Column(
           children: [
             Row(
