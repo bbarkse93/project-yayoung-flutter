@@ -3,6 +3,7 @@ import 'dart:ui';
 /// main color
 const Color kPrimaryColor = Color(0xFF104B3A);
 const Color kSubColor = Color(0xFFF6F5EA);
+const Color kBlack = Color(0xFF2C2C34);
 
 /// font color
 const Color kFontTitle = Color(0xFF2C2C34);
@@ -28,3 +29,6 @@ const Color kKakaoColor = Color(0xFFFFE810);
 const Color kNaverColor = Color(0xFF1CC800);
 const Color kFacebookColor = Color(0xff4168B0);
 const Color kAppleColor = Color(0xffffffff);
+
+/// textFormField color
+const Color kFormFieldBackground = Color(0xFFBFBFC1);

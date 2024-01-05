@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:team_project/ui/pages/auth/login_page.dart';
+import 'package:team_project/ui/pages/campsite/search_campsite_page.dart';
 import 'package:team_project/ui/pages/home/home_page.dart';
 import 'package:team_project/ui/pages/home/my_camping_list_page.dart';
 import 'package:team_project/ui/pages/home/my_camping_schedule_page.dart';
@@ -13,6 +14,8 @@ class Move {
   static String myCampingSchedulePage = "/myCampingSchedule";
   static String myCampingListPage = "/myCampingList";
   static String mainScreenPage = "/mainScreenPage";
+  //캠핑장 검색
+  static String searchCampsitePage = "/searchCampsite";
 }
 
 Map<String, Widget Function(BuildContext)> getRouters() {
