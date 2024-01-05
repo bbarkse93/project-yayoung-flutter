@@ -12,7 +12,9 @@ class CampsiteListHeader extends StatelessWidget {
     return SliverAppBar(
       automaticallyImplyLeading: false,
       backgroundColor: Colors.transparent,
-      title: const Text("캠핑장", style: TextStyle(fontSize: fontSemiLarge, fontWeight: FontWeight.bold)),
+      title: const Text("캠핑장",
+          style:
+              TextStyle(fontSize: fontSemiLarge, fontWeight: FontWeight.bold)),
       actions: [
         Padding(
           padding: const EdgeInsets.all(gapMain),

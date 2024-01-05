@@ -8,12 +8,32 @@ class CampsiteListPageBody extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return const CustomScrollView(
+    return CustomScrollView(
       slivers: [
         CampsiteListHeader(),
-        CampsiteListFilter(),
-        // CampsiteListCore(),
+        SliverPersistentHeader(
+            delegate: CampsiteListFilterHeader(), pinned: true),
+        CampsiteListCore(),
       ],
     );
+  }
+}
+
+class CampsiteListFilterHeader extends SliverPersistentHeaderDelegate {
+  @override
+  double get minExtent => 135.0; // Minimum height of the header
+
+  @override
+  double get maxExtent => 135.0; // Maximum height of the header when expanded
+
+  @override
+  Widget build(
+      BuildContext context, double shrinkOffset, bool overlapsContent) {
+    return CampsiteListFilter();
+  }
+
+  @override
+  bool shouldRebuild(SliverPersistentHeaderDelegate oldDelegate) {
+    return false;
   }
 }

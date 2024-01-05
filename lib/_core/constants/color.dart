@@ -29,6 +29,7 @@ const Color kKakaoColor = Color(0xFFFFE810);
 const Color kNaverColor = Color(0xFF1CC800);
 const Color kFacebookColor = Color(0xff4168B0);
 const Color kAppleColor = Color(0xffffffff);
+const Color kReviewColor = Color(0x87BFCEFF);
 
 /// textFormField color
 const Color kFormFieldBackground = Color(0xFFBFBFC1);
