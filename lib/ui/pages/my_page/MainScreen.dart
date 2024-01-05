@@ -35,7 +35,7 @@ class _MainScreenState extends State<MainScreen>
     return Scaffold(
       body: SafeArea(
         child: Padding(
-          padding: const EdgeInsets.symmetric(horizontal: 16.0),
+          padding: const EdgeInsets.symmetric(horizontal: 0),
           child: IndexedStack(
             index: _currentIndex,
             children: [

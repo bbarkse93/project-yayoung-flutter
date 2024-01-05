@@ -11,7 +11,8 @@ const double gapSemiMedium = 20.0;
 const double gapLarge = 30.0;
 const double gapSemiLarge = 35.0;
 const double gapXLarge = 40.0;
-const double gapXxLargeGap = 50.0;
+const double gapXxLarge = 50.0;
+
 
 /// 글씨 크기
 const double fontXSmall = 10.0;
