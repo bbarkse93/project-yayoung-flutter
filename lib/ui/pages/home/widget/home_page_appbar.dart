@@ -3,7 +3,7 @@ import 'package:team_project/_core/constants/color.dart';
 import 'package:team_project/_core/constants/icon.dart';
 import 'package:team_project/_core/constants/size.dart';
 
-class HomePageAppBar extends StatelessWidget implements PreferredSize{
+class HomePageAppBar extends StatelessWidget implements PreferredSize {
   @override
   // TODO: implement preferredSize
   Size get preferredSize => Size.fromHeight(kToolbarHeight);
@@ -14,6 +14,7 @@ class HomePageAppBar extends StatelessWidget implements PreferredSize{
   @override
   Widget build(BuildContext context) {
     return AppBar(
+      automaticallyImplyLeading: false,
       backgroundColor: kSubColor,
       title: Row(
         crossAxisAlignment: CrossAxisAlignment.start,
@@ -42,6 +43,7 @@ class HomePageAppBar extends StatelessWidget implements PreferredSize{
       elevation: 0,
     );
   }
+
   @override
   // TODO: implement child
   Widget get child => throw UnimplementedError();
