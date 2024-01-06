@@ -46,7 +46,9 @@ class MyScheduleForm extends StatelessWidget {
                   ],
                 ),
                 IconButton(
-                  onPressed: () {},
+                  onPressed: () {
+                    _showAlertDialog(context);
+                  },
                   icon: iconClose(),
                 ),
               ],
@@ -64,6 +66,54 @@ class MyScheduleForm extends StatelessWidget {
           ],
         ),
       ),
+    );
+  }
+
+  Future<void> _showAlertDialog(BuildContext context) async {
+    return showDialog<void>(
+      context: context,
+      builder: (BuildContext context) {
+        return AlertDialog(
+          title: Center(
+            child: Column(
+              children: [
+                SizedBox(height: gapMain),
+                Text('예약을 취소 하시겠습니까?',
+                style: subTitle1(mColor: kFontRed),
+                ),
+              ],
+            ),
+          ),
+          actions: [
+            Row(
+              mainAxisAlignment: MainAxisAlignment.spaceAround,
+              children: [
+                TextButton(
+                  onPressed: () {
+                    Navigator.of(context).pop();
+                  },
+                  child: Text('아니요',
+                  style: subTitle1(mColor: kFontContent),
+                  ),
+                ),
+                Container(
+                  color: kFontContent,
+                  height: gapLarge,
+                  width: 1,
+                ),
+                TextButton(
+                  onPressed: () {
+                    Navigator.of(context).pop();
+                  },
+                  child: Text('예약 취소',
+                    style: subTitle1(mColor: kFontRed, mFontWeight: FontWeight.normal),
+                  ),
+                ),
+              ],
+            ),
+          ],
+        );
+      },
     );
   }
 }

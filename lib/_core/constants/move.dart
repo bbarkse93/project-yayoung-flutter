@@ -2,8 +2,8 @@ import 'package:flutter/material.dart';
 import 'package:team_project/ui/pages/auth/login_page.dart';
 import 'package:team_project/ui/pages/campsite/search_campsite_page.dart';
 import 'package:team_project/ui/pages/home/home_page.dart';
-import 'package:team_project/ui/pages/home/my_camping_list_page.dart';
-import 'package:team_project/ui/pages/home/my_camping_schedule_page.dart';
+import 'package:team_project/ui/pages/my_camping_list/my_camping_list_page.dart';
+import 'package:team_project/ui/pages/my_camping_schedule/my_camping_schedule_page.dart';
 import 'package:team_project/ui/pages/my_page/MainScreen.dart';
 import 'package:team_project/ui/pages/splash/splash_page.dart';
 

@@ -10,7 +10,8 @@ const Color kFontTitle = Color(0xFF2C2C34);
 const Color kFontContent = Color(0xFF6C6A6B);
 const Color kFontGray = Color(0xFFBFBFC1);
 const Color kFontBlue = Color(0xFF87BFCE);
-const Color kFontRed = Color(0xFFAE5A2A);
+const Color kFontBrown = Color(0xFFAE5A2A);
+const Color kFontRed = Color(0xFFDC0D0D);
 
 /// button color
 const Color kButtonPrimary = Color(0xFF104B3A);
