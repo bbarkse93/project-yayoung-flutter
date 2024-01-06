@@ -15,7 +15,7 @@ const Color kFontRed = Color(0xFFDC0D0D);
 
 /// button color
 const Color kButtonPrimary = Color(0xFF104B3A);
-const Color kButtonGray = Color(0xFFF1F1F2);
+const Color kButtonGray = Color(0xC7C7CAF2);
 
 /// choice color
 const Color kChoiceGray = Color(0xFFD1D1D5);
@@ -30,6 +30,7 @@ const Color kKakaoColor = Color(0xFFFFE810);
 const Color kNaverColor = Color(0xFF1CC800);
 const Color kFacebookColor = Color(0xff4168B0);
 const Color kAppleColor = Color(0xffffffff);
+const Color kReviewColor = Color(0x87BFCEFF);
 
 /// textFormField color
 const Color kFormFieldBackground = Color(0xFFBFBFC1);
