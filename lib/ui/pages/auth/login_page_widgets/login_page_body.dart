@@ -1,5 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_svg/flutter_svg.dart';
+import 'package:kakao_flutter_sdk/kakao_flutter_sdk.dart';
+import 'package:logger/logger.dart';
 import 'package:team_project/_core/constants/color.dart';
 import 'package:team_project/_core/constants/size.dart';
 
@@ -39,11 +41,21 @@ class LoginPageBody extends StatelessWidget {
                 ],
               ),
             ),
-            onTap: () {},
+            onTap: () {
+              _signInKakao();
+            },
           ),
           Spacer()
         ],
       ),
     );
+  }
+
+  void _signInKakao() async {
+    OAuthToken token = await UserApi.instance.loginWithKakaoAccount();
+    Logger().d("token: $token");
+
+    final kakaoUser = await UserApi.instance.me();
+    Logger().d("user 정보 : $kakaoUser");
   }
 }
