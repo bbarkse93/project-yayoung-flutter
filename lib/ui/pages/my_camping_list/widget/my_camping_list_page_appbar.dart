@@ -26,6 +26,7 @@ class MyCampingListPageAppBar extends StatelessWidget implements PreferredSize  
         style: title1(),
       ),
       elevation: 0,
+      centerTitle: true,
     );
   }
   @override
