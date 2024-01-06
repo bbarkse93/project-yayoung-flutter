@@ -15,7 +15,7 @@ class RefundPageBody extends StatelessWidget {
     return ListView(
       children: [
         CampsiteInfoForm(
-            campsiteImage: "assets/images/tent1",
+            campsiteImage: "assets/images/tent1.png",
             campsite: "물가솔솔캠핑장",
             campsiteAddress: "강원도 홍천 내면 광원리 471-4",
             campsitePriceMin: 45000,
