@@ -45,6 +45,35 @@ class LoginPageBody extends StatelessWidget {
               _signInKakao();
             },
           ),
+          SizedBox(
+            height: gapXSmall,
+          ),
+          InkWell(
+            child: Container(
+              decoration: BoxDecoration(color: kKakaoLogin, borderRadius: BorderRadius.circular(gapMedium)),
+              child: Row(
+                children: [
+                  Padding(
+                    padding: const EdgeInsets.only(left: gapMedium, top: gapSmall, bottom: gapSmall),
+                    child: SvgPicture.asset(
+                      "assets/images/naver_login.svg",
+                      width: gapXLarge,
+                      height: gapXLarge,
+                    ),
+                  ),
+                  Spacer(),
+                  const Text(
+                    "네이버로 로그인",
+                    style: TextStyle(fontSize: fontLarge, fontWeight: FontWeight.bold),
+                  ),
+                  Spacer()
+                ],
+              ),
+            ),
+            onTap: () {
+              _signInKakao();
+            },
+          ),
           Spacer()
         ],
       ),
