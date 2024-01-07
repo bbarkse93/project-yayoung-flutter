@@ -1,11 +1,13 @@
 import 'package:flutter/material.dart';
 import 'package:team_project/ui/pages/auth/login_page.dart';
-import 'package:team_project/ui/pages/date/date_range_pic_page.dart';
+import 'package:team_project/ui/pages/date_range_select/date_range_select_page.dart';
 import 'package:team_project/ui/pages/home/home_page.dart';
 import 'package:team_project/ui/pages/my_camping_list/my_camping_list_page.dart';
 import 'package:team_project/ui/pages/my_camping_schedule/my_camping_schedule_page.dart';
 import 'package:team_project/ui/pages/my_page/MainScreen.dart';
+import 'package:team_project/ui/pages/payment/payment_page.dart';
 import 'package:team_project/ui/pages/refund/refund_page.dart';
+import 'package:team_project/ui/pages/reservation/reservation_page.dart';
 import 'package:team_project/ui/pages/splash/splash_page.dart';
 
 class Move {
@@ -19,7 +21,8 @@ class Move {
   static String searchCampsitePage = "/searchCampsite";
   static String refundPage = "/refund";
   static String datePage = "/date";
-  static String dateRangePicPage = "/dateRangePic";
+  static String reservationPage = "/reservation";
+  static String paymentPage = "/payment";
 }
 
 Map<String, Widget Function(BuildContext)> getRouters() {
@@ -31,6 +34,7 @@ Map<String, Widget Function(BuildContext)> getRouters() {
     Move.myCampingSchedulePage: (p0) => MyCampingSchedulePage(),
     Move.myCampingListPage: (p0) => MyCampingListPage(),
     Move.refundPage: (p0) => RefundPage(),
-    Move.dateRangePicPage: (p0) => DateRangePicPage()
+    Move.reservationPage: (p0) => ReservationPage(),
+    Move.paymentPage: (p0) => PaymentPage(),
   };
 }

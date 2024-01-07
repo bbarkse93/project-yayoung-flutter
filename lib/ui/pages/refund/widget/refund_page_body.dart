@@ -35,6 +35,7 @@ class RefundPageBody extends StatelessWidget {
               RefundReservationForm(
                   startDate: "2024-01-12",
                   endDate: "2024-01-14",
+                  countDay: 2,
                   area: "A1",
                   refundPrice: 100000),
               SizedBox(height: gapXLarge),

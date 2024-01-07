@@ -2,14 +2,14 @@ import 'package:flutter/material.dart';
 import 'package:team_project/_core/constants/color.dart';
 import 'package:team_project/_core/constants/size.dart';
 
-class RefundReservationForm extends StatelessWidget {
+class PaymentReservationForm extends StatelessWidget {
   final String startDate;
   final String endDate;
   final String area;
   final int refundPrice;
   final int countDay;
 
-  const RefundReservationForm({
+  const PaymentReservationForm({
     super.key,
     required this.startDate,
     required this.endDate,
@@ -22,7 +22,7 @@ class RefundReservationForm extends StatelessWidget {
   Widget build(BuildContext context) {
     return Container(
       width: double.infinity,
-      height: 160,
+      height: 150,
       decoration: BoxDecoration(
         borderRadius: BorderRadius.circular(gapSmall),
         border: Border.all(color: Colors.grey),
@@ -69,15 +69,16 @@ class RefundReservationForm extends StatelessWidget {
               mainAxisAlignment: MainAxisAlignment.spaceBetween,
               children: [
                 Text(
-                  "총 환불 금액",
-                  style: subTitle2(mColor: kFontRed),
+                  "총 결제 금액",
+                  style: subTitle2(),
                 ),
                 Text(
                   "₩${refundPrice}",
-                  style: subTitle2(mColor: kFontRed),
+                  style: subTitle2(),
                 ),
               ],
             ),
+
           ],
         ),
       ),

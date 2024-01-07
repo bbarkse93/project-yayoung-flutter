@@ -2,15 +2,16 @@ import 'package:flutter/material.dart';
 import 'package:intl/intl.dart';
 import 'package:team_project/_core/constants/color.dart';
 import 'package:team_project/_core/constants/icon.dart';
+import 'package:team_project/_core/constants/move.dart';
 import 'package:team_project/_core/constants/size.dart';
 import 'package:team_project/ui/pages/refund/widget/campsite_info_form.dart';
 
-class DateRangePicPage extends StatefulWidget {
+class ReservationPage extends StatefulWidget {
   @override
-  _DateRangePicPageState createState() => _DateRangePicPageState();
+  _ReservationPageState createState() => _ReservationPageState();
 }
 
-class _DateRangePicPageState extends State<DateRangePicPage> {
+class _ReservationPageState extends State<ReservationPage> {
   DateTime? _startDate;
   DateTime? _endDate;
 
@@ -33,6 +34,8 @@ class _DateRangePicPageState extends State<DateRangePicPage> {
     return DateFormat('yyyy-MM-dd').format(date);
   }
 
+  bool isChecked = false;
+
   @override
   Widget build(BuildContext context) {
     return Scaffold(
@@ -49,7 +52,9 @@ class _DateRangePicPageState extends State<DateRangePicPage> {
         centerTitle: true,
         actions: [
           TextButton(
-            onPressed: () {},
+            onPressed: () {
+              Navigator.pushNamed(context, Move.paymentPage);
+            },
             child: Text(
               "다음",
               style: subTitle1(),
@@ -92,16 +97,18 @@ class _DateRangePicPageState extends State<DateRangePicPage> {
                         Row(
                           mainAxisAlignment: MainAxisAlignment.spaceBetween,
                           children: [
-                            Text("선택한 날짜",
-                            style: subTitle1(),
+                            Text(
+                              "선택한 날짜",
+                              style: subTitle1(),
                             ),
                             ElevatedButton(
                               onPressed: () => _selectDateRange(context),
                               style: ElevatedButton.styleFrom(
                                 backgroundColor: kPrimaryColor,
                               ),
-                              child: Text('기간 선택하기',
-                              style: subTitle2(mColor: kBackWhite),
+                              child: Text(
+                                '기간 선택하기',
+                                style: subTitle2(mColor: kBackWhite),
                               ),
                             ),
                           ],
@@ -121,12 +128,54 @@ class _DateRangePicPageState extends State<DateRangePicPage> {
                       ],
                     ),
                   ),
-                )
+                ),
+                SizedBox(height: gapXLarge),
+                ReservationOptionForm(isChecked: isChecked),
+                ReservationOptionForm(isChecked: isChecked),
+                ReservationOptionForm(isChecked: isChecked),
+                ReservationOptionForm(isChecked: isChecked),
               ],
             ),
           ),
         ],
       ),
+    );
+  }
+}
+
+class ReservationOptionForm extends StatelessWidget {
+  final bool isChecked;
+
+  ReservationOptionForm({required this.isChecked});
+
+  @override
+  Widget build(BuildContext context) {
+    return Row(
+      mainAxisAlignment: MainAxisAlignment.spaceBetween,
+      children: [
+        Row(
+          children: [
+            Text(
+              "A-1",
+              style: subTitle2(),
+            ),
+            SizedBox(width: gapXLarge),
+            Text(
+              "100,000원/2박",
+              style: subTitle2(),
+            ),
+          ],
+        ),
+        Checkbox(
+          value: isChecked,
+          onChanged: (bool? value) {
+            // Handle checkbox state change
+          },
+          activeColor: kPrimaryColor,
+          checkColor: kBackWhite,
+          materialTapTargetSize: MaterialTapTargetSize.shrinkWrap,
+        ),
+      ],
     );
   }
 }
