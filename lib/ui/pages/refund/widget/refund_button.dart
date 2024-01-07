@@ -23,7 +23,7 @@ class RefundButton extends StatelessWidget {
           child: Center(
             child: Text(
               "환불하기",
-              style: title1(mColor: kBackWhite),
+              style: subTitle1(mColor: kBackWhite),
             ),
           ),
         ),

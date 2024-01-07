@@ -12,8 +12,6 @@ class _PaymentTermsFormState extends State<PaymentTermsForm> {
   bool isChecked1 = false;
   bool isChecked2 = false;
   bool isChecked3 = false;
-  bool isChecked4 = false;
-  bool isChecked5 = false;
 
   void updateAllCheckBox(bool? newValue) {
     if (newValue != null) {
@@ -22,8 +20,6 @@ class _PaymentTermsFormState extends State<PaymentTermsForm> {
         isChecked1 = newValue;
         isChecked2 = newValue;
         isChecked3 = newValue;
-        isChecked4 = newValue;
-        isChecked5 = newValue;
       });
     }
   }

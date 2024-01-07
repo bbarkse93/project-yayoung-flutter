@@ -45,7 +45,7 @@ class PaymentReservationForm extends StatelessWidget {
                   style: subTitle3(mFontWeight: FontWeight.normal),
                 ),
                 Text(
-                  "${startDate} ~ ${endDate}/${countDay}박",
+                  "${startDate} ~ ${endDate}(${countDay}박)",
                   style: subTitle3(mFontWeight: FontWeight.normal),
                 ),
               ],
