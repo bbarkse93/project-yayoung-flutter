@@ -1,10 +1,9 @@
 import 'package:flutter/material.dart';
 import 'package:intl/intl.dart';
 import 'package:team_project/_core/constants/color.dart';
-import 'package:team_project/_core/constants/icon.dart';
-import 'package:team_project/_core/constants/move.dart';
 import 'package:team_project/_core/constants/size.dart';
 import 'package:team_project/ui/pages/refund/widget/campsite_info_form.dart';
+import 'package:team_project/ui/pages/reservation/widget/reservation_page_appbar.dart';
 
 class ReservationPage extends StatefulWidget {
   @override
@@ -39,29 +38,7 @@ class _ReservationPageState extends State<ReservationPage> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      appBar: AppBar(
-        leading: IconButton(
-            onPressed: () {
-              Navigator.pop(context);
-            },
-            icon: iconArrowBack()),
-        title: Text(
-          '캠핑날짜',
-          style: subTitle1(),
-        ),
-        centerTitle: true,
-        actions: [
-          TextButton(
-            onPressed: () {
-              Navigator.pushNamed(context, Move.paymentPage);
-            },
-            child: Text(
-              "다음",
-              style: subTitle1(),
-            ),
-          ),
-        ],
-      ),
+      appBar: ReservationPageAppBar(),
       body: ListView(
         children: [
           CampsiteInfoForm(
@@ -142,6 +119,7 @@ class _ReservationPageState extends State<ReservationPage> {
     );
   }
 }
+
 
 class ReservationOptionForm extends StatelessWidget {
   final bool isChecked;
