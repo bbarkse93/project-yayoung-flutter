@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:team_project/_core/constants/icon.dart';
+import 'package:team_project/_core/constants/move.dart';
 import 'package:team_project/_core/constants/size.dart';
 
 class CampsiteListHeader extends StatelessWidget {
@@ -10,6 +11,7 @@ class CampsiteListHeader extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return SliverAppBar(
+      scrolledUnderElevation: 0,
       automaticallyImplyLeading: false,
       backgroundColor: Colors.transparent,
       title: const Text("캠핑장",
@@ -18,7 +20,12 @@ class CampsiteListHeader extends StatelessWidget {
       actions: [
         Padding(
           padding: const EdgeInsets.all(gapMain),
-          child: iconSearch(),
+          child: InkWell(
+            child: iconSearch(),
+            onTap: () {
+              Navigator.of(context).pushNamed(Move.searchCampsitePage);
+            },
+          ),
         )
       ],
       expandedHeight: 250,

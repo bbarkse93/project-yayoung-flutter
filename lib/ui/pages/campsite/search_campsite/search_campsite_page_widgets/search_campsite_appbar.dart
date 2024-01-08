@@ -14,6 +14,7 @@ class SearchCampsiteAppbar extends StatelessWidget implements PreferredSizeWidge
   Widget build(BuildContext context) {
     return AppBar(
       automaticallyImplyLeading: false,
+      scrolledUnderElevation: 0,
       backgroundColor: kBackWhite,
       title: Row(
         children: [

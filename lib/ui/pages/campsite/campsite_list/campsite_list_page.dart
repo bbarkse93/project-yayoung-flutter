@@ -7,7 +7,6 @@ class CampsiteListPage extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      // appBar: CampsiteListAppbar(),
       body: CampsiteListPageBody(),
     );
   }
