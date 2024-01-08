@@ -4,8 +4,12 @@ import 'package:team_project/ui/pages/campsite/search_campsite/search_campsite_p
 import 'package:team_project/ui/pages/home/home_page.dart';
 import 'package:team_project/ui/pages/my_page/main_page.dart';
 import 'package:team_project/ui/pages/my_page/user_update/user_update.dart';
-import 'package:team_project/ui/pages/home/my_camping_list_page.dart';
-import 'package:team_project/ui/pages/home/my_camping_schedule_page.dart';
+import 'package:team_project/ui/pages/my_camping_list/my_camping_list_page.dart';
+import 'package:team_project/ui/pages/my_camping_schedule/my_camping_schedule_page.dart';
+import 'package:team_project/ui/pages/payment/payment_page.dart';
+import 'package:team_project/ui/pages/refund/refund_page.dart';
+import 'package:team_project/ui/pages/reservation/reservation_page.dart';
+
 import 'package:team_project/ui/pages/splash/splash_page.dart';
 
 class Move {
@@ -19,8 +23,15 @@ class Move {
   static String mainScreenPage = "/mainScreenPage";
   // 캠핑장 검색
   static String searchCampsitePage = "/searchCampsite";
+
   // 업데이트
   static String userUpdatePage = "/userUpdate";
+
+  static String refundPage = "/refund";
+  static String datePage = "/date";
+  static String reservationPage = "/reservation";
+  static String paymentPage = "/payment";
+
 }
 
 Map<String, Widget Function(BuildContext)> getRouters() {
@@ -33,6 +44,9 @@ Map<String, Widget Function(BuildContext)> getRouters() {
     Move.searchCampsitePage: (p0) => const SearchCampsitePage(),
     Move.userUpdatePage:(p0) => const UserUpdate(),
     Move.myCampingSchedulePage: (p0) => MyCampingSchedulePage(),
-    Move.myCampingListPage: (p0) => MyCampingListPage()
+    Move.myCampingListPage: (p0) => MyCampingListPage(),
+    Move.refundPage: (p0) => RefundPage(),
+    Move.reservationPage: (p0) => ReservationPage(),
+    Move.paymentPage: (p0) => PaymentPage(),
   };
 }

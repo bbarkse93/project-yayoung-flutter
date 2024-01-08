@@ -1,7 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:team_project/_core/constants/size.dart';
-import 'package:team_project/ui/pages/home/widget/camping_list_slider.dart';
-import 'package:team_project/ui/pages/home/widget/select_year_button.dart';
+import 'package:team_project/ui/pages/my_camping_list/widget/camping_list_slider.dart';
+import 'package:team_project/ui/pages/my_camping_list/widget/select_year_button.dart';
 
 class MyCampingListPageBody extends StatefulWidget {
   const MyCampingListPageBody({super.key});
