@@ -1,7 +1,7 @@
 import 'package:carousel_slider/carousel_slider.dart';
 import 'package:flutter/material.dart';
 import 'package:team_project/data/mock/camping_record.dart';
-import 'package:team_project/ui/pages/home/widget/camping_list_card_form.dart';
+import 'package:team_project/ui/pages/my_camping_list/widget/camping_list_card_form.dart';
 
 class CampingListSlider extends StatefulWidget {
   const CampingListSlider({super.key});

@@ -1,14 +1,15 @@
 import 'package:flutter/material.dart';
+import 'package:team_project/_core/constants/color.dart';
 import 'package:team_project/_core/constants/icon.dart';
 import 'package:team_project/_core/constants/size.dart';
 
-import '../../../../_core/constants/color.dart';
-
-class MyCampingListPageAppBar extends StatelessWidget implements PreferredSize  {
+class MyCampingSchedulePageAppBar extends StatelessWidget
+    implements PreferredSize {
   @override
   // TODO: implement preferredSize
   Size get preferredSize => Size.fromHeight(kToolbarHeight);
-  const MyCampingListPageAppBar({
+
+  const MyCampingSchedulePageAppBar({
     super.key,
   });
 
@@ -22,12 +23,14 @@ class MyCampingListPageAppBar extends StatelessWidget implements PreferredSize  
           },
           icon: iconArrowBack()),
       title: Text(
-        "내 캠핑장",
+        "캠핑 일정",
         style: title1(),
       ),
       elevation: 0,
+      centerTitle: true,
     );
   }
+
   @override
   // TODO: implement child
   Widget get child => throw UnimplementedError();

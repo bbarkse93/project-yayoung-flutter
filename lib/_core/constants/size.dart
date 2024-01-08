@@ -46,6 +46,12 @@ TextStyle title1(
       fontSize: 24, fontWeight: mFontWeight, color: mColor, height: 1.4);
 }
 
+TextStyle title2(
+    {Color mColor = kFontTitle, FontWeight mFontWeight = FontWeight.bold}) {
+  return TextStyle(
+      fontSize: 22, fontWeight: mFontWeight, color: mColor, height: 1.4);
+}
+
 /// 서브 타이틀 폰트 = subtitle
 TextStyle subTitle1(
     {Color mColor = kFontTitle, FontWeight mFontWeight = FontWeight.bold}) {

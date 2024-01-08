@@ -1,9 +1,11 @@
+
+
 import 'package:flutter/material.dart';
 import 'package:team_project/_core/constants/color.dart';
 import 'package:team_project/ui/pages/campsite/campsite_list/campsite_list_page.dart';
 import 'package:team_project/ui/pages/home/home_page.dart';
-import 'package:team_project/ui/pages/my_page/test.dart';
-import 'package:team_project/ui/widgets/NavigationItem.dart';
+import 'package:team_project/ui/pages/my_page/main/main_page.dart';
+import 'package:team_project/ui/widgets/navigation_Item.dart';
 
 class MainScreen extends StatefulWidget {
   const MainScreen({Key? key}) : super(key: key);
@@ -37,14 +39,14 @@ class _MainScreenState extends State<MainScreen> with SingleTickerProviderStateM
           children: [
             HomePage(),
             CampsiteListPage(),
-            Test(),
+            MainPage()
           ],
         ),
       ),
       bottomNavigationBar: BottomNavigationBar(
         items: List.generate(
           navigationItem.length,
-          (index) => _buildBottomNavigationBarItem(icon: navigationItem[index].icon, imgUrl: navigationItem[index].imgUrl),
+              (index) => _buildBottomNavigationBarItem(icon: navigationItem[index].icon, imgUrl: navigationItem[index].imgUrl),
         ),
         type: BottomNavigationBarType.fixed,
         currentIndex: _currentIndex,
