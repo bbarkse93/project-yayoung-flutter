@@ -22,7 +22,7 @@ class UserUpdateAppbar extends StatelessWidget implements PreferredSizeWidget {
           : icon, onPressed: () {
         Navigator.pop(context);
       }),
-      title: Text(title, style: subTitle1()),
+      title: Center(child: Text(title, style: subTitle1())),
       actions: <Widget>[
         Padding(
           padding: const EdgeInsets.all(16.0),
