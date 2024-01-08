@@ -28,7 +28,7 @@ class MyPageAppbar extends StatelessWidget implements PreferredSizeWidget  {
           child: Container(
             child: InkWell(
               onTap: () {
-               Navigator.pushNamed(context, Move.mainScreenPage);
+               Navigator.pushNamed(context, Move.settingPage);
               },
                 child: imageMyPageSetting()),
           ),

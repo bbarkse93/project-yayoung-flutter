@@ -9,7 +9,7 @@ class UserUpdateSign extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Padding(
-      padding: const EdgeInsets.all(16.0),
+      padding: const EdgeInsets.all(gapMain),
       child: Container(
         alignment: Alignment.centerLeft,
           child: Text(" 프로필 사진 및 \n 닉네임을 적어주세요",style: title2(),)),

@@ -311,3 +311,13 @@ Image imageMyPageRefund({Color mColor = kPrimaryColor, double mWidth = 25, doubl
 Image imageMyPageUser({Color mColor = kPrimaryColor, double mWidth = 25, double mHeight = 25}) {
   return Image.asset("assets/images/my_page_user.png", width: mWidth, height: mHeight, color: mColor);
 }
+
+// 자동 로그인 ON
+Image imageSettingOnButton({double mWidth = 25, double mHeight = 25}) {
+  return Image.asset("assets/images/setting_on_button.png", width: mWidth, height: mHeight);
+}
+
+// 자동 로그인 OFF
+Image imageSettingOffButton({double mWidth = 25, double mHeight = 25}) {
+  return Image.asset("assets/images/setting_off_button.png", width: mWidth, height: mHeight);
+}

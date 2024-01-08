@@ -25,7 +25,7 @@ class UserUpdateAppbar extends StatelessWidget implements PreferredSizeWidget {
       title: Center(child: Text(title, style: subTitle1())),
       actions: <Widget>[
         Padding(
-          padding: const EdgeInsets.all(16.0),
+          padding: const EdgeInsets.all(gapMain),
           child: InkWell(
             onTap: (){
               Navigator.pushNamed(context, Move.mainScreenPage);
