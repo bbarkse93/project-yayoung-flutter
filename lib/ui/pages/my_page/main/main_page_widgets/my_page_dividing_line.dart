@@ -11,7 +11,7 @@ class MyPageDividing extends StatelessWidget {
   Widget build(BuildContext context) {
     return Padding(
       padding: const EdgeInsets.all(14.0),
-      child: MyDivider(height: 20, thickness: 2, color: kChoiceGray),
+      child: MyDivider(height: 10, thickness: 2, color: kPrimaryColor),
     );
   }
 }
