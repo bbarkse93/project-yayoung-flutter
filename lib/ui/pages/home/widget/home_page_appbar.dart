@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:team_project/_core/constants/color.dart';
 import 'package:team_project/_core/constants/icon.dart';
+import 'package:team_project/_core/constants/move.dart';
 import 'package:team_project/_core/constants/size.dart';
 
 class HomePageAppBar extends StatelessWidget implements PreferredSize{
@@ -36,7 +37,9 @@ class HomePageAppBar extends StatelessWidget implements PreferredSize{
         ],
       ),
       actions: [
-        IconButton(onPressed: () {}, icon: iconSearch()),
+        IconButton(onPressed: () {
+          Navigator.of(context).pushNamed(Move.searchCampsitePage);
+        }, icon: iconSearch()),
         SizedBox(width: gapMedium),
       ],
       elevation: 0,
