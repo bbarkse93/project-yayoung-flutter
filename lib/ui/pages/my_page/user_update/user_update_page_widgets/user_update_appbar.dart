@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:team_project/_core/constants/color.dart';
 import 'package:team_project/_core/constants/icon.dart';
+import 'package:team_project/_core/constants/move.dart';
 import 'package:team_project/_core/constants/size.dart';
 
 class UserUpdateAppbar extends StatelessWidget implements PreferredSizeWidget {
@@ -26,6 +27,9 @@ class UserUpdateAppbar extends StatelessWidget implements PreferredSizeWidget {
         Padding(
           padding: const EdgeInsets.all(16.0),
           child: InkWell(
+            onTap: (){
+              Navigator.pushNamed(context, Move.mainScreenPage);
+            },
             child: Container(
               child: button,
             ),

@@ -14,12 +14,16 @@ class UserUpdate extends StatelessWidget {
     return Scaffold(
       backgroundColor: kBackWhite,
       appBar: UserUpdateAppbar(icon: iconArrowBack(mColor: kBlack, mSize: 20), title: "프로필", button: Text("확인", style: TextStyle(color: kPrimaryColor, fontWeight: FontWeight.bold))),
-      body: Column(
+      body: ListView(
         children: [
-          SizedBox(height: 30),
-          UserUpdateSign(),
-          UserUpdateImage(),
-          UserTextFormField(),
+          Column(
+            children: [
+              SizedBox(height: 30),
+              UserUpdateSign(),
+              UserUpdateImage(),
+              UserTextFormField(),
+            ],
+          ),
         ],
       ),
     );

@@ -18,7 +18,6 @@ class MyPageAppbar extends StatelessWidget implements PreferredSizeWidget  {
       backgroundColor: kBackWhite,
       elevation: 0.0,
       title: Row(
-
         children: [
           Text('Me', style: TextStyle(fontSize: fontXxlarge, fontWeight: FontWeight.bold)),
         ],
