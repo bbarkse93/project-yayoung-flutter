@@ -1,9 +1,3 @@
-<<<<<<< HEAD:lib/ui/pages/my_page/main_page.dart
-
-
-
-=======
->>>>>>> f0c55bf6b2c824b87d6ed6fef8180be94c8c74b2:lib/ui/pages/my_page/MainScreen.dart
 import 'package:flutter/material.dart';
 import 'package:team_project/_core/constants/color.dart';
 import 'package:team_project/ui/pages/campsite/campsite_list/campsite_list_page.dart';
@@ -38,16 +32,6 @@ class _MainScreenState extends State<MainScreen> with SingleTickerProviderStateM
   Widget build(BuildContext context) {
     return Scaffold(
       body: SafeArea(
-<<<<<<< HEAD:lib/ui/pages/my_page/main_page.dart
-          child: IndexedStack(
-            index: _currentIndex,
-            children: [
-              LoginPage(),
-              HomePage(),
-              Test(),
-            ],
-          ),
-=======
         child: IndexedStack(
           index: _currentIndex,
           children: [
@@ -55,12 +39,12 @@ class _MainScreenState extends State<MainScreen> with SingleTickerProviderStateM
             CampsiteListPage(),
             Test(),
           ],
->>>>>>> f0c55bf6b2c824b87d6ed6fef8180be94c8c74b2:lib/ui/pages/my_page/MainScreen.dart
         ),
+      ),
       bottomNavigationBar: BottomNavigationBar(
         items: List.generate(
           navigationItem.length,
-          (index) => _buildBottomNavigationBarItem(icon: navigationItem[index].icon, imgUrl: navigationItem[index].imgUrl),
+              (index) => _buildBottomNavigationBarItem(icon: navigationItem[index].icon, imgUrl: navigationItem[index].imgUrl),
         ),
         type: BottomNavigationBarType.fixed,
         currentIndex: _currentIndex,
