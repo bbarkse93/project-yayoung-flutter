@@ -24,6 +24,7 @@ const Color kChoiceGray = Color(0xFFD1D1D5);
 const Color kBackWhite = Color(0xFFFFFFFF);
 const Color kBackLightGray = Color(0xFFF1F1F2);
 const Color kBackLightIbory = Color(0xFFFCFBF8);
+const Color kKakaoLogin = Color(0xFFF5F5F9);
 
 /// brand logo color
 const Color kKakaoColor = Color(0xFFFFD210);
