@@ -10,7 +10,8 @@ const Color kFontTitle = Color(0xFF2C2C34);
 const Color kFontContent = Color(0xFF6C6A6B);
 const Color kFontGray = Color(0xFFBFBFC1);
 const Color kFontBlue = Color(0xFF87BFCE);
-const Color kFontRed = Color(0xFFAE5A2A);
+const Color kFontBrown = Color(0xFFAE5A2A);
+const Color kFontRed = Color(0xFFDC0D0D);
 
 /// button color
 const Color kButtonPrimary = Color(0xFF104B3A);
@@ -26,7 +27,7 @@ const Color kBackLightIbory = Color(0xFFFCFBF8);
 const Color kKakaoLogin = Color(0xFFF5F5F9);
 
 /// brand logo color
-const Color kKakaoColor = Color(0xFFFFE810);
+const Color kKakaoColor = Color(0xFFFFD210);
 const Color kNaverColor = Color(0xFF1CC800);
 const Color kFacebookColor = Color(0xff4168B0);
 const Color kAppleColor = Color(0xffffffff);

@@ -1,6 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:team_project/_core/constants/size.dart';
-import 'package:team_project/ui/pages/home/widget/my_schedule_form.dart';
+import 'package:team_project/ui/pages/my_camping_schedule/widget/my_schedule_form.dart';
 
 class MyCampingSchedulePageBody extends StatelessWidget {
   const MyCampingSchedulePageBody({
