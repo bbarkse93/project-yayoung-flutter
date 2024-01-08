@@ -1,6 +1,10 @@
 import 'package:flutter/material.dart';
 import 'package:team_project/_core/constants/color.dart';
 import 'package:team_project/_core/constants/icon.dart';
+import 'package:team_project/ui/pages/my_page/setting/setting_page_widgets/automatic_login.dart';
+import 'package:team_project/ui/pages/my_page/setting/setting_page_widgets/setting_logout.dart';
+import 'package:team_project/ui/pages/my_page/setting/setting_page_widgets/setting_version.dart';
+import 'package:team_project/ui/pages/my_page/setting/setting_page_widgets/setting_withdrawal.dart';
 import 'package:team_project/ui/pages/my_page/user_update/user_update_page_widgets/user_update_appbar.dart';
 
 class SettingPage extends StatelessWidget {
@@ -9,9 +13,19 @@ class SettingPage extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      appBar: UserUpdateAppbar(
-          icon: iconArrowBack(mColor: kBlack, mSize: 20), title: "설정"
+      backgroundColor: kBackWhite,
+      appBar: UserUpdateAppbar(icon: iconArrowBack(), title: "설정", button: SizedBox(width: 25),),
+      body: Column(
+        children: [
+          AutomaticLogin(),
+          SettingLogout(),
+          SettingWithdrawal(),
+          SettingVersion(version: "1.0.6"),
+        ],
       ),
     );
   }
+
 }
+
+

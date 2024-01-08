@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:team_project/_core/constants/size.dart';
 
 class UserUpdateImage extends StatelessWidget {
   const UserUpdateImage({
@@ -8,7 +9,7 @@ class UserUpdateImage extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Padding(
-      padding: const EdgeInsets.all(16.0),
+      padding: const EdgeInsets.all(gapMain),
       child: Container(
         child: SizedBox(
             height: 300,

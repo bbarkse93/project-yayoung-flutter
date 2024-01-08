@@ -42,7 +42,7 @@ class _UserTextFormFieldState extends State<UserTextFormField> {
               suffix: InkWell(onTap: (){
                 _textController.clear();
               }
-                  ,child: iconChattingClose(mColor: kChoiceGray,mSize: 20)),
+                  ,child: iconChattingClose(mColor: kChoiceGray, mSize: 20)),
               // suffixIcon: ,
               prefixStyle: TextStyle(color: Colors.black), // 기본 데이터의 스타일
             ),
