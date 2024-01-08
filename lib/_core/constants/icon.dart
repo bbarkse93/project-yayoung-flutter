@@ -79,6 +79,10 @@ Icon iconClose({Color mColor = kPrimaryColor, double mSize = 25}) {
   return Icon(Icons.close, color: mColor, size: mSize);
 }
 
+Icon iconFilter({Color mColor = kPrimaryColor, double mSize = 25}) {
+  return Icon(CupertinoIcons.slider_horizontal_3, color: mColor, size: mSize);
+}
+
 // 바텀 바 홈 Icon
 Image imageBottomBarHome({Color mColor = kPrimaryColor, double mWidth = 25, double mHeight = 25}) {
   return Image.asset("assets/images/bottom_bar_home.png", width: mWidth, height: mHeight, color: mColor);
@@ -155,7 +159,7 @@ Image imageDetailEngineOil({Color mColor = kPrimaryColor, double mWidth = 25, do
 }
 
 // 디테일 낚시 Icon
-Image imageDetailFishing ({Color mColor = kPrimaryColor, double mWidth = 25, double mHeight = 25}) {
+Image imageDetailFishing({Color mColor = kPrimaryColor, double mWidth = 25, double mHeight = 25}) {
   return Image.asset("assets/images/detail_fishing.png", width: mWidth, height: mHeight, color: mColor);
 }
 
@@ -175,12 +179,12 @@ Image imageDetailHotwater({Color mColor = kPrimaryColor, double mWidth = 25, dou
 }
 
 // 디테일 얼음 Icon
-Image imageDetailIce ({Color mColor = kPrimaryColor, double mWidth = 25, double mHeight = 25}) {
+Image imageDetailIce({Color mColor = kPrimaryColor, double mWidth = 25, double mHeight = 25}) {
   return Image.asset("assets/images/detail_ice.png", width: mWidth, height: mHeight, color: mColor);
 }
 
 // 디테일 키즈 Icon
-Image imageDetailKids ({Color mColor = kPrimaryColor, double mWidth = 25, double mHeight = 25}) {
+Image imageDetailKids({Color mColor = kPrimaryColor, double mWidth = 25, double mHeight = 25}) {
   return Image.asset("assets/images/detail_kids.png", width: mWidth, height: mHeight, color: mColor);
 }
 
@@ -190,17 +194,17 @@ Image imageDetailMotorHome({Color mColor = kPrimaryColor, double mWidth = 25, do
 }
 
 // 디테일 산 Icon
-Image imageDetailMountains ({Color mColor = kPrimaryColor, double mWidth = 25, double mHeight = 25}) {
+Image imageDetailMountains({Color mColor = kPrimaryColor, double mWidth = 25, double mHeight = 25}) {
   return Image.asset("assets/images/detail_mountains.png", width: mWidth, height: mHeight, color: mColor);
 }
 
 // 디테일 갯벌 Icon
-Image imageDetailMud ({Color mColor = kPrimaryColor, double mWidth = 25, double mHeight = 25}) {
+Image imageDetailMud({Color mColor = kPrimaryColor, double mWidth = 25, double mHeight = 25}) {
   return Image.asset("assets/images/detail_mud.png", width: mWidth, height: mHeight, color: mColor);
 }
 
 // 디테일 오토캠핑 Icon
-Image imageDetailOtter ({Color mColor = kPrimaryColor, double mWidth = 25, double mHeight = 25}) {
+Image imageDetailOtter({Color mColor = kPrimaryColor, double mWidth = 25, double mHeight = 25}) {
   return Image.asset("assets/images/detail_otter_amping.png", width: mWidth, height: mHeight, color: mColor);
 }
 
@@ -215,7 +219,7 @@ Image imageDetailPet({Color mColor = kPrimaryColor, double mWidth = 25, double m
 }
 
 // 디테일 릴선 Icon
-Image imageDetailReelWire ({Color mColor = kPrimaryColor, double mWidth = 25, double mHeight = 25}) {
+Image imageDetailReelWire({Color mColor = kPrimaryColor, double mWidth = 25, double mHeight = 25}) {
   return Image.asset("assets/images/detail_reel_wire.png", width: mWidth, height: mHeight, color: mColor);
 }
 
@@ -235,12 +239,12 @@ Image imageDetailSocket({Color mColor = kPrimaryColor, double mWidth = 25, doubl
 }
 
 // 디테일 술 Icon
-Image imageDetailSoju ({Color mColor = kPrimaryColor, double mWidth = 25, double mHeight = 25}) {
+Image imageDetailSoju({Color mColor = kPrimaryColor, double mWidth = 25, double mHeight = 25}) {
   return Image.asset("assets/images/detail_soju.png", width: mWidth, height: mHeight, color: mColor);
 }
 
 // 디테일 트레일러 Icon
-Image imageDetailTrailer ({Color mColor = kPrimaryColor, double mWidth = 25, double mHeight = 25}) {
+Image imageDetailTrailer({Color mColor = kPrimaryColor, double mWidth = 25, double mHeight = 25}) {
   return Image.asset("assets/images/detail_trailer.png", width: mWidth, height: mHeight, color: mColor);
 }
 
@@ -250,22 +254,22 @@ Image imageDetailValley({Color mColor = kPrimaryColor, double mWidth = 25, doubl
 }
 
 // 디테일 계곡 물놀이 Icon
-Image imageDetailWaterPolo ({Color mColor = kPrimaryColor, double mWidth = 25, double mHeight = 25}) {
+Image imageDetailWaterPolo({Color mColor = kPrimaryColor, double mWidth = 25, double mHeight = 25}) {
   return Image.asset("assets/images/detail_water_polo.png", width: mWidth, height: mHeight, color: mColor);
 }
 
 // 디테일 물놀이장 Icon
-Image imageDetailWaterSlide ({Color mColor = kPrimaryColor, double mWidth = 25, double mHeight = 25}) {
+Image imageDetailWaterSlide({Color mColor = kPrimaryColor, double mWidth = 25, double mHeight = 25}) {
   return Image.asset("assets/images/detail_water_slide.png", width: mWidth, height: mHeight, color: mColor);
 }
 
 // 디테일 와이파이 Icon
-Image imageDetailWifi ({Color mColor = kPrimaryColor, double mWidth = 25, double mHeight = 25}) {
+Image imageDetailWifi({Color mColor = kPrimaryColor, double mWidth = 25, double mHeight = 25}) {
   return Image.asset("assets/images/detail_wifi.png", width: mWidth, height: mHeight, color: mColor);
 }
 
 // 디테일 지도 캠핑장 Icon
-Image imageMapTent ({Color mColor = kPrimaryColor, double mWidth = 25, double mHeight = 25}) {
+Image imageMapTent({Color mColor = kPrimaryColor, double mWidth = 25, double mHeight = 25}) {
   return Image.asset("assets/images/map_tent.png", width: mWidth, height: mHeight, color: mColor);
 }
 

@@ -1,9 +1,12 @@
+<<<<<<< HEAD:lib/ui/pages/my_page/main_page.dart
 
 
 
+=======
+>>>>>>> f0c55bf6b2c824b87d6ed6fef8180be94c8c74b2:lib/ui/pages/my_page/MainScreen.dart
 import 'package:flutter/material.dart';
 import 'package:team_project/_core/constants/color.dart';
-import 'package:team_project/ui/pages/auth/login_page.dart';
+import 'package:team_project/ui/pages/campsite/campsite_list/campsite_list_page.dart';
 import 'package:team_project/ui/pages/home/home_page.dart';
 import 'package:team_project/ui/pages/my_page/test.dart';
 import 'package:team_project/ui/widgets/navigation_Item.dart';
@@ -15,8 +18,7 @@ class MainScreen extends StatefulWidget {
   State<MainScreen> createState() => _MainScreenState();
 }
 
-class _MainScreenState extends State<MainScreen>
-    with SingleTickerProviderStateMixin {
+class _MainScreenState extends State<MainScreen> with SingleTickerProviderStateMixin {
   int _currentIndex = 0;
   TabController? _tabController;
 
@@ -36,6 +38,7 @@ class _MainScreenState extends State<MainScreen>
   Widget build(BuildContext context) {
     return Scaffold(
       body: SafeArea(
+<<<<<<< HEAD:lib/ui/pages/my_page/main_page.dart
           child: IndexedStack(
             index: _currentIndex,
             children: [
@@ -44,13 +47,20 @@ class _MainScreenState extends State<MainScreen>
               Test(),
             ],
           ),
+=======
+        child: IndexedStack(
+          index: _currentIndex,
+          children: [
+            HomePage(),
+            CampsiteListPage(),
+            Test(),
+          ],
+>>>>>>> f0c55bf6b2c824b87d6ed6fef8180be94c8c74b2:lib/ui/pages/my_page/MainScreen.dart
         ),
       bottomNavigationBar: BottomNavigationBar(
         items: List.generate(
           navigationItem.length,
-              (index) => _buildBottomNavigationBarItem(
-              icon: navigationItem[index].icon,
-              imgUrl: navigationItem[index].imgUrl),
+          (index) => _buildBottomNavigationBarItem(icon: navigationItem[index].icon, imgUrl: navigationItem[index].imgUrl),
         ),
         type: BottomNavigationBarType.fixed,
         currentIndex: _currentIndex,
@@ -66,8 +76,7 @@ class _MainScreenState extends State<MainScreen>
     );
   }
 
-  BottomNavigationBarItem _buildBottomNavigationBarItem(
-      {dynamic? icon, dynamic? imgUrl}) {
+  BottomNavigationBarItem _buildBottomNavigationBarItem({dynamic? icon, dynamic? imgUrl}) {
     return BottomNavigationBarItem(
       icon: Padding(
         padding: EdgeInsets.symmetric(vertical: 5.0),
