@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:team_project/_core/constants/color.dart';
 import 'package:team_project/_core/constants/icon.dart';
+import 'package:team_project/_core/constants/move.dart';
 import 'package:team_project/_core/constants/size.dart';
 
 class MyScheduleForm extends StatelessWidget {
@@ -46,7 +47,9 @@ class MyScheduleForm extends StatelessWidget {
                   ],
                 ),
                 IconButton(
-                  onPressed: () {},
+                  onPressed: () {
+                    _showAlertDialog(context);
+                  },
                   icon: iconClose(),
                 ),
               ],
@@ -64,6 +67,55 @@ class MyScheduleForm extends StatelessWidget {
           ],
         ),
       ),
+    );
+  }
+
+  Future<void> _showAlertDialog(BuildContext context) async {
+    return showDialog<void>(
+      context: context,
+      builder: (BuildContext context) {
+        return AlertDialog(
+          backgroundColor: kBackWhite,
+          title: Center(
+            child: Column(
+              children: [
+                SizedBox(height: gapMain),
+                Text('예약을 취소 하시겠습니까?',
+                style: subTitle1(mColor: kFontRed),
+                ),
+              ],
+            ),
+          ),
+          actions: [
+            Row(
+              mainAxisAlignment: MainAxisAlignment.spaceAround,
+              children: [
+                TextButton(
+                  onPressed: () {
+                    Navigator.of(context).pop();
+                  },
+                  child: Text('아니요',
+                  style: subTitle1(mColor: kFontContent),
+                  ),
+                ),
+                Container(
+                  color: kFontContent,
+                  height: gapLarge,
+                  width: 1,
+                ),
+                TextButton(
+                  onPressed: () {
+                    Navigator.pushNamed(context, Move.refundPage);
+                  },
+                  child: Text('예약 취소',
+                    style: subTitle1(mColor: kFontRed, mFontWeight: FontWeight.normal),
+                  ),
+                ),
+              ],
+            ),
+          ],
+        );
+      },
     );
   }
 }

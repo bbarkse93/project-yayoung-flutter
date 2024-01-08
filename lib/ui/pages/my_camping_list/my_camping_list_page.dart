@@ -1,6 +1,6 @@
 import 'package:flutter/material.dart';
-import 'package:team_project/ui/pages/home/widget/my_camping_list_page_appbar.dart';
-import 'package:team_project/ui/pages/home/widget/my_camping_list_page_body.dart';
+import 'package:team_project/ui/pages/my_camping_list/widget/my_camping_list_page_appbar.dart';
+import 'package:team_project/ui/pages/my_camping_list/widget/my_camping_list_page_body.dart';
 
 class MyCampingListPage extends StatefulWidget {
   const MyCampingListPage({super.key});
