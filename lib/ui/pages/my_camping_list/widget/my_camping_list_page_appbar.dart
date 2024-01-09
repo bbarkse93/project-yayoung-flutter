@@ -20,10 +20,10 @@ class MyCampingListPageAppBar extends StatelessWidget implements PreferredSize  
           onPressed: () {
             Navigator.pop(context);
           },
-          icon: iconArrowBack()),
+          icon: iconArrowBack(mColor: kBlack,mSize: gapSemiMedium)),
       title: Text(
         "내 캠핑장",
-        style: title1(),
+        style: title3(),
       ),
       elevation: 0,
       centerTitle: true,

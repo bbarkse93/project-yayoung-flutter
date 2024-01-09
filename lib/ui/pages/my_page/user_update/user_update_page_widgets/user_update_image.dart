@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:team_project/_core/constants/size.dart';
 
+// TODO 언약 : 이미지 클릭 시 갤러리 연결하기, 확인 누르면 수정 insert
 class UserUpdateImage extends StatelessWidget {
   const UserUpdateImage({
     super.key,

@@ -4,12 +4,12 @@ import 'package:team_project/_core/constants/icon.dart';
 import 'package:team_project/_core/constants/move.dart';
 import 'package:team_project/_core/constants/size.dart';
 
-class UserUpdateAppbar extends StatelessWidget implements PreferredSizeWidget {
+class MyPageAppbar extends StatelessWidget implements PreferredSizeWidget {
   final dynamic icon;
   final String title;
   final dynamic button;
 
-  const UserUpdateAppbar({
+  const MyPageAppbar({
     super.key, this.icon, required this.title, this.button,
   });
 
@@ -22,7 +22,7 @@ class UserUpdateAppbar extends StatelessWidget implements PreferredSizeWidget {
           : icon, onPressed: () {
         Navigator.pop(context);
       }),
-      title: Center(child: Text(title, style: subTitle1())),
+      title: Center(child: Text(title, style: title3())),
       actions: <Widget>[
         Padding(
           padding: const EdgeInsets.all(gapMain),

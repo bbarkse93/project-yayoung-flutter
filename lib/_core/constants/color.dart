@@ -11,6 +11,7 @@ const Color kFontContent = Color(0xFF6C6A6B);
 const Color kFontGray = Color(0xFFBFBFC1);
 const Color kFontBlue = Color(0xFF87BFCE);
 const Color kFontBrown = Color(0xFFAE5A2A);
+const Color kFontLightGray = Color(0xFFC8C8C9);
 const Color kFontRed = Color(0xFFDC0D0D);
 
 /// button color
@@ -22,6 +23,7 @@ const Color kChoiceGray = Color(0xFFD1D1D5);
 
 /// background color
 const Color kBackWhite = Color(0xFFFFFFFF);
+const Color kBackBlack = Color(0xFF000000);
 const Color kBackLightGray = Color(0xFFF1F1F2);
 const Color kBackLightIbory = Color(0xFFFCFBF8);
 const Color kKakaoLogin = Color(0xFFF5F5F9);
