@@ -21,10 +21,10 @@ class MyCampingSchedulePageAppBar extends StatelessWidget
           onPressed: () {
             Navigator.pop(context);
           },
-          icon: iconArrowBack()),
+          icon: iconArrowBack(mColor: kBlack,mSize: gapSemiMedium)),
       title: Text(
         "캠핑 일정",
-        style: title1(),
+        style: title3(),
       ),
       elevation: 0,
       centerTitle: true,

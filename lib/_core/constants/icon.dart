@@ -321,3 +321,12 @@ Image imageSettingOnButton({double mWidth = 25, double mHeight = 25}) {
 Image imageSettingOffButton({double mWidth = 25, double mHeight = 25}) {
   return Image.asset("assets/images/setting_off_button.png", width: mWidth, height: mHeight);
 }
+
+// like 빈 이미지
+Image imageLikePage({double mWidth = 25, double mHeight = 25}) {
+  return Image.asset("assets/images/like_page.png", width: mWidth, height: mHeight);
+}
+
+Icon iconBottomSetting({Color mColor = kBackBlack, double mSize = 25}) {
+  return Icon(CupertinoIcons.profile_circled, color: mColor, size: mSize);
+}
