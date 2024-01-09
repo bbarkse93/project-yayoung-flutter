@@ -8,6 +8,7 @@ const double gapXSmall = 5.0;
 const double gapSmall = 10.0;
 const double gapMedium = 15.0;
 const double gapSemiMedium = 20.0;
+const double gapMediumLarge = 25.0;
 const double gapLarge = 30.0;
 const double gapSemiLarge = 35.0;
 const double gapXLarge = 40.0;
@@ -50,6 +51,12 @@ TextStyle title2(
     {Color mColor = kFontTitle, FontWeight mFontWeight = FontWeight.bold}) {
   return TextStyle(
       fontSize: 22, fontWeight: mFontWeight, color: mColor, height: 1.4);
+}
+
+TextStyle title3(
+    {Color mColor = kFontTitle, FontWeight mFontWeight = FontWeight.bold}) {
+  return TextStyle(
+      fontSize: 20, fontWeight: mFontWeight, color: mColor, height: 1.4);
 }
 
 /// 서브 타이틀 폰트 = subtitle

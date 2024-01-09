@@ -4,7 +4,9 @@ import 'package:team_project/ui/pages/campsite/campsite_detail/campsite_detail_p
 import 'package:team_project/ui/pages/campsite/campsite_list/campsite_list_page.dart';
 import 'package:team_project/ui/pages/campsite/search_campsite/search_campsite_page.dart';
 import 'package:team_project/ui/pages/home/home_page.dart';
+import 'package:team_project/ui/pages/my_page/like_page/like_page.dart';
 import 'package:team_project/ui/pages/my_page/main_page.dart';
+import 'package:team_project/ui/pages/my_page/notice_page/notice_page.dart';
 import 'package:team_project/ui/pages/my_page/setting/setting_page.dart';
 import 'package:team_project/ui/pages/my_page/user_update/user_update.dart';
 import 'package:team_project/ui/pages/my_camping_list/my_camping_list_page.dart';
@@ -26,6 +28,10 @@ class Move {
   static String searchCampsitePage = "/searchCampsite";  // 캠핑장 검색
   static String userUpdatePage = "/userUpdate";  // 업데이트
   static String settingPage = "/settingPage";  // My페이지 설정
+  static String likePage = "/likePage";  // My페이지 설정
+  static String noticePage = "/noticePage";  // My페이지 설정
+
+
   // 캠핑장 디테일
   static String campsiteDetailPage = "/campsiteDetail";
   // 캠핑장 목록
@@ -47,6 +53,8 @@ Map<String, Widget Function(BuildContext)> getRouters() {
     Move.splashPage: (p0) => SplashPage(),
     Move.homePage: (p0) => HomePage(),
     Move.settingPage: (p0) => SettingPage(),
+    Move.likePage: (p0) => LikePage(),
+    Move.noticePage: (p0) => NoticePage(),
     Move.myCampingSchedule: (p0) => MyCampingSchedulePage(),
 
     Move.userUpdatePage:(p0) => const UserUpdate(),
