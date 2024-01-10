@@ -12,8 +12,5 @@ class ResponseDTO {
       : success = json["success"],
         response = json["response"],
         error = json["error"] {
-    Logger().d("0. ResponseDTO.fromJson: code = $success");
-    Logger().d("0. ResponseDTO.fromJson: msg = $error");
-    Logger().d("0. ResponseDTO.fromJson: data = $response");
   }
 }
