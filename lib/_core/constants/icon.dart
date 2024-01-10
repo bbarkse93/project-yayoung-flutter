@@ -74,11 +74,6 @@ Icon iconHamburgerMenu({Color mColor = kPrimaryColor, double mSize = 25}) {
   return Icon(Icons.density_medium_rounded, color: mColor, size: mSize);
 }
 
-// 검색 Icon
-Icon iconSearch({Color mColor = kFontTitle, double mSize = 25}) {
-  return Icon(CupertinoIcons.search, color: mColor, size: mSize);
-}
-
 // 창 닫기 Icon
 Icon iconClose({Color mColor = kPrimaryColor, double mSize = 25}) {
   return Icon(Icons.close, color: mColor, size: mSize);

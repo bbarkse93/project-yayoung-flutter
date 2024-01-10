@@ -16,22 +16,19 @@ class HomePage extends StatelessWidget {
     return Scaffold(
       appBar: AppBar(
         backgroundColor: kSubColor,
-        title: Row(
+        title: Column(
+          crossAxisAlignment: CrossAxisAlignment.start,
           children: [
-            Column(
-              children: [
-                Image.asset(
-                  "assets/images/yayoung_logo.png",
-                  height: 40,
-                ),
-                Container(
-                  alignment: Alignment.centerLeft,
-                  child: Text(
-                    "# 캠핑을 위한 모든 것, 야영에서 함께",
-                    style: TextStyle(fontSize: 11),
-                  ),
-                ),
-              ],
+            Image.asset(
+              "assets/images/yayoung_logo.png",
+              height: 40,
+            ),
+            Container(
+              alignment: Alignment.centerLeft,
+              child: Text(
+                "# 캠핑을 위한 모든 것, 야영에서 함께",
+                style: TextStyle(fontSize: 11),
+              ),
             ),
           ],
         ),
