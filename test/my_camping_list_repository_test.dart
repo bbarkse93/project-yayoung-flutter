@@ -16,4 +16,3 @@ Future<void> fetchMyCampingList() async{
   ResponseDTO responseDTO = ResponseDTO.fromJson(response.data);
 
 }
-
