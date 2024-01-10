@@ -4,7 +4,8 @@ import 'package:flutter_secure_storage/flutter_secure_storage.dart';
 // http 통신
 final dio = Dio(
   BaseOptions(
-    baseUrl: "http://localhost:8080",
+    // baseUrl: "http://192.168.0.141:8080",
+    baseUrl: "http://192.168.0.41:8080",
 
     contentType: "application/json; charset=utf-8",
   ),
