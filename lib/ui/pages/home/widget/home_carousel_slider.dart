@@ -1,6 +1,8 @@
 import 'package:carousel_slider/carousel_slider.dart';
 import 'package:flutter/material.dart';
 import 'package:team_project/_core/constants/size.dart';
+import 'package:url_launcher/url_launcher.dart';
+
 
 class HomeCarouselSlider extends StatefulWidget {
   const HomeCarouselSlider({Key? key}) : super(key: key);
@@ -19,7 +21,12 @@ class _HomeCarouselSliderState extends State<HomeCarouselSlider> {
     "assets/images/yayoung_logo.png",
   ];
 
-
+  List<String> siteUrls = [
+    "https://www.naver.com",
+    "https://www.google.com",
+    "https://www.example.com",
+    "https://www.openai.com",
+  ];
 
   @override
   Widget build(BuildContext context) {
@@ -37,15 +44,22 @@ class _HomeCarouselSliderState extends State<HomeCarouselSlider> {
   Widget sliderWidget() {
     return CarouselSlider(
       carouselController: _controller,
-      items: imageList.map(
-            (imgLink) {
+      items: imageList.asMap().entries.map(
+            (entry) {
           return Builder(
             builder: (context) {
-              return SizedBox(
-                width: MediaQuery.of(context).size.width,
-                child: Image(
-                  fit: BoxFit.fill,
-                  image: AssetImage(imgLink),
+              return InkWell(
+                onTap: () async {
+                  print("클릭됨?");
+                  // onTap 이벤트를 처리하고, 각 이미지에 대한 URL을 열도록 합니다.
+                  await launchUrl(Uri.parse(siteUrls[entry.key]));
+                },
+                child: SizedBox(
+                  width: MediaQuery.of(context).size.width,
+                  child: Image(
+                    fit: BoxFit.fill,
+                    image: AssetImage(entry.value),
+                  ),
                 ),
               );
             },
