@@ -1,13 +1,24 @@
 import 'package:flutter/material.dart';
+import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:team_project/ui/pages/campsite/campsite_list/campsite_list_page_widgets/campsite_list_page_body.dart';
+import 'package:team_project/ui/pages/campsite/campsite_list/campsite_list_view_model.dart';
 
-class CampsiteListPage extends StatelessWidget {
-  const CampsiteListPage({super.key});
+class CampsiteListPage extends ConsumerWidget {
+  final refreshKey = GlobalKey<RefreshIndicatorState>();
+
+  CampsiteListPage({super.key});
 
   @override
-  Widget build(BuildContext context) {
-    return Scaffold(
-      body: CampsiteListPageBody(),
+  Widget build(BuildContext context, WidgetRef ref) {
+    return ProviderScope(
+      child: Scaffold(
+        body: RefreshIndicator(
+          child: CampsiteListPageBody(),
+          onRefresh: () async {
+            ref.watch(campListProvider.notifier).notifyInit();
+          },
+        ),
+      ),
     );
   }
 }
