@@ -15,15 +15,21 @@ class MyCamping {
     required this.reviewImage,
   });
 
-  // JSON에서 MyCamping으로 변환
-  factory MyCamping.fromJson(Map<String, dynamic> json) {
-    return MyCamping(
-      totalRating: json['totalRating'],
-      checkInDate: json['checkInDate'],
-      checkOutDate: json['checkOutDate'],
-      campAddress: json['campAddress'],
-      campName: json['campName'],
-      reviewImage: json['reviewImage'],
-    );
-  }
+  factory MyCamping.fromJson(Map<String, dynamic> json) => MyCamping(
+    totalRating: json["totalRating"],
+    checkInDate: json["checkInDate"],
+    checkOutDate: json["checkOutDate"],
+    campAddress: json["campAddress"],
+    campName: json["campName"],
+    reviewImage: json["reviewImage"],
+  );
+
+  Map<String, dynamic> toJson() => {
+    "totalRating": totalRating,
+    "checkInDate": checkInDate,
+    "checkOutDate": checkOutDate,
+    "campAddress": campAddress,
+    "campName": campName,
+    "reviewImage": reviewImage,
+  };
 }

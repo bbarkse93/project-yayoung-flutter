@@ -2,7 +2,6 @@ import 'package:logger/logger.dart';
 import 'package:team_project/_core/constants/http.dart';
 import 'package:team_project/data/dto/response_dto.dart';
 import 'package:team_project/data/model/my_camping.dart';
-import 'package:team_project/data/repository/my_camping_list_repository.dart';
 
 void main() async {
   await notifyInit();
@@ -30,7 +29,8 @@ Future<ResponseDTO> fetchMyCampingList() async {
 
     // ResponseDTO의 data 파싱
     List<dynamic> mapList = responseDTO.response['myCampDTOs'] as List<dynamic>;
-    List<MyCamping> campList = mapList.map((e) => MyCamping.fromJson(e)).toList();
+    List<MyCamping> campList =
+        mapList.map((e) => MyCamping.fromJson(e)).toList();
     print("데이터는?");
 
     // 파싱된 데이터를 공통DTO로 덮어씌우기

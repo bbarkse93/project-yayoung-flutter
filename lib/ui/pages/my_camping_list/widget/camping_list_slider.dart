@@ -27,7 +27,6 @@ class _CampingListSliderState extends State<CampingListSlider> {
           );
         }
         List<MyCamping> campingList = model!.campingList;
-
         return CarouselSlider.builder(
           carouselController: carouselController,
           itemCount: campingList?.length ?? 0, // null이면 0으로 설정

@@ -28,9 +28,7 @@ class _MyCampingListPageBodyState extends State<MyCampingListPageBody> {
             ],
           ),
           SizedBox(height: gapXLarge),
-          ProviderScope(
-            child: CampingListSlider(),
-          ),
+          ProviderScope(child: CampingListSlider()),
         ],
       ),
     );
