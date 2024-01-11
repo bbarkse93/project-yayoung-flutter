@@ -3,14 +3,15 @@ import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:logger/logger.dart';
 import 'package:team_project/data/dto/response_dto.dart';
 import 'package:team_project/data/model/camp.dart';
+import 'package:team_project/data/model/campsite_detail.dart';
 import 'package:team_project/data/repository/campsite_detail_repository.dart';
 import 'package:team_project/data/store/param_store.dart';
 import 'package:team_project/main.dart';
 
 class CampDetailModel {
-  Camp camp;
+  CampInfo campInfo;
 
-  CampDetailModel(this.camp);
+  CampDetailModel(this.campInfo);
 }
 
 //창고
@@ -22,8 +23,9 @@ class CampDetailViewModel extends StateNotifier<CampDetailModel?> {
 
   Future<void> notifyInit(int campId) async {
     ResponseDTO responseDTO = await CampDetailRepository().fetchCampDetail(campId);
-
+    Logger().d("이게 된다고? ${responseDTO.response}");
     state = CampDetailModel(responseDTO.response);
+    Logger().d('state는 $state');
   }
 
 }

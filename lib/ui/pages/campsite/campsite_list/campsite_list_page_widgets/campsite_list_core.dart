@@ -17,7 +17,7 @@ class CampsiteListCore extends ConsumerWidget {
   Widget build(BuildContext context, WidgetRef ref) {
     CampListModel? model = ref.watch(campListProvider);
     List<Camp> campList = [];
-
+    Logger().d("model은?? $model");
     if (model == null) {
       return const SliverToBoxAdapter(
         child: SizedBox(

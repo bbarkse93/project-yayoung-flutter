@@ -5,30 +5,22 @@ import 'package:team_project/_core/constants/color.dart';
 import 'package:team_project/_core/constants/icon.dart';
 import 'package:team_project/_core/constants/size.dart';
 import 'package:team_project/data/model/camp.dart';
+import 'package:team_project/data/model/campsite_detail.dart';
 import 'package:team_project/ui/pages/campsite/campsite_detail/campsite_detail_view_model.dart';
 import 'package:team_project/ui/pages/campsite/campsite_detail/campsite_detail_page_widgets/campsite_detail_review.dart';
 
 class CampsiteDetailCore extends StatelessWidget {
-  final Camp camp;
-  CampsiteDetailCore({required this.camp, super.key});
+  final CampInfo campInfo;
+  const CampsiteDetailCore({required this.campInfo, super.key});
 
   @override
   Widget build(BuildContext context) {
-    // CampDetailModel? model = ref.watch(campsiteDetailProvider);
-    // Logger().d("model 값은? $model");
-    // if (model == null) {
-    //   return const SliverToBoxAdapter(
-    //     child: Center(
-    //       child: CircularProgressIndicator(),
-    //     ),
-    //   );
-    // }
 
     return SliverList(
       delegate: SliverChildBuilderDelegate(
         (BuildContext context, int index) {
           if (index == 0) {
-            return CampsiteDetailReview(camp: camp);
+            return CampsiteDetailReview(campInfo: campInfo);
           }
           return Padding(
             padding: const EdgeInsets.all(gapMain),

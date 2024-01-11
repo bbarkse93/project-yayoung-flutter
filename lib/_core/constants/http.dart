@@ -5,7 +5,7 @@ import 'package:flutter_secure_storage/flutter_secure_storage.dart';
 final dio = Dio(
   BaseOptions(
     // baseUrl: "http://192.168.0.141:8080", // 메인 서버
-    baseUrl: "http://192.168.0.221:8080", // 세환 서버
+    baseUrl: "http://192.168.0.43:8080", // 세환 서버
     // baseUrl: "http://192.168.0.48:8080", // 우진 서버
     // baseUrl: "http://192.168.0.48:8080", // 은혜 서버
     // baseUrl: "http://192.168.0.48:8080", // 승신 서버

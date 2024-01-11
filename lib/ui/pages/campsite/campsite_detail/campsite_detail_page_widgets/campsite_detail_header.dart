@@ -4,11 +4,12 @@ import 'package:team_project/_core/constants/http.dart';
 import 'package:team_project/_core/constants/icon.dart';
 import 'package:team_project/_core/constants/size.dart';
 import 'package:team_project/data/model/camp.dart';
+import 'package:team_project/data/model/campsite_detail.dart';
 
 class CampsiteDetailHeader extends StatelessWidget {
-  Camp camp;
+  CampInfo campInfo;
 
-  CampsiteDetailHeader({Key? key, required this.camp}) : super(key: key);
+  CampsiteDetailHeader({Key? key, required this.campInfo}) : super(key: key);
 
   @override
   Widget build(BuildContext context) {
@@ -37,15 +38,15 @@ class CampsiteDetailHeader extends StatelessWidget {
                             crossAxisAlignment: CrossAxisAlignment.start,
                             children: [
                               Text(
-                                "${camp.campName}",
+                                "${campInfo.campName}",
                                 style: TextStyle(fontSize: fontLarge),
                               ),
                               Text(
-                                "${camp.campAddress}",
+                                "${campInfo.campAddress}",
                                 style: TextStyle(fontSize: fontSmall),
                               ),
-                              Text(
-                                "₩45000 ~ 55000",
+                              Text("₩${campInfo.campPrice?.minPrice} ~ ${campInfo.campPrice?.maxPrice}",
+                                // "₩${camp.minPrice} ~ ${camp.maxPrice}",
                                 style: TextStyle(fontSize: fontSmall),
                               ),
                             ],
@@ -57,7 +58,7 @@ class CampsiteDetailHeader extends StatelessWidget {
                       colorFilter: ColorFilter.mode(
                           Colors.black.withOpacity(0.5), BlendMode.darken),
                       child: Image.network(
-                        "${dio.options.baseUrl}${camp.campFieldImage}",
+                        "${dio.options.baseUrl}${campInfo.campFieldImage}",
                         fit: BoxFit.cover,
                       ),
                     ),

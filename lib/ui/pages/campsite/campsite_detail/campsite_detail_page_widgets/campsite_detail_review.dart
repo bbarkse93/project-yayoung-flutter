@@ -2,11 +2,12 @@ import 'package:flutter/material.dart';
 import 'package:team_project/_core/constants/icon.dart';
 import 'package:team_project/_core/constants/size.dart';
 import 'package:team_project/data/model/camp.dart';
+import 'package:team_project/data/model/campsite_detail.dart';
 
 class CampsiteDetailReview extends StatelessWidget {
-  final Camp camp;
+  final CampInfo campInfo;
 
-  const CampsiteDetailReview({super.key, required this.camp});
+  const CampsiteDetailReview({super.key, required this.campInfo});
 
   @override
   Widget build(BuildContext context) {
@@ -28,11 +29,11 @@ class CampsiteDetailReview extends StatelessWidget {
                           fontWeight: FontWeight.bold),
                     ),
                   ),
-                  Text(camp.campRating != null ? "${camp.campRating}" : "평점 없음",
+                  Text(campInfo.totalRating != null ? "${campInfo.totalRating}" : "평점 없음",
                       style: TextStyle(
                         fontSize:
-                            camp.campRating != null ? fontXxlarge : fontMedium,
-                        fontWeight: camp.campRating != null ? FontWeight.bold : FontWeight.bold,
+                        campInfo.totalRating != null ? fontXxlarge : fontMedium,
+                        fontWeight: campInfo.totalRating != null ? FontWeight.bold : FontWeight.bold,
                       )),
                 ],
               ),
