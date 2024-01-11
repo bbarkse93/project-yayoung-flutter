@@ -1,41 +1,41 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:team_project/_core/constants/color.dart';
+import 'package:team_project/_core/constants/http.dart';
 import 'package:team_project/_core/constants/icon.dart';
 import 'package:team_project/_core/constants/size.dart';
-import 'package:team_project/data/dto/request_dto/my_camping_list_request_dto.dart';
-import 'package:team_project/ui/pages/my_camping_list/riverpod/riverpod_my_camping_list.dart';
+import 'package:team_project/data/model/my_camping.dart';
+import 'package:team_project/ui/pages/my_camping_list/my_camping_list_view_model.dart';
 
 class CampingListCardForm extends ConsumerWidget {
   const CampingListCardForm({
     Key? key,
-    required this.myCampingDTO,
+    required this.index,
   }) : super(key: key);
 
-  final MyCampingDTO myCampingDTO;
+  final int index;
 
   @override
   Widget build(BuildContext context, WidgetRef ref) {
-    int index = ref.watch(myCampingListProvider.notifier).index;
-    String campsite = myCampingDTO.campName;
-    String campsiteAddress = myCampingDTO.campAddress;
-    String startDate = myCampingDTO.checkInDate;
-    String endDate = myCampingDTO.checkOutDate;
-    String rating = myCampingDTO.totalRating;
-    String campingImage = myCampingDTO.reviewImage;
+    MyCampingListModel? model = ref.watch(myCampingListProvider);
+    List<MyCamping>? campingList = model?.campingList;
 
+    if (campingList == null) {
+      return Center(child: Text('캠핑 기록이 없어요: $index'));
+    }
+    if (index < 0 || index >= campingList.length) {
+      return Center(child: CircularProgressIndicator());
+    }
 
     return Container(
-      width: MediaQuery
-          .of(context)
-          .size
-          .width,
+      width: MediaQuery.of(context).size.width,
       margin: const EdgeInsets.symmetric(horizontal: 5.0),
       decoration: BoxDecoration(
         borderRadius: BorderRadius.circular(gapMain),
         image: DecorationImage(
-          fit: BoxFit.cover, // 이미지가 컨테이너를 꽉 채우도록 설정
-          image: NetworkImage('${campingImage}'), // 이미지 경로 설정
+          fit: BoxFit.cover,
+          image: NetworkImage(
+              '${dio.options.baseUrl}${campingList[index].reviewImage}'),
         ),
       ),
       child: Padding(
@@ -50,24 +50,24 @@ class CampingListCardForm extends ConsumerWidget {
             ),
             SizedBox(height: gapXSmall),
             Text(
-              '${campsite}',
+              '${campingList[index].campName}',
               style: title1(mColor: kBackWhite),
             ),
             SizedBox(height: gapXSmall),
             Text(
-              '${campsiteAddress}',
+              '${campingList[index].campAddress}',
               style: subTitle3(mColor: kBackWhite),
             ),
             SizedBox(height: gapXSmall),
             Text(
-              '${startDate} - ${endDate}',
+              '${campingList[index].checkInDate} - ${campingList[index].checkOutDate}',
               style: subTitle3(mColor: kBackWhite),
             ),
             SizedBox(height: gapSmall),
             Row(
               children: List.generate(
-                int.parse(rating),
-                    (index) => iconFullStar(mColor: kBackWhite),
+                int.parse(campingList[index].totalRating),
+                (index) => iconFullStar(mColor: kBackWhite),
               ),
             ),
           ],
