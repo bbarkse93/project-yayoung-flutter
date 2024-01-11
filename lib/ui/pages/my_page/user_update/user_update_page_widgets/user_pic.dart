@@ -6,18 +6,19 @@ import 'package:image_picker/image_picker.dart';
 import 'package:team_project/_core/constants/size.dart';
 
 class UserPic extends StatefulWidget {
-  final Function(String?) onImageSelected;
-  final String imageUrl;
+  final String? imageUrl;
+  final void Function(String) updateImageCallback;
 
-  const UserPic({Key? key, required this.imageUrl, required this.onImageSelected}) : super(key: key);
+  const UserPic({Key? key, required this.imageUrl, required this.updateImageCallback}) : super(key: key);
 
   @override
   State<UserPic> createState() => _UserPicState();
 }
 
-
 class _UserPicState extends State<UserPic> {
   XFile? _image; //이미지를 담을 변수 선언
+
+
   final ImagePicker picker = ImagePicker(); //ImagePicker 초기화
 
   //이미지를 가져오는 함수
@@ -28,8 +29,7 @@ class _UserPicState extends State<UserPic> {
     if (pickedFile != null) {
       setState(() {
         _image = XFile(pickedFile.path); //가져온 이미지를 _image에 저장
-        widget.onImageSelected(pickedFile.path);
-
+        widget.updateImageCallback(_image!.path);
       });
     }
   }
@@ -70,16 +70,19 @@ class _UserPicState extends State<UserPic> {
       ),
     )
         : Container(
-        width: 300,
-        height: 300,
+        width: getScreenWidth(context) * 0.8,
+        height: getScreenHeight(context) * 0.4,
         child: ClipRRect(
             borderRadius: BorderRadius.circular(20), // 테두리 둥근 정도 결정
-            // TODO 언약: 이미지 매겨변수 받기
             child: InkWell(
                 onTap: () {
                   getImage(ImageSource.gallery);
                 },
-                child: Image.asset("assets/images/profile.jpg")))
+              child: widget.imageUrl != null && widget.imageUrl!.startsWith("/images/user/")
+                  ? Image.network("http://192.168.0.134:8080${widget.imageUrl}", width: getScreenWidth(context) * 0.8, height: getScreenHeight(context) * 0.4, fit: BoxFit.cover,)
+                  : Image.file(File(widget.imageUrl!), fit: BoxFit.cover,)
+              //  Image.network(widget.imageUrl)
+            ))
                // Image.asset(imageUrl)))
 
     );

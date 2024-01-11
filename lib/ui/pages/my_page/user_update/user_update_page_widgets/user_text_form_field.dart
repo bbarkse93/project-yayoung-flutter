@@ -1,5 +1,4 @@
 import 'package:flutter/material.dart';
-import 'package:logger/logger.dart';
 import 'package:team_project/_core/constants/color.dart';
 import 'package:team_project/_core/constants/icon.dart';
 import 'package:team_project/_core/constants/size.dart';
@@ -14,22 +13,15 @@ class UserTextFormField extends StatefulWidget {
   }) : super(key: key);
 
   @override
-  State<UserTextFormField> createState() => _UserTextFormFieldState(title: title, controller: controller,nickName: nickName );
+  State<UserTextFormField> createState() => _UserTextFormFieldState();
 }
 
 class _UserTextFormFieldState extends State<UserTextFormField> {
 
-  final String title;
-  final String nickName;
-  final TextEditingController controller;
-
-  _UserTextFormFieldState({required this.nickName,
-    required this.title, required this.controller,
-  });
  // TextEditingController _textController = TextEditingController();
   @override
   void dispose() {
-    controller.dispose(); // 컨트롤러를 해제합니다.
+    widget.controller.dispose(); // 컨트롤러를 해제합니다.
     super.dispose();
   }
 
@@ -42,17 +34,17 @@ class _UserTextFormFieldState extends State<UserTextFormField> {
         children: [
           Container(
               alignment: Alignment.centerLeft,
-              child: Text(title, style: bodyBlack1(mColor: kChoiceGray, mFontWeight: FontWeight.w900))),
+              child: Text(widget.title, style: bodyBlack1(mColor: kChoiceGray, mFontWeight: FontWeight.w900))),
           TextFormField(
             style: subTitle1(mFontWeight: FontWeight.w600),
-            controller: controller,
+            controller: widget.controller,
             decoration: InputDecoration(
               hintStyle: subTitle1(mFontWeight: FontWeight.w600),
-              hintText: nickName,
+              hintText: widget.nickName,
               border: InputBorder.none,
               focusedBorder: InputBorder.none,
               suffix: InkWell(onTap: (){
-              controller.clear();
+                widget.controller.clear();
               }
                   ,child: iconChattingClose(mColor: kChoiceGray, mSize: 20)),
               // suffixIcon: ,

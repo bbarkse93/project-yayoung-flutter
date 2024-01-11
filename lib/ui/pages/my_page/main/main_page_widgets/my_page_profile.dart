@@ -1,14 +1,19 @@
+import 'dart:io';
+
 import 'package:flutter/material.dart';
+import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:team_project/_core/constants/move.dart';
 import 'package:team_project/_core/constants/size.dart';
+import 'package:team_project/ui/pages/my_page/user_update/user_update_view_model.dart';
 
-class MyPageProfile extends StatelessWidget {
+class MyPageProfile extends ConsumerWidget {
   const MyPageProfile({
     super.key,
   });
 
   @override
-  Widget build(BuildContext context) {
+  Widget build(BuildContext context, WidgetRef ref) {
+    UserUpdateModel? model = ref.watch(userUpdateProvider);
     return Padding(
       padding: const EdgeInsets.all(gapMain),
       child: Row(
@@ -22,7 +27,10 @@ class MyPageProfile extends StatelessWidget {
                   child: InkWell(
                       onTap: () {
                         Navigator.pushNamed(context, Move.userUpdatePage);
-                      },child: Image.asset("assets/images/profile.jpg")))
+                      },child: model!.userImage.startsWith("/images/user/")
+                      ? Image.network("http://192.168.0.134:8080${model!.userImage}", width: 75, height: 75, fit: BoxFit.cover,)
+                      : Image.file(File(model.userImage))
+                  ))
           ),
           SizedBox(
             width: 18,
@@ -30,7 +38,7 @@ class MyPageProfile extends StatelessWidget {
           ,
           Padding(
             padding: const EdgeInsets.all(8.0),
-            child: Text("디자이너스", style: title2()),
+            child: Text(model.nickname, style: title2()),
           )
         ],
       ),

@@ -40,6 +40,7 @@ class UserUpdateViewModel extends StateNotifier<UserUpdateModel?> {
         userImage: model.userImage,
         nickname: model.nickname);
     Logger().d("상태 : ${state?.nickname}");
+    Logger().d("상태 : ${state?.userImage}");
   }
 }
 

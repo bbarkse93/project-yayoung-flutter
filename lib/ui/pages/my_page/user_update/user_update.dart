@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
+import 'package:logger/logger.dart';
 import 'package:team_project/_core/constants/color.dart';
 import 'package:team_project/_core/constants/icon.dart';
 import 'package:team_project/_core/constants/size.dart';
@@ -17,8 +18,14 @@ class UserUpdate extends ConsumerWidget {
 
   final _formKey = GlobalKey<FormState>();
   final _nickName = TextEditingController();
-  final userPicUrl = ValueNotifier<String?>(null);
+  String _selectedImagePath = "";
 
+
+  // 콜백 함수
+  void updateImage(String imagePath) {
+    Logger().d("선택된 이미지 경로 : $imagePath");
+    _selectedImagePath = imagePath;
+  }
 
   @override
   Widget build(BuildContext context, WidgetRef ref) {
@@ -38,8 +45,8 @@ class UserUpdate extends ConsumerWidget {
               funPageRoute: () async {
                 if (_formKey.currentState!.validate()) {
                   UserUpdateReqDTO userUpdateReqDTO = UserUpdateReqDTO(
-                      nickname: _nickName.text,
-                  userImage: "테스트");
+                      nickname: _nickName.text.isEmpty ? model.nickname : _nickName.text,
+                  userImage: _selectedImagePath.isEmpty ? model.userImage : _selectedImagePath);
                   print('버튼 클릭됨 :' + userUpdateReqDTO.nickname);
                   print('버튼 클릭됨 :' + userUpdateReqDTO.userImage);
                   await ref.read(sessionStore).userUpdate(userUpdateReqDTO);
@@ -55,9 +62,9 @@ class UserUpdate extends ConsumerWidget {
               children: [
                 SizedBox(height: gapMediumLarge),
                 UserUpdateSign(),
-                UserPic(imageUrl: model!.userImage, onImageSelected: (imageUrl) {
-                  userPicUrl.value = imageUrl;
-                },
+                UserPic(
+                  imageUrl: model!.userImage,
+                  updateImageCallback: updateImage,
                 ),
                 UserTextFormField(
                   title: "닉네임",
