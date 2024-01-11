@@ -63,7 +63,7 @@ Map<String, Widget Function(BuildContext)> getRouters() {
     Move.myCampingListPage: (p0) => MyCampingListPage(),
 
     Move.searchCampsitePage: (p0) => const SearchCampsitePage(),
-    Move.campsiteDetailPage: (p0) => CampsiteDetailPage(),
+    // Move.campsiteDetailPage: (p0) => CampsiteDetailPage(),
     Move.campsiteListPage: (p0) => CampsiteListPage(),
 
     Move.refundPage: (p0) => RefundPage(),

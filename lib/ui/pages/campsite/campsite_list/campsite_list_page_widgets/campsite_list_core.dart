@@ -72,11 +72,13 @@ class CampsiteListCore extends ConsumerWidget {
               ),
             ),
             onTap: () {
-              ref
-                  .read(campListProvider.notifier)
-                  .setCampId(campList[index].id!);
-              Navigator.push(context,
-                  MaterialPageRoute(builder: (_) => CampsiteDetailPage()));
+              Navigator.push(
+                context,
+                MaterialPageRoute(
+                  builder: (context) =>
+                      CampsiteDetailPage(campId: campList[index].id ?? 0),
+                ),
+              );
             },
           );
         },

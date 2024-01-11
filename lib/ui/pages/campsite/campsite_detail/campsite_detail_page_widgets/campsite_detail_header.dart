@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:team_project/_core/constants/color.dart';
+import 'package:team_project/_core/constants/http.dart';
 import 'package:team_project/_core/constants/icon.dart';
 import 'package:team_project/_core/constants/size.dart';
 import 'package:team_project/data/model/camp.dart';
@@ -56,7 +57,7 @@ class CampsiteDetailHeader extends StatelessWidget {
                       colorFilter: ColorFilter.mode(
                           Colors.black.withOpacity(0.5), BlendMode.darken),
                       child: Image.network(
-                        "https://picsum.photos/200",
+                        "${dio.options.baseUrl}${camp.campFieldImage}",
                         fit: BoxFit.cover,
                       ),
                     ),

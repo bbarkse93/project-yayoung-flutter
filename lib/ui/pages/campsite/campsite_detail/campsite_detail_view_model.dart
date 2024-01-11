@@ -20,16 +20,16 @@ class CampDetailViewModel extends StateNotifier<CampDetailModel?> {
   final mContext = navigatorKey.currentContext;
   Ref ref;
 
-  Future<void> notifyInit(int id) async {
-    ResponseDTO responseDTO = await CampDetailRepository().fetchCampDetail(id);
+  Future<void> notifyInit(int campId) async {
+    ResponseDTO responseDTO = await CampDetailRepository().fetchCampDetail(campId);
 
     state = CampDetailModel(responseDTO.response);
   }
+
 }
 
 //창고 관리자
 final campsiteDetailProvider =
-StateNotifierProvider.autoDispose<CampDetailViewModel, CampDetailModel?>(
-        (ref) {
-          int id = ref.read(paramProvider).campDetailId!;
-          return CampDetailViewModel(null, ref)..notifyInit(id);});
+StateNotifierProvider.family<CampDetailViewModel, CampDetailModel?, int>(
+        (ref, campId) {
+          return CampDetailViewModel(null, ref)..notifyInit(campId);});
