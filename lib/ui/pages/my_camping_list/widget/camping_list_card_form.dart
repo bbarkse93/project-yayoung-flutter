@@ -10,22 +10,21 @@ import 'package:team_project/ui/pages/my_camping_list/my_camping_list_view_model
 class CampingListCardForm extends ConsumerWidget {
   const CampingListCardForm({
     Key? key,
-    required this.index, // index 추가
+    required this.index,
   }) : super(key: key);
 
-  final int index; // index 변수 추가
-
+  final int index;
 
   @override
   Widget build(BuildContext context, WidgetRef ref) {
-
     MyCampingListModel? model = ref.watch(myCampingListProvider);
     List<MyCamping>? campingList = model?.campingList;
+
     if (campingList == null) {
-      return Center(child: CircularProgressIndicator());
+      return Center(child: Text('캠핑 기록이 없어요: $index'));
     }
     if (index < 0 || index >= campingList.length) {
-      return Center(child: Text('Invalid index: $index'));
+      return Center(child: CircularProgressIndicator());
     }
 
     return Container(
@@ -34,9 +33,9 @@ class CampingListCardForm extends ConsumerWidget {
       decoration: BoxDecoration(
         borderRadius: BorderRadius.circular(gapMain),
         image: DecorationImage(
-          fit: BoxFit.cover, // 이미지가 컨테이너를 꽉 채우도록 설정
+          fit: BoxFit.cover,
           image: NetworkImage(
-              '${campingList[index].reviewImage}'), // 이미지 경로 설정
+              '${dio.options.baseUrl}${campingList[index].reviewImage}'),
         ),
       ),
       child: Padding(
@@ -46,7 +45,7 @@ class CampingListCardForm extends ConsumerWidget {
           crossAxisAlignment: CrossAxisAlignment.start,
           children: [
             Text(
-              '# ${index}',
+              '# ${index + 1}',
               style: subTitle2(mColor: kBackWhite),
             ),
             SizedBox(height: gapXSmall),
@@ -68,7 +67,7 @@ class CampingListCardForm extends ConsumerWidget {
             Row(
               children: List.generate(
                 int.parse(campingList[index].totalRating),
-                (index) => iconFullStar(mColor: kBackWhite),
+                    (index) => iconFullStar(mColor: kBackWhite),
               ),
             ),
           ],

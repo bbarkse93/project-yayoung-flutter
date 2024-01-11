@@ -18,6 +18,7 @@ Future<void> notifyInit() async {
 
 }
 
+
 Future<ResponseDTO> fetchMyCampingList() async {
   try {
 
@@ -41,5 +42,3 @@ Future<ResponseDTO> fetchMyCampingList() async {
     return ResponseDTO(false, "캠핑장목록 불러오기 실패", null);
   }
 }
-
-

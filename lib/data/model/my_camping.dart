@@ -33,14 +33,3 @@ class MyCamping {
     "reviewImage": reviewImage,
   };
 }
-
-List<MyCamping> myCampingListDTO(dynamic data) {
-  List<MyCamping> myCampingListDTO = [];
-
-  for (var myCampDTO in data['response']['myCampDTOs']) {
-    MyCamping campingList = MyCamping.fromJson(myCampDTO);
-    myCampingListDTO.add(campingList);
-  }
-
-  return myCampingListDTO;
-}
