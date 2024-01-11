@@ -12,7 +12,7 @@ void main () async {
 Future<ResponseDTO> fetchUserInfo() async {
   try {
     Response response = await dio.get("/user/my-page/profile");
-    // Logger().d("1 = $response");
+     Logger().d("1 = $response");
 
     ResponseDTO responseDTO = ResponseDTO.fromJson(response.data);
     // Logger().d("2 = ${responseDTO.response}");
