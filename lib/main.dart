@@ -10,11 +10,13 @@ void main() {
   WidgetsFlutterBinding.ensureInitialized();
 
   KakaoSdk.init(nativeAppKey: "edc929f8703514e3d119422f3935375b");
+
   runApp(
     ProviderScope(
       child: const MyApp(),
     ),
   );
+
 }
 
 class MyApp extends StatelessWidget {

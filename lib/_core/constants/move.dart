@@ -31,7 +31,6 @@ class Move {
   static String likePage = "/likePage";  // My페이지 설정
   static String noticePage = "/noticePage";  // My페이지 설정
 
-
   // 캠핑장 디테일
   static String campsiteDetailPage = "/campsiteDetail";
   // 캠핑장 목록
@@ -57,7 +56,7 @@ Map<String, Widget Function(BuildContext)> getRouters() {
     Move.noticePage: (p0) => NoticePage(),
     Move.myCampingSchedule: (p0) => MyCampingSchedulePage(),
 
-    Move.userUpdatePage:(p0) => const UserUpdate(),
+    Move.userUpdatePage:(p0) => UserUpdate(),
     Move.myCampingSchedulePage: (p0) => MyCampingSchedulePage(),
     Move.myCampingListPage: (p0) => MyCampingListPage(),
 
@@ -68,6 +67,5 @@ Map<String, Widget Function(BuildContext)> getRouters() {
     Move.refundPage: (p0) => RefundPage(),
     Move.reservationPage: (p0) => ReservationPage(),
     Move.paymentPage: (p0) => PaymentPage(),
-
   };
 }
