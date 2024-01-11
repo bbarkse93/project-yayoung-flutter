@@ -2,9 +2,12 @@ import 'package:flutter/material.dart';
 import 'package:team_project/_core/constants/color.dart';
 import 'package:team_project/_core/constants/icon.dart';
 import 'package:team_project/_core/constants/size.dart';
+import 'package:team_project/data/model/camp.dart';
 
 class CampsiteDetailHeader extends StatelessWidget {
-  const CampsiteDetailHeader({super.key});
+  Camp camp;
+
+  CampsiteDetailHeader({Key? key, required this.camp}) : super(key: key);
 
   @override
   Widget build(BuildContext context) {
@@ -24,7 +27,7 @@ class CampsiteDetailHeader extends StatelessWidget {
               ? SizedBox(
                   width: double.infinity,
                   child: FlexibleSpaceBar(
-                    title: const Stack(
+                    title: Stack(
                       children: [
                         Positioned(
                           bottom: 10.0,
@@ -33,15 +36,15 @@ class CampsiteDetailHeader extends StatelessWidget {
                             crossAxisAlignment: CrossAxisAlignment.start,
                             children: [
                               Text(
-                                "물가솔솔캠핑장",
+                                "${camp.campName}",
                                 style: TextStyle(fontSize: fontLarge),
                               ),
                               Text(
-                                "강원 홍천군 내면 광원리 471-4",
+                                "${camp.campAddress}",
                                 style: TextStyle(fontSize: fontSmall),
                               ),
                               Text(
-                                "₩45,000 ~ 55,000",
+                                "₩45000 ~ 55000",
                                 style: TextStyle(fontSize: fontSmall),
                               ),
                             ],
@@ -51,9 +54,7 @@ class CampsiteDetailHeader extends StatelessWidget {
                     ),
                     background: ColorFiltered(
                       colorFilter: ColorFilter.mode(
-                        Colors.black.withOpacity(0.5),
-                        BlendMode.darken
-                      ),
+                          Colors.black.withOpacity(0.5), BlendMode.darken),
                       child: Image.network(
                         "https://picsum.photos/200",
                         fit: BoxFit.cover,
@@ -67,7 +68,7 @@ class CampsiteDetailHeader extends StatelessWidget {
                       children: [
                         Spacer(),
                         Text(
-                          "물가 솔솔 캠핑장",
+                          "",
                           style: TextStyle(color: kFontTitle),
                         ),
                         Spacer(),

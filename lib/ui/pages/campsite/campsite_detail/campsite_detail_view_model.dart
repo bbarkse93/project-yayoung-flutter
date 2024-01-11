@@ -27,9 +27,9 @@ class CampDetailViewModel extends StateNotifier<CampDetailModel?> {
   }
 }
 
-//창고 관리자b
-final boardDetailProvider =
+//창고 관리자
+final campsiteDetailProvider =
 StateNotifierProvider.autoDispose<CampDetailViewModel, CampDetailModel?>(
         (ref) {
-          int campId = ref.read(paramProvider).campDetailId!;
-          return CampDetailViewModel(null, ref)..notifyInit(campId);});
+          int id = ref.read(paramProvider).campDetailId!;
+          return CampDetailViewModel(null, ref)..notifyInit(id);});

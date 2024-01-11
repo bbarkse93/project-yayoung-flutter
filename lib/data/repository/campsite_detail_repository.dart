@@ -6,28 +6,20 @@ import 'package:team_project/data/model/camp.dart';
 
 class CampDetailRepository {
 
-  Future<ResponseDTO> fetchCampDetail(int id) async {
+  Future<ResponseDTO> fetchCampDetail(int? id) async {
     try {
-
-      print("통신 시작");
       // 통신
-      final response = await dio.get("/camp/${id}");
-
-      // ResponseDTO파싱
+      Logger().d("id는? $id");
+      Response response = await dio.get("/camp/${id}");
+      print("응답 완료");
+      // 응답 받은 데이터 파싱
       ResponseDTO responseDTO = ResponseDTO.fromJson(response.data);
-
-      // ResponseDTO의 data 파싱
-      List<dynamic> mapList = responseDTO.response as List<dynamic>;
-      List<Camp> campList =
-      mapList.map((e) => Camp.fromJson(e)).toList();
-
-      // 파싱된 데이터를 공통DTO로 덮어씌우기
-      responseDTO.response = campList;
-
+      Logger().d("그만둬 ${responseDTO.response}");
+      responseDTO.response = Camp.fromJson(responseDTO.response);
+      Logger().d("그만둬2 ${responseDTO.response}");
       return responseDTO;
     } catch (e) {
       return ResponseDTO(false, "캠핑장 불러오기 실패", null);
     }
   }
-
 }

@@ -7,6 +7,7 @@ import 'package:team_project/_core/constants/icon.dart';
 import 'package:team_project/_core/constants/move.dart';
 import 'package:team_project/_core/constants/size.dart';
 import 'package:team_project/data/model/camp.dart';
+import 'package:team_project/ui/pages/campsite/campsite_detail/campsite_detail_page.dart';
 import 'package:team_project/ui/pages/campsite/campsite_list/campsite_list_view_model.dart';
 
 class CampsiteListCore extends ConsumerWidget {
@@ -37,7 +38,10 @@ class CampsiteListCore extends ConsumerWidget {
                 width: 60,
                 height: 60,
                 child: ClipRRect(
-                  child: Image.network("${dio.options.baseUrl}${campList[index].campImage}",fit: BoxFit.cover,),
+                  child: Image.network(
+                    "${dio.options.baseUrl}${campList[index].campImage}",
+                    fit: BoxFit.cover,
+                  ),
                   // child: Image.network("https://picsum.photos/200"),
                   borderRadius: BorderRadius.circular(gapSemiMedium),
                 ),
@@ -68,7 +72,11 @@ class CampsiteListCore extends ConsumerWidget {
               ),
             ),
             onTap: () {
-              Navigator.pushNamed(context, Move.campsiteDetailPage);
+              ref
+                  .read(campListProvider.notifier)
+                  .setCampId(campList[index].id!);
+              Navigator.push(context,
+                  MaterialPageRoute(builder: (_) => CampsiteDetailPage()));
             },
           );
         },

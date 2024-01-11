@@ -1,9 +1,12 @@
 import 'package:flutter/material.dart';
 import 'package:team_project/_core/constants/icon.dart';
 import 'package:team_project/_core/constants/size.dart';
+import 'package:team_project/data/model/camp.dart';
 
 class CampsiteDetailReview extends StatelessWidget {
-  const CampsiteDetailReview({super.key});
+  final Camp camp;
+
+  const CampsiteDetailReview({super.key, required this.camp});
 
   @override
   Widget build(BuildContext context) {
@@ -21,15 +24,16 @@ class CampsiteDetailReview extends StatelessWidget {
                     child: Text(
                       "평점",
                       style: TextStyle(
-                          fontSize: fontSemiMedium, fontWeight: FontWeight.bold),
+                          fontSize: fontSemiMedium,
+                          fontWeight: FontWeight.bold),
                     ),
                   ),
-                  Text(
-                    "5.0",
-                    style:
-                        TextStyle(fontSize: gapLarge, fontWeight: FontWeight.bold),
-                  ),
-                  Text("1위"),
+                  Text(camp.campRating != null ? "${camp.campRating}" : "평점 없음",
+                      style: TextStyle(
+                        fontSize:
+                            camp.campRating != null ? fontXxlarge : fontMedium,
+                        fontWeight: camp.campRating != null ? FontWeight.bold : FontWeight.bold,
+                      )),
                 ],
               ),
               Container(
@@ -54,6 +58,7 @@ class CampsiteDetailReview extends StatelessWidget {
                             "청결도",
                             style: TextStyle(fontSize: fontMedium),
                           ),
+
                           Row(
                             children: [
                               iconEmptyStar(mSize: fontLarge),
@@ -106,13 +111,14 @@ class CampsiteDetailReview extends StatelessWidget {
                     child: Text(
                       "리뷰 수",
                       style: TextStyle(
-                          fontSize: fontSemiMedium, fontWeight: FontWeight.bold),
+                          fontSize: fontSemiMedium,
+                          fontWeight: FontWeight.bold),
                     ),
                   ),
                   Text(
                     "1",
-                    style:
-                        TextStyle(fontSize: gapLarge, fontWeight: FontWeight.bold),
+                    style: TextStyle(
+                        fontSize: gapLarge, fontWeight: FontWeight.bold),
                   ),
                   InkWell(
                     child: Text("전체리뷰보기"),

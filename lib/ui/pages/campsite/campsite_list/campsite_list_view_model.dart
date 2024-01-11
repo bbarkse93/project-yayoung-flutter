@@ -7,8 +7,8 @@ import 'package:team_project/main.dart';
 
 class CampListModel {
   List<Camp> campList;
-
-  CampListModel(this.campList);
+  int? selectedCampId;
+  CampListModel(this.campList, {this.selectedCampId});
 }
 
 // 2. 창고
@@ -23,6 +23,11 @@ class CampListViewModel extends StateNotifier<CampListModel?> {
     Logger().d("responseDTO :  $responseDTO");
     state = CampListModel(responseDTO.response);
     Logger().d("state :  $state");
+  }
+
+  void setCampId(int id){
+    state = CampListModel(state!.campList, selectedCampId: id);
+
   }
 
 }
