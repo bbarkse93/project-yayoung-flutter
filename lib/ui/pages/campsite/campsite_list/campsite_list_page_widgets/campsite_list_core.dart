@@ -19,11 +19,8 @@ class CampsiteListCore extends ConsumerWidget {
 
     if (model == null) {
       return const SliverToBoxAdapter(
-        child: SizedBox(
-          height: 200,
-          child: Center(
-            child: CircularProgressIndicator(),
-          ),
+        child: Center(
+          child: CircularProgressIndicator(),
         ),
       );
     }
@@ -37,7 +34,7 @@ class CampsiteListCore extends ConsumerWidget {
                 width: 60,
                 height: 60,
                 child: ClipRRect(
-                  child: Image.network("${dio.options.baseUrl}${campList[index].campImage}",fit: BoxFit.cover,),
+                  child: Image.network("${dio.options.baseUrl}${campList[index].campFieldImage}",fit: BoxFit.cover,),
                   // child: Image.network("https://picsum.photos/200"),
                   borderRadius: BorderRadius.circular(gapSemiMedium),
                 ),
@@ -58,7 +55,7 @@ class CampsiteListCore extends ConsumerWidget {
                     children: [
                       iconFullStar(mColor: kReviewColor, mSize: gapSemiMedium),
                       Text(
-                        "${campList[index].campRating}",
+                        "5.0",
                         style: TextStyle(
                             fontSize: fontSemiMedium, color: kFontContent),
                       )

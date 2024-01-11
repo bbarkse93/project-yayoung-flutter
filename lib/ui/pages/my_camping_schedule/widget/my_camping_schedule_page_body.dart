@@ -1,28 +1,45 @@
 import 'package:flutter/material.dart';
+import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:team_project/_core/constants/size.dart';
+import 'package:team_project/ui/pages/my_camping_schedule/my_camping_schedule_view_model.dart';
 import 'package:team_project/ui/pages/my_camping_schedule/widget/my_schedule_form.dart';
 
-class MyCampingSchedulePageBody extends StatelessWidget {
-  const MyCampingSchedulePageBody({
-    super.key,
-  });
+class MyCampingSchedulePageBody extends ConsumerWidget {
+  const MyCampingSchedulePageBody({Key? key}) : super(key: key);
 
   @override
-  Widget build(BuildContext context) {
+  Widget build(BuildContext context, WidgetRef ref) {
+    // 데이터 로딩 여부를 확인할 수 있는 로직 추가
+    final myCampingScheduleModel = ref.watch(myCampingScheduleProvider);
+
+    if (myCampingScheduleModel == null) {
+      // 데이터 로딩 중이라면 로딩 화면을 보여줄 수 있습니다.
+      return CircularProgressIndicator();
+    }
+
     return Padding(
       padding: EdgeInsets.symmetric(horizontal: gapMain),
-      child: ListView(
+      child: Column(
+        crossAxisAlignment: CrossAxisAlignment.start,
         children: [
+          SizedBox(height: gapMain),
           Text(
             "다가오는 일정",
             style: subTitle1(),
           ),
           SizedBox(height: gapMain),
-          MyScheduleForm(
-            startDate: "8월 25일",
-            dDay: "D-365",
-            campsite: "성동 서울숲 여름캠핑장(임시캠핑장)",
-            campsiteAddress: "서울 성동구 성수동1가 365-20",
+          Expanded(
+            child: ListView.builder(
+              itemCount: myCampingScheduleModel.campingScheduleList.length,
+              itemBuilder: (context, index) {
+                return Column(
+                  children: [
+                    MyScheduleForm(index: index),
+                    SizedBox(height: gapLarge),
+                  ],
+                );
+              },
+            ),
           ),
         ],
       ),

@@ -67,7 +67,7 @@ class CampingListCardForm extends ConsumerWidget {
             Row(
               children: List.generate(
                 int.parse(campingList[index].totalRating),
-                    (index) => iconFullStar(mColor: kBackWhite),
+                (index) => iconFullStar(mColor: kBackWhite),
               ),
             ),
           ],

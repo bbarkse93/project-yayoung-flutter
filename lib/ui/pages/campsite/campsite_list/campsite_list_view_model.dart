@@ -29,5 +29,5 @@ class CampListViewModel extends StateNotifier<CampListModel?> {
 
 // 3. 창고 관리자
 final campListProvider = StateNotifierProvider.autoDispose<CampListViewModel, CampListModel?>(
-        (ref) {return CampListViewModel(null, ref)..notifyInit();
+        (ref) {return CampListViewModel(CampListModel([]), ref)..notifyInit();
     });
