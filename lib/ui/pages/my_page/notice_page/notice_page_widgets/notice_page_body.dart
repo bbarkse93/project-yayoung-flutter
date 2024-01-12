@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:team_project/_core/constants/icon.dart';
 import 'package:team_project/_core/constants/size.dart';
 import 'package:team_project/data/mock/book_reply.dart';
@@ -7,6 +8,8 @@ import 'package:team_project/data/mock/notice.dart';
 import 'package:team_project/ui/pages/my_page/notice_page/notice_page_widgets/notice_category_button.dart';
 import 'package:team_project/ui/pages/my_page/notice_page/notice_page_widgets/notice_description.dart';
 import 'package:team_project/ui/pages/my_page/notice_page/notice_page_widgets/notice_detail.dart';
+import 'package:team_project/ui/pages/my_page/notice_page/notice_page_widgets/view_model/faq_view_model.dart';
+import 'package:team_project/ui/pages/my_page/notice_page/notice_page_widgets/view_model/notice_view_model.dart';
 
 class NoticePageBody extends StatefulWidget {
   const NoticePageBody({
@@ -71,35 +74,41 @@ class _NoticePageBodyState extends State<NoticePageBody> {
                         ),
                       ),
                     ),
-                    SliverFillRemaining(
-                      child: IndexedStack(
-                        index: _pageIndex,
-                        children: [
-                          /// 결제/환불
-                          ListView.builder(
-                            itemCount: paymentFAQ.length,
-                            itemBuilder: (BuildContext context, int index) {
-                              return NoticeDescription(
-                                  title: "${paymentFAQ[index].subTitle}",
-                                  description: "${paymentFAQ[index].content}");
-                            },
-                          ),
+                    Consumer(builder: (context, ref, child){
+                      FaqModel? model = ref.watch(faqProvider);
+                      if (model == null) {
+                        return SliverToBoxAdapter(child: CircularProgressIndicator());
+                      }
 
-                          /// 회원/비회원
-                          ListView.builder(
-                            itemCount: bookReplys.length,
-                            itemBuilder: (BuildContext context, int index) {
-                              return Column(
-                                children: [
-                                  NoticeDescription(
-                                      title: "${userFAQ[index].subTitle}",
-                                      description: "${userFAQ[index].content}"),
-                                ],
-                              );
-                            },
-                          ),
-                        ],
-                      ),
+                      return SliverFillRemaining(
+                        child: IndexedStack(
+                          index: _pageIndex,
+                          children: [
+                            /// 결제/환불
+                            ListView.builder(
+                              itemCount: model!.paymentDTOList!.length,
+                              itemBuilder: (BuildContext context, int index) {
+                                PaymentDTO paymentDTOList = model.paymentDTOList![index];
+                                return NoticeDescription(
+                                    title: "${paymentDTOList.title}",
+                                    description: "${paymentDTOList.content}");
+                              },
+                            ),
+
+                            /// 회원/비회원
+                            ListView.builder(
+                              itemCount: bookReplys.length,
+                              itemBuilder: (BuildContext context, int index) {
+                                UserDTO userDTOList = model.userDTOList![index];
+                                return NoticeDescription(
+                                    title: "${userDTOList.title}",
+                                    description: "${userDTOList.content}");
+                              },
+                            ),
+                          ],
+                        ),
+                      );
+                    },
                     )
                   ],
                 ),
@@ -109,17 +118,26 @@ class _NoticePageBodyState extends State<NoticePageBody> {
         ),
 
         // 공지사항 탭
-        ListView.builder(
-          itemCount: noticeList.length,
-          itemBuilder: (BuildContext context, int index) {
-            return Padding(
-              padding: const EdgeInsets.symmetric(horizontal: gapMain),
-              child: NoticeDetail(
-                  noticeTitle: "${noticeList[index].subTitle}",
-                  noticeDate: "${noticeList[index].createdAt}",
-                  noticeComent: "${noticeList[index].content}"),
+        Consumer(
+          builder: (context, ref, child) {
+            NoticeModel? model = ref.watch(noticeProvider);
+            if (model == null) {
+              return CircularProgressIndicator();
+            }
+            return ListView.builder(
+              itemCount: model!.noticeDTOList!.length,
+              itemBuilder: (BuildContext context, int index) {
+                NoticeDTO noticeDTOList = model.noticeDTOList![index];
+                return Padding(
+                  padding: const EdgeInsets.symmetric(horizontal: gapMain),
+                  child: NoticeDetail(
+                      noticeTitle: "${noticeDTOList.title}",
+                      noticeDate: "${noticeDTOList.createdAt}",
+                      noticeComent: "${noticeDTOList.content}"),
+                );
+              },
             );
-          },
+          }
         ),
       ],
     );
