@@ -17,18 +17,17 @@ class CampsiteListCore extends ConsumerWidget {
   Widget build(BuildContext context, WidgetRef ref) {
     CampListModel? model = ref.watch(campListProvider);
     List<Camp> campList = [];
-    Logger().d("model은?? $model");
+
+
     if (model == null) {
       return const SliverToBoxAdapter(
-        child: SizedBox(
-          height: 200,
-          child: Center(
-            child: CircularProgressIndicator(),
-          ),
+        child: Center(
+          child: CircularProgressIndicator(),
         ),
       );
     }
     campList = model.campList;
+
     return SliverList(
       delegate: SliverChildBuilderDelegate(
         (context, index) {
@@ -62,7 +61,7 @@ class CampsiteListCore extends ConsumerWidget {
                     children: [
                       iconFullStar(mColor: kReviewColor, mSize: gapSemiMedium),
                       Text(
-                        "${campList[index].campRating}",
+                        "5.0",
                         style: TextStyle(
                             fontSize: fontSemiMedium, color: kFontContent),
                       )

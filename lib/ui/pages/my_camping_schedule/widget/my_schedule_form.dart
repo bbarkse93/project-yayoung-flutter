@@ -1,29 +1,33 @@
 import 'package:flutter/material.dart';
+import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:team_project/_core/constants/color.dart';
 import 'package:team_project/_core/constants/icon.dart';
 import 'package:team_project/_core/constants/move.dart';
 import 'package:team_project/_core/constants/size.dart';
+import 'package:team_project/ui/pages/my_camping_schedule/my_camping_schedule_view_model.dart';
 
-class MyScheduleForm extends StatelessWidget {
-  final String startDate;
-  final String dDay;
-  final String campsite;
-  final String campsiteAddress;
+class MyScheduleForm extends ConsumerWidget {
+  const MyScheduleForm({Key? key,
+    required this.index,
+  }) : super(key: key);
 
-  const MyScheduleForm({
-    super.key,
-    required this.startDate,
-    required this.dDay,
-    required this.campsite,
-    required this.campsiteAddress,
-  });
+  final int index;
 
   @override
-  Widget build(BuildContext context) {
+  Widget build(BuildContext context, WidgetRef ref) {
+    MyCampingScheduleModel? model = ref.watch(myCampingScheduleProvider);
+    List<MyCampingScheduleDTO>? campingScheduleList =
+        model?.campingScheduleList;
+    if (campingScheduleList == null) {
+      return Center(child: Text('캠핑 기록이 없어요: $index'));
+    }
+    if (index < 0 || index >= campingScheduleList.length) {
+      return Center(child: CircularProgressIndicator());
+    }
     return Container(
       decoration: BoxDecoration(
           color: kBackLightGray, borderRadius: BorderRadius.circular(gapMain)),
-      height: 170,
+      height: 190,
       child: Padding(
         padding: const EdgeInsets.all(gapMain),
         child: Column(
@@ -35,12 +39,12 @@ class MyScheduleForm extends StatelessWidget {
                 Row(
                   children: [
                     Text(
-                      "${startDate}",
+                      "${campingScheduleList[index].checkInDate}",
                       style: subTitle1(mFontWeight: FontWeight.bold),
                     ),
                     SizedBox(width: gapMain),
                     Text(
-                      "${dDay}",
+                      "${campingScheduleList[index].checkInDDay}",
                       style: subTitle2(
                           mColor: kFontContent, mFontWeight: FontWeight.bold),
                     ),
@@ -56,13 +60,18 @@ class MyScheduleForm extends StatelessWidget {
             ),
             SizedBox(height: gapMain),
             Text(
-              "${campsite}",
+              "${campingScheduleList[index].campName}",
               style: subTitle2(),
             ),
             SizedBox(height: gapXSmall),
             Text(
-              "${campsiteAddress}",
+              "${campingScheduleList[index].campAddress}",
               style: subTitle2(mFontWeight: FontWeight.normal),
+            ),
+            SizedBox(height: gapMain),
+            Text(
+              "${campingScheduleList[index].campField}",
+              style: subTitle3(),
             ),
           ],
         ),
@@ -80,8 +89,9 @@ class MyScheduleForm extends StatelessWidget {
             child: Column(
               children: [
                 SizedBox(height: gapMain),
-                Text('예약을 취소 하시겠습니까?',
-                style: subTitle1(mColor: kFontRed),
+                Text(
+                  '예약을 취소 하시겠습니까?',
+                  style: subTitle1(mColor: kFontRed),
                 ),
               ],
             ),
@@ -94,8 +104,9 @@ class MyScheduleForm extends StatelessWidget {
                   onPressed: () {
                     Navigator.of(context).pop();
                   },
-                  child: Text('아니요',
-                  style: subTitle1(mColor: kFontContent),
+                  child: Text(
+                    '아니요',
+                    style: subTitle1(mColor: kFontContent),
                   ),
                 ),
                 Container(
@@ -107,8 +118,10 @@ class MyScheduleForm extends StatelessWidget {
                   onPressed: () {
                     Navigator.pushNamed(context, Move.refundPage);
                   },
-                  child: Text('예약 취소',
-                    style: subTitle1(mColor: kFontRed, mFontWeight: FontWeight.normal),
+                  child: Text(
+                    '예약 취소',
+                    style: subTitle1(
+                        mColor: kFontRed, mFontWeight: FontWeight.normal),
                   ),
                 ),
               ],

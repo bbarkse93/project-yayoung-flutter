@@ -1,9 +1,7 @@
 import 'package:flutter/material.dart';
-import 'package:team_project/_core/constants/color.dart';
 import 'package:team_project/_core/constants/icon.dart';
 import 'package:team_project/_core/constants/move.dart';
 import 'package:team_project/_core/constants/size.dart';
-import 'package:team_project/ui/pages/campsite/campsite_list/campsite_list_page_widgets/campsite_list_header_image.dart';
 
 class CampsiteListHeader extends StatelessWidget {
   const CampsiteListHeader({
@@ -17,15 +15,13 @@ class CampsiteListHeader extends StatelessWidget {
       automaticallyImplyLeading: false,
       backgroundColor: Colors.transparent,
       title: const Text("캠핑장",
-          style: TextStyle(
-              fontSize: fontSemiLarge,
-              fontWeight: FontWeight.bold,
-              color: kBackWhite)),
+          style:
+              TextStyle(fontSize: fontSemiLarge, fontWeight: FontWeight.bold)),
       actions: [
         Padding(
           padding: const EdgeInsets.all(gapMain),
           child: InkWell(
-            child: iconSearch(mColor: kBackWhite),
+            child: iconSearch(),
             onTap: () {
               Navigator.of(context).pushNamed(Move.searchCampsitePage);
             },
@@ -37,10 +33,12 @@ class CampsiteListHeader extends StatelessWidget {
         scrollDirection: Axis.horizontal,
         // itemCount: product.productPics?.length,
         itemBuilder: (context, index) {
-          return CampsiteListHeaderImage();
+          return Image.network(
+            "https://picsum.photos/200",
+            fit: BoxFit.cover,
+          );
         },
       ),
     );
   }
 }
-
