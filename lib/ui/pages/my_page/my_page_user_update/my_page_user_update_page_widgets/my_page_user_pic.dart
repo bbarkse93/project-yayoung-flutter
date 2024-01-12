@@ -7,7 +7,7 @@ import 'package:team_project/_core/constants/size.dart';
 
 class UserPic extends StatefulWidget {
   final String? imageUrl;
-  final void Function(String) updateImageCallback;
+  final void Function(File) updateImageCallback;
 
   const UserPic({Key? key, required this.imageUrl, required this.updateImageCallback}) : super(key: key);
 
@@ -16,8 +16,7 @@ class UserPic extends StatefulWidget {
 }
 
 class _UserPicState extends State<UserPic> {
-  XFile? _image; //이미지를 담을 변수 선언
-
+  File? _image; //이미지를 담을 변수 선언
 
   final ImagePicker picker = ImagePicker(); //ImagePicker 초기화
 
@@ -28,8 +27,8 @@ class _UserPicState extends State<UserPic> {
 
     if (pickedFile != null) {
       setState(() {
-        _image = XFile(pickedFile.path); //가져온 이미지를 _image에 저장
-        widget.updateImageCallback(_image!.path);
+        _image = File(pickedFile.path); //가져온 이미지를 _image에 저장
+        widget.updateImageCallback(_image!);
       });
     }
   }
@@ -61,7 +60,7 @@ class _UserPicState extends State<UserPic> {
             getImage(ImageSource.gallery);
           },
           child: Image.file(
-            File(_image!.path),
+            _image!,
             width: double.infinity, // 부모의 가로 크기에 맞추기
             height: double.infinity, // 부모의 세로 크기에 맞추기
             fit: BoxFit.cover, // 이미지를 가득 채우도록 설정
@@ -78,9 +77,9 @@ class _UserPicState extends State<UserPic> {
                 onTap: () {
                   getImage(ImageSource.gallery);
                 },
-              child: widget.imageUrl != null && widget.imageUrl!.startsWith("/images/user/")
-                  ? Image.network("http://192.168.0.134:8080${widget.imageUrl}", width: getScreenWidth(context) * 0.8, height: getScreenHeight(context) * 0.4, fit: BoxFit.cover,)
-                  : Image.file(File(widget.imageUrl!), fit: BoxFit.cover,)
+              child: widget.imageUrl != null
+                  ? Image.network("http://192.168.0.134:8080/images/user/${widget.imageUrl}", width: getScreenWidth(context) * 0.8, height: getScreenHeight(context) * 0.4, fit: BoxFit.cover,)
+                  : Image.asset("/assets/images/profile.jpg", fit: BoxFit.cover,)
               //  Image.network(widget.imageUrl)
             ))
                // Image.asset(imageUrl)))

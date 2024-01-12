@@ -14,8 +14,6 @@ class HomePageBody extends ConsumerWidget {
 
   @override
   Widget build(BuildContext context, WidgetRef ref) {
-    // 홈 화면에 처음 접근할 때 데이터 로드
-    ref.read(myCampingScheduleProvider.notifier).notifyInit();
 
     // MyCampingScheduleViewModel을 통해 데이터 가져오기
     final myCampingScheduleModel = ref.watch(myCampingScheduleProvider);

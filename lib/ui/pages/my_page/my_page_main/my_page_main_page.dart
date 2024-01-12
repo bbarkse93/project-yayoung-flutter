@@ -2,14 +2,12 @@ import 'package:flutter/material.dart';
 import 'package:team_project/_core/constants/color.dart';
 import 'package:team_project/_core/constants/icon.dart';
 import 'package:team_project/_core/constants/move.dart';
-import 'package:team_project/ui/pages/my_camping_list/my_camping_list_page.dart';
-import 'package:team_project/ui/pages/my_camping_list/my_camping_list_page.dart';
-import 'package:team_project/ui/pages/my_camping_list/my_camping_list_page.dart';
-import 'package:team_project/ui/pages/my_camping_schedule/my_camping_schedule_page.dart';
-import 'package:team_project/ui/pages/my_page/main/main_page_widgets/my_page_appbar.dart';
-import 'package:team_project/ui/pages/my_page/main/main_page_widgets/my_page_dividing_line.dart';
-import 'package:team_project/ui/pages/my_page/main/main_page_widgets/my_page_profile.dart';
-import 'package:team_project/ui/pages/my_page/main/main_page_widgets/my_page_tilte_bar.dart';
+import 'package:team_project/ui/pages/my_page/my_page_main/my_page_main_page_widgets/my_page_main_appbar.dart';
+import 'package:team_project/ui/pages/my_page/my_page_main/my_page_main_page_widgets/my_page_main_dividing_line.dart';
+import 'package:team_project/ui/pages/my_page/my_page_main/my_page_main_page_widgets/my_page_main_profile.dart';
+import 'package:team_project/ui/pages/my_page/my_page_main/my_page_main_page_widgets/my_page_main_tilte_bar.dart';
+
+
 
 class MainPage extends StatelessWidget {
   const MainPage({super.key});
@@ -18,7 +16,7 @@ class MainPage extends StatelessWidget {
   Widget build(BuildContext context) {
     return Scaffold(
       backgroundColor: kBackWhite,
-      appBar: MyPageAppbar(),
+      appBar: MyPageMainAppbar(),
       body: Column(
         children: [
           MyPageProfile(), // 프로필

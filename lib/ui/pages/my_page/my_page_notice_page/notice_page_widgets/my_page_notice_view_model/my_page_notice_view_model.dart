@@ -57,6 +57,7 @@ class NoticeViewModel extends StateNotifier<NoticeModel?> {
     ResponseDTO responseDTO = await NoticeRepository().fetchNoticeInfo();
     Logger().d("값 받니? ${responseDTO.response}");
     NoticeModel model = responseDTO.response;
+    Logger().d("모델에 값 : ${model.noticeDTOList}");
     state = NoticeModel(noticeDTOList: model.noticeDTOList);
     Logger().d("상태 : ${state?.noticeDTOList}");
   }

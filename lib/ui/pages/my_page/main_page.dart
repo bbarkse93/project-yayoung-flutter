@@ -4,7 +4,7 @@ import 'package:flutter/material.dart';
 import 'package:team_project/_core/constants/color.dart';
 import 'package:team_project/ui/pages/campsite/campsite_list/campsite_list_page.dart';
 import 'package:team_project/ui/pages/home/home_page.dart';
-import 'package:team_project/ui/pages/my_page/main/main_page.dart';
+import 'package:team_project/ui/pages/my_page/my_page_main/my_page_main_page.dart';
 import 'package:team_project/ui/widgets/navigation_Item.dart';
 
 class MainScreen extends StatefulWidget {

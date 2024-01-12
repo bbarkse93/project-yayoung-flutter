@@ -5,9 +5,9 @@ import 'package:team_project/_core/constants/move.dart';
 import 'package:team_project/_core/constants/size.dart';
 
 // AppBar크기
-class MyPageAppbar extends StatelessWidget implements PreferredSizeWidget  {
+class MyPageMainAppbar extends StatelessWidget implements PreferredSizeWidget  {
 
-  const MyPageAppbar({
+  const MyPageMainAppbar({
     super.key,
   });
 

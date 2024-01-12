@@ -3,7 +3,8 @@ import 'package:dio/dio.dart';
 import 'package:logger/logger.dart';
 import 'package:team_project/_core/constants/http.dart';
 import 'package:team_project/data/dto/response_dto.dart';
-import 'package:team_project/ui/pages/my_page/notice_page/notice_page_widgets/view_model/notice_view_model.dart';
+import 'package:team_project/ui/pages/my_page/my_page_notice_page/notice_page_widgets/my_page_notice_view_model/my_page_notice_view_model.dart';
+
 
 void main () async {
   await fetchNoticeInfo();

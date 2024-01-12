@@ -4,7 +4,7 @@ import 'package:team_project/_core/constants/color.dart';
 import 'package:team_project/_core/constants/icon.dart';
 import 'package:team_project/_core/constants/move.dart';
 import 'package:team_project/_core/constants/size.dart';
-import 'package:team_project/ui/pages/my_page/like_page/like_page_widgets/like_page_view_model.dart';
+import 'package:team_project/ui/pages/my_page/my_page_like_page/my_page_like_page_widgets/my_page_like_page_view_model.dart';
 
 class LikeListPage extends ConsumerWidget {
   const LikeListPage({
