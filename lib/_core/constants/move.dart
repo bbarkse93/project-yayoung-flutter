@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:team_project/data/store/param_store.dart';
 import 'package:team_project/ui/pages/auth/login_page.dart';
 import 'package:team_project/ui/pages/campsite/campsite_detail/campsite_detail_page.dart';
 import 'package:team_project/ui/pages/campsite/campsite_list/campsite_list_page.dart';
@@ -61,7 +62,7 @@ Map<String, Widget Function(BuildContext)> getRouters() {
     Move.myCampingListPage: (p0) => MyCampingListPage(),
 
     Move.searchCampsitePage: (p0) => const SearchCampsitePage(),
-    Move.campsiteDetailPage: (p0) => CampsiteDetailPage(),
+    // Move.campsiteDetailPage: (p0) => CampsiteDetailPage(),
     Move.campsiteListPage: (p0) => CampsiteListPage(),
 
     Move.refundPage: (p0) => RefundPage(),

@@ -1,9 +1,13 @@
 import 'package:flutter/material.dart';
 import 'package:team_project/_core/constants/icon.dart';
 import 'package:team_project/_core/constants/size.dart';
+import 'package:team_project/data/model/camp.dart';
+import 'package:team_project/data/model/campsite_detail.dart';
 
 class CampsiteDetailReview extends StatelessWidget {
-  const CampsiteDetailReview({super.key});
+  final CampsiteDetail campInfo;
+
+  const CampsiteDetailReview({super.key, required this.campInfo});
 
   @override
   Widget build(BuildContext context) {
@@ -21,15 +25,16 @@ class CampsiteDetailReview extends StatelessWidget {
                     child: Text(
                       "평점",
                       style: TextStyle(
-                          fontSize: fontSemiMedium, fontWeight: FontWeight.bold),
+                          fontSize: fontSemiMedium,
+                          fontWeight: FontWeight.bold),
                     ),
                   ),
-                  Text(
-                    "5.0",
-                    style:
-                        TextStyle(fontSize: gapLarge, fontWeight: FontWeight.bold),
-                  ),
-                  Text("1위"),
+                  Text("${campInfo.totalRating}",
+                      style: TextStyle(
+                        fontSize:
+                        campInfo.totalRating == "평가없음" ? fontMedium : fontXxlarge,
+                        fontWeight: campInfo.totalRating == "평가없음" ? FontWeight.w400 : FontWeight.bold,
+                      )),
                 ],
               ),
               Container(
@@ -54,13 +59,14 @@ class CampsiteDetailReview extends StatelessWidget {
                             "청결도",
                             style: TextStyle(fontSize: fontMedium),
                           ),
+
                           Row(
                             children: [
-                              iconEmptyStar(mSize: fontLarge),
-                              iconEmptyStar(mSize: fontLarge),
-                              iconEmptyStar(mSize: fontLarge),
-                              iconEmptyStar(mSize: fontLarge),
-                              iconEmptyStar(mSize: fontLarge),
+                              getStarIcon(0, campInfo.cleanlinessAverage),
+                              getStarIcon(1, campInfo.cleanlinessAverage),
+                              getStarIcon(2, campInfo.cleanlinessAverage),
+                              getStarIcon(3, campInfo.cleanlinessAverage),
+                              getStarIcon(4, campInfo.cleanlinessAverage),
                             ],
                           )
                         ],
@@ -70,27 +76,27 @@ class CampsiteDetailReview extends StatelessWidget {
                         children: [
                           Text("관리수준", style: TextStyle(fontSize: fontMedium)),
                           Row(
-                            children: [
-                              iconEmptyStar(mSize: fontLarge),
-                              iconEmptyStar(mSize: fontLarge),
-                              iconEmptyStar(mSize: fontLarge),
-                              iconEmptyStar(mSize: fontLarge),
-                              iconEmptyStar(mSize: fontLarge),
-                            ],
+                              children: [
+                                getStarIcon(0, campInfo.managementnessAverage),
+                                getStarIcon(1, campInfo.managementnessAverage),
+                                getStarIcon(2, campInfo.managementnessAverage),
+                                getStarIcon(3, campInfo.managementnessAverage),
+                                getStarIcon(4, campInfo.managementnessAverage),
+                              ],
                           ),
                         ],
                       ),
                       Row(
                         mainAxisAlignment: MainAxisAlignment.spaceBetween,
                         children: [
-                          Text("청결도", style: TextStyle(fontSize: fontMedium)),
+                          Text("친절도", style: TextStyle(fontSize: fontMedium)),
                           Row(
                             children: [
-                              iconEmptyStar(mSize: fontLarge),
-                              iconEmptyStar(mSize: fontLarge),
-                              iconEmptyStar(mSize: fontLarge),
-                              iconEmptyStar(mSize: fontLarge),
-                              iconEmptyStar(mSize: fontLarge),
+                              getStarIcon(0, campInfo.friendlinessAverage),
+                              getStarIcon(1, campInfo.friendlinessAverage),
+                              getStarIcon(2, campInfo.friendlinessAverage),
+                              getStarIcon(3, campInfo.friendlinessAverage),
+                              getStarIcon(4, campInfo.friendlinessAverage),
                             ],
                           ),
                         ],
@@ -106,13 +112,14 @@ class CampsiteDetailReview extends StatelessWidget {
                     child: Text(
                       "리뷰 수",
                       style: TextStyle(
-                          fontSize: fontSemiMedium, fontWeight: FontWeight.bold),
+                          fontSize: fontSemiMedium,
+                          fontWeight: FontWeight.bold),
                     ),
                   ),
                   Text(
-                    "1",
-                    style:
-                        TextStyle(fontSize: gapLarge, fontWeight: FontWeight.bold),
+                    "${campInfo.reviewCount}",
+                    style: TextStyle(
+                        fontSize: gapLarge, fontWeight: FontWeight.bold),
                   ),
                   InkWell(
                     child: Text("전체리뷰보기"),
@@ -122,9 +129,19 @@ class CampsiteDetailReview extends StatelessWidget {
               )
             ],
           ),
-          Divider()
         ],
       ),
     );
   }
+}
+
+Icon getStarIcon(int index, double? rating) {
+  if (rating != null) {
+    if (rating >= index + 1) {
+      return iconFullStar(mSize: fontLarge); // fullIcon
+    } else if (rating >= index + 0.5) {
+      return iconHalfStar(mSize: fontLarge); // halfIcon
+    }
+  }
+  return iconEmptyStar(mSize: fontLarge); // emptyIcon
 }

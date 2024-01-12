@@ -1,10 +1,16 @@
 import 'package:flutter/material.dart';
+import 'package:logger/logger.dart';
 import 'package:team_project/_core/constants/color.dart';
+import 'package:team_project/_core/constants/http.dart';
 import 'package:team_project/_core/constants/icon.dart';
 import 'package:team_project/_core/constants/size.dart';
+import 'package:team_project/data/model/camp.dart';
+import 'package:team_project/data/model/campsite_detail.dart';
 
 class CampsiteDetailHeader extends StatelessWidget {
-  const CampsiteDetailHeader({super.key});
+  CampsiteDetail campInfo;
+
+  CampsiteDetailHeader({Key? key, required this.campInfo}) : super(key: key);
 
   @override
   Widget build(BuildContext context) {
@@ -12,7 +18,7 @@ class CampsiteDetailHeader extends StatelessWidget {
       scrolledUnderElevation: 0,
       automaticallyImplyLeading: false,
       leading: InkWell(
-        child: iconArrowBack(),
+        child: iconArrowBack(mColor: kFontGray),
         onTap: () {
           Navigator.pop(context);
         },
@@ -20,55 +26,41 @@ class CampsiteDetailHeader extends StatelessWidget {
       expandedHeight: 400.0,
       flexibleSpace: LayoutBuilder(
         builder: (BuildContext context, BoxConstraints constraints) {
-          return constraints.biggest.height > 100.0
-              ? SizedBox(
-                  width: double.infinity,
-                  child: FlexibleSpaceBar(
-                    title: const Stack(
-                      children: [
-                        Positioned(
-                          bottom: 10.0,
-                          left: 0.0,
-                          child: Column(
-                            crossAxisAlignment: CrossAxisAlignment.start,
-                            children: [
-                              Text(
-                                "물가솔솔캠핑장",
-                                style: TextStyle(fontSize: fontLarge),
-                              ),
-                              Text(
-                                "강원 홍천군 내면 광원리 471-4",
-                                style: TextStyle(fontSize: fontSmall),
-                              ),
-                              Text(
-                                "₩45,000 ~ 55,000",
-                                style: TextStyle(fontSize: fontSmall),
-                              ),
-                            ],
-                          ),
+          return FlexibleSpaceBar(
+            title: constraints.biggest.height > 95.0
+                ? Stack(
+                    children: [
+                      Positioned(
+                        bottom: 10.0,
+                        left: 0.0,
+                        child: Column(
+                          crossAxisAlignment: CrossAxisAlignment.start,
+                          children: [
+                            Text(
+                              "${campInfo.campName}",
+                              style: TextStyle(fontSize: fontLarge),
+                            ),
+                            Text(
+                              "${campInfo.campAddress}",
+                              style: TextStyle(fontSize: fontSmall),
+                            ),
+                            Text(
+                              "₩${campInfo.minPrice} ~ ${campInfo.maxPrice}",
+                              style: TextStyle(fontSize: fontSmall),
+                            ),
+                          ],
                         ),
-                      ],
-                    ),
-                    background: ColorFiltered(
-                      colorFilter: ColorFilter.mode(
-                        Colors.black.withOpacity(0.5),
-                        BlendMode.darken
                       ),
-                      child: Image.network(
-                        "https://picsum.photos/200",
-                        fit: BoxFit.cover,
-                      ),
-                    ),
-                  ),
-                )
-              : const FlexibleSpaceBar(
-                  title: SafeArea(
+                    ],
+                  )
+                : SafeArea(
                     child: Row(
                       children: [
                         Spacer(),
                         Text(
-                          "물가 솔솔 캠핑장",
-                          style: TextStyle(color: kFontTitle),
+                          "${campInfo.campName}",
+                          style: TextStyle(
+                              color: kFontTitle, fontWeight: FontWeight.bold),
                         ),
                         Spacer(),
                         Spacer(),
@@ -76,13 +68,28 @@ class CampsiteDetailHeader extends StatelessWidget {
                       ],
                     ),
                   ),
-                );
+            background: ColorFiltered(
+              colorFilter: ColorFilter.mode(
+                Colors.black.withOpacity(0.5),
+                BlendMode.darken,
+              ),
+              child: PageView.builder(
+                itemCount: campInfo.images?.length ?? 0,
+                itemBuilder: (context, index) {
+                  return Image.network(
+                    "${dio.options.baseUrl}${campInfo.images?[index].campImage}",
+                    fit: BoxFit.cover,
+                  );
+                },
+              ),
+            ),
+          );
         },
       ),
       actions: [
         Padding(
           padding: const EdgeInsets.all(gapMain),
-          child: iconEmptyHeart(),
+          child: iconEmptyHeart(mColor: kFontGray),
         )
       ],
       pinned: true,

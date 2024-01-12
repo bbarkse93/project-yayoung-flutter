@@ -7,6 +7,7 @@ import 'package:team_project/_core/constants/icon.dart';
 import 'package:team_project/_core/constants/move.dart';
 import 'package:team_project/_core/constants/size.dart';
 import 'package:team_project/data/model/camp.dart';
+import 'package:team_project/ui/pages/campsite/campsite_detail/campsite_detail_page.dart';
 import 'package:team_project/ui/pages/campsite/campsite_list/campsite_list_view_model.dart';
 
 class CampsiteListCore extends ConsumerWidget {
@@ -17,6 +18,7 @@ class CampsiteListCore extends ConsumerWidget {
     CampListModel? model = ref.watch(campListProvider);
     List<Camp> campList = [];
 
+
     if (model == null) {
       return const SliverToBoxAdapter(
         child: Center(
@@ -25,6 +27,7 @@ class CampsiteListCore extends ConsumerWidget {
       );
     }
     campList = model.campList;
+
     return SliverList(
       delegate: SliverChildBuilderDelegate(
         (context, index) {
@@ -34,7 +37,10 @@ class CampsiteListCore extends ConsumerWidget {
                 width: 60,
                 height: 60,
                 child: ClipRRect(
-                  child: Image.network("${dio.options.baseUrl}${campList[index].campFieldImage}",fit: BoxFit.cover,),
+                  child: Image.network(
+                    "${dio.options.baseUrl}${campList[index].campImage}",
+                    fit: BoxFit.cover,
+                  ),
                   // child: Image.network("https://picsum.photos/200"),
                   borderRadius: BorderRadius.circular(gapSemiMedium),
                 ),
@@ -65,7 +71,13 @@ class CampsiteListCore extends ConsumerWidget {
               ),
             ),
             onTap: () {
-              Navigator.pushNamed(context, Move.campsiteDetailPage);
+              Navigator.push(
+                context,
+                MaterialPageRoute(
+                  builder: (context) =>
+                      CampsiteDetailPage(campId: campList[index].id ?? 0),
+                ),
+              );
             },
           );
         },

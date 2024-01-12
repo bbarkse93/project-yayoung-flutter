@@ -9,6 +9,26 @@ class CampListModel {
   List<Camp> campList;
 
   CampListModel(this.campList);
+
+}
+
+// campDTO
+class CampDTO {
+  int id;
+  String campName;
+  String campAddress;
+  String campImage;
+  String campRating;
+
+  CampDTO(this.id, this.campName, this.campAddress, this.campImage,
+      this.campRating);
+
+  CampDTO.fromJson(Map<String, dynamic> json)
+      : id = json["id"],
+        campName = json["campName"],
+        campAddress = json["campAddress"],
+        campImage = json["campImage"],
+        campRating = json["campRating"];
 }
 
 // 2. 창고
@@ -18,11 +38,8 @@ class CampListViewModel extends StateNotifier<CampListModel?> {
   Ref ref;
 
   Future<void> notifyInit() async {
-    Logger().d("화면 초기화");
     ResponseDTO responseDTO = await CampListRepository().fetchCampList();
-    Logger().d("responseDTO :  $responseDTO");
     state = CampListModel(responseDTO.response);
-    Logger().d("state :  $state");
   }
 
 }

@@ -37,6 +37,10 @@ Icon iconEmptyStar({Color mColor = kPrimaryColor, double mSize = 25}) {
   return Icon(Icons.star_border_rounded, color: mColor, size: mSize);
 }
 
+Icon iconHalfStar({Color mColor = kPrimaryColor, double mSize = 25}) {
+  return Icon(Icons.star_half_rounded, color: mColor, size: mSize);
+}
+
 // 꽉찬 별
 Icon iconFullStar({Color mColor = kPrimaryColor, double mSize = 25}) {
   return Icon(Icons.star_rounded, color: mColor, size: mSize);

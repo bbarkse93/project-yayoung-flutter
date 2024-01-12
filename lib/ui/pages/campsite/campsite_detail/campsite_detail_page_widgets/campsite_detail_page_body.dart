@@ -1,175 +1,36 @@
 import 'package:flutter/material.dart';
+import 'package:flutter_riverpod/flutter_riverpod.dart';
+import 'package:logger/logger.dart';
 import 'package:team_project/_core/constants/color.dart';
 import 'package:team_project/_core/constants/icon.dart';
 import 'package:team_project/_core/constants/size.dart';
+import 'package:team_project/data/model/camp.dart';
+import 'package:team_project/data/model/campsite_detail.dart';
+import 'package:team_project/ui/pages/campsite/campsite_detail/campsite_detail_view_model.dart';
+import 'package:team_project/ui/pages/campsite/campsite_detail/campsite_detail_page_widgets/campsite_detail_core.dart';
 import 'package:team_project/ui/pages/campsite/campsite_detail/campsite_detail_page_widgets/campsite_detail_header.dart';
 import 'package:team_project/ui/pages/campsite/campsite_detail/campsite_detail_page_widgets/campsite_detail_review.dart';
 
-class CampsiteDetailPageBody extends StatelessWidget {
-  const CampsiteDetailPageBody({super.key});
+class CampsiteDetailPageBody extends ConsumerWidget {
+  final int campId;
+  const CampsiteDetailPageBody(this.campId, {super.key});
 
   @override
-  Widget build(BuildContext context) {
-    return Scaffold(
-      body: CustomScrollView(
+  Widget build(BuildContext context, WidgetRef ref) {
+    CampDetailModel? model = ref.watch(campsiteDetailProvider(campId));
+    CampsiteDetail campInfo;
+    if (model == null) {
+      return Center(
+        child: CircularProgressIndicator(),
+      );
+    }
+    campInfo = model.campInfo;
+
+    return CustomScrollView(
         slivers: [
-          CampsiteDetailHeader(),
-          SliverList(
-            delegate: SliverChildBuilderDelegate(
-              (BuildContext context, int index) {
-                if (index == 0) {
-                  return CampsiteDetailReview();
-                }
-                return Padding(
-                  padding: const EdgeInsets.all(gapMain),
-                  child: Column(
-                    crossAxisAlignment: CrossAxisAlignment.start,
-                    children: [
-                      Column(
-                        crossAxisAlignment: CrossAxisAlignment.start,
-                        children: [
-                          Text(
-                            "환경",
-                            style: TextStyle(
-                                fontSize: fontLarge,
-                                fontWeight: FontWeight.bold),
-                          ),
-                          Padding(
-                            padding: const EdgeInsets.all(gapSmall),
-                            child: Row(
-                              children: [
-                                Column(
-                                  children: [
-                                    imageDetailMountains(
-                                        mHeight: gapSemiLarge,
-                                        mWidth: gapSemiLarge),
-                                    Text(
-                                      "산",
-                                      style: TextStyle(
-                                          color: kPrimaryColor,
-                                          fontWeight: FontWeight.bold),
-                                    )
-                                  ],
-                                ),
-                                SizedBox(width: gapMedium),
-                                Column(
-                                  children: [
-                                    imageDetailValley(
-                                        mHeight: gapSemiLarge,
-                                        mWidth: gapSemiLarge),
-                                    Text(
-                                      "계곡",
-                                      style: TextStyle(
-                                          color: kPrimaryColor,
-                                          fontWeight: FontWeight.bold),
-                                    )
-                                  ],
-                                )
-                              ],
-                            ),
-                          )
-                        ],
-                      ),
-                      Column(
-                        crossAxisAlignment: CrossAxisAlignment.start,
-                        children: [
-                          Text(
-                            "환경",
-                            style: TextStyle(
-                                fontSize: fontLarge,
-                                fontWeight: FontWeight.bold),
-                          ),
-                          Padding(
-                            padding: const EdgeInsets.all(gapSmall),
-                            child: Row(
-                              children: [
-                                Column(
-                                  children: [
-                                    imageDetailMountains(
-                                        mHeight: gapSemiLarge,
-                                        mWidth: gapSemiLarge),
-                                    Text(
-                                      "산",
-                                      style: TextStyle(
-                                          color: kPrimaryColor,
-                                          fontWeight: FontWeight.bold),
-                                    )
-                                  ],
-                                ),
-                                SizedBox(width: gapMedium),
-                                Column(
-                                  children: [
-                                    imageDetailValley(
-                                        mHeight: gapSemiLarge,
-                                        mWidth: gapSemiLarge),
-                                    Text(
-                                      "계곡",
-                                      style: TextStyle(
-                                          color: kPrimaryColor,
-                                          fontWeight: FontWeight.bold),
-                                    )
-                                  ],
-                                )
-                              ],
-                            ),
-                          )
-                        ],
-                      ),
-                      Column(
-                        crossAxisAlignment: CrossAxisAlignment.start,
-                        children: [
-                          Text(
-                            "환경",
-                            style: TextStyle(
-                                fontSize: fontLarge,
-                                fontWeight: FontWeight.bold),
-                          ),
-                          Padding(
-                            padding: const EdgeInsets.all(gapSmall),
-                            child: Row(
-                              children: [
-                                Column(
-                                  children: [
-                                    imageDetailMountains(
-                                        mHeight: gapSemiLarge,
-                                        mWidth: gapSemiLarge),
-                                    Text(
-                                      "산",
-                                      style: TextStyle(
-                                          color: kPrimaryColor,
-                                          fontWeight: FontWeight.bold),
-                                    )
-                                  ],
-                                ),
-                                SizedBox(width: gapMedium),
-                                Column(
-                                  children: [
-                                    imageDetailValley(
-                                        mHeight: gapSemiLarge,
-                                        mWidth: gapSemiLarge),
-                                    Text(
-                                      "계곡",
-                                      style: TextStyle(
-                                          color: kPrimaryColor,
-                                          fontWeight: FontWeight.bold),
-                                    )
-                                  ],
-                                )
-                              ],
-                            ),
-                          )
-                        ],
-                      ),
-                      Divider(),
-                    ],
-                  ),
-                );
-              },
-              childCount: 5,
-            ),
-          ),
+          CampsiteDetailHeader(campInfo: campInfo),
+          CampsiteDetailCore(campInfo: campInfo),
         ],
-      ),
-    );
+      );
   }
 }
