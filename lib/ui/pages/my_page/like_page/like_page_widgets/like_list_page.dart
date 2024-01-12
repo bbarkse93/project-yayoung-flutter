@@ -22,7 +22,6 @@ class LikeListPage extends ConsumerWidget {
     return CustomScrollView(
       slivers: [
         SliverList(
-
           delegate: SliverChildBuilderDelegate(
                 (context, index) {
                   CampBookmarkDTO campBookmarkList = model!.campBookmarkList![index];
