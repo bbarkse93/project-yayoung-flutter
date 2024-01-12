@@ -4,13 +4,13 @@ import 'package:team_project/ui/pages/campsite/campsite_detail/campsite_detail_p
 import 'package:team_project/ui/pages/campsite/campsite_list/campsite_list_page.dart';
 import 'package:team_project/ui/pages/campsite/search_campsite/search_campsite_page.dart';
 import 'package:team_project/ui/pages/home/home_page.dart';
-import 'package:team_project/ui/pages/my_page/like_page/like_page.dart';
 import 'package:team_project/ui/pages/my_page/main_page.dart';
-import 'package:team_project/ui/pages/my_page/notice_page/notice_page.dart';
-import 'package:team_project/ui/pages/my_page/setting/setting_page.dart';
-import 'package:team_project/ui/pages/my_page/user_update/user_update.dart';
 import 'package:team_project/ui/pages/my_camping_list/my_camping_list_page.dart';
 import 'package:team_project/ui/pages/my_camping_schedule/my_camping_schedule_page.dart';
+import 'package:team_project/ui/pages/my_page/my_page_like_page/my_page_like_page.dart';
+import 'package:team_project/ui/pages/my_page/my_page_notice_page/my_page_notice_page.dart';
+import 'package:team_project/ui/pages/my_page/my_page_setting/my_page_setting_page.dart';
+import 'package:team_project/ui/pages/my_page/my_page_user_update/my_page_user_update.dart';
 import 'package:team_project/ui/pages/payment/payment_page.dart';
 import 'package:team_project/ui/pages/refund/refund_page.dart';
 import 'package:team_project/ui/pages/reservation/reservation_page.dart';

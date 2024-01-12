@@ -3,7 +3,7 @@ import 'package:logger/logger.dart';
 import 'package:team_project/_core/constants/http.dart';
 import 'package:team_project/data/dto/response_dto.dart';
 import 'package:team_project/data/dto/user_request_dto.dart';
-import 'package:team_project/ui/pages/my_page/user_update/user_update_view_model.dart';
+import 'package:team_project/ui/pages/my_page/my_page_user_update/my_page_user_update_view_model.dart';
 
 
 class UserRepository {

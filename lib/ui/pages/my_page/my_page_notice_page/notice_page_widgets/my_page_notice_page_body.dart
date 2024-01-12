@@ -5,11 +5,12 @@ import 'package:team_project/_core/constants/size.dart';
 import 'package:team_project/data/mock/book_reply.dart';
 import 'package:team_project/data/mock/faq.dart';
 import 'package:team_project/data/mock/notice.dart';
-import 'package:team_project/ui/pages/my_page/notice_page/notice_page_widgets/notice_category_button.dart';
-import 'package:team_project/ui/pages/my_page/notice_page/notice_page_widgets/notice_description.dart';
-import 'package:team_project/ui/pages/my_page/notice_page/notice_page_widgets/notice_detail.dart';
-import 'package:team_project/ui/pages/my_page/notice_page/notice_page_widgets/view_model/faq_view_model.dart';
-import 'package:team_project/ui/pages/my_page/notice_page/notice_page_widgets/view_model/notice_view_model.dart';
+import 'package:team_project/ui/pages/my_page/my_page_notice_page/notice_page_widgets/my_page_notice_category_button.dart';
+import 'package:team_project/ui/pages/my_page/my_page_notice_page/notice_page_widgets/my_page_notice_description.dart';
+import 'package:team_project/ui/pages/my_page/my_page_notice_page/notice_page_widgets/my_page_notice_detail.dart';
+import 'package:team_project/ui/pages/my_page/my_page_notice_page/notice_page_widgets/my_page_notice_view_model/my_page_faq_view_model.dart';
+import 'package:team_project/ui/pages/my_page/my_page_notice_page/notice_page_widgets/my_page_notice_view_model/my_page_notice_view_model.dart';
+
 
 class NoticePageBody extends StatefulWidget {
   const NoticePageBody({
