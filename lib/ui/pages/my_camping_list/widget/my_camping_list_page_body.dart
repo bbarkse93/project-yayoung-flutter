@@ -7,7 +7,6 @@ import 'package:team_project/ui/pages/my_camping_list/widget/select_year_button.
 class MyCampingListPageBody extends StatefulWidget {
   const MyCampingListPageBody({Key? key});
 
-
   @override
   State<MyCampingListPageBody> createState() => _MyCampingListPageBodyState();
 }

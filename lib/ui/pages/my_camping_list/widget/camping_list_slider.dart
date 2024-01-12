@@ -15,27 +15,24 @@ class CampingListSlider extends StatefulWidget {
 class _CampingListSliderState extends State<CampingListSlider> {
   CarouselController carouselController = CarouselController();
 
-
-
   @override
   Widget build(BuildContext context) {
+    print("CampingListSlider rebuilt");
     return Consumer(
       builder: (context, ref, child) {
         MyCampingListModel? model = ref.watch(myCampingListProvider);
-        List<MyCamping> campingList = [];
         if (model == null) {
           return const Center(
             child: CircularProgressIndicator(),
           );
         }
+        List<MyCamping> campingList = model!.campingList;
         return CarouselSlider.builder(
           carouselController: carouselController,
-          itemCount: campingList.length,
+          itemCount: campingList?.length ?? 0, // null이면 0으로 설정
           itemBuilder: (BuildContext context, int index, int realIndex) {
-
             return Builder(
               builder: (BuildContext context) {
-                int index = 0; // 사용하고자 하는 인덱스 값 설정
                 return CampingListCardForm(index: index);
               },
             );
