@@ -15,9 +15,9 @@ class CampDetailRepository {
       // 응답 받은 데이터 파싱
       ResponseDTO responseDTO = ResponseDTO.fromJson(response.data);
       Logger().d("그만둬 ${responseDTO.response}");
-      ;
 
-      
+      responseDTO.response = CampsiteDetail.fromJson(responseDTO.response);
+
       return responseDTO;
     } catch (e) {
       return ResponseDTO(false, "캠핑장 불러오기 실패", null);

@@ -5,7 +5,7 @@ import 'package:team_project/data/model/camp.dart';
 import 'package:team_project/data/model/campsite_detail.dart';
 
 class CampsiteDetailReview extends StatelessWidget {
-  final CampInfo campInfo;
+  final CampsiteDetail campInfo;
 
   const CampsiteDetailReview({super.key, required this.campInfo});
 
@@ -29,11 +29,11 @@ class CampsiteDetailReview extends StatelessWidget {
                           fontWeight: FontWeight.bold),
                     ),
                   ),
-                  Text(campInfo.totalRating != null ? "${campInfo.totalRating}" : "평점 없음",
+                  Text("${campInfo.totalRating}",
                       style: TextStyle(
                         fontSize:
-                        campInfo.totalRating != null ? fontXxlarge : fontMedium,
-                        fontWeight: campInfo.totalRating != null ? FontWeight.bold : FontWeight.bold,
+                        campInfo.totalRating == "평가없음" ? fontMedium : fontXxlarge,
+                        fontWeight: campInfo.totalRating == "평가없음" ? FontWeight.w400 : FontWeight.bold,
                       )),
                 ],
               ),
@@ -62,11 +62,11 @@ class CampsiteDetailReview extends StatelessWidget {
 
                           Row(
                             children: [
-                              iconEmptyStar(mSize: fontLarge),
-                              iconEmptyStar(mSize: fontLarge),
-                              iconEmptyStar(mSize: fontLarge),
-                              iconEmptyStar(mSize: fontLarge),
-                              iconEmptyStar(mSize: fontLarge),
+                              getStarIcon(0, campInfo.cleanlinessAverage),
+                              getStarIcon(1, campInfo.cleanlinessAverage),
+                              getStarIcon(2, campInfo.cleanlinessAverage),
+                              getStarIcon(3, campInfo.cleanlinessAverage),
+                              getStarIcon(4, campInfo.cleanlinessAverage),
                             ],
                           )
                         ],
@@ -76,27 +76,27 @@ class CampsiteDetailReview extends StatelessWidget {
                         children: [
                           Text("관리수준", style: TextStyle(fontSize: fontMedium)),
                           Row(
-                            children: [
-                              iconEmptyStar(mSize: fontLarge),
-                              iconEmptyStar(mSize: fontLarge),
-                              iconEmptyStar(mSize: fontLarge),
-                              iconEmptyStar(mSize: fontLarge),
-                              iconEmptyStar(mSize: fontLarge),
-                            ],
+                              children: [
+                                getStarIcon(0, campInfo.managementnessAverage),
+                                getStarIcon(1, campInfo.managementnessAverage),
+                                getStarIcon(2, campInfo.managementnessAverage),
+                                getStarIcon(3, campInfo.managementnessAverage),
+                                getStarIcon(4, campInfo.managementnessAverage),
+                              ],
                           ),
                         ],
                       ),
                       Row(
                         mainAxisAlignment: MainAxisAlignment.spaceBetween,
                         children: [
-                          Text("청결도", style: TextStyle(fontSize: fontMedium)),
+                          Text("친절도", style: TextStyle(fontSize: fontMedium)),
                           Row(
                             children: [
-                              iconEmptyStar(mSize: fontLarge),
-                              iconEmptyStar(mSize: fontLarge),
-                              iconEmptyStar(mSize: fontLarge),
-                              iconEmptyStar(mSize: fontLarge),
-                              iconEmptyStar(mSize: fontLarge),
+                              getStarIcon(0, campInfo.friendlinessAverage),
+                              getStarIcon(1, campInfo.friendlinessAverage),
+                              getStarIcon(2, campInfo.friendlinessAverage),
+                              getStarIcon(3, campInfo.friendlinessAverage),
+                              getStarIcon(4, campInfo.friendlinessAverage),
                             ],
                           ),
                         ],
@@ -117,7 +117,7 @@ class CampsiteDetailReview extends StatelessWidget {
                     ),
                   ),
                   Text(
-                    "1",
+                    "${campInfo.reviewCount}",
                     style: TextStyle(
                         fontSize: gapLarge, fontWeight: FontWeight.bold),
                   ),
@@ -129,9 +129,19 @@ class CampsiteDetailReview extends StatelessWidget {
               )
             ],
           ),
-          Divider()
         ],
       ),
     );
   }
+}
+
+Icon getStarIcon(int index, double? rating) {
+  if (rating != null) {
+    if (rating >= index + 1) {
+      return iconFullStar(mSize: fontLarge); // fullIcon
+    } else if (rating >= index + 0.5) {
+      return iconHalfStar(mSize: fontLarge); // halfIcon
+    }
+  }
+  return iconEmptyStar(mSize: fontLarge); // emptyIcon
 }

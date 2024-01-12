@@ -9,7 +9,7 @@ import 'package:team_project/data/store/param_store.dart';
 import 'package:team_project/main.dart';
 
 class CampDetailModel {
-  CampInfo campInfo;
+  CampsiteDetail campInfo;
 
   CampDetailModel(this.campInfo);
 }
@@ -23,9 +23,9 @@ class CampDetailViewModel extends StateNotifier<CampDetailModel?> {
 
   Future<void> notifyInit(int campId) async {
     ResponseDTO responseDTO = await CampDetailRepository().fetchCampDetail(campId);
-    Logger().d("이게 된다고? ${responseDTO.response}");
+
     state = CampDetailModel(responseDTO.response);
-    Logger().d('state는 $state');
+
   }
 
 }

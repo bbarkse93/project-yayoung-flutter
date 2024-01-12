@@ -18,8 +18,7 @@ class CampsiteDetailPageBody extends ConsumerWidget {
   @override
   Widget build(BuildContext context, WidgetRef ref) {
     CampDetailModel? model = ref.watch(campsiteDetailProvider(campId));
-    CampInfo campInfo;
-    Logger().d("model에는 뭐가 있는지 ?? ${model}");
+    CampsiteDetail campInfo;
     if (model == null) {
       return Center(
         child: CircularProgressIndicator(),

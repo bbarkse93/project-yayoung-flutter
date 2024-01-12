@@ -10,7 +10,7 @@ import 'package:team_project/ui/pages/campsite/campsite_detail/campsite_detail_v
 import 'package:team_project/ui/pages/campsite/campsite_detail/campsite_detail_page_widgets/campsite_detail_review.dart';
 
 class CampsiteDetailCore extends StatelessWidget {
-  final CampInfo campInfo;
+  final CampsiteDetail campInfo;
   const CampsiteDetailCore({required this.campInfo, super.key});
 
   @override
@@ -27,47 +27,9 @@ class CampsiteDetailCore extends StatelessWidget {
             child: Column(
               crossAxisAlignment: CrossAxisAlignment.start,
               children: [
-                Column(
-                  crossAxisAlignment: CrossAxisAlignment.start,
-                  children: [
-                    Text(
-                      "환경",
-                      style: TextStyle(
-                          fontSize: fontLarge, fontWeight: FontWeight.bold),
-                    ),
-                    Padding(
-                      padding: const EdgeInsets.all(gapSmall),
-                      child: Row(
-                        children: [
-                          Column(
-                            children: [
-                              imageDetailMountains(
-                                  mHeight: gapSemiLarge, mWidth: gapSemiLarge),
-                              Text(
-                                "산",
-                                style: TextStyle(
-                                    color: kPrimaryColor,
-                                    fontWeight: FontWeight.bold),
-                              )
-                            ],
-                          ),
-                          SizedBox(width: gapMedium),
-                          Column(
-                            children: [
-                              imageDetailValley(
-                                  mHeight: gapSemiLarge, mWidth: gapSemiLarge),
-                              Text(
-                                "계곡",
-                                style: TextStyle(
-                                    color: kPrimaryColor,
-                                    fontWeight: FontWeight.bold),
-                              )
-                            ],
-                          )
-                        ],
-                      ),
-                    )
-                  ],
+                Padding(
+                  padding: const EdgeInsets.only(bottom: gapMedium),
+                  child: Divider(),
                 ),
                 Column(
                   crossAxisAlignment: CrossAxisAlignment.start,
@@ -115,7 +77,7 @@ class CampsiteDetailCore extends StatelessWidget {
                   crossAxisAlignment: CrossAxisAlignment.start,
                   children: [
                     Text(
-                      "환경",
+                      "캠핑유형",
                       style: TextStyle(
                           fontSize: fontLarge, fontWeight: FontWeight.bold),
                     ),
@@ -153,12 +115,53 @@ class CampsiteDetailCore extends StatelessWidget {
                     )
                   ],
                 ),
-                Divider(),
+                Column(
+                  crossAxisAlignment: CrossAxisAlignment.start,
+                  children: [
+                    Text(
+                      "사이트 형태",
+                      style: TextStyle(
+                          fontSize: fontLarge, fontWeight: FontWeight.bold),
+                    ),
+                    Padding(
+                      padding: const EdgeInsets.all(gapSmall),
+                      child: Row(
+                        children: [
+                          Column(
+                            children: [
+                              imageDetailMountains(
+                                  mHeight: gapSemiLarge, mWidth: gapSemiLarge),
+                              Text(
+                                "산",
+                                style: TextStyle(
+                                    color: kPrimaryColor,
+                                    fontWeight: FontWeight.bold),
+                              )
+                            ],
+                          ),
+                          SizedBox(width: gapMedium),
+                          Column(
+                            children: [
+                              imageDetailValley(
+                                  mHeight: gapSemiLarge, mWidth: gapSemiLarge),
+                              Text(
+                                "계곡",
+                                style: TextStyle(
+                                    color: kPrimaryColor,
+                                    fontWeight: FontWeight.bold),
+                              )
+                            ],
+                          )
+                        ],
+                      ),
+                    )
+                  ],
+                ),
               ],
             ),
           );
         },
-        childCount: 2,
+        childCount: 3,
       ),
     );
   }
