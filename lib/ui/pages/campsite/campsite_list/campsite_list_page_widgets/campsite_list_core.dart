@@ -1,10 +1,8 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
-import 'package:logger/logger.dart';
 import 'package:team_project/_core/constants/color.dart';
 import 'package:team_project/_core/constants/http.dart';
 import 'package:team_project/_core/constants/icon.dart';
-import 'package:team_project/_core/constants/move.dart';
 import 'package:team_project/_core/constants/size.dart';
 import 'package:team_project/data/model/camp.dart';
 import 'package:team_project/ui/pages/campsite/campsite_detail/campsite_detail_page.dart';
@@ -61,7 +59,7 @@ class CampsiteListCore extends ConsumerWidget {
                     children: [
                       iconFullStar(mColor: kReviewColor, mSize: gapSemiMedium),
                       Text(
-                        "5.0",
+                        "${campList[index].campRating}",
                         style: TextStyle(
                             fontSize: fontSemiMedium, color: kFontContent),
                       )
