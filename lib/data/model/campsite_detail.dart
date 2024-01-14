@@ -25,10 +25,18 @@ class CampsiteDetail {
   double? friendlinessAverage;
   int? reviewCount;
   List<CampImage>? images;
-  List<Option>? options;
+  List<EnvironmentDTO>? environment;
+  List<TypeDTO>? type;
+  List<SiteDTO>? site;
+  List<MainFacilityDTO>? mainFacility;
+  List<HaveFacilityDTO>? haveFacility;
+  List<ExerciseFacilityDTO>? exerciseFacility;
+  List<ProgramDTO>? program;
+  List<SellDTO>? sell;
+  List<RentalDTO>? rental;
 
   CampsiteDetail(
-      {this.id,
+      this.id,
       this.campName,
       this.campAddress,
       this.campCallNumber,
@@ -48,7 +56,16 @@ class CampsiteDetail {
       this.friendlinessAverage,
       this.reviewCount,
       this.images,
-      this.options});
+      this.environment,
+      this.type,
+      this.site,
+      this.mainFacility,
+      this.haveFacility,
+      this.exerciseFacility,
+      this.program,
+      this.sell,
+      this.rental,
+      );
 
   CampsiteDetail.fromJson(Map<String, dynamic> json)
       : id = json["campInfo"]["id"],
@@ -73,325 +90,216 @@ class CampsiteDetail {
         images = (json["images"] as List<dynamic>? ?? [])
             .map((i) => CampImage.fromJson(i))
             .toList(),
-        options = (json["options"] as List<dynamic>? ?? [])
-            .map((o) => Option.fromJson(o))
+        environment = (json["options"]["environment"] as List<dynamic>? ?? [])
+            .map((i) => EnvironmentDTO.fromJson(i))
+            .toList(),
+        type = (json["options"]["type"] as List<dynamic>? ?? [])
+            .map((i) => TypeDTO.fromJson(i))
+            .toList(),
+        site = (json["options"]["site"] as List<dynamic>? ?? [])
+            .map((i) => SiteDTO.fromJson(i))
+            .toList(),
+        mainFacility = (json["options"]["main_facility"] as List<dynamic>? ?? [])
+            .map((i) => MainFacilityDTO.fromJson(i))
+            .toList(),
+        haveFacility = (json["options"]["have_facility"] as List<dynamic>? ?? [])
+            .map((i) => HaveFacilityDTO.fromJson(i))
+            .toList(),
+        exerciseFacility = (json["options"]["exercise_facility"] as List<dynamic>? ?? [])
+            .map((i) => ExerciseFacilityDTO.fromJson(i))
+            .toList(),
+        program = (json["options"]["program"] as List<dynamic>? ?? [])
+            .map((i) => ProgramDTO.fromJson(i))
+            .toList(),
+        sell = (json["options"]["sell"] as List<dynamic>? ?? [])
+            .map((i) => SellDTO.fromJson(i))
+            .toList(),
+        rental = (json["options"]["rental"] as List<dynamic>? ?? [])
+            .map((i) => RentalDTO.fromJson(i))
             .toList();
 
   @override
   String toString() {
-    return '{id: $id, '
-        'campName: $campName, '
-        'campAddress: $campAddress, '
-        'campCallNumber: $campCallNumber, '
-        'campWebsite: $campWebsite, '
-        'campRefundPolicy: $campRefundPolicy, '
-        'campWater: $campWater, '
-        'campGarbageBag: $campGarbageBag, '
-        'holiday: $holiday, '
-        'campCheckIn: $campCheckIn, '
-        'campCheckOut: $campCheckOut, '
-        'campFieldImage: $campFieldImage, '
-        'minPrice: $minPrice, '
-        'maxPrice: $maxPrice, '
-        'totalRating: $totalRating, '
-        'cleanlinessAverage: $cleanlinessAverage, '
-        'managementnessAverage: $managementnessAverage, '
-        'friendlinessAverage: $friendlinessAverage, '
-        'reviewCount: $reviewCount, '
-        'images: $images, '
-        'options: $options}';
+    return 'CampInfo{id: $id, campName: $campName, campAddress: $campAddress, campCallNumber: $campCallNumber, campWebsite: $campWebsite, campRefundPolicy: $campRefundPolicy, campWater: $campWater, campGarbageBag: $campGarbageBag, holiday: $holiday, campCheckIn: $campCheckIn, campCheckOut: $campCheckOut, campFieldImage: $campFieldImage, minPrice: $minPrice, maxPrice: $maxPrice, totalRating: $totalRating, cleanlinessAverage: $cleanlinessAverage, managementnessAverage: $managementnessAverage, friendlinessAverage: $friendlinessAverage, reviewCount: $reviewCount, images: $images, environment: $environment, type: $type, site: $site, mainFacility: $mainFacility, haveFacility: $haveFacility, exerciseFacility: $exerciseFacility, sell: $sell, rental: $rental}';
   }
 }
 
-// //
-// //
-// // =========================================================
-// class CampInfo {
-//   int? id;
-//   String? campName;
-//   String? campAddress;
-//   String? campCallNumber;
-//   String? campWebsite;
-//   String? campRefundPolicy;
-//   bool? campWater;
-//   bool? campGarbageBag;
-//   String? holiday;
-//   String? campCheckIn;
-//   String? campCheckOut;
-//   String? campFieldImage;
-//   List<CampImage>? campImageList;
-//   List<CampRating>? campRatingList;
-//   String? campImage;
-//   String? campRating;
-//
-//   CampInfo({
-//     this.id,
-//     this.campName,
-//     this.campAddress,
-//     this.campCallNumber,
-//     this.campWebsite,
-//     this.campRefundPolicy,
-//     this.campWater,
-//     this.campGarbageBag,
-//     this.holiday,
-//     this.campCheckIn,
-//     this.campCheckOut,
-//     this.campFieldImage,
-//     this.campImageList,
-//     this.campRatingList,
-//     this.campImage,
-//     this.campRating,
-//   });
-//
-//   factory CampInfo.fromJson(Map<String, dynamic> json) {
-//     return CampInfo(
-//       id: json["id"],
-//       campName: json["campName"],
-//       campAddress: json["campAddress"],
-//       campCallNumber: json["campCallNumber"],
-//       campWebsite: json["campWebsite"],
-//       campRefundPolicy: json["campRefundPolicy"],
-//       campWater: json["campWater"],
-//       campGarbageBag: json["campGarbageBag"],
-//       holiday: json["holiday"],
-//       campCheckIn: json["campCheckIn"],
-//       campCheckOut: json["campCheckOut"],
-//       campFieldImage: json["campFieldImage"],
-//       campImageList: (json["images"] as List<dynamic>? ?? [])
-//           .map((item) => CampImage.fromJson(item))
-//           .toList(),
-//       campRatingList: (json["campRatingList"] as List<dynamic>? ?? [])
-//           .map((e) => CampRating.fromJson(e))
-//           .toList(),
-//       campImage: json["campImage"],
-//       campRating: json["campRating"],
-//     );
-//   }
-//
-//   Map<String, dynamic> toJson() => {
-//         "id": id,
-//         "campName": campName,
-//         "campAddress": campAddress,
-//         "campCallNumber": campCallNumber,
-//         "campWebsite": campWebsite,
-//         "campRefundPolicy": campRefundPolicy,
-//         "campWater": campWater,
-//         "campGarbageBag": campGarbageBag,
-//         "holiday": holiday,
-//         "campCheckIn": campCheckIn,
-//         "campCheckOut": campCheckOut,
-//         "campFieldImage": campFieldImage,
-//         "campImageList": campImageList?.map((e) => e.toJson()).toList(),
-//         "campRatingList": campRatingList?.map((e) => e.toJson()).toList(),
-//         "campImage": campImage,
-//         "campRating": campRating,
-//       };
-// }
-//
-// class CampPrice {
-//   int? minPrice;
-//   int? maxPrice;
-//
-//   CampPrice({
-//     this.minPrice,
-//     this.maxPrice,
-//   });
-//
-//   factory CampPrice.fromJson(Map<String, dynamic> json) {
-//     return CampPrice(
-//       minPrice: json["minPrice"],
-//       maxPrice: json["maxPrice"],
-//     );
-//   }
-//
-//   Map<String, dynamic> toJson() => {
-//         "minPrice": minPrice,
-//         "maxPrice": maxPrice,
-//       };
-// }
-//
-// class CampRating {
-//   double? cleanlinessAverage;
-//   double? managementnessAverage;
-//   double? friendlinessAverage;
-//
-//   CampRating({
-//     this.cleanlinessAverage,
-//     this.managementnessAverage,
-//     this.friendlinessAverage,
-//   });
-//
-//   factory CampRating.fromJson(Map<String, dynamic> json) {
-//     return CampRating(
-//       cleanlinessAverage: json["cleanlinessAverage"],
-//       managementnessAverage: json["managementnessAverage"],
-//       friendlinessAverage: json["friendlinessAverage"],
-//     );
-//   }
-//
-//   Map<String, dynamic> toJson() => {
-//         "cleanlinessAverage": cleanlinessAverage,
-//         "managementnessAverage": managementnessAverage,
-//         "friendlinessAverage": friendlinessAverage,
-//       };
-// }
-//
-// class CampImage {
-//   int? campImageId;
-//   String? campImage;
-//
-//   CampImage({
-//     this.campImageId,
-//     this.campImage,
-//   });
-//
-//   factory CampImage.fromJson(Map<String, dynamic> json) {
-//     return CampImage(
-//       campImageId: json["campImageId"],
-//       campImage: json["campImage"],
-//     );
-//   }
-//
-//   Map<String, dynamic> toJson() => {
-//         "campImageId": campImageId,
-//         "campImage": campImage,
-//       };
-// }
-// ===============================================================
-// class CampInfo {
-//   int? id;
-//   String? campName;
-//   String? campAddress;
-//   String? campCallNumber;
-//   String? campWebsite;
-//   String? campRefundPolicy;
-//   bool? campWater;
-//   bool? campGarbageBag;
-//   String? holiday;
-//   String? campCheckIn;
-//   String? campCheckOut;
-//   String? campFieldImage;
-//   String? totalRating;
-//   CampPrice? campPrice;
-//
-//   CampInfo({
-//     this.id,
-//     this.campName,
-//     this.campAddress,
-//     this.campCallNumber,
-//     this.campWebsite,
-//     this.campRefundPolicy,
-//     this.campWater,
-//     this.campGarbageBag,
-//     this.holiday,
-//     this.campCheckIn,
-//     this.campCheckOut,
-//     this.campFieldImage,
-//     this.totalRating,
-//     this.campPrice,
-//   });
-//
-//   factory CampInfo.fromJson(Map<String, dynamic> json) {
-//     return CampInfo(
-//       id: json['id'],
-//       campName: json['campName'],
-//       campAddress: json['campAddress'],
-//       campCallNumber: json['campCallNumber'],
-//       campWebsite: json['campWebsite'],
-//       campRefundPolicy: json['campRefundPolicy'],
-//       campWater: json['campWater'],
-//       campGarbageBag: json['campGarbageBag'],
-//       holiday: json['holiday'],
-//       campCheckIn: json['campCheckIn'],
-//       campCheckOut: json['campCheckOut'],
-//       campFieldImage: json['campFieldImage'],
-//       totalRating: json['totalRating'],
-//       campPrice: CampPrice.fromJson(json['campPrice']),
-//     );
-//   }
-// }
-//
-// class CampRating {
-//   double cleanlinessAverage;
-//   double managementnessAverage;
-//   double friendlinessAverage;
-//
-//   CampRating({
-//     required this.cleanlinessAverage,
-//     required this.managementnessAverage,
-//     required this.friendlinessAverage,
-//   });
-//
-//   factory CampRating.fromJson(Map<String, dynamic> json) {
-//     return CampRating(
-//       cleanlinessAverage: json['cleanlinessAverage'],
-//       managementnessAverage: json['managementnessAverage'],
-//       friendlinessAverage: json['friendlinessAverage'],
-//     );
-//   }
-// }
-//
-// class ReviewCount {
-//   int count;
-//
-//   ReviewCount({
-//     required this.count,
-//   });
-//
-//   factory ReviewCount.fromJson(Map<String, dynamic> json) {
-//     return ReviewCount(
-//       count: json['reviewCount'],
-//     );
-//   }
-// }
-//
-// class CampImage {
-//   int campImageId;
-//   String campImage;
-//
-//   CampImage({
-//     required this.campImageId,
-//     required this.campImage,
-//   });
-//
-//   factory CampImage.fromJson(Map<String, dynamic> json) {
-//     return CampImage(
-//       campImageId: json['campImageId'],
-//       campImage: json['campImage'],
-//     );
-//   }
-// }
-//
-// class Option {
-//   int optionId;
-//   String optionName;
-//
-//   Option({
-//     required this.optionId,
-//     required this.optionName,
-//   });
-//
-//   factory Option.fromJson(Map<String, dynamic> json) {
-//     return Option(
-//       optionId: json['optionId'],
-//       optionName: json['optionName'],
-//     );
-//   }
-// }
-//
-// class CampPrice {
-//   int minPrice;
-//   int maxPrice;
-//
-//   CampPrice({
-//     required this.minPrice,
-//     required this.maxPrice,
-//   });
-//
-//   factory CampPrice.fromJson(Map<String, dynamic> json) {
-//     return CampPrice(
-//       minPrice: json['minPrice'],
-//       maxPrice: json['maxPrice'],
-//     );
-//   }
-// }
+class EnvironmentDTO {
+  int? optionId;
+  String? optionName;
+  int? categoryId;
+  String? categoryName;
+
+  EnvironmentDTO({
+    this.optionId,
+    this.optionName,
+    this.categoryId,
+    this.categoryName,
+  });
+
+  EnvironmentDTO.fromJson(Map<String, dynamic> json)
+      : optionId = json["optionId"],
+        optionName = json["optionName"],
+        categoryId = json["categoryId"],
+        categoryName = json["categoryName"];
+}
+
+class TypeDTO {
+  int? optionId;
+  String? optionName;
+  int? categoryId;
+  String? categoryName;
+
+  TypeDTO({
+    this.optionId,
+    this.optionName,
+    this.categoryId,
+    this.categoryName,
+  });
+
+  TypeDTO.fromJson(Map<String, dynamic> json)
+      : optionId = json["optionId"],
+        optionName = json["optionName"],
+        categoryId = json["categoryId"],
+        categoryName = json["categoryName"];
+}
+
+class SiteDTO {
+  int? optionId;
+  String? optionName;
+  int? categoryId;
+  String? categoryName;
+
+  SiteDTO({
+    this.optionId,
+    this.optionName,
+    this.categoryId,
+    this.categoryName,
+  });
+
+  SiteDTO.fromJson(Map<String, dynamic> json)
+      : optionId = json["optionId"],
+        optionName = json["optionName"],
+        categoryId = json["categoryId"],
+        categoryName = json["categoryName"];
+}
+
+class MainFacilityDTO {
+  int? optionId;
+  String? optionName;
+  int? categoryId;
+  String? categoryName;
+
+  MainFacilityDTO({
+    this.optionId,
+    this.optionName,
+    this.categoryId,
+    this.categoryName,
+  });
+
+  MainFacilityDTO.fromJson(Map<String, dynamic> json)
+      : optionId = json["optionId"],
+        optionName = json["optionName"],
+        categoryId = json["categoryId"],
+        categoryName = json["categoryName"];
+}
+
+class HaveFacilityDTO {
+  int? optionId;
+  String? optionName;
+  int? categoryId;
+  String? categoryName;
+
+  HaveFacilityDTO({
+    this.optionId,
+    this.optionName,
+    this.categoryId,
+    this.categoryName,
+  });
+
+  HaveFacilityDTO.fromJson(Map<String, dynamic> json)
+      : optionId = json["optionId"],
+        optionName = json["optionName"],
+        categoryId = json["categoryId"],
+        categoryName = json["categoryName"];
+}
+
+class ExerciseFacilityDTO {
+  int? optionId;
+  String? optionName;
+  int? categoryId;
+  String? categoryName;
+
+  ExerciseFacilityDTO({
+    this.optionId,
+    this.optionName,
+    this.categoryId,
+    this.categoryName,
+  });
+
+  ExerciseFacilityDTO.fromJson(Map<String, dynamic> json)
+      : optionId = json["optionId"],
+        optionName = json["optionName"],
+        categoryId = json["categoryId"],
+        categoryName = json["categoryName"];
+}
+
+class ProgramDTO {
+  int? optionId;
+  String? optionName;
+  int? categoryId;
+  String? categoryName;
+
+  ProgramDTO({
+    this.optionId,
+    this.optionName,
+    this.categoryId,
+    this.categoryName,
+  });
+
+  ProgramDTO.fromJson(Map<String, dynamic> json)
+      : optionId = json["optionId"],
+        optionName = json["optionName"],
+        categoryId = json["categoryId"],
+        categoryName = json["categoryName"];
+}
+
+class SellDTO {
+  int? optionId;
+  String? optionName;
+  int? categoryId;
+  String? categoryName;
+
+  SellDTO({
+    this.optionId,
+    this.optionName,
+    this.categoryId,
+    this.categoryName,
+  });
+
+  SellDTO.fromJson(Map<String, dynamic> json)
+      : optionId = json["optionId"],
+        optionName = json["optionName"],
+        categoryId = json["categoryId"],
+        categoryName = json["categoryName"];
+}
+
+class RentalDTO {
+  int? optionId;
+  String? optionName;
+  int? categoryId;
+  String? categoryName;
+
+  RentalDTO({
+    this.optionId,
+    this.optionName,
+    this.categoryId,
+    this.categoryName,
+  });
+
+  RentalDTO.fromJson(Map<String, dynamic> json)
+      : optionId = json["optionId"],
+        optionName = json["optionName"],
+        categoryId = json["categoryId"],
+        categoryName = json["categoryName"];
+}

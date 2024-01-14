@@ -141,6 +141,17 @@ Image imageDetailBeach({Color mColor = kPrimaryColor, double mWidth = 25, double
   return Image.asset("assets/images/detail_beach_chair.png", width: mWidth, height: mHeight, color: mColor);
 }
 
+
+// 디테일 도시 Icon
+Image imageDetailCity({Color mColor = kPrimaryColor, double mWidth = 25, double mHeight = 25}) {
+  return Image.asset("assets/images/detail_city.png", width: mWidth, height: mHeight, color: mColor);
+}
+
+// 디테일 섬 Icon
+Image imageDetailIsland({Color mColor = kPrimaryColor, double mWidth = 25, double mHeight = 25}) {
+  return Image.asset("assets/images/detail_island.png", width: mWidth, height: mHeight, color: mColor);
+}
+
 // 디테일 장작 Icon
 Image imageDetailBonfire({Color mColor = kPrimaryColor, double mWidth = 25, double mHeight = 25}) {
   return Image.asset("assets/images/detail_bonfire.png", width: mWidth, height: mHeight, color: mColor);
