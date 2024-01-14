@@ -54,18 +54,20 @@ class CampsiteDetailHeader extends StatelessWidget {
                     ],
                   )
                 : SafeArea(
-                    child: Row(
-                      children: [
-                        Spacer(),
-                        Text(
-                          "${campInfo.campName}",
-                          style: TextStyle(
-                              color: kFontTitle, fontWeight: FontWeight.bold),
-                        ),
-                        Spacer(),
-                        Spacer(),
-                        Spacer(),
-                      ],
+                    child: SizedBox(
+                      child: Row(
+                        children: [
+                          Spacer(),
+                          Text(
+                            "${campInfo.campName}",
+                            style: TextStyle(
+                                color: kFontTitle, fontWeight: FontWeight.bold),
+                          ),
+                          Spacer(),
+                          Spacer(),
+                          Spacer(),
+                        ],
+                      ),
                     ),
                   ),
             background: ColorFiltered(
@@ -89,7 +91,24 @@ class CampsiteDetailHeader extends StatelessWidget {
       actions: [
         Padding(
           padding: const EdgeInsets.all(gapMain),
-          child: iconEmptyHeart(mColor: kFontGray),
+          child: Row(
+            children: [
+              InkWell(
+                child: iconLocation(mColor: kPrimaryColor),
+                onTap: () {},
+              ),
+              SizedBox(width: gapXSmall),
+              InkWell(
+                child: iconBooking(mColor: kFontGray),
+                onTap: () {},
+              ),
+              SizedBox(width: gapSmall),
+              InkWell(
+                child: iconEmptyHeart(mColor: kFontGray),
+                onTap: () {},
+              ),
+            ],
+          ),
         )
       ],
       pinned: true,
