@@ -1,8 +1,10 @@
 import 'package:flutter/material.dart';
 import 'package:team_project/_core/constants/color.dart';
 import 'package:team_project/_core/constants/icon.dart';
+import 'package:team_project/_core/constants/move.dart';
 import 'package:team_project/_core/constants/size.dart';
 import 'package:team_project/data/model/campsite_detail.dart';
+import 'package:team_project/ui/pages/campsite/campsite_map/campsite_map_page.dart';
 
 class CampsiteDetailInfo extends StatelessWidget {
   final CampsiteDetail campInfo;
@@ -171,12 +173,44 @@ class CampsiteDetailInfo extends StatelessWidget {
                             ),
                           ),
                         ),
-                        onTap: () {},
+                        onTap: () {
+                          Navigator.push(
+                            context,
+                            MaterialPageRoute(
+                              builder: (context) =>
+                                  CampsiteMapPage(initialAddress: "${campInfo.campAddress}"),
+                            ),
+                          );
+                        },
                       )
                     ],
                   ),
                   Text("${campInfo.campAddress}")
                 ],
+              ),
+              Padding(
+                padding: const EdgeInsets.symmetric(vertical: gapMedium),
+                child: Divider(),
+              ),
+              InkWell(
+                child: Container(
+                  decoration: BoxDecoration(
+                    color: kPrimaryColor,
+                    borderRadius: BorderRadius.circular(gapMedium),
+                  ),
+                  child: Center(
+                    child: Padding(
+                      padding: const EdgeInsets.symmetric(vertical: gapMedium),
+                      child: Text(
+                        "예약하기",
+                        style: TextStyle(
+                            fontSize: fontLarge,
+                            fontWeight: FontWeight.bold,
+                            color: kBackWhite),
+                      ),
+                    ),
+                  ),
+                ),
               )
             ],
           ),

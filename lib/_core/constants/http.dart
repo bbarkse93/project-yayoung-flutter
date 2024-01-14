@@ -5,7 +5,7 @@ final Dio dio = Dio(
   BaseOptions(
 
     // baseUrl: "http://192.168.0.141:8080", // 메인 서버
-    baseUrl: "http://172.30.1.87:8080", // 세환 서버
+    baseUrl: "http://192.168.45.228:8080", // 세환 서버
     // baseUrl: "http://192.168.0.48:8080", // 우진 서버
     // baseUrl: "http://192.168.0.41:8080", // 은혜 서버
     // baseUrl: "http://192.168.0.48:8080", // 승신 서버

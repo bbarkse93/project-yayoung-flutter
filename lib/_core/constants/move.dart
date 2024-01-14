@@ -3,6 +3,7 @@ import 'package:team_project/data/store/param_store.dart';
 import 'package:team_project/ui/pages/auth/login_page.dart';
 import 'package:team_project/ui/pages/campsite/campsite_detail/campsite_detail_page.dart';
 import 'package:team_project/ui/pages/campsite/campsite_list/campsite_list_page.dart';
+import 'package:team_project/ui/pages/campsite/campsite_map/campsite_map_page.dart';
 import 'package:team_project/ui/pages/campsite/search_campsite/search_campsite_page.dart';
 import 'package:team_project/ui/pages/home/home_page.dart';
 import 'package:team_project/ui/pages/my_page/main_page.dart';
@@ -34,6 +35,7 @@ class Move {
 
   // 캠핑장 디테일
   static String campsiteDetailPage = "/campsiteDetail";
+  static String campsiteMapPage = "/campsiteMap";
   // 캠핑장 목록
   static String campsiteListPage = "/campsiteList";
 
@@ -68,5 +70,6 @@ Map<String, Widget Function(BuildContext)> getRouters() {
     Move.refundPage: (p0) => RefundPage(),
     Move.reservationPage: (p0) => ReservationPage(),
     Move.paymentPage: (p0) => PaymentPage(),
+    // Move.campsiteMapPage: (p0) => CampsiteMapPage(),
   };
 }
