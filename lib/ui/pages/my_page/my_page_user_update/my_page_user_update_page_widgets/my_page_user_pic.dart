@@ -1,8 +1,10 @@
 import 'dart:io';
 
+import 'package:dio/dio.dart';
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:image_picker/image_picker.dart';
+import 'package:team_project/_core/constants/http.dart';
 import 'package:team_project/_core/constants/size.dart';
 
 class UserPic extends StatefulWidget {
@@ -78,7 +80,7 @@ class _UserPicState extends State<UserPic> {
                   getImage(ImageSource.gallery);
                 },
               child: widget.imageUrl != null
-                  ? Image.network("http://192.168.0.134:8080/images/user/${widget.imageUrl}", width: getScreenWidth(context) * 0.8, height: getScreenHeight(context) * 0.4, fit: BoxFit.cover,)
+                  ? Image.network("${dio.options.baseUrl}${widget.imageUrl}", width: getScreenWidth(context) * 0.8, height: getScreenHeight(context) * 0.4, fit: BoxFit.cover,)
                   : Image.asset("/assets/images/profile.jpg", fit: BoxFit.cover,)
               //  Image.network(widget.imageUrl)
             ))
