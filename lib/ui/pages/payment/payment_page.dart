@@ -27,13 +27,7 @@ class PaymentPage extends StatelessWidget {
       ),
       body: ListView(
         children: [
-          CampsiteInfoForm(
-              campsiteImage: "assets/images/tent1.png",
-              campsite: "물가솔솔캠핑장",
-              campsiteAddress: "강원도 홍천 내면 광원리 471-4",
-              campsitePriceMin: 45000,
-              campsitePriceMax: 55000,
-              run: "운영중"),
+          CampsiteInfoForm(campId: 1),
           SizedBox(height: gapMain),
           Padding(
             padding: const EdgeInsets.symmetric(horizontal: gapMain),
