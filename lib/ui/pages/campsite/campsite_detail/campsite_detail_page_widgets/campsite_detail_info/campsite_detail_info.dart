@@ -180,8 +180,8 @@ class CampsiteDetailInfo extends StatelessWidget {
                           Navigator.push(
                             context,
                             MaterialPageRoute(
-                              builder: (context) =>
-                                  CampsiteMapPage(initialAddress: "${campInfo.campAddress}"),
+                              builder: (context) => CampsiteMapPage(
+                                  initialAddress: "${campInfo.campAddress}"),
                             ),
                           );
                         },
@@ -214,6 +214,9 @@ class CampsiteDetailInfo extends StatelessWidget {
                     ),
                   ),
                 ),
+                onTap: () {
+                  Navigator.of(context).pushNamed(Move.reservationPage);
+                },
               )
             ],
           ),
@@ -221,6 +224,7 @@ class CampsiteDetailInfo extends StatelessWidget {
       ],
     );
   }
+
   _showBottomSheet(BuildContext context) {
     showModalBottomSheet(
       context: context,
@@ -237,7 +241,8 @@ class CampsiteDetailInfo extends StatelessWidget {
                 ElevatedButton(
                   onPressed: () {
                     Navigator.pop(context); // 바텀시트 닫기
-                    _launchPhoneCall('tel:${campInfo.campCallNumber}');
+                    _launchPhoneCall('tel:01085017241');
+                    // _launchPhoneCall('tel:${campInfo.campCallNumber}');
                   },
                   child: Text('전화 걸기'),
                 ),
@@ -257,6 +262,3 @@ class CampsiteDetailInfo extends StatelessWidget {
     }
   }
 }
-
-
-
