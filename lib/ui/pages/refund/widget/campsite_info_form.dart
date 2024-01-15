@@ -62,7 +62,7 @@ class CampsiteInfoForm extends ConsumerWidget {
               ),
               SizedBox(height: gapXSmall),
               Text(
-                "${reservation.isOpen}",
+                reservation.isOpen == true ? "영업중" : (reservation.isOpen == false ? "영업종료" : "알 수 없음"),
                 style: subTitle1(mColor: kBackWhite),
               ),
             ],

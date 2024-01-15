@@ -28,24 +28,12 @@ class _ReservationPageBodyState extends State<ReservationPageBody> {
           padding: const EdgeInsets.all(gapMain),
           child: Column(
             children: [
-              CampsiteAreaMap(),
+              CampsiteAreaMap(campId: 1),
               SizedBox(height: gapMain),
               DateRangeSelectForm(),
               SizedBox(height: gapXLarge),
               // 여러 개의 예약 옵션 폼 생성
-              for (int i = 0; i < CampsiteAreaList.length; i++)
-                ReservationOptionForm(
-                  isChecked: isCheckedList[i],
-                  area: CampsiteAreaList[i].area,
-                  reservationPrice: CampsiteAreaList[i].reservationPrice,
-                  countDay: CampsiteAreaList[i].countDay,
-                  onChanged: (bool? value) {
-                    // Handle checkbox state change
-                    setState(() {
-                      isCheckedList[i] = value ?? false;
-                    });
-                  },
-                ),
+              ReservationOptionForm(campId: 1),
             ],
           ),
         ),

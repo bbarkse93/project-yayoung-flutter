@@ -3,6 +3,7 @@ import 'package:logger/logger.dart';
 import 'package:team_project/_core/constants/http.dart';
 import 'package:team_project/data/dto/response_dto.dart';
 import 'package:team_project/data/model/reservation.dart';
+import 'package:team_project/ui/pages/reservation/reservation_view_model.dart';
 
 class ReservationRepository {
   Future<ResponseDTO> fetchReservation(int? campId) async {
@@ -21,4 +22,13 @@ class ReservationRepository {
       return ResponseDTO(false, "캠핑장 불러오기 실패", null);
     }
   }
+
+  // void updateCheckbox(CampFieldDTO campFieldDTO) {
+  //   try {
+  //     campFieldDTO.isChecked = !campFieldDTO.isChecked;
+  //   } catch (e) {
+  //     print("Checkbox 업데이트 실패: $e");
+  //     rethrow;
+  //   }
+  // }
 }

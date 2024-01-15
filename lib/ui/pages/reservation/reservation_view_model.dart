@@ -1,4 +1,3 @@
-
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:logger/logger.dart';
 import 'package:team_project/data/dto/response_dto.dart';
@@ -9,20 +8,27 @@ import 'package:team_project/main.dart';
 class CampFieldDTO {
   final String fieldName;
   final String price;
+  bool isChecked;
 
   CampFieldDTO({
     required this.fieldName,
     required this.price,
+    this.isChecked = false,
   });
 
   factory CampFieldDTO.fromJson(Map<String, dynamic> json) =>
       CampFieldDTO(fieldName: json["fieldName"], price: json["price"]);
 }
 
+
+
 class ReservationModel {
   Reservation reservation;
+  List<CampFieldDTO> selectedCampFields;
 
-  ReservationModel(this.reservation);
+  ReservationModel(this.reservation, this.selectedCampFields);
+
+
 }
 
 //창고
@@ -40,30 +46,32 @@ class ReservationViewModel extends StateNotifier<ReservationModel?> {
 
     if (responseDTO.success) {
       dynamic reservation = responseDTO.response;
+      List<CampFieldDTO> selectedCampFields = [];
 
-      state = ReservationModel(reservation);
+      // 여기에서 기존에 선택된 데이터에 대한 처리를 수행할 수 있습니다.
+
+      state = ReservationModel(reservation, selectedCampFields);
     } else {
       Logger().e("통신 에러: 유효하지 않은 데이터 구조입니다.");
-      // 사용자에게 에러 메시지를 표시하거나 적절하게 처리
     }
   }
 
-  // Future<ResponseDTO> fetchReservation(int? campId) async {
-  //   try {
-  //     // 통신
-  //     Logger().d("id는? $campId");
-  //     Response response = await dio.get("/order/field-list?campId=${campId}");
-  //     // 응답 받은 데이터 파싱
-  //     ResponseDTO responseDTO = ResponseDTO.fromJson(response.data);
-  //     Logger().d("그만둬 ${responseDTO.response}");
-  //
-  //     responseDTO.response = Reservation();
-  //
-  //     return responseDTO;
-  //   } catch (e) {
-  //     return ResponseDTO(false, "예약페이지 불러오기 실패", null);
-  //   }
-  // }
+  // 이 부분을 추가합니다.
+  void toggleSelection(CampFieldDTO campFieldDTO) {
+    if (state != null) {
+      if (state!.selectedCampFields.contains(campFieldDTO)) {
+        state = ReservationModel(
+          state!.reservation,
+          List.from(state!.selectedCampFields)..remove(campFieldDTO),
+        );
+      } else {
+        state = ReservationModel(
+          state!.reservation,
+          List.from(state!.selectedCampFields)..add(campFieldDTO),
+        );
+      }
+    }
+  }
 }
 
 //창고 관리자
@@ -72,9 +80,3 @@ final reservationProvider =
         (ref, campId) {
   return ReservationViewModel(campId, ref)..notifyInit();
 });
-
-// final reservationProvider =
-// StateNotifierProvider.family<ReservationViewModel, ReservationModel?, int>(
-//         (ref, campId) {
-//       return ReservationViewModel(campId, ref)..fetchReservation(campId);
-//     });
