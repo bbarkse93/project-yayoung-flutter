@@ -20,15 +20,11 @@ class CampFieldDTO {
       CampFieldDTO(fieldName: json["fieldName"], price: json["price"]);
 }
 
-
-
 class ReservationModel {
   Reservation reservation;
   List<CampFieldDTO> selectedCampFields;
 
   ReservationModel(this.reservation, this.selectedCampFields);
-
-
 }
 
 //창고
@@ -56,27 +52,26 @@ class ReservationViewModel extends StateNotifier<ReservationModel?> {
     }
   }
 
-  // 이 부분을 추가합니다.
-  void toggleSelection(CampFieldDTO campFieldDTO) {
+  void toggleCampField(CampFieldDTO campField) {
     if (state != null) {
-      if (state!.selectedCampFields.contains(campFieldDTO)) {
-        state = ReservationModel(
-          state!.reservation,
-          List.from(state!.selectedCampFields)..remove(campFieldDTO),
-        );
-      } else {
-        state = ReservationModel(
-          state!.reservation,
-          List.from(state!.selectedCampFields)..add(campFieldDTO),
-        );
+      final selectedFields = state!.selectedCampFields;
+
+      // 이미 선택된 캠프 필드가 있으면 모두 제거
+      if (selectedFields.isNotEmpty) {
+        selectedFields.clear();
       }
+
+      // 선택된 캠프 필드로 설정
+      selectedFields.add(campField);
+
+      state = ReservationModel(state!.reservation, selectedFields);
     }
   }
 }
 
 //창고 관리자
 final reservationProvider =
-    StateNotifierProvider.family<ReservationViewModel, ReservationModel?, int>(
+StateNotifierProvider.family<ReservationViewModel, ReservationModel?, int>(
         (ref, campId) {
-  return ReservationViewModel(campId, ref)..notifyInit();
-});
+      return ReservationViewModel(campId, ref)..notifyInit();
+    });

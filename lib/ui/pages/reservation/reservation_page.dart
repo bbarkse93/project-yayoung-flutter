@@ -8,7 +8,10 @@ class ReservationPage extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      appBar: ReservationPageAppBar(),
+      appBar: PreferredSize(
+        preferredSize: Size.fromHeight(kToolbarHeight),
+        child: ReservationPageAppBar(campId: 1),
+      ),
       body: ReservationPageBody(),
     );
   }

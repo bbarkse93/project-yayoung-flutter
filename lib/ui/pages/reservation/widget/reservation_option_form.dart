@@ -26,10 +26,15 @@ class ReservationOptionForm extends ConsumerWidget {
       itemBuilder: (context, index) {
         final campFieldDTO = reservation.campFieldDTOs?[index];
 
-        final price = double.tryParse(campFieldDTO?.price?.replaceAll(',', '') ?? '0') ?? 0;
+        final price =
+            double.tryParse(campFieldDTO?.price?.replaceAll(',', '') ?? '0') ??
+                0;
         final nights = reservationRangeData.nights; // 직접 ref.watch 호출
 
         final totalAmount = (price * nights).toStringAsFixed(0);
+
+        bool isChecked =
+        reservationModel.selectedCampFields.contains(campFieldDTO);
 
         return Row(
           mainAxisAlignment: MainAxisAlignment.spaceBetween,
@@ -39,20 +44,24 @@ class ReservationOptionForm extends ConsumerWidget {
                 children: [
                   Text(
                     "${campFieldDTO?.fieldName}",
-                    style: subTitle3(),
+                    style: subTitle2(),
                   ),
                   SizedBox(width: gapXLarge),
                   Text(
                     "$totalAmount원/$nights박",
-                    style: subTitle3(),
+                    style: subTitle2(),
                   ),
                 ],
               ),
             ),
             Checkbox(
-              value: reservationModel.selectedCampFields.contains(campFieldDTO),
-              onChanged: (isChecked) {
-                // 선택 토글 로직을 여기에 작성
+              value: isChecked,
+              onChanged: (bool? isChecked) {
+                if (isChecked != null) {
+                  ref
+                      .read(reservationProvider(campId).notifier)
+                      .toggleCampField(campFieldDTO!);
+                }
               },
               activeColor: kPrimaryColor,
               checkColor: kBackWhite,
