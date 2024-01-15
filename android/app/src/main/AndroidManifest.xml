@@ -4,6 +4,7 @@
         android:label="team_project"
         android:name="${applicationName}"
         android:icon="@mipmap/ic_launcher">
+
         <activity
             android:name=".MainActivity"
             android:exported="true"
@@ -38,7 +39,8 @@
                     android:scheme="kakaoedc929f8703514e3d119422f3935375b" />
             </intent-filter>
         </activity>
-
+        <meta-data android:name="com.google.android.geo.API_KEY"
+                   android:value="AIzaSyA2grbotcJjNGwPN39F5q58M7EfT52y5sk"/>
         <!--네이버 로그인-->
         <meta-data
             android:name="com.naver.sdk.clientId"
@@ -58,4 +60,6 @@
             android:value="2" />
     </application>
     <uses-permission android:name="android.permission.INTERNET" />
+    <uses-permission android:name="android.permission.ACCESS_FINE_LOCATION"/>
+    <uses-permission android:name="android.permission.ACCESS_COARSE_LOCATION"/>
 </manifest>

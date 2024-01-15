@@ -1,8 +1,11 @@
 import 'package:flutter/material.dart';
 import 'package:team_project/_core/constants/color.dart';
 import 'package:team_project/_core/constants/icon.dart';
+import 'package:team_project/_core/constants/move.dart';
 import 'package:team_project/_core/constants/size.dart';
 import 'package:team_project/data/model/campsite_detail.dart';
+import 'package:team_project/ui/pages/campsite/campsite_map/campsite_map_page.dart';
+import 'package:url_launcher/url_launcher.dart';
 
 class CampsiteDetailInfo extends StatelessWidget {
   final CampsiteDetail campInfo;
@@ -107,7 +110,9 @@ class CampsiteDetailInfo extends StatelessWidget {
                             ),
                           ),
                         ),
-                        onTap: () {},
+                        onTap: () {
+                          _showBottomSheet(context);
+                        },
                       )
                     ],
                   ),
@@ -171,17 +176,89 @@ class CampsiteDetailInfo extends StatelessWidget {
                             ),
                           ),
                         ),
-                        onTap: () {},
+                        onTap: () {
+                          Navigator.push(
+                            context,
+                            MaterialPageRoute(
+                              builder: (context) => CampsiteMapPage(
+                                  initialAddress: "${campInfo.campAddress}"),
+                            ),
+                          );
+                        },
                       )
                     ],
                   ),
                   Text("${campInfo.campAddress}")
                 ],
+              ),
+              Padding(
+                padding: const EdgeInsets.symmetric(vertical: gapMedium),
+                child: Divider(),
+              ),
+              InkWell(
+                child: Container(
+                  decoration: BoxDecoration(
+                    color: kPrimaryColor,
+                    borderRadius: BorderRadius.circular(gapMedium),
+                  ),
+                  child: Center(
+                    child: Padding(
+                      padding: const EdgeInsets.symmetric(vertical: gapMedium),
+                      child: Text(
+                        "예약하기",
+                        style: TextStyle(
+                            fontSize: fontLarge,
+                            fontWeight: FontWeight.bold,
+                            color: kBackWhite),
+                      ),
+                    ),
+                  ),
+                ),
+                onTap: () {
+                  Navigator.of(context).pushNamed(Move.reservationPage);
+                },
               )
             ],
           ),
         ),
       ],
     );
+  }
+
+  _showBottomSheet(BuildContext context) {
+    showModalBottomSheet(
+      context: context,
+      builder: (BuildContext context) {
+        return Container(
+          height: 200.0,
+          color: Colors.white,
+          child: Center(
+            child: Column(
+              mainAxisAlignment: MainAxisAlignment.center,
+              children: <Widget>[
+                Text('전화 걸기'),
+                SizedBox(height: 20),
+                ElevatedButton(
+                  onPressed: () {
+                    Navigator.pop(context); // 바텀시트 닫기
+                    _launchPhoneCall('tel:01085017241');
+                    // _launchPhoneCall('tel:${campInfo.campCallNumber}');
+                  },
+                  child: Text('전화 걸기'),
+                ),
+              ],
+            ),
+          ),
+        );
+      },
+    );
+  }
+
+  _launchPhoneCall(String phoneNumber) async {
+    if (await canLaunch(phoneNumber)) {
+      await launch(phoneNumber);
+    } else {
+      throw '전화를 걸 수 없습니다: $phoneNumber';
+    }
   }
 }

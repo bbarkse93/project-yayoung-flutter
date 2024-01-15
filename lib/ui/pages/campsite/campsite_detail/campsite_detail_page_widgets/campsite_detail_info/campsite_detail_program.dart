@@ -59,17 +59,17 @@ class CampsiteDetailProgram extends StatelessWidget {
 Widget getImageWidget(String optionName) {
   switch (optionName) {
     case "계곡·물놀이":
-      return imageDetailMountains(
+      return imageDetailWaterPolo(
         mHeight: gapSemiLarge,
         mWidth: gapSemiLarge,
       );
     case "해수욕":
-      return imageDetailValley(
+      return imageDetailBeach(
         mHeight: gapSemiLarge,
         mWidth: gapSemiLarge,
       );
     case "갯벌체험":
-      return imageDetailBeach(
+      return imageDetailMud(
         mHeight: gapSemiLarge,
         mWidth: gapSemiLarge,
       );
@@ -79,7 +79,7 @@ Widget getImageWidget(String optionName) {
         mWidth: gapSemiLarge,
       );
     case "등산(트래킹)":
-      return imageDetailIsland(
+      return imageDetailHiking(
         mHeight: gapSemiLarge,
         mWidth: gapSemiLarge,
       );
