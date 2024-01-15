@@ -3,6 +3,7 @@ import 'package:team_project/ui/pages/campsite/search_campsite/search_campsite_p
 import 'package:team_project/ui/pages/campsite/search_campsite/search_campsite_page_widgets/search_campsite_page_body.dart';
 
 class SearchCampsitePage extends StatelessWidget {
+
   const SearchCampsitePage({super.key});
 
   @override

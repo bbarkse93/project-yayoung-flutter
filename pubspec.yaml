@@ -58,7 +58,7 @@ dependencies:
   geocoding: ^2.1.1 # 주소 <=> 좌표
 #  location: ^5.0.3 # 주소 라이브러리
 
-#  geolocator: ^10.1.0 #GPS
+  geolocator: ^10.1.0 #GPS
 #  google_maps_flutter: ^2.5.0 # 구글맵
 #  cloud_firestore: ^4.13.6 # fire_store
 #  firebase_core: ^2.24.2 # firebase_auth
