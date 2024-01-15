@@ -23,16 +23,16 @@ class CampsiteDetailHaveFacility extends StatelessWidget {
             height: 60,
             child: ListView.builder(
               scrollDirection: Axis.horizontal,
-              itemCount: campsiteDetail.mainFacility?.length ?? 0,
+              itemCount: campsiteDetail.haveFacility?.length ?? 0,
               itemBuilder: (BuildContext context, int index) {
-                var mainFacilityOption = campsiteDetail.mainFacility?[index];
+                var haveFacilityOption = campsiteDetail.haveFacility?[index];
                 return Row(
                   children: [
                     Column(
                       children: [
-                        getImageWidget("${mainFacilityOption?.optionName}"),
+                        getImageWidget("${haveFacilityOption?.optionName}"),
                         Text(
-                          "${mainFacilityOption?.optionName}",
+                          "${haveFacilityOption?.optionName}",
                           style: TextStyle(
                             color: kPrimaryColor,
                             fontWeight: FontWeight.bold,
@@ -58,28 +58,23 @@ class CampsiteDetailHaveFacility extends StatelessWidget {
 
 Widget getImageWidget(String optionName) {
   switch (optionName) {
-    case "전기":
-      return imageDetailMountains(
+    case "샤워장":
+      return imageDetailShower(
         mHeight: gapSemiLarge,
         mWidth: gapSemiLarge,
       );
-    case "Wi-Fi":
-      return imageDetailValley(
+    case "온수":
+      return imageDetailHotwater(
         mHeight: gapSemiLarge,
         mWidth: gapSemiLarge,
       );
-    case "화로대":
-      return imageDetailBeach(
+    case "매점":
+      return imageDetailSchoolStore(
         mHeight: gapSemiLarge,
         mWidth: gapSemiLarge,
       );
-    case "반려동물":
-      return imageDetailCity(
-        mHeight: gapSemiLarge,
-        mWidth: gapSemiLarge,
-      );
-    case "키즈":
-      return imageDetailCity(
+    case "물놀이장":
+      return imageDetailWaterSlide(
         mHeight: gapSemiLarge,
         mWidth: gapSemiLarge,
       );

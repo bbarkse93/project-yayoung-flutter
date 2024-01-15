@@ -56,27 +56,27 @@ class CampsiteDetailType extends StatelessWidget {
 Widget getImageWidget(String optionName) {
   switch (optionName) {
     case "트레일러":
-      return imageDetailMountains(
+      return imageDetailTrailer(
         mHeight: gapSemiLarge,
         mWidth: gapSemiLarge,
       );
     case "모터홈":
-      return imageDetailValley(
+      return imageDetailMotorHome(
         mHeight: gapSemiLarge,
         mWidth: gapSemiLarge,
       );
     case "카라반":
-      return imageDetailBeach(
+      return imageDetailCaravan(
         mHeight: gapSemiLarge,
         mWidth: gapSemiLarge,
       );
     case "오토캠핑":
-      return imageDetailCity(
+      return imageDetailOtter(
         mHeight: gapSemiLarge,
         mWidth: gapSemiLarge,
       );
     case "차박":
-      return imageDetailIsland(
+      return imageDetailCarCamping(
         mHeight: gapSemiLarge,
         mWidth: gapSemiLarge,
       );

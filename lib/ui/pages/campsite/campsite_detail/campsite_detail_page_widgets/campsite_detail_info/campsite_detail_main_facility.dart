@@ -19,32 +19,32 @@ class CampsiteDetailMainFacility extends StatelessWidget {
         ),
         Padding(
           padding: const EdgeInsets.all(gapSmall),
-          child: Row(
-            children: [
-              Column(
-                children: [
-                  imageDetailMountains(
-                      mHeight: gapSemiLarge, mWidth: gapSemiLarge),
-                  Text(
-                    "산",
-                    style: TextStyle(
-                        color: kPrimaryColor, fontWeight: FontWeight.bold),
-                  )
-                ],
-              ),
-              SizedBox(width: gapMedium),
-              Column(
-                children: [
-                  imageDetailValley(
-                      mHeight: gapSemiLarge, mWidth: gapSemiLarge),
-                  Text(
-                    "계곡",
-                    style: TextStyle(
-                        color: kPrimaryColor, fontWeight: FontWeight.bold),
-                  )
-                ],
-              )
-            ],
+          child: SizedBox(
+            height: 60,
+            child: ListView.builder(
+              scrollDirection: Axis.horizontal,
+              itemCount: campsiteDetail.mainFacility?.length ?? 0,
+              itemBuilder: (BuildContext context, int index) {
+                var mainFacilityOption = campsiteDetail.mainFacility?[index];
+                return Row(
+                  children: [
+                    Column(
+                      children: [
+                        getImageWidget("${mainFacilityOption?.optionName}"),
+                        Text(
+                          "${mainFacilityOption?.optionName}",
+                          style: TextStyle(
+                            color: kPrimaryColor,
+                            fontWeight: FontWeight.bold,
+                          ),
+                        ),
+                      ],
+                    ),
+                    SizedBox(width: gapMedium),
+                  ],
+                );
+              },
+            ),
           ),
         ),
         Padding(
@@ -58,28 +58,28 @@ class CampsiteDetailMainFacility extends StatelessWidget {
 
 Widget getImageWidget(String optionName) {
   switch (optionName) {
-    case "산":
-      return imageDetailMountains(
+    case "전기":
+      return imageDetailSocket(
         mHeight: gapSemiLarge,
         mWidth: gapSemiLarge,
       );
-    case "계곡":
-      return imageDetailValley(
+    case "Wi-Fi":
+      return imageDetailWifi(
         mHeight: gapSemiLarge,
         mWidth: gapSemiLarge,
       );
-    case "바다":
-      return imageDetailBeach(
+    case "화로대":
+      return imageDetailBBQ(
         mHeight: gapSemiLarge,
         mWidth: gapSemiLarge,
       );
-    case "도시":
-      return imageDetailCity(
+    case "반려동물":
+      return imageDetailPet(
         mHeight: gapSemiLarge,
         mWidth: gapSemiLarge,
       );
-    case "섬":
-      return imageDetailIsland(
+    case "키즈":
+      return imageDetailKids(
         mHeight: gapSemiLarge,
         mWidth: gapSemiLarge,
       );

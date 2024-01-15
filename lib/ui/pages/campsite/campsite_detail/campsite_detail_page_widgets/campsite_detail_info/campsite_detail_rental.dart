@@ -59,17 +59,17 @@ class CampsiteDetailRental extends StatelessWidget {
 Widget getImageWidget(String optionName) {
   switch (optionName) {
     case "릴선":
-      return imageDetailMountains(
+      return imageDetailReelWire(
         mHeight: gapSemiLarge,
         mWidth: gapSemiLarge,
       );
     case "낚시대":
-      return imageDetailValley(
+      return imageDetailFishing(
         mHeight: gapSemiLarge,
         mWidth: gapSemiLarge,
       );
     case "난로":
-      return imageDetailBeach(
+      return imageDetailPelletStove(
         mHeight: gapSemiLarge,
         mWidth: gapSemiLarge,
       );
