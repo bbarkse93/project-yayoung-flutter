@@ -1,7 +1,9 @@
 import 'dart:io';
 
+import 'package:dio/dio.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
+import 'package:team_project/_core/constants/http.dart';
 import 'package:team_project/_core/constants/move.dart';
 import 'package:team_project/_core/constants/size.dart';
 import 'package:team_project/ui/pages/my_page/my_page_user_update/my_page_user_update_view_model.dart';
@@ -29,7 +31,7 @@ class MyPageProfile extends ConsumerWidget {
                         Navigator.pushNamed(context, Move.userUpdatePage);
                       },child:
                         model?.userImage != null
-                      ? Image.network("http://192.168.0.134:8080/images/user/${model?.userImage}", width: getScreenWidth(context) * 0.8, height: getScreenHeight(context) * 0.4, fit: BoxFit.cover,)
+                      ? Image.network("${dio.options.baseUrl}${model?.userImage}", width: getScreenWidth(context) * 0.8, height: getScreenHeight(context) * 0.4, fit: BoxFit.cover,)
                       : Image.asset("/assets/images/profile.jpg", fit: BoxFit.cover,)
                   ))
           ),
