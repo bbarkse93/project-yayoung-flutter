@@ -16,40 +16,24 @@ class _ReservationPageBodyState extends State<ReservationPageBody> {
 
   bool isChecked = false;
 
+  // campListProvider
+
   @override
   Widget build(BuildContext context) {
     return ListView(
       children: [
-        CampsiteInfoForm(
-            campsiteImage: "assets/images/tent1.png",
-            campsite: "물가솔솔캠핑장",
-            campsiteAddress: "강원도 홍천 내면 광원리 471-4",
-            campsitePriceMin: 45000,
-            campsitePriceMax: 55000,
-            run: "운영중"),
+        CampsiteInfoForm(campId: 1),
         SizedBox(height: gapMain),
         Padding(
           padding: const EdgeInsets.all(gapMain),
           child: Column(
             children: [
-              CampsiteAreaMap(),
+              CampsiteAreaMap(campId: 1),
               SizedBox(height: gapMain),
               DateRangeSelectForm(),
               SizedBox(height: gapXLarge),
               // 여러 개의 예약 옵션 폼 생성
-              for (int i = 0; i < CampsiteAreaList.length; i++)
-                ReservationOptionForm(
-                  isChecked: isCheckedList[i],
-                  area: CampsiteAreaList[i].area,
-                  reservationPrice: CampsiteAreaList[i].reservationPrice,
-                  countDay: CampsiteAreaList[i].countDay,
-                  onChanged: (bool? value) {
-                    // Handle checkbox state change
-                    setState(() {
-                      isCheckedList[i] = value ?? false;
-                    });
-                  },
-                ),
+              ReservationOptionForm(campId: 1),
             ],
           ),
         ),

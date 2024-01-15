@@ -1,53 +1,66 @@
 import 'package:flutter/material.dart';
+import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:team_project/_core/constants/color.dart';
 import 'package:team_project/_core/constants/size.dart';
+import 'package:team_project/ui/pages/reservation/reservation_view_model.dart';
+import 'package:team_project/ui/pages/reservation/widget/reservation_range_data_provider.dart';
 
-class ReservationOptionForm extends StatefulWidget {
-  final bool isChecked;
-  final String area;
-  final int reservationPrice;
-  final int countDay;
-  final ValueChanged<bool?> onChanged;
+class ReservationOptionForm extends ConsumerWidget {
+  final int campId;
 
-  ReservationOptionForm({
-    required this.isChecked,
-    required this.area,
-    required this.reservationPrice,
-    required this.countDay,
-    required this.onChanged,
-  });
+  ReservationOptionForm({required this.campId});
 
   @override
-  _ReservationOptionFormState createState() => _ReservationOptionFormState();
-}
+  Widget build(BuildContext context, WidgetRef ref) {
+    final reservationModel = ref.watch(reservationProvider(campId));
+    final reservationRangeData = ref.watch(reservationRangeDataProvider);
 
-class _ReservationOptionFormState extends State<ReservationOptionForm> {
-  @override
-  Widget build(BuildContext context) {
-    return Row(
-      mainAxisAlignment: MainAxisAlignment.spaceBetween,
-      children: [
-        Row(
+    if (reservationModel == null || reservationModel.reservation == null) {
+      return Center(child: CircularProgressIndicator());
+    }
+    final reservation = reservationModel.reservation;
+
+    return ListView.builder(
+      shrinkWrap: true,
+      itemCount: reservation.campFieldDTOs?.length,
+      itemBuilder: (context, index) {
+        final campFieldDTO = reservation.campFieldDTOs?[index];
+
+        final price = double.tryParse(campFieldDTO?.price?.replaceAll(',', '') ?? '0') ?? 0;
+        final nights = reservationRangeData.nights; // 직접 ref.watch 호출
+
+        final totalAmount = (price * nights).toStringAsFixed(0);
+
+        return Row(
+          mainAxisAlignment: MainAxisAlignment.spaceBetween,
           children: [
-            Text(
-              "${widget.area}",
-              style: subTitle2(),
+            Expanded(
+              child: Row(
+                children: [
+                  Text(
+                    "${campFieldDTO?.fieldName}",
+                    style: subTitle3(),
+                  ),
+                  SizedBox(width: gapXLarge),
+                  Text(
+                    "$totalAmount원/$nights박",
+                    style: subTitle3(),
+                  ),
+                ],
+              ),
             ),
-            SizedBox(width: gapXLarge),
-            Text(
-              "${widget.reservationPrice}원/${widget.countDay}박",
-              style: subTitle2(),
+            Checkbox(
+              value: reservationModel.selectedCampFields.contains(campFieldDTO),
+              onChanged: (isChecked) {
+                // 선택 토글 로직을 여기에 작성
+              },
+              activeColor: kPrimaryColor,
+              checkColor: kBackWhite,
+              materialTapTargetSize: MaterialTapTargetSize.shrinkWrap,
             ),
           ],
-        ),
-        Checkbox(
-          value: widget.isChecked,
-          onChanged: widget.onChanged,
-          activeColor: kPrimaryColor,
-          checkColor: kBackWhite,
-          materialTapTargetSize: MaterialTapTargetSize.shrinkWrap,
-        ),
-      ],
+        );
+      },
     );
   }
 }
