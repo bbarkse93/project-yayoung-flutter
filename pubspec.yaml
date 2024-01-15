@@ -54,6 +54,9 @@ dependencies:
   table_calendar: ^3.0.9 # 캘린더
   url_launcher: ^6.0.6 # url링크 연결
   file_picker: ^6.1.1
+  google_maps_flutter: ^2.5.3 # 구글 맵
+  geocoding: ^2.1.1 # 주소 <=> 좌표
+#  location: ^5.0.3 # 주소 라이브러리
 
 #  geolocator: ^10.1.0 #GPS
 #  google_maps_flutter: ^2.5.0 # 구글맵

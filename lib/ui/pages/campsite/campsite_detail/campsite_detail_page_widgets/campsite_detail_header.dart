@@ -3,9 +3,11 @@ import 'package:logger/logger.dart';
 import 'package:team_project/_core/constants/color.dart';
 import 'package:team_project/_core/constants/http.dart';
 import 'package:team_project/_core/constants/icon.dart';
+import 'package:team_project/_core/constants/move.dart';
 import 'package:team_project/_core/constants/size.dart';
 import 'package:team_project/data/model/camp.dart';
 import 'package:team_project/data/model/campsite_detail.dart';
+import 'package:team_project/ui/pages/campsite/campsite_map/campsite_map_page.dart';
 
 class CampsiteDetailHeader extends StatelessWidget {
   CampsiteDetail campInfo;
@@ -95,7 +97,15 @@ class CampsiteDetailHeader extends StatelessWidget {
             children: [
               InkWell(
                 child: iconLocation(mColor: kPrimaryColor),
-                onTap: () {},
+                onTap: () {
+                  Navigator.push(
+                    context,
+                    MaterialPageRoute(
+                      builder: (context) =>
+                          CampsiteMapPage(initialAddress: "${campInfo.campAddress}"),
+                    ),
+                  );
+                },
               ),
               SizedBox(width: gapXSmall),
               InkWell(
