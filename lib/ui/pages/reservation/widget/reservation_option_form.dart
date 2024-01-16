@@ -34,7 +34,7 @@ class ReservationOptionForm extends ConsumerWidget {
         final totalAmount = (price * nights).toStringAsFixed(0);
 
         bool isChecked =
-        reservationModel.selectedCampFields.contains(campFieldDTO);
+            reservationModel.selectedCampFields.contains(campFieldDTO);
 
         return Row(
           mainAxisAlignment: MainAxisAlignment.spaceBetween,
@@ -48,7 +48,7 @@ class ReservationOptionForm extends ConsumerWidget {
                   ),
                   SizedBox(width: gapXLarge),
                   Text(
-                    "$totalAmount원/$nights박",
+                    "${totalAmount.toString()}원/$nights박",
                     style: subTitle2(),
                   ),
                 ],
@@ -61,7 +61,6 @@ class ReservationOptionForm extends ConsumerWidget {
                   ref
                       .read(reservationProvider(campId).notifier)
                       .toggleCampField(campFieldDTO!);
-
                 }
               },
               activeColor: kPrimaryColor,

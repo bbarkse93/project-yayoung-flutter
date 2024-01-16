@@ -1,9 +1,9 @@
 import 'package:flutter/material.dart';
 import 'package:team_project/_core/constants/icon.dart';
 import 'package:team_project/_core/constants/size.dart';
+import 'package:team_project/ui/pages/payment/payment_view_model.dart';
 import 'package:team_project/ui/pages/payment/widget/payment_button.dart';
 import 'package:team_project/ui/pages/payment/widget/payment_reservation_form.dart';
-import 'package:team_project/ui/pages/payment/widget/payment_success_button.dart';
 import 'package:team_project/ui/pages/payment/widget/payment_terms_form.dart';
 import 'package:team_project/ui/pages/refund/widget/campsite_info_form.dart';
 
@@ -28,7 +28,7 @@ class PaymentPage extends StatelessWidget {
       body: ListView(
         children: [
           CampsiteInfoForm(campId: 1),
-          SizedBox(height: gapMain),
+          SizedBox(height: gapLarge),
           Padding(
             padding: const EdgeInsets.symmetric(horizontal: gapMain),
             child: Column(
@@ -39,7 +39,7 @@ class PaymentPage extends StatelessWidget {
                   style: subTitle1(),
                 ),
                 SizedBox(height: gapSmall),
-                PaymentReservationForm(campId: 1),
+                PaymentReservationForm(campId: 1, reservationData: ReservationData()),
                 SizedBox(height: gapXLarge),
                 Text(
                   "약관동의",

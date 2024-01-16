@@ -29,50 +29,68 @@ class CampingListCardForm extends ConsumerWidget {
 
     return Container(
       width: MediaQuery.of(context).size.width,
-      margin: const EdgeInsets.symmetric(horizontal: 5.0),
+      margin: const EdgeInsets.symmetric(horizontal: gapXSmall),
       decoration: BoxDecoration(
         borderRadius: BorderRadius.circular(gapMain),
-        image: DecorationImage(
-          fit: BoxFit.cover,
-          image: NetworkImage(
-              '${dio.options.baseUrl}${campingList[index].reviewImage}'),
-        ),
       ),
-      child: Padding(
-        padding: const EdgeInsets.symmetric(
-            horizontal: gapLarge, vertical: gapXLarge),
-        child: Column(
-          crossAxisAlignment: CrossAxisAlignment.start,
-          children: [
-            Text(
-              '# ${index + 1}',
-              style: subTitle2(mColor: kBackWhite),
-            ),
-            SizedBox(height: gapXSmall),
-            Text(
-              '${campingList[index].campName}',
-              style: title1(mColor: kBackWhite),
-            ),
-            SizedBox(height: gapXSmall),
-            Text(
-              '${campingList[index].campAddress}',
-              style: subTitle3(mColor: kBackWhite),
-            ),
-            SizedBox(height: gapXSmall),
-            Text(
-              '${campingList[index].checkInDate} - ${campingList[index].checkOutDate}',
-              style: subTitle3(mColor: kBackWhite),
-            ),
-            SizedBox(height: gapSmall),
-            Row(
-              children: List.generate(
-                int.parse(campingList[index].totalRating),
-                (index) => iconFullStar(mColor: kBackWhite),
+      child: Stack(
+        children: [
+          Container(
+            width: double.infinity,
+            height: double.infinity,
+            decoration: BoxDecoration(
+              borderRadius: BorderRadius.circular(gapMain),
+              image: DecorationImage(
+                fit: BoxFit.cover,
+                image: NetworkImage('${dio.options.baseUrl}${campingList[index].reviewImage}'),
               ),
             ),
-          ],
-        ),
+          ),
+          Container(
+            width: double.infinity,
+            height: double.infinity,
+            decoration: BoxDecoration(
+              borderRadius: BorderRadius.circular(gapMain),
+              color: Colors.black.withOpacity(0.4), // 어두운 배경색
+            ),
+            child: Padding(
+              padding: const EdgeInsets.symmetric(horizontal: gapLarge, vertical: gapXLarge),
+              child: Column(
+                crossAxisAlignment: CrossAxisAlignment.start,
+                children: [
+                  Text(
+                    '# ${index + 1}',
+                    style: subTitle2(mColor: kBackWhite),
+                  ),
+                  SizedBox(height: gapXSmall),
+                  Text(
+                    '${campingList[index].campName}',
+                    style: title1(mColor: kBackWhite),
+                  ),
+                  SizedBox(height: gapXSmall),
+                  Text(
+                    '${campingList[index].campAddress}',
+                    style: subTitle3(mColor: kBackWhite),
+                  ),
+                  SizedBox(height: gapXSmall),
+                  Text(
+                    '${campingList[index].checkInDate} - ${campingList[index].checkOutDate}',
+                    style: subTitle3(mColor: kBackWhite),
+                  ),
+                  SizedBox(height: gapSmall),
+                  Row(
+                    children: List.generate(
+                      int.parse(campingList[index].totalRating),
+                          (index) => iconFullStar(mColor: kBackWhite),
+                    ),
+                  ),
+                ],
+              ),
+            ),
+          ),
+        ],
       ),
     );
+
   }
 }

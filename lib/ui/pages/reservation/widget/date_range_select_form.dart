@@ -73,7 +73,10 @@ class DateRangeSelectForm extends ConsumerWidget {
     );
 
     if (picked != null && picked.start != null && picked.end != null) {
-      ref.read(reservationRangeDataProvider).updateDateRange(picked.start, picked.end);
+      final startDate = DateTime(picked.start!.year, picked.start!.month, picked.start!.day);
+      final endDate = DateTime(picked.end!.year, picked.end!.month, picked.end!.day);
+
+      ref.read(reservationRangeDataProvider).updateDateRange(startDate, endDate);
     }
   }
 

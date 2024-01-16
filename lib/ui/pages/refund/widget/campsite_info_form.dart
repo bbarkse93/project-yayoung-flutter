@@ -29,46 +29,56 @@ class CampsiteInfoForm extends ConsumerWidget {
     Logger().d("${reservation.campImage}");
 
     return ProviderScope(
-      child: Container(
-        height: 230,
-        width: double.infinity,
-        decoration: BoxDecoration(
-          image: DecorationImage(
-            fit: BoxFit.cover, // 이미지가 컨테이너를 꽉 채우도록 설정
-            image: NetworkImage('${dio.options.baseUrl}${reservation.campImage}'), // 이미지 경로 설정
+      child: Stack(
+        children: [
+          Container(
+            height: 230,
+            width: double.infinity,
+            decoration: BoxDecoration(
+              image: DecorationImage(
+                fit: BoxFit.cover,
+                image: NetworkImage('${dio.options.baseUrl}${reservation.campImage}'),
+              ),
+            ),
           ),
-        ),
-        child: Padding(
-          padding: const EdgeInsets.all(gapMain),
-          child: Column(
-            crossAxisAlignment: CrossAxisAlignment.start,
-            mainAxisAlignment: MainAxisAlignment.end,
-            children: [
-              Text(
-                "${reservation.campName}",
-                style: title1(mColor: kBackWhite),
+          Container(
+            height: 230,
+            width: double.infinity,
+            decoration: BoxDecoration(
+              color: Colors.black.withOpacity(0.4), // 어두운 배경색
+            ),
+            child: Padding(
+              padding: const EdgeInsets.all(gapMain),
+              child: Column(
+                crossAxisAlignment: CrossAxisAlignment.start,
+                mainAxisAlignment: MainAxisAlignment.end,
+                children: [
+                  Text(
+                    "${reservation.campName}",
+                    style: title1(mColor: kBackWhite),
+                  ),
+                  SizedBox(height: gapXSmall),
+                  Text(
+                    "${reservation.campAddress}",
+                    style: subTitle1(mColor: kBackWhite, mFontWeight: FontWeight.normal),
+                  ),
+                  SizedBox(height: gapXSmall),
+                  Text(
+                    "${reservation.minPrice} ~ ${reservation.maxPrice}",
+                    style: subTitle1(mColor: kBackWhite, mFontWeight: FontWeight.normal),
+                  ),
+                  SizedBox(height: gapXSmall),
+                  Text(
+                    reservation.isOpen == true ? "영업중" : (reservation.isOpen == false ? "영업종료" : "알 수 없음"),
+                    style: subTitle1(mColor: kBackWhite),
+                  ),
+                ],
               ),
-              SizedBox(height: gapXSmall),
-              Text(
-                "${reservation.campAddress}",
-                style:
-                subTitle1(mColor: kBackWhite, mFontWeight: FontWeight.normal),
-              ),
-              SizedBox(height: gapXSmall),
-              Text(
-                "${reservation.minPrice} ~ ${reservation.maxPrice}",
-                style:
-                subTitle1(mColor: kBackWhite, mFontWeight: FontWeight.normal),
-              ),
-              SizedBox(height: gapXSmall),
-              Text(
-                reservation.isOpen == true ? "영업중" : (reservation.isOpen == false ? "영업종료" : "알 수 없음"),
-                style: subTitle1(mColor: kBackWhite),
-              ),
-            ],
+            ),
           ),
-        ),
+        ],
       ),
     );
+
   }
 }

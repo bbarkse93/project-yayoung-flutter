@@ -18,13 +18,11 @@ class _HomeCarouselSliderState extends State<HomeCarouselSlider> {
     "assets/images/camping_record.png",
     "assets/images/camping_schedule.png",
     "assets/images/yay_carousel.png",
-    "assets/images/yayoung_logo.png",
   ];
 
   List<String> siteUrls = [
     "https://www.naver.com",
     "https://www.google.com",
-    "https://www.example.com",
     "https://www.openai.com",
   ];
 
