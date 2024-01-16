@@ -126,7 +126,7 @@ class _PaymentTermsFormState extends State<PaymentTermsForm> {
                         Text(
                           '[필수] 가격, 내용 등 상품 정보에 대한\n'
                           '정기 구독 안내 확인 동의',
-                          // Add other style configurations as needed
+                          style: subTitle3(mColor: Colors.grey),
                         )
                       ],
                     ),
