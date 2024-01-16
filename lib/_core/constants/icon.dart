@@ -345,9 +345,19 @@ Image imageSettingOffButton({double mWidth = 25, double mHeight = 25}) {
   return Image.asset("assets/images/setting_off_button.png", width: mWidth, height: mHeight);
 }
 
-// like 빈 이미지
+// 관심페이지 빈 이미지
 Image imageLikePage({double mWidth = 25, double mHeight = 25}) {
   return Image.asset("assets/images/like_page.png", width: mWidth, height: mHeight);
+}
+
+// 필터 빈 이미지
+Image imageFilerPage({double mWidth = 25, double mHeight = 25}) {
+  return Image.asset("assets/images/filter_page.png", width: mWidth, height: mHeight);
+}
+
+// 검색 빈 이미지
+Image imageSearchPage({double mWidth = 25, double mHeight = 25}) {
+  return Image.asset("assets/images/search_page.png", width: mWidth, height: mHeight);
 }
 
 Icon iconBottomSetting({Color mColor = kBackBlack, double mSize = 25}) {
