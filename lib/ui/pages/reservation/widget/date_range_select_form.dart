@@ -1,50 +1,16 @@
 import 'package:flutter/material.dart';
+import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:intl/intl.dart';
 import 'package:team_project/_core/constants/color.dart';
 import 'package:team_project/_core/constants/size.dart';
+import 'package:team_project/ui/pages/reservation/widget/reservation_range_data_provider.dart';
 
-class DateRangeSelectForm extends StatefulWidget {
+class DateRangeSelectForm extends ConsumerWidget {
   @override
-  _DateRangeSelectFormState createState() => _DateRangeSelectFormState();
-}
+  Widget build(BuildContext context, WidgetRef ref) {
+    final reservationData = ref.watch(reservationRangeDataProvider);
 
-class _DateRangeSelectFormState extends State<DateRangeSelectForm> {
-  DateTime? _startDate;
-  DateTime? _endDate;
-
-  Future<void> _selectDateRange(BuildContext context) async {
-    DateTimeRange? picked = await showDateRangePicker(
-      context: context,
-      firstDate: DateTime(2024, 1, 1),
-      lastDate: DateTime(2030, 12, 31),
-      builder: (BuildContext context, Widget? child) {
-        return Theme(
-          data: ThemeData.light().copyWith(
-            primaryColor: kPrimaryColor, // 색상을 원하는 대로 조정
-            hintColor: kPrimaryColor, // 색상을 원하는 대로 조정
-            colorScheme: ColorScheme.light(primary: kPrimaryColor),
-            buttonTheme: ButtonThemeData(textTheme: ButtonTextTheme.primary),
-          ),
-          child: child!,
-        );
-      },
-    );
-
-    if (picked != null && picked.start != null && picked.end != null) {
-      setState(() {
-        _startDate = picked.start;
-        _endDate = picked.end;
-      });
-    }
-  }
-
-  String _formatDate(DateTime date) {
-    return DateFormat('yyyy-MM-dd').format(date);
-  }
-
-  @override
-  Widget build(BuildContext context) {
-    return               Container(
+    return Container(
       width: double.infinity,
       color: kSubColor,
       child: Padding(
@@ -59,7 +25,7 @@ class _DateRangeSelectFormState extends State<DateRangeSelectForm> {
                   style: subTitle1(),
                 ),
                 ElevatedButton(
-                  onPressed: () => _selectDateRange(context),
+                  onPressed: () => _selectDateRange(context, ref),
                   style: ElevatedButton.styleFrom(
                     backgroundColor: kPrimaryColor,
                   ),
@@ -75,9 +41,8 @@ class _DateRangeSelectFormState extends State<DateRangeSelectForm> {
               mainAxisAlignment: MainAxisAlignment.end,
               children: [
                 Text(
-                  _startDate != null && _endDate != null
-                      ? '${_formatDate(_startDate!)} - ${_formatDate(
-                      _endDate!)}'
+                  reservationData.startDate != null && reservationData.endDate != null
+                      ? '${_formatDate(reservationData.startDate!)} - ${_formatDate(reservationData.endDate!)}/(${_calculateDateDifference(reservationData.startDate!, reservationData.endDate!)}박)'
                       : '기간을 선택해주세요',
                   style: TextStyle(fontSize: 18),
                 ),
@@ -87,5 +52,37 @@ class _DateRangeSelectFormState extends State<DateRangeSelectForm> {
         ),
       ),
     );
+  }
+
+  Future<void> _selectDateRange(BuildContext context, WidgetRef ref) async {
+    DateTimeRange? picked = await showDateRangePicker(
+      context: context,
+      firstDate: DateTime(2024, 1, 1),
+      lastDate: DateTime(2030, 12, 31),
+      builder: (BuildContext context, Widget? child) {
+        return Theme(
+          data: ThemeData.light().copyWith(
+            primaryColor: kPrimaryColor,
+            hintColor: kPrimaryColor,
+            colorScheme: ColorScheme.light(primary: kPrimaryColor),
+            buttonTheme: ButtonThemeData(textTheme: ButtonTextTheme.primary),
+          ),
+          child: child!,
+        );
+      },
+    );
+
+    if (picked != null && picked.start != null && picked.end != null) {
+      ref.read(reservationRangeDataProvider).updateDateRange(picked.start, picked.end);
+    }
+  }
+
+  int _calculateDateDifference(DateTime startDate, DateTime endDate) {
+    Duration difference = endDate.difference(startDate);
+    return difference.inDays;
+  }
+
+  String _formatDate(DateTime date) {
+    return DateFormat('yyyy-MM-dd').format(date);
   }
 }

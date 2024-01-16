@@ -1,24 +1,17 @@
 import 'package:flutter/material.dart';
+import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:team_project/_core/constants/size.dart';
+import 'package:team_project/ui/pages/payment/payment_view_model.dart';
 
-class PaymentReservationForm extends StatelessWidget {
-  final String startDate;
-  final String endDate;
-  final String area;
-  final int refundPrice;
-  final int countDay;
+class PaymentReservationForm extends ConsumerWidget {
+  final int campId;
 
-  const PaymentReservationForm({
-    super.key,
-    required this.startDate,
-    required this.endDate,
-    required this.area,
-    required this.refundPrice,
-    required this.countDay,
-  });
+  const PaymentReservationForm({required this.campId});
 
   @override
-  Widget build(BuildContext context) {
+  Widget build(BuildContext context, WidgetRef ref) {
+    final reservationData = ref.watch(reservationDataProvider);
+
     return Container(
       width: double.infinity,
       height: 150,
@@ -44,7 +37,7 @@ class PaymentReservationForm extends StatelessWidget {
                   style: subTitle3(mFontWeight: FontWeight.normal),
                 ),
                 Text(
-                  "${startDate} ~ ${endDate}(${countDay}박)",
+                  "${reservationData.startDate} ~ ${reservationData.endDate}(${reservationData.nights}박)",
                   style: subTitle3(mFontWeight: FontWeight.normal),
                 ),
               ],
@@ -58,7 +51,7 @@ class PaymentReservationForm extends StatelessWidget {
                   style: subTitle3(mFontWeight: FontWeight.normal),
                 ),
                 Text(
-                  "${area}",
+                  "${reservationData.campField}",
                   style: subTitle3(mFontWeight: FontWeight.normal),
                 ),
               ],
@@ -72,12 +65,11 @@ class PaymentReservationForm extends StatelessWidget {
                   style: subTitle2(),
                 ),
                 Text(
-                  "₩${refundPrice}",
+                  "₩${reservationData.totalAmount}",
                   style: subTitle2(),
                 ),
               ],
             ),
-
           ],
         ),
       ),
