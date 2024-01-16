@@ -61,6 +61,7 @@ class ReservationOptionForm extends ConsumerWidget {
                   ref
                       .read(reservationProvider(campId).notifier)
                       .toggleCampField(campFieldDTO!);
+
                 }
               },
               activeColor: kPrimaryColor,

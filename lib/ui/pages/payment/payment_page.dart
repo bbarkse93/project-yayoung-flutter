@@ -39,12 +39,7 @@ class PaymentPage extends StatelessWidget {
                   style: subTitle1(),
                 ),
                 SizedBox(height: gapSmall),
-                PaymentReservationForm(
-                    startDate: "2024-01-12",
-                    endDate: "2024-01-14",
-                    countDay: 2,
-                    area: "A1",
-                    refundPrice: 100000),
+                PaymentReservationForm(campId: 1),
                 SizedBox(height: gapXLarge),
                 Text(
                   "약관동의",
