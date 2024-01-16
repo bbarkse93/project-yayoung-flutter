@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:team_project/_core/constants/color.dart';
+import 'package:team_project/_core/constants/http.dart';
 import 'package:team_project/_core/constants/icon.dart';
 import 'package:team_project/_core/constants/move.dart';
 import 'package:team_project/_core/constants/size.dart';
@@ -42,7 +43,7 @@ class LikeListPage extends ConsumerWidget {
                  return InkWell(
                       child: ListTile(
                         leading: ClipRRect(
-                          child: Image.network("http://192.168.0.134:8080${campBookmarkList.campImage}", width: 65, height: 65, fit: BoxFit.cover,),
+                          child: Image.network("${dio.options.baseUrl}${campBookmarkList.campImage}", width: 65, height: 65, fit: BoxFit.cover,),
                           borderRadius: BorderRadius.circular(gapMedium),
                         ),
                         title: Text(
