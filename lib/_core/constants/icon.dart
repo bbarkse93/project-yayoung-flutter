@@ -109,6 +109,10 @@ Icon iconLocation({Color mColor = kPrimaryColor, double mSize = 25}){
   return Icon(CupertinoIcons.location_solid, color: mColor, size: mSize,);
 }
 
+Icon iconPicture({Color mColor = kPrimaryColor, double mSize = 25}){
+  return Icon(CupertinoIcons.photo_camera_solid, color: mColor, size: mSize,);
+}
+
 // 바텀 바 홈 Icon
 Image imageBottomBarHome({Color mColor = kPrimaryColor, double mWidth = 25, double mHeight = 25}) {
   return Image.asset("assets/images/bottom_bar_home.png", width: mWidth, height: mHeight, color: mColor);
