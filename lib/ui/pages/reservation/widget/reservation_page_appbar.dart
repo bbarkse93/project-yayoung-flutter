@@ -59,7 +59,7 @@ class ReservationPageAppBar extends ConsumerWidget {
                 endDate: reservationRangeData.endDate,
                 nights: reservationRangeData.nights,
                 campField: selectedCampField.fieldName,
-                totalAmount: totalAmount.toInt().toString(),  // totalAmount를 정수로 변환한 후 String으로 변환
+                totalAmount: totalAmount.toInt(),  // totalAmount를 정수로 변환한 후 String으로 변환
               );
               Navigator.pushNamed(
                 context,

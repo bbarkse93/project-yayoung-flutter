@@ -74,7 +74,7 @@ class _PaymentPageState extends State<PaymentPage> {
                       // 약관 동의가 모두 선택된 경우에만 onPressed 로직 추가
                       Navigator.push(
                         context,
-                        MaterialPageRoute(builder: (context) => KakaoPayment()),
+                        MaterialPageRoute(builder: (context) => KakaoPayment(campId: widget.campId)),
                       );
                     } else {
                       // 약관 동의가 하나라도 선택되지 않은 경우 스낵바 표시

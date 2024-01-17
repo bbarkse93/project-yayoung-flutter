@@ -6,14 +6,14 @@ class ReservationData extends ChangeNotifier {
   DateTime? endDate;
   int nights;
   String campField;
-  String totalAmount;
+  int totalAmount;
 
   ReservationData({
     this.startDate,
     this.endDate,
     this.nights = 1,
     this.campField = '',
-    this.totalAmount = '',
+    this.totalAmount = 0,
   });
 
   // 새로운 방문 예정일을 업데이트하는 메서드
@@ -30,7 +30,7 @@ class ReservationData extends ChangeNotifier {
     DateTime? endDate,
     int nights = 1,
     String campField = '',
-    String totalAmount = '',
+    int totalAmount = 0,
   }) {
     this.startDate = startDate;
     this.endDate = endDate;
