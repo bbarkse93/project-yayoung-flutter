@@ -24,6 +24,7 @@ const double fontLarge = 18.0;
 const double fontSemiLarge = 20.0;
 const double fontXlarge = 24.0;
 const double fontXxlarge = 26.0;
+const double fontMax = 50.0;
 
 /// 화면 최대 width
 double getScreenWidth(BuildContext context) {
