@@ -1,17 +1,19 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_naver_login/flutter_naver_login.dart';
+import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:flutter_svg/flutter_svg.dart';
 import 'package:kakao_flutter_sdk/kakao_flutter_sdk.dart';
 import 'package:logger/logger.dart';
 import 'package:team_project/_core/constants/color.dart';
-import 'package:team_project/_core/constants/move.dart';
 import 'package:team_project/_core/constants/size.dart';
+import 'package:team_project/data/dto/user_request_dto.dart';
+import 'package:team_project/data/store/session_user.dart';
 
-class LoginPageBody extends StatelessWidget {
+class LoginPageBody extends ConsumerWidget {
   const LoginPageBody({super.key});
 
   @override
-  Widget build(BuildContext context) {
+  Widget build(BuildContext context, WidgetRef ref) {
     return Padding(
       padding: const EdgeInsets.all(gapMain),
       child: Column(
@@ -21,13 +23,17 @@ class LoginPageBody extends StatelessWidget {
           Spacer(),
           Image.asset("assets/images/yayoung_logo.png"),
           Spacer(),
+          // 카카오 로그인 클릭 버튼
           InkWell(
             child: Container(
-              decoration: BoxDecoration(color: kKakaoLogin, borderRadius: BorderRadius.circular(gapMedium)),
+              decoration: BoxDecoration(
+                  color: kKakaoLogin,
+                  borderRadius: BorderRadius.circular(gapMedium)),
               child: Row(
                 children: [
                   Padding(
-                    padding: const EdgeInsets.only(left: gapMedium, top: gapSmall, bottom: gapSmall),
+                    padding: const EdgeInsets.only(
+                        left: gapMedium, top: gapSmall, bottom: gapSmall),
                     child: SvgPicture.asset(
                       "assets/images/kakao_login.svg",
                       width: gapXLarge,
@@ -37,26 +43,31 @@ class LoginPageBody extends StatelessWidget {
                   Spacer(),
                   const Text(
                     "카카오로 로그인",
-                    style: TextStyle(fontSize: fontLarge, fontWeight: FontWeight.bold),
+                    style: TextStyle(
+                        fontSize: fontLarge, fontWeight: FontWeight.bold),
                   ),
                   Spacer()
                 ],
               ),
             ),
             onTap: () {
-              _signInKakao(context);
+             _signInKakao(context);
             },
           ),
           SizedBox(
             height: gapXSmall,
           ),
+          // 네이버 로그인 클릭 버튼
           InkWell(
             child: Container(
-              decoration: BoxDecoration(color: kKakaoLogin, borderRadius: BorderRadius.circular(gapMedium)),
+              decoration: BoxDecoration(
+                  color: kKakaoLogin,
+                  borderRadius: BorderRadius.circular(gapMedium)),
               child: Row(
                 children: [
                   Padding(
-                    padding: const EdgeInsets.only(left: gapMedium, top: gapSmall, bottom: gapSmall),
+                    padding: const EdgeInsets.only(
+                        left: gapMedium, top: gapSmall, bottom: gapSmall),
                     child: SvgPicture.asset(
                       "assets/images/naver_login.svg",
                       width: gapXLarge,
@@ -66,7 +77,8 @@ class LoginPageBody extends StatelessWidget {
                   Spacer(),
                   const Text(
                     "네이버로 로그인",
-                    style: TextStyle(fontSize: fontLarge, fontWeight: FontWeight.bold),
+                    style: TextStyle(
+                        fontSize: fontLarge, fontWeight: FontWeight.bold),
                   ),
                   Spacer()
                 ],
@@ -83,17 +95,29 @@ class LoginPageBody extends StatelessWidget {
   }
 
   void _signInKakao(context) async {
-    OAuthToken token = await UserApi.instance.loginWithKakaoAccount();
-    Logger().d("token: $token");
+    final container = ProviderContainer(); // ProviderContainer 생성
 
-    final kakaoUser = await UserApi.instance.me();
-    Logger().d("user 정보 : $kakaoUser");
-    Navigator.pushNamed(context, Move.mainScreenPage);
+    OAuthToken token = await UserApi.instance.loginWithKakaoAccount();
+    Logger().d("token: ${token.accessToken}");
+
+     // 로그인
+    LoginReqDTO loginReqDTO = LoginReqDTO(socialName: "카카오톡");
+    container.read(sessionProvider).login(loginReqDTO, token.accessToken);
+
   }
 
   void _signInNaver(context) async {
-    final NaverLoginResult result = await FlutterNaverLogin.logIn();
-    Logger().d(result);
-    Navigator.pushNamed(context, Move.mainScreenPage);
+    final container = ProviderContainer(); // ProviderContainer 생성
+
+    await FlutterNaverLogin.logIn();
+    NaverAccessToken token = await FlutterNaverLogin.currentAccessToken;
+    Logger().d("token: ${token.accessToken}");
+
+
+    LoginReqDTO loginReqDTO = LoginReqDTO(socialName: "네이버");
+    // 로그인
+    container.read(sessionProvider).login(loginReqDTO, token.accessToken);
+
+
   }
 }

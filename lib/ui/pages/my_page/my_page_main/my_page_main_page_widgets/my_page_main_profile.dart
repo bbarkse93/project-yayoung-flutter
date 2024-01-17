@@ -3,9 +3,11 @@ import 'dart:io';
 import 'package:dio/dio.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
+import 'package:logger/logger.dart';
 import 'package:team_project/_core/constants/http.dart';
 import 'package:team_project/_core/constants/move.dart';
 import 'package:team_project/_core/constants/size.dart';
+import 'package:team_project/data/store/session_user.dart';
 import 'package:team_project/ui/pages/my_page/my_page_user_update/my_page_user_update_view_model.dart';
 
 class MyPageProfile extends ConsumerWidget {
@@ -15,7 +17,17 @@ class MyPageProfile extends ConsumerWidget {
 
   @override
   Widget build(BuildContext context, WidgetRef ref) {
+    SessionUser? sessionUser = ref.watch(sessionProvider);
     UserUpdateModel? model = ref.watch(userUpdateProvider);
+    if (sessionUser == null) {
+      return CircularProgressIndicator();
+    }
+
+    // Logger().d("닉네임은? ${sessionUser.user?.nickname}");
+    if (model == null) {
+      return CircularProgressIndicator();
+    }
+
     return Padding(
       padding: const EdgeInsets.all(gapMain),
       child: Row(

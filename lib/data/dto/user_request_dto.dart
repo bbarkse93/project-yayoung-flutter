@@ -14,3 +14,19 @@ class UserUpdateReqDTO {
     "userImage": userImage,
   };
 }
+
+// 로그인 DTO
+class LoginReqDTO {
+  final String? socialName;
+
+
+  LoginReqDTO(
+      {
+         this.socialName,
+      });
+
+  Map<String, dynamic> toJson() => {
+    "socialName": socialName,
+  };
+}
+

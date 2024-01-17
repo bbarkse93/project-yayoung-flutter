@@ -55,7 +55,8 @@ class UserUpdate extends ConsumerWidget {
                   UserUpdateReqDTO userUpdateReqDTO = UserUpdateReqDTO(
                       nickname: _nickName.text.isEmpty ? model.nickname : _nickName.text,
                   userImage: base64Image1.isEmpty ? model.userImage : base64Image1);
-                  await ref.read(sessionStore).userUpdate(userUpdateReqDTO);
+                  // await ref.read(sessionStore).userUpdate(userUpdateReqDTO);
+
                   ref.read(userUpdateProvider.notifier).notifyInit();
                 }
               },

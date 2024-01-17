@@ -1,12 +1,14 @@
+import 'package:dio/dio.dart';
 import 'package:logger/logger.dart';
 import 'package:team_project/_core/constants/http.dart';
 import 'package:team_project/data/dto/response_dto.dart';
 import 'package:team_project/ui/pages/my_camping_schedule/my_camping_schedule_view_model.dart';
 
 class MyCampingScheduleRepository {
-  Future<ResponseDTO> fetchMyCampingSchedule() async {
+  Future<ResponseDTO> fetchMyCampingSchedule(String jwt) async {
     try {
-      final response = await dio.get("/order/campSchedule");
+      final response = await dio.get("/order/campSchedule"
+      ,options: Options(headers: {"Authorization": jwt}),);
       Logger().d("response는 ?? $response");
 
       ResponseDTO responseDTO = ResponseDTO.fromJson(response.data);

@@ -1,10 +1,13 @@
 
 // 모델
+import 'package:flutter/material.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:logger/logger.dart';
 import 'package:team_project/data/dto/response_dto.dart';
+import 'package:team_project/data/dto/user_request_dto.dart';
 import 'package:team_project/data/repository/user_repository.dart';
 import 'package:team_project/data/store/session_user.dart';
+import 'package:team_project/main.dart';
 
 class UserUpdateModel {
   final int userId;
@@ -25,14 +28,25 @@ class UserUpdateModel {
 
 // 창고
 class UserUpdateViewModel extends StateNotifier<UserUpdateModel?> {
-  Ref ref;
   UserUpdateViewModel(super._state, this.ref);
+  final mContext = navigatorKey.currentContext;
+  Ref ref;
 
   Future<void> notifyInit() async {
-    SessionUser sessionUser = ref.read(sessionStore);
-    //TODO 언약 : 세션에서 토큰 꺼내서 info 넘기기
+    SessionUser? sessionUser = ref.read(sessionProvider);
+    if(sessionUser == null){
+      return Logger().d("안돼 돌아가");
+    }else{
+      Logger().d("sessionUser ${sessionUser.toString()}");
+    }
+
+    Logger().d("update 유저 값 초기화됨? ${sessionUser.user!.username} ");
+    Logger().d("update 유저 값 초기화됨? ${sessionUser.user!.nickname} ");
+    Logger().d("update 유저 값 초기화됨? ${sessionUser.user!.userImage} ");
+    Logger().d("토큰 값 전달한다 ${sessionUser.jwt}");
+    // TODO 언약 : 세션에서 토큰 꺼내서 info 넘기기
     ResponseDTO responseDTO =
-    await UserRepository().fetchUserInfo();
+    await UserRepository().fetchUserInfo(sessionUser.jwt!);
     Logger().d("값 받니? ${responseDTO.response}");
     UserUpdateModel model = responseDTO.response;
     state = UserUpdateModel(
@@ -40,6 +54,24 @@ class UserUpdateViewModel extends StateNotifier<UserUpdateModel?> {
         userImage: model.userImage,
         nickname: model.nickname);
   }
+
+  // Future<void> userUpdate(UserUpdateReqDTO userUpdateReqDTO) async {
+  //   Logger().d("세션 스토어 접근 : " + userUpdateReqDTO.nickname);
+  //   Logger().d("세션 스토어 접근 : " + userUpdateReqDTO.userImage);
+  //
+  //   //   String jwt = await secureStorage.read(key: 'jwt') as String;
+  //   // TODO 언약 : jwt 토큰 넘기기 통신할 때
+  //   ResponseDTO responseDTO =
+  //   await UserRepository().fetchUserUpdate(userUpdateReqDTO);
+  //
+  //   if (responseDTO.success == true) {
+  //     Navigator.pop(mContext!);
+  //   } else {
+  //     ScaffoldMessenger.of(mContext!)
+  //         .showSnackBar(SnackBar(content: Text(responseDTO.error)));
+  //   }
+  // }
+
 }
 
 // 창고 관리자
