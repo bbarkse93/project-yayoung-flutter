@@ -5,6 +5,7 @@ import 'package:team_project/_core/constants/move.dart';
 import 'package:team_project/_core/constants/size.dart';
 import 'package:team_project/data/model/campsite_detail.dart';
 import 'package:team_project/ui/pages/campsite/campsite_map/campsite_map_page.dart';
+import 'package:team_project/ui/pages/reservation/reservation_page.dart';
 import 'package:url_launcher/url_launcher.dart';
 
 class CampsiteDetailInfo extends StatelessWidget {
@@ -214,9 +215,13 @@ class CampsiteDetailInfo extends StatelessWidget {
                     ),
                   ),
                 ),
-                onTap: () {
-                  Navigator.of(context).pushNamed(Move.reservationPage);
-                },
+                  onTap: () {
+                    Navigator.of(context).push(
+                      MaterialPageRoute(
+                        builder: (context) => ReservationPage(campId: campInfo.id!),
+                      ),
+                    );
+                  },
               )
             ],
           ),

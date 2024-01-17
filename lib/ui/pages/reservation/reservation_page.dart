@@ -3,16 +3,17 @@ import 'package:team_project/ui/pages/reservation/widget/reservation_page_appbar
 import 'package:team_project/ui/pages/reservation/widget/reservation_page_body.dart';
 
 class ReservationPage extends StatelessWidget {
-  const ReservationPage({Key? key}) : super(key: key);
+  final int? campId;
+  const ReservationPage({Key? key, required this.campId}) : super(key: key);
 
   @override
   Widget build(BuildContext context) {
     return Scaffold(
       appBar: PreferredSize(
         preferredSize: Size.fromHeight(kToolbarHeight),
-        child: ReservationPageAppBar(campId: 1),
+        child: ReservationPageAppBar(campId: campId!),
       ),
-      body: ReservationPageBody(),
+      body: ReservationPageBody(campId: campId!),
     );
   }
 }

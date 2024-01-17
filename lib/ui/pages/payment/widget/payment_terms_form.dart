@@ -3,6 +3,9 @@ import 'package:team_project/_core/constants/color.dart';
 import 'package:team_project/_core/constants/size.dart';
 
 class PaymentTermsForm extends StatefulWidget {
+  final Function(bool isChecked1, bool isChecked2) onCheckboxChanged;
+  PaymentTermsForm({required this.onCheckboxChanged});
+
   @override
   _PaymentTermsFormState createState() => _PaymentTermsFormState();
 }
@@ -11,7 +14,6 @@ class _PaymentTermsFormState extends State<PaymentTermsForm> {
   bool isAllChecked = false;
   bool isChecked1 = false;
   bool isChecked2 = false;
-  bool isChecked3 = false;
 
   void updateAllCheckBox(bool? newValue) {
     if (newValue != null) {
@@ -19,8 +21,10 @@ class _PaymentTermsFormState extends State<PaymentTermsForm> {
         isAllChecked = newValue;
         isChecked1 = newValue;
         isChecked2 = newValue;
-        isChecked3 = newValue;
       });
+
+      // 전체 동의 체크박스 상태 전달
+      widget.onCheckboxChanged(isChecked1, isChecked2);
     }
   }
 
@@ -33,11 +37,8 @@ class _PaymentTermsFormState extends State<PaymentTermsForm> {
         case 1:
           isChecked2 = newValue;
           break;
-        case 2:
-          isChecked3 = newValue;
-          break;
       }
-      isAllChecked = isChecked1 && isChecked2 && isChecked3;
+      isAllChecked = isChecked1 && isChecked2;
     });
   }
 
@@ -87,6 +88,7 @@ class _PaymentTermsFormState extends State<PaymentTermsForm> {
                           value: isChecked1 ?? false,
                           onChanged: (value) {
                             updateSubCheckBox(0, value ?? false);
+                            widget.onCheckboxChanged(isChecked1, isChecked2); // 체크박스 상태 전달
                           },
                           activeColor: kPrimaryColor,
                         ),
@@ -120,6 +122,7 @@ class _PaymentTermsFormState extends State<PaymentTermsForm> {
                           value: isChecked2,
                           onChanged: (value) {
                             updateSubCheckBox(1, value ?? false);
+                            widget.onCheckboxChanged(isChecked1, isChecked2); // 체크박스 상태 전달
                           },
                           activeColor: kPrimaryColor,
                         ),
