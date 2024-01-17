@@ -17,6 +17,7 @@ import 'package:team_project/ui/pages/my_page/my_page_user_update/my_page_user_u
 import 'package:team_project/ui/pages/payment/payment_page.dart';
 import 'package:team_project/ui/pages/refund/refund_page.dart';
 import 'package:team_project/ui/pages/reservation/reservation_page.dart';
+import 'package:team_project/ui/pages/review/review_page.dart';
 
 import 'package:team_project/ui/pages/splash/splash_page.dart';
 
@@ -47,7 +48,7 @@ class Move {
   static String datePage = "/date";
   static String reservationPage = "/reservation";
   static String paymentPage = "/payment";
-
+  static String reviewPage = "/review";
 }
 
 Map<String, Widget Function(BuildContext)> getRouters() {
@@ -82,5 +83,6 @@ Map<String, Widget Function(BuildContext)> getRouters() {
 
     // Move.campsiteMapPage: (p0) => CampsiteMapPage(),
     Move.campsiteCall:(p0) => CampsiteCall(),
+    Move.reviewPage:(p0) => ReviewPage(),
   };
 }
