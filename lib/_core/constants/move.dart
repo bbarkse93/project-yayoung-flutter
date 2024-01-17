@@ -71,8 +71,16 @@ Map<String, Widget Function(BuildContext)> getRouters() {
     Move.campsiteListPage: (p0) => CampsiteListPage(),
 
     Move.refundPage: (p0) => RefundPage(),
-    Move.reservationPage: (p0) => ReservationPage(),
-    Move.paymentPage: (p0) => PaymentPage(),
+    Move.reservationPage: (p0) {
+      final arguments = ModalRoute.of(p0)!.settings.arguments as Map<String, dynamic>;
+      final campId = arguments['campId'] as int;
+      return ReservationPage(campId: campId);
+    },
+    Move.paymentPage: (p0) {
+      final int campId = ModalRoute.of(p0)?.settings.arguments as int? ?? 1;
+      return PaymentPage(campId: campId);
+    },
+
     // Move.campsiteMapPage: (p0) => CampsiteMapPage(),
     Move.campsiteCall:(p0) => CampsiteCall(),
     Move.reviewPage:(p0) => ReviewPage(),

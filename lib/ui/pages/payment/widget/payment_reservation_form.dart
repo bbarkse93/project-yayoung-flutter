@@ -1,16 +1,23 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
+import 'package:intl/intl.dart';
 import 'package:team_project/_core/constants/size.dart';
 import 'package:team_project/ui/pages/payment/payment_view_model.dart';
 
 class PaymentReservationForm extends ConsumerWidget {
   final int campId;
+  final ReservationData reservationData;
 
-  const PaymentReservationForm({required this.campId});
+  const PaymentReservationForm({required this.campId, required this.reservationData});
 
   @override
   Widget build(BuildContext context, WidgetRef ref) {
-    final reservationData = ref.watch(reservationDataProvider);
+    final reservationData = ref.read(reservationDataProvider);
+    final dateFormatter = DateFormat('yyyy-MM-dd');
+
+    // nullable한 DateTime 속성 다루기
+    final startDate = reservationData.startDate ?? DateTime.now();
+    final endDate = reservationData.endDate ?? DateTime.now();
 
     return Container(
       width: double.infinity,
@@ -37,7 +44,7 @@ class PaymentReservationForm extends ConsumerWidget {
                   style: subTitle3(mFontWeight: FontWeight.normal),
                 ),
                 Text(
-                  "${reservationData.startDate} ~ ${reservationData.endDate}(${reservationData.nights}박)",
+                  "${dateFormatter.format(startDate)} ~ ${dateFormatter.format(endDate)}(${reservationData.nights}박)",
                   style: subTitle3(mFontWeight: FontWeight.normal),
                 ),
               ],
