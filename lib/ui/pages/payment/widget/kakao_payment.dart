@@ -9,6 +9,7 @@ import 'package:iamport_flutter/model/payment_data.dart';
 import 'package:intl/intl.dart';
 import 'package:logger/logger.dart';
 import 'package:team_project/_core/constants/icon.dart';
+import 'package:team_project/_core/constants/move.dart';
 import 'package:team_project/data/dto/response_dto.dart';
 import 'package:team_project/data/dto/user_request_dto.dart';
 import 'package:team_project/data/repository/payment_repository.dart';
@@ -70,8 +71,12 @@ class KakaoPayment extends ConsumerWidget {
         appScheme: 'example',
         // 여기에 필요한 추가 데이터를 추가할 수 있습니다.
         customData: {
-          'startDate': DateFormat('yyyy-MM-dd').format(reservationData.startDate!),
-          'endDate': DateFormat('yyyy-MM-dd').format(reservationData.endDate!),
+          'startDate': DateFormat('yyyy-MM-dd')
+              .format(reservationData.startDate!)
+              .substring(0, 10),
+          'endDate': DateFormat('yyyy-MM-dd')
+              .format(reservationData.endDate!)
+              .substring(0, 10),
           'nights': reservationData.nights.toString(),
         },
       ),
@@ -79,32 +84,61 @@ class KakaoPayment extends ConsumerWidget {
       callback: (Map<String, String> result) async {
         print("콜백입구 들어왔나요?");
         if (result['imp_success'] == 'true') {
-          PaymentReqDTO requestDTO =
-              PaymentReqDTO(
-                campId : campId,
-                checkIn : reservationData.startDate!,
-                checkOut: reservationData.endDate!,
-                fieldName: reservationData.campField,
-                totalPrice: reservationData.totalAmount);
+          PaymentReqDTO requestDTO = PaymentReqDTO(
+            campId: campId,
+            checkIn: reservationData.startDate!,
+            checkOut: reservationData.endDate!,
+            fieldName: reservationData.campField,
+            // totalPrice: reservationData.totalAmount,
+          );
           print("PaymentReqDTO 통과했나요?");
-
+          Logger().d("요청 전 campId: ${requestDTO.campId}");
+          Logger().d("요청 전 checkIn: ${requestDTO.checkIn}");
+          Logger().d("요청 전 checkOut: ${requestDTO.checkOut}");
+          // Logger().d("요청 전 totalPrice: ${requestDTO.totalPrice}");
+          Logger().d("요청 전 fieldName: ${requestDTO.fieldName}");
           ResponseDTO responseDTO =
               await PaymentRepository().fetchPayment(requestDTO);
           print("PaymentRepository 접근했나요?");
 
           Logger().d("campId ${requestDTO.campId}");
+          Logger().d("checkIn ${requestDTO.checkIn}");
+          Logger().d("checkOut ${requestDTO.checkOut}");
+          // Logger().d("totalPrice ${requestDTO.totalPrice}");
+          Logger().d("fieldName ${requestDTO.fieldName}");
+          Logger().d("성공했니?? ${responseDTO.success}");
+
           if (responseDTO.success == true) {
-            return AlertDialog(content: Text("결제 완료"));
+            Navigator.pushReplacementNamed(
+              context,
+              Move.paymentPage,
+              arguments: result,
+            );
           } else {
-            return AlertDialog(content: Text("결제는 완료, 서버 통신 실패"));
+            // 실패한 경우에 대한 처리
+            showDialog(
+              context: context,
+              builder: (BuildContext context) {
+                return AlertDialog(
+                  title: Text("결제 실패"),
+                  content: Text(responseDTO.error ?? "서버에서 에러가 발생했습니다."),
+                  actions: [
+                    TextButton(
+                      onPressed: () {
+                        Navigator.pop(context);
+                      },
+                      child: Text("확인"),
+                    ),
+                  ],
+                );
+              },
+            );
           }
-          //서버에 실패했다는 alert창 띄우기
         } else {
           print("실패? 접근했나요?");
-
           Navigator.pushReplacementNamed(
             context,
-            "/payment",
+            Move.paymentPage,
             arguments: result,
           );
         }
