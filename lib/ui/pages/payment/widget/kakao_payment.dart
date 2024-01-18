@@ -111,7 +111,7 @@ class KakaoPayment extends ConsumerWidget {
           if (responseDTO.success == true) {
             Navigator.pushReplacementNamed(
               context,
-              Move.paymentPage,
+              Move.reservationPage,
               arguments: result,
             );
           } else {
@@ -134,13 +134,6 @@ class KakaoPayment extends ConsumerWidget {
               },
             );
           }
-        } else {
-          print("실패? 접근했나요?");
-          Navigator.pushReplacementNamed(
-            context,
-            Move.paymentPage,
-            arguments: result,
-          );
         }
       },
     );

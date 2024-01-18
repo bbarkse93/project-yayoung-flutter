@@ -47,6 +47,7 @@ class Move {
   static String refundPage = "/refund";
   static String datePage = "/date";
   static String reservationPage = "/reservation";
+  static String reservationSuccessPage = "/reservationSuccess";
   static String paymentPage = "/payment";
   static String reviewPage = "/review";
 }
@@ -75,6 +76,9 @@ Map<String, Widget Function(BuildContext)> getRouters() {
       final arguments = ModalRoute.of(p0)!.settings.arguments as Map<String, dynamic>;
       final campId = arguments['campId'] as int;
       return ReservationPage(campId: campId);
+    },
+    Move.reservationSuccessPage: (p0) {
+      return ReservationPage(campId: 1);
     },
     Move.paymentPage: (p0) {
       final int campId = ModalRoute.of(p0)?.settings.arguments as int? ?? 1;
