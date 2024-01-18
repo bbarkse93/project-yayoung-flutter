@@ -10,6 +10,7 @@ class ReviewBottomSheet extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
+    final reviewContent = TextEditingController();
     return Container(
       height: MediaQuery.of(context).size.height * 0.9,
       decoration: BoxDecoration(
@@ -141,6 +142,7 @@ class ReviewBottomSheet extends StatelessWidget {
                   borderRadius: BorderRadius.circular(gapMedium)),
               height: 150,
               child: TextField(
+                controller: reviewContent,
                 maxLines: null,
                 decoration: InputDecoration(
                   fillColor: kBackLightGray,
@@ -187,7 +189,9 @@ class ReviewBottomSheet extends StatelessWidget {
                   ),
                 ),
               ),
-              onTap: () {},
+              onTap: () {
+
+              },
             )
           ],
         ),

@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:logger/logger.dart';
 import 'package:team_project/data/store/param_store.dart';
 import 'package:team_project/ui/pages/auth/login_page.dart';
 import 'package:team_project/ui/pages/campsite/campsite_detail/campsite_detail_page.dart';
@@ -57,18 +58,19 @@ class Move {
 
 Map<String, Widget Function(BuildContext)> getRouters() {
   return {
-    Move.loginPage: (p0) => LoginPage(),
-    Move.mainScreenPage: (p0) => MainScreen(),
-    Move.splashPage: (p0) => SplashPage(),
-    Move.homePage: (p0) => HomePage(),
-    Move.settingPage: (p0) => SettingPage(),
-    Move.likePage: (p0) => LikePage(),
-    Move.noticePage: (p0) => NoticePage(),
-    Move.myCampingSchedule: (p0) => MyCampingSchedulePage(),
+    Move.loginPage: (context) => LoginPage(),
+    Move.mainScreenPage: (context) => MainScreen(),
+    Move.splashPage: (context) => SplashPage(),
+    Move.homePage: (context) => HomePage(),
+    Move.settingPage: (context) => SettingPage(),
+    Move.likePage: (context) => LikePage(),
+    Move.noticePage: (context) => NoticePage(),
+    Move.myCampingSchedule: (context) => MyCampingSchedulePage(),
 
-    Move.userUpdatePage:(p0) => UserUpdate(),
-    Move.myCampingSchedulePage: (p0) => MyCampingSchedulePage(),
-    Move.myCampingListPage: (p0) => MyCampingListPage(),
+    Move.userUpdatePage:(context) => UserUpdate(),
+    Move.myCampingSchedulePage: (context) => MyCampingSchedulePage(),
+    Move.myCampingListPage: (context) => MyCampingListPage(),
+
 
     Move.searchCampsitePage: (p0) => const SearchCampsitePage(),
     Move.campsiteDetailPage: (p0) {
@@ -76,15 +78,14 @@ Map<String, Widget Function(BuildContext)> getRouters() {
       return CampsiteDetailPage(campId: campId ?? 1);
     },
     Move.campsiteListPage: (p0) => CampsiteListPage(),
-
-    Move.refundPage: (p0) => RefundPage(),
-    Move.reservationPage: (p0) {
-      final arguments = ModalRoute.of(p0)!.settings.arguments as Map<String, dynamic>;
+    Move.refundPage: (context) => RefundPage(),
+    Move.reservationPage: (context) {
+      final arguments = ModalRoute.of(context)!.settings.arguments as Map<String, dynamic>;
       final campId = arguments['campId'] as int;
       return ReservationPage(campId: campId);
     },
-    Move.paymentPage: (p0) {
-      final int campId = ModalRoute.of(p0)?.settings.arguments as int? ?? 1;
+    Move.paymentPage: (context) {
+      final int campId = ModalRoute.of(context)?.settings.arguments as int? ?? 1;
       return PaymentPage(campId: campId);
     },
     Move.kakaoPayment: (p0) {
@@ -96,8 +97,12 @@ Map<String, Widget Function(BuildContext)> getRouters() {
       return PaymentSuccessPage(campId: campId ?? 1); // campId가 null이면 기본값 1을 사용합니다.
     },
 
-    // Move.campsiteMapPage: (p0) => CampsiteMapPage(),
-    Move.campsiteCall:(p0) => CampsiteCall(),
-    Move.reviewPage:(p0) => ReviewPage(),
+    // Move.campsiteMapPage: (context) => CampsiteMapPage(),
+    Move.campsiteCall:(context) => CampsiteCall(),
+    Move.reviewPage:(context) {
+      final int campId = ModalRoute.of(context)?.settings.arguments as int;
+      Logger().d(ModalRoute.of(context)?.settings.arguments as int);
+      return ReviewPage(campId: campId);
+    }
   };
 }
