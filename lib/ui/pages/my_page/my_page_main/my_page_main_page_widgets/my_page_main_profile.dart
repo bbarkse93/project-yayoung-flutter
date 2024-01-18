@@ -38,7 +38,7 @@ class MyPageProfile extends ConsumerWidget {
                       onTap: () {
                         Navigator.pushNamed(context, Move.userUpdatePage);
                       },child:
-                        model?.userImage != null && model.userImage.startsWith(dio.options.baseUrl)
+                        model?.userImage != null && model.userImage.startsWith("/images/user/")
                       ? Image.network("${dio.options.baseUrl}${model?.userImage}", width: getScreenWidth(context) * 0.8, height: getScreenHeight(context) * 0.4, fit: BoxFit.cover,)
                       : Image.network("${model?.userImage}", fit: BoxFit.cover,)
                   ))

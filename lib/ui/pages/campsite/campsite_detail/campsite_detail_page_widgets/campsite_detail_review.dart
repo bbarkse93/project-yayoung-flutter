@@ -1,8 +1,10 @@
 import 'package:flutter/material.dart';
 import 'package:team_project/_core/constants/icon.dart';
+import 'package:team_project/_core/constants/move.dart';
 import 'package:team_project/_core/constants/size.dart';
 import 'package:team_project/data/model/camp.dart';
 import 'package:team_project/data/model/campsite_detail.dart';
+import 'package:team_project/ui/pages/review/review_page.dart';
 
 class CampsiteDetailReview extends StatelessWidget {
   final CampsiteDetail campInfo;
@@ -123,7 +125,9 @@ class CampsiteDetailReview extends StatelessWidget {
                   ),
                   InkWell(
                     child: Text("전체리뷰보기"),
-                    onTap: () {},
+                    onTap: () {
+                      Navigator.of(context).pushNamed(Move.reviewPage);
+                    },
                   ),
                 ],
               )

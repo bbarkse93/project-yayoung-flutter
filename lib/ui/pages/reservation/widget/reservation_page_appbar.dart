@@ -17,6 +17,7 @@ class ReservationPageAppBar extends ConsumerWidget {
     // 데이터를 리스너로 등록하지 않고 한 번만 가져오도록 수정
     final reservationData = ref.read(reservationDataProvider);
 
+
     return AppBar(
       leading: IconButton(
         onPressed: () {
@@ -60,9 +61,11 @@ class ReservationPageAppBar extends ConsumerWidget {
                 campField: selectedCampField.fieldName,
                 totalAmount: totalAmount.toInt().toString(),  // totalAmount를 정수로 변환한 후 String으로 변환
               );
-
-              // Navigate to the next page
-              Navigator.pushNamed(context, Move.paymentPage);
+              Navigator.pushNamed(
+                context,
+                Move.paymentPage,
+                arguments: campId,
+              );
             }
           },
           child: Text(
