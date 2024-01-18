@@ -16,18 +16,42 @@ class UserUpdateReqDTO {
   };
 }
 
+// 로그인 DTO
+class LoginReqDTO {
+  final String? socialName;
+
+
+  LoginReqDTO(
+      {
+         this.socialName,
+      });
+
+  Map<String, dynamic> toJson() => {
+    "socialName": socialName,
+  };
+}
+
 class PaymentReqDTO {
   final int campId;
-  final DateFormat checkIn;
-  final DateFormat checkOut;
+  final DateTime checkIn;
+  final DateTime checkOut;
   final String fieldName;
+  // final int totalPrice;
 
-  PaymentReqDTO(this.campId, this.checkIn, this.checkOut, this.fieldName);
+  PaymentReqDTO({
+    required this.campId,
+    required this.checkIn,
+    required this.checkOut,
+    required this.fieldName,
+    // required this.totalPrice,
+  });
 
   Map<String, dynamic> toJson() => {
     "campId": campId,
-    "checkIn": checkIn,
-    "checkOut": checkOut,
+    "checkIn": DateFormat('yyyy-MM-dd').format(checkIn).toString(),
+    "checkOut": DateFormat('yyyy-MM-dd').format(checkOut).toString(),
     "fieldName": fieldName,
+    // "totalPrice": totalPrice,
   };
 }
+

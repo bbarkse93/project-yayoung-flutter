@@ -46,7 +46,7 @@ class _NoticePageBodyState extends State<NoticePageBody> {
                       child: Padding(
                         padding: const EdgeInsets.only(bottom: gapSemiMedium),
                         child: Container(
-                          height: 50,
+                          height: getScreenHeight(context) * 0.1,
                           child: Row(
                             mainAxisAlignment: MainAxisAlignment.spaceAround,
                             children: [
@@ -123,7 +123,7 @@ class _NoticePageBodyState extends State<NoticePageBody> {
           builder: (context, ref, child) {
             NoticeModel? model = ref.watch(noticeProvider);
             if (model == null) {
-              return CircularProgressIndicator();
+              return Center(child: CircularProgressIndicator());
             }
             return ListView.builder(
               itemCount: model!.noticeDTOList!.length,

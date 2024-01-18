@@ -1,6 +1,3 @@
-import 'dart:io';
-
-import 'package:dio/dio.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:team_project/_core/constants/http.dart';
@@ -33,15 +30,16 @@ class MyPageProfile extends ConsumerWidget {
                       onTap: () {
                         Navigator.pushNamed(context, Move.userUpdatePage);
                       },
-                      child: model?.userImage != null
+                      child: model?.userImage != null &&
+                              model.userImage.startsWith("/images/user/")
                           ? Image.network(
                               "${dio.options.baseUrl}${model?.userImage}",
                               width: getScreenWidth(context) * 0.8,
                               height: getScreenHeight(context) * 0.4,
                               fit: BoxFit.cover,
                             )
-                          : Image.asset(
-                              "/assets/images/profile.jpg",
+                          : Image.network(
+                              "${model?.userImage}",
                               fit: BoxFit.cover,
                             )))),
           SizedBox(
