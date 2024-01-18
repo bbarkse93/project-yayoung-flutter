@@ -25,8 +25,8 @@ class MyPageTitleBar extends StatelessWidget {
             child: Row(
               children: [
                 icon,
-                SizedBox(width: 25),
-                SizedBox(child: Text(title, style: subTitle2()), width: 120),
+                SizedBox(width: gapMediumLarge),
+                SizedBox(child: Text(title, style: subTitle2()), width: getScreenWidth(context) * 0.6),
               ],
             ),
           ),

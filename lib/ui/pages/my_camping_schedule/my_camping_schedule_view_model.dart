@@ -1,7 +1,11 @@
+import 'package:flutter/material.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:logger/logger.dart';
+import 'package:team_project/_core/constants/http.dart';
 import 'package:team_project/data/dto/response_dto.dart';
+import 'package:team_project/data/model/user.dart';
 import 'package:team_project/data/repository/my_camping_schedule_repository.dart';
+import 'package:team_project/data/store/session_user.dart';
 import 'package:team_project/main.dart';
 
 class MyCampingScheduleDTO {
@@ -45,13 +49,17 @@ class MyCampingScheduleModel {
 // 2. 창고
 class MyCampingScheduleViewModel extends StateNotifier<MyCampingScheduleModel?> {
   MyCampingScheduleViewModel(this.ref) : super(MyCampingScheduleModel([]));
-
+  final formKey = GlobalKey<FormState>();
   final mContext = navigatorKey.currentContext;
   Ref ref;
 
   Future<void> notifyInit() async {
+    String jwt = await secureStorage.read(key: 'jwt') as String;
+
+    Logger().d("화면 초기화 ${jwt}");
     Logger().d("화면 초기화");
-    ResponseDTO responseDTO = await MyCampingScheduleRepository().fetchMyCampingSchedule();
+    // Logger().d("my_camping_schedule 토큰 값 전달한다 ${sessionUser.jwt}");
+    ResponseDTO responseDTO = await MyCampingScheduleRepository().fetchMyCampingSchedule(jwt);
 
     Logger().d("response는 ?? $responseDTO");
 

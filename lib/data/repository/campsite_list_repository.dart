@@ -7,6 +7,7 @@ import 'package:team_project/data/model/camp.dart';
 
 class CampListRepository {
   Future<ResponseDTO> fetchCampList() async {
+
     try {
       Logger().d("통신하기 전");
 
