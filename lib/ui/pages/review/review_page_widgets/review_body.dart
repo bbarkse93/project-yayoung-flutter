@@ -8,39 +8,34 @@ import 'package:team_project/ui/pages/review/review_page_widgets/review_page_ite
 
 class ReviewBody extends StatelessWidget {
   ReviewListModel? model;
+  int? campId;
 
-  ReviewBody({super.key, required this.model});
+  ReviewBody({super.key, required this.model, required this.campId});
 
   @override
   Widget build(BuildContext context) {
-      if (model != null) {
-        return Column(
-          crossAxisAlignment: CrossAxisAlignment.start,
-          children: [
-            ReviewPageHeader(model: model),
-            Padding(
-              padding: const EdgeInsets.only(top: gapMain, left: gapMain),
-              child: Container(
-                child: Text(
-                  "리뷰(${model?.campReviewList?.campReviewCount ?? 0}개)",
-                  style: TextStyle(
-                      fontSize: gapSemiMedium, fontWeight: FontWeight.bold),
-                ),
-              ),
+    return Column(
+      crossAxisAlignment: CrossAxisAlignment.start,
+      children: [
+        ReviewPageHeader(campId: campId,),
+        Padding(
+          padding: const EdgeInsets.only(top: gapMain, left: gapMain),
+          child: Container(
+            child: Text(
+              "리뷰(${model?.campReviewList?.campReviewCount ?? 0}개)",
+              style: TextStyle(
+                  fontSize: gapSemiMedium, fontWeight: FontWeight.bold),
             ),
-          ],
-        );
-      }
-      return Container(
-        decoration: BoxDecoration(color: kBlack),
-        child: Padding(
-          padding: const EdgeInsets.symmetric(horizontal: gapMain),
-          child: Text(
-            "값이 없습니다!!! ",
-            style: TextStyle(fontSize: 100),
           ),
         ),
-      );
-    }
+        if (model != null && model!.campReviewList != null)
+          ReviewPageItems(model: model)
+        else
+          SizedBox(
+            height: 300,
+            child: Center(child: Text("등록된 리뷰가 없습니다.")),
+          ),
+      ],
+    );
   }
-
+}

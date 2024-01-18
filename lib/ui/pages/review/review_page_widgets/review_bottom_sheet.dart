@@ -1,16 +1,29 @@
 import 'package:flutter/material.dart';
+import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:team_project/_core/constants/color.dart';
 import 'package:team_project/_core/constants/icon.dart';
 import 'package:team_project/_core/constants/size.dart';
+import 'package:team_project/data/model/campsite_detail.dart';
+import 'package:team_project/ui/pages/campsite/campsite_detail/campsite_detail_view_model.dart';
 
-class ReviewBottomSheet extends StatelessWidget {
-  const ReviewBottomSheet({
+class ReviewBottomSheet extends ConsumerWidget {
+  int? campId;
+
+  ReviewBottomSheet({
     super.key,
+    required this.campId,
   });
 
   @override
-  Widget build(BuildContext context) {
+  Widget build(BuildContext context, WidgetRef ref) {
     final reviewContent = TextEditingController();
+    CampDetailModel? campInfo = ref.watch(campsiteDetailProvider(campId ?? 0));
+    if (campInfo == null) {
+      return Center(
+        child: CircularProgressIndicator(),
+      );
+    }
+    CampsiteDetail campDetail = campInfo.campInfo;
     return Container(
       height: MediaQuery.of(context).size.height * 0.9,
       decoration: BoxDecoration(
@@ -28,12 +41,12 @@ class ReviewBottomSheet extends StatelessWidget {
                   crossAxisAlignment: CrossAxisAlignment.start,
                   children: [
                     Text(
-                      "캠핑장 이름",
+                      "${campDetail.campName}",
                       style: TextStyle(
                           fontSize: fontLarge, fontWeight: FontWeight.bold),
                     ),
                     Text(
-                      "캠핑장 주소",
+                      "${campDetail.campAddress}",
                       style: TextStyle(
                           fontSize: fontMedium, fontWeight: FontWeight.bold),
                     ),
@@ -45,27 +58,6 @@ class ReviewBottomSheet extends StatelessWidget {
                     Navigator.pop(context);
                   },
                 ),
-                // 사진 넣을 때 살리면 됨
-                // InkWell(
-                //   child: Container(
-                //     decoration: BoxDecoration(
-                //         color: kBackLightGray,
-                //         borderRadius: BorderRadius.circular(gapSmall)),
-                //     child: Padding(
-                //       padding: const EdgeInsets.all(gapSmall),
-                //       child: Row(
-                //         children: [
-                //           iconPicture(),
-                //           SizedBox(
-                //             width: gapXSmall,
-                //           ),
-                //           Text("추가하기"),
-                //         ],
-                //       ),
-                //     ),
-                //   ),
-                //   onTap: () {},
-                // )
               ],
             ),
             const Divider(),
@@ -80,11 +72,11 @@ class ReviewBottomSheet extends StatelessWidget {
                 InkWell(
                   child: Row(
                     children: [
-                      iconFullStar(),
-                      iconFullStar(),
-                      iconFullStar(),
-                      iconFullStar(),
-                      iconFullStar(),
+                      iconEmptyStar(),
+                      iconEmptyStar(),
+                      iconEmptyStar(),
+                      iconEmptyStar(),
+                      iconEmptyStar(),
                     ],
                   ),
                   onTap: () {},
@@ -102,11 +94,11 @@ class ReviewBottomSheet extends StatelessWidget {
                 InkWell(
                   child: Row(
                     children: [
-                      iconFullStar(),
-                      iconFullStar(),
-                      iconFullStar(),
-                      iconFullStar(),
-                      iconFullStar(),
+                      iconEmptyStar(),
+                      iconEmptyStar(),
+                      iconEmptyStar(),
+                      iconEmptyStar(),
+                      iconEmptyStar(),
                     ],
                   ),
                   onTap: () {},
@@ -123,15 +115,16 @@ class ReviewBottomSheet extends StatelessWidget {
                 ),
                 InkWell(
                   child: Row(
-                    children: [
-                      iconFullStar(),
-                      iconFullStar(),
-                      iconFullStar(),
-                      iconFullStar(),
-                      iconFullStar(),
-                    ],
+                    children: List.generate(
+                      5,
+                          (index) => index < ref.watch(starRatingProvider)
+                          ? iconFullStar()
+                          : iconEmptyStar(),
+                    ),
                   ),
-                  onTap: () {},
+                  onTap: () {
+                    ref.read(starRatingProvider.notifier).setRating(1);
+                  },
                 ),
               ],
             ),
@@ -189,13 +182,24 @@ class ReviewBottomSheet extends StatelessWidget {
                   ),
                 ),
               ),
-              onTap: () {
-
-              },
+              onTap: () {},
             )
           ],
         ),
       ),
     );
+  }
+}
+
+
+final starRatingProvider = StateNotifierProvider<StarRatingNotifier, int>((ref) {
+  return StarRatingNotifier();
+});
+
+class StarRatingNotifier extends StateNotifier<int> {
+  StarRatingNotifier() : super(0);
+
+  void setRating(int rating) {
+    state = rating;
   }
 }

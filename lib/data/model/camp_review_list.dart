@@ -7,19 +7,22 @@ import 'package:team_project/data/model/option.dart';
 
 class CampReviewList {
   List<CampReviewDTO>? campReviewList;
+  int? campId;
   String? campName;
   int? campReviewCount;
 
   CampReviewList({
     this.campReviewList,
+    this.campId,
     this.campName,
     this.campReviewCount,
   });
 
   CampReviewList.fromJson(Map<String, dynamic> json)
       : campReviewList = (json["campReviewDTO"] as List<dynamic>? ?? [])
-            .map((i) => CampReviewDTO.fromJson(i))
-            .toList(),
+      .map((i) => CampReviewDTO.fromJson(i))
+      .toList(),
+        campId = json["campId"],
         campName = json["campName"],
         campReviewCount = json["campReviewCount"];
 
