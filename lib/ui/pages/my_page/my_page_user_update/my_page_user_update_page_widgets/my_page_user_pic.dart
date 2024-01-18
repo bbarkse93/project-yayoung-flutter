@@ -24,6 +24,7 @@ class _UserPicState extends State<UserPic> {
 
   //이미지를 가져오는 함수
   Future getImage(ImageSource imageSource) async {
+
     //pickedFile에 ImagePicker로 가져온 이미지가 담긴다.
     final XFile? pickedFile = await picker.pickImage(source: imageSource);
 
@@ -79,9 +80,9 @@ class _UserPicState extends State<UserPic> {
                 onTap: () {
                   getImage(ImageSource.gallery);
                 },
-              child: widget.imageUrl != null
+              child: widget.imageUrl != null && widget.imageUrl!.startsWith(dio.options.baseUrl)
                   ? Image.network("${dio.options.baseUrl}${widget.imageUrl}", width: getScreenWidth(context) * 0.8, height: getScreenHeight(context) * 0.4, fit: BoxFit.cover,)
-                  : Image.asset("/assets/images/profile.jpg", fit: BoxFit.cover,)
+                  : Image.network("${widget.imageUrl}", fit: BoxFit.cover,)
               //  Image.network(widget.imageUrl)
             ))
                // Image.asset(imageUrl)))

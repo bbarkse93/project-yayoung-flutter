@@ -11,8 +11,6 @@ class CampsiteListPageBody extends ConsumerWidget {
 
   @override
   Widget build(BuildContext context, WidgetRef ref)  {
-    Future.delayed(Duration(microseconds: 2000));
-    SessionUser? sessionUser = ref.watch(sessionProvider);
     return CustomScrollView(
       slivers: [
         CampsiteListHeader(),

@@ -3,6 +3,8 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:logger/logger.dart';
+import 'package:team_project/_core/constants/http.dart';
+import 'package:team_project/_core/constants/move.dart';
 import 'package:team_project/data/dto/response_dto.dart';
 import 'package:team_project/data/dto/user_request_dto.dart';
 import 'package:team_project/data/repository/user_repository.dart';
@@ -33,20 +35,13 @@ class UserUpdateViewModel extends StateNotifier<UserUpdateModel?> {
   Ref ref;
 
   Future<void> notifyInit() async {
-    SessionUser? sessionUser = ref.read(sessionProvider);
-    if(sessionUser == null){
-      return Logger().d("안돼 돌아가");
-    }else{
-      Logger().d("sessionUser ${sessionUser.toString()}");
-    }
+    String jwt = await secureStorage.read(key: 'jwt') as String;
 
-    Logger().d("update 유저 값 초기화됨? ${sessionUser.user!.username} ");
-    Logger().d("update 유저 값 초기화됨? ${sessionUser.user!.nickname} ");
-    Logger().d("update 유저 값 초기화됨? ${sessionUser.user!.userImage} ");
-    Logger().d("토큰 값 전달한다 ${sessionUser.jwt}");
+    Logger().d("토큰 있나?? $jwt ");
+
     // TODO 언약 : 세션에서 토큰 꺼내서 info 넘기기
     ResponseDTO responseDTO =
-    await UserRepository().fetchUserInfo(sessionUser.jwt!);
+    await UserRepository().fetchUserInfo(jwt);
     Logger().d("값 받니? ${responseDTO.response}");
     UserUpdateModel model = responseDTO.response;
     state = UserUpdateModel(

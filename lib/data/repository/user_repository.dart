@@ -6,12 +6,9 @@ import 'package:team_project/data/dto/user_request_dto.dart';
 import 'package:team_project/data/model/user.dart';
 import 'package:team_project/ui/pages/my_page/my_page_user_update/my_page_user_update_view_model.dart';
 
-
 class UserRepository {
-
   // 로그인 요청
   Future<ResponseDTO> fetchLogin(LoginReqDTO requestDTO, String token) async {
-
     Logger().d("유저 레파지토리 통신 전 : ${requestDTO.socialName}");
     Logger().d("유저 레파지토리 통신 전 : $token");
 
@@ -19,7 +16,6 @@ class UserRepository {
       final response = await dio.post("/user/login",
           options: Options(headers: {"Authorization": token}),
           data: requestDTO.toJson());
-
 
       ResponseDTO responseDTO = ResponseDTO.fromJson(response.data);
 
@@ -46,15 +42,16 @@ class UserRepository {
   // 업데이트 요청
   // TODO : 언약 -> 매겨변수 추가하기 (String jwt,)
   Future<ResponseDTO> fetchUserUpdate(
-       UserUpdateReqDTO userUpdateReqDTO) async {
-    print("레파지토리 접근 : " + userUpdateReqDTO.userImage);
-    print("레파지토리 접근 : " + userUpdateReqDTO.nickname);
-
+      UserUpdateReqDTO userUpdateReqDTO, String jwt) async {
+    Logger().d("유저 통신 전 : ${userUpdateReqDTO.userImage}");
+    Logger().d("유저 통신 전 : ${userUpdateReqDTO.nickname}");
+    Logger().d("유저 통신 전 : $jwt");
     try {
       final response = await dio.put("/user/my-page/profile",
+          options: Options(headers: {"Authorization": jwt}),
           data: userUpdateReqDTO.toJson());
       Logger().d("업데이트DTO임 : $userUpdateReqDTO");
-         // options: Options(headers: {"Authorization": "$jwt"}));
+      // options: Options(headers: {"Authorization": "$jwt"}));
 
       ResponseDTO responseDTO = ResponseDTO.fromJson(response.data);
 
@@ -70,23 +67,18 @@ class UserRepository {
     Logger().d("토큰 값 잘 왔나? $token");
 
     try {
-      Response response = await dio.get("/user/my-page/profile"
-      , options: Options(headers: {"Authorization": token}));
+      Response response = await dio.get("/user/my-page/profile",
+          options: Options(headers: {"Authorization": token}));
 
       ResponseDTO responseDTO = ResponseDTO.fromJson(response.data);
 
       // Logger().d(responseDTO.response);
-      UserUpdateModel model =
-      UserUpdateModel.fromJson(responseDTO.response);
+      UserUpdateModel model = UserUpdateModel.fromJson(responseDTO.response);
       responseDTO.response = model;
 
       return responseDTO;
-
     } catch (e) {
       return new ResponseDTO(false, e.toString(), null);
     }
   }
-
-
 }
-

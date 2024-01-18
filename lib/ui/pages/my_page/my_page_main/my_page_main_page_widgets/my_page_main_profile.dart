@@ -17,11 +17,7 @@ class MyPageProfile extends ConsumerWidget {
 
   @override
   Widget build(BuildContext context, WidgetRef ref) {
-    SessionUser? sessionUser = ref.watch(sessionProvider);
     UserUpdateModel? model = ref.watch(userUpdateProvider);
-    if (sessionUser == null) {
-      return CircularProgressIndicator();
-    }
 
     // Logger().d("닉네임은? ${sessionUser.user?.nickname}");
     if (model == null) {
@@ -42,9 +38,9 @@ class MyPageProfile extends ConsumerWidget {
                       onTap: () {
                         Navigator.pushNamed(context, Move.userUpdatePage);
                       },child:
-                        model?.userImage != null
+                        model?.userImage != null && model.userImage.startsWith(dio.options.baseUrl)
                       ? Image.network("${dio.options.baseUrl}${model?.userImage}", width: getScreenWidth(context) * 0.8, height: getScreenHeight(context) * 0.4, fit: BoxFit.cover,)
-                      : Image.asset("/assets/images/profile.jpg", fit: BoxFit.cover,)
+                      : Image.network("${model?.userImage}", fit: BoxFit.cover,)
                   ))
           ),
           SizedBox(

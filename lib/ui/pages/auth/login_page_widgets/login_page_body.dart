@@ -102,7 +102,7 @@ class LoginPageBody extends ConsumerWidget {
 
      // 로그인
     LoginReqDTO loginReqDTO = LoginReqDTO(socialName: "카카오톡");
-    container.read(sessionProvider).login(loginReqDTO, token.accessToken);
+    container.read(sessionStore).login(loginReqDTO, token.accessToken);
 
   }
 
@@ -116,7 +116,7 @@ class LoginPageBody extends ConsumerWidget {
 
     LoginReqDTO loginReqDTO = LoginReqDTO(socialName: "네이버");
     // 로그인
-    container.read(sessionProvider).login(loginReqDTO, token.accessToken);
+    container.read(sessionStore).login(loginReqDTO, token.accessToken);
 
 
   }

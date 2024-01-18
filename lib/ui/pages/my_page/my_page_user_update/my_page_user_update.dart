@@ -23,7 +23,7 @@ class UserUpdate extends ConsumerWidget {
 
   final _formKey = GlobalKey<FormState>();
   final _nickName = TextEditingController();
-  late final File? selectedImagePath;
+  File? selectedImagePath;
 
 
   @override
@@ -33,7 +33,11 @@ class UserUpdate extends ConsumerWidget {
     // 콜백 함수
     void updateImage(File imagePath) {
       Logger().d("선택된 이미지 경로 : $imagePath");
-      selectedImagePath = imagePath;
+      if (imagePath == null) {
+        selectedImagePath = null;
+      }
+        selectedImagePath = imagePath;
+
     }
 
     if (model == null) {
@@ -49,18 +53,21 @@ class UserUpdate extends ConsumerWidget {
               funPageRoute: () async {
                 if (_formKey.currentState!.validate()) {
                 String base64Image1 = "";
-                final bytes = File(selectedImagePath!.path).readAsBytesSync();
-                base64Image1 = base64Encode(bytes);
+                  if(selectedImagePath != null){
+                    final bytes = File(selectedImagePath!.path).readAsBytesSync();
+                    base64Image1 = base64Encode(bytes);
+                  }
+
                 Logger().d("인코딩 잘 됬나 ? ${base64Image1}");
                   UserUpdateReqDTO userUpdateReqDTO = UserUpdateReqDTO(
                       nickname: _nickName.text.isEmpty ? model.nickname : _nickName.text,
                   userImage: base64Image1.isEmpty ? model.userImage : base64Image1);
-                  // await ref.read(sessionStore).userUpdate(userUpdateReqDTO);
-
+                  await ref.read(sessionStore).userUpdate(userUpdateReqDTO);
                   ref.read(userUpdateProvider.notifier).notifyInit();
                 }
               },
               buttonText: "확인")),
+
       body: ListView(
         children: [
           Form(
