@@ -126,7 +126,7 @@ class CampsiteDetailReview extends StatelessWidget {
                   InkWell(
                     child: Text("전체리뷰보기"),
                     onTap: () {
-                      Navigator.of(context).pushNamed(Move.reviewPage);
+                      Navigator.of(context).pushNamed(Move.reviewPage, arguments: campInfo.id);
                     },
                   ),
                 ],

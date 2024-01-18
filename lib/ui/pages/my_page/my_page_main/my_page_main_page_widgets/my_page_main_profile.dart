@@ -16,6 +16,9 @@ class MyPageProfile extends ConsumerWidget {
   @override
   Widget build(BuildContext context, WidgetRef ref) {
     UserUpdateModel? model = ref.watch(userUpdateProvider);
+    if (model == null) {
+      return Center(child: CircularProgressIndicator());
+    }
     return Padding(
       padding: const EdgeInsets.all(gapMain),
       child: Row(
@@ -29,16 +32,21 @@ class MyPageProfile extends ConsumerWidget {
                   child: InkWell(
                       onTap: () {
                         Navigator.pushNamed(context, Move.userUpdatePage);
-                      },child:
-                        model?.userImage != null
-                      ? Image.network("${dio.options.baseUrl}${model?.userImage}", width: getScreenWidth(context) * 0.8, height: getScreenHeight(context) * 0.4, fit: BoxFit.cover,)
-                      : Image.asset("/assets/images/profile.jpg", fit: BoxFit.cover,)
-                  ))
-          ),
+                      },
+                      child: model?.userImage != null
+                          ? Image.network(
+                              "${dio.options.baseUrl}${model?.userImage}",
+                              width: getScreenWidth(context) * 0.8,
+                              height: getScreenHeight(context) * 0.4,
+                              fit: BoxFit.cover,
+                            )
+                          : Image.asset(
+                              "/assets/images/profile.jpg",
+                              fit: BoxFit.cover,
+                            )))),
           SizedBox(
             width: 18,
-          )
-          ,
+          ),
           Padding(
             padding: const EdgeInsets.all(8.0),
             child: Text(model!.nickname, style: title2()),
