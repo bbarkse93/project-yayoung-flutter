@@ -216,11 +216,17 @@ class CampsiteDetailInfo extends StatelessWidget {
                   ),
                 ),
                   onTap: () {
-                    Navigator.of(context).push(
-                      MaterialPageRoute(
-                        builder: (context) => ReservationPage(campId: campInfo.id!),
-                      ),
+                    Navigator.popAndPushNamed(
+                      context,
+                      Move.reservationPage,  // 이동할 페이지의 이름
+                      arguments: {'campId': campInfo.id!},  // 필요한 인자 전달
                     );
+
+                    // Navigator.of(context).push(
+                    //   MaterialPageRoute(
+                    //     builder: (context) => ReservationPage(campId: campInfo.id!),
+                    //   ),
+                    // );
                   },
               )
             ],

@@ -15,6 +15,7 @@ import 'package:team_project/ui/pages/my_page/my_page_notice_page/my_page_notice
 import 'package:team_project/ui/pages/my_page/my_page_setting/my_page_setting_page.dart';
 import 'package:team_project/ui/pages/my_page/my_page_user_update/my_page_user_update.dart';
 import 'package:team_project/ui/pages/payment/payment_page.dart';
+import 'package:team_project/ui/pages/payment/widget/kakao_payment.dart';
 import 'package:team_project/ui/pages/payment_success/payment_success_page.dart';
 import 'package:team_project/ui/pages/refund/refund_page.dart';
 import 'package:team_project/ui/pages/reservation/reservation_page.dart';
@@ -49,6 +50,7 @@ class Move {
   static String datePage = "/date";
   static String reservationPage = "/reservation";
   static String paymentPage = "/payment";
+  static String kakaoPayment = "/kakaoPayment";
   static String paymentSuccessPage = "/paymentSuccess";
   static String reviewPage = "/review";
 }
@@ -69,7 +71,10 @@ Map<String, Widget Function(BuildContext)> getRouters() {
     Move.myCampingListPage: (p0) => MyCampingListPage(),
 
     Move.searchCampsitePage: (p0) => const SearchCampsitePage(),
-    // Move.campsiteDetailPage: (p0) => CampsiteDetailPage(),
+    Move.campsiteDetailPage: (p0) {
+      final int? campId = (ModalRoute.of(p0)?.settings.arguments as Map<String, dynamic>?)?['campId'] as int?;
+      return CampsiteDetailPage(campId: campId ?? 1);
+    },
     Move.campsiteListPage: (p0) => CampsiteListPage(),
 
     Move.refundPage: (p0) => RefundPage(),
@@ -82,10 +87,15 @@ Map<String, Widget Function(BuildContext)> getRouters() {
       final int campId = ModalRoute.of(p0)?.settings.arguments as int? ?? 1;
       return PaymentPage(campId: campId);
     },
-    Move.paymentSuccessPage: (p0) {
-      final int campId = ModalRoute.of(p0)?.settings.arguments as int? ?? 1;
-      return PaymentSuccessPage(campId: 1);
+    Move.kakaoPayment: (p0) {
+      final int campId = (ModalRoute.of(p0)?.settings.arguments as Map<String, dynamic>?)?['campId'] as int? ?? 1;
+      return KakaoPayment(campId: campId);
     },
+    Move.paymentSuccessPage: (p0) {
+      final int? campId = (ModalRoute.of(p0)?.settings.arguments as Map<String, dynamic>?)?['campId'] as int?;
+      return PaymentSuccessPage(campId: campId ?? 1); // campId가 null이면 기본값 1을 사용합니다.
+    },
+
     // Move.campsiteMapPage: (p0) => CampsiteMapPage(),
     Move.campsiteCall:(p0) => CampsiteCall(),
     Move.reviewPage:(p0) => ReviewPage(),

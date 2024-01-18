@@ -21,7 +21,7 @@ class PaymentSuccessReservationForm extends ConsumerWidget {
 
     return Container(
       width: double.infinity,
-      height: 150,
+      height: 160,
       decoration: BoxDecoration(
         borderRadius: BorderRadius.circular(gapSmall),
         border: Border.all(color: Colors.grey),

@@ -22,7 +22,7 @@ class CampsiteDetailHeader extends StatelessWidget {
       leading: InkWell(
         child: iconArrowBack(mColor: kFontGray),
         onTap: () {
-          Navigator.pop(context);
+          Navigator.popUntil(context, (route) => route.isFirst);
         },
       ),
       expandedHeight: 400.0,

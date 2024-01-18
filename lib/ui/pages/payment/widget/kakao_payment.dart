@@ -12,8 +12,10 @@ import 'package:team_project/_core/constants/icon.dart';
 import 'package:team_project/_core/constants/move.dart';
 import 'package:team_project/data/dto/response_dto.dart';
 import 'package:team_project/data/dto/user_request_dto.dart';
+import 'package:team_project/data/model/campsite_detail.dart';
 import 'package:team_project/data/repository/payment_repository.dart';
 import 'package:team_project/ui/pages/payment/payment_view_model.dart';
+import 'package:team_project/ui/pages/payment_success/payment_success_page.dart';
 
 class KakaoPayment extends ConsumerWidget {
   final int campId;
@@ -32,7 +34,7 @@ class KakaoPayment extends ConsumerWidget {
             },
             icon: iconArrowBack(),
           ),
-          title: Text('아임포트 결제'),
+          title: Text('카카오페이 결제'),
           centerTitle: true),
       /* 웹뷰 로딩 컴포넌트 */
       initialChild: Container(
@@ -109,11 +111,14 @@ class KakaoPayment extends ConsumerWidget {
           Logger().d("성공했니?? ${responseDTO.success}");
 
           if (responseDTO.success == true) {
-            Navigator.pushReplacementNamed(
+            // Navigator.popUntil(context, (route) => route.settings.name == Move.campsiteDetailPage);
+            Navigator.pushReplacement(
               context,
-              Move.paymentSuccessPage,
-              arguments: result,
+              MaterialPageRoute(
+                builder: (context) => PaymentSuccessPage(campId: campId),
+              ),
             );
+
           } else {
             // 실패한 경우에 대한 처리
             showDialog(
