@@ -4,6 +4,7 @@ import 'package:dio/dio.dart';
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:image_picker/image_picker.dart';
+import 'package:logger/logger.dart';
 import 'package:team_project/_core/constants/http.dart';
 import 'package:team_project/_core/constants/size.dart';
 
@@ -20,10 +21,13 @@ class UserPic extends StatefulWidget {
 class _UserPicState extends State<UserPic> {
   File? _image; //이미지를 담을 변수 선언
 
+
+
   final ImagePicker picker = ImagePicker(); //ImagePicker 초기화
 
   //이미지를 가져오는 함수
   Future getImage(ImageSource imageSource) async {
+
     //pickedFile에 ImagePicker로 가져온 이미지가 담긴다.
     final XFile? pickedFile = await picker.pickImage(source: imageSource);
 
@@ -79,9 +83,9 @@ class _UserPicState extends State<UserPic> {
                 onTap: () {
                   getImage(ImageSource.gallery);
                 },
-              child: widget.imageUrl != null
+              child: widget.imageUrl != null && widget.imageUrl!.startsWith("/images/user/")
                   ? Image.network("${dio.options.baseUrl}${widget.imageUrl}", width: getScreenWidth(context) * 0.8, height: getScreenHeight(context) * 0.4, fit: BoxFit.cover,)
-                  : Image.asset("/assets/images/profile.jpg", fit: BoxFit.cover,)
+                  : Image.network("${widget.imageUrl}", fit: BoxFit.cover,)
               //  Image.network(widget.imageUrl)
             ))
                // Image.asset(imageUrl)))

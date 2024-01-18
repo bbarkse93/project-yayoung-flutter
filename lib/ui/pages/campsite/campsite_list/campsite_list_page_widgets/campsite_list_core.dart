@@ -25,8 +25,6 @@ class CampsiteListCore extends ConsumerWidget {
       );
     }
 
-    Logger().d("리스트의 값은 ?? ${campList.isEmpty}");
-
     return SliverList(
       delegate: SliverChildBuilderDelegate(
             (context, index) {
