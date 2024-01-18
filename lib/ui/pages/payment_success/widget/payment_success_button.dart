@@ -1,10 +1,12 @@
 import 'package:flutter/material.dart';
 import 'package:team_project/_core/constants/color.dart';
+import 'package:team_project/_core/constants/move.dart';
 import 'package:team_project/_core/constants/size.dart';
 
 class PaymentSuccessButton extends StatelessWidget {
+  final int campId;
   const PaymentSuccessButton({
-    super.key,
+    super.key, required this.campId,
   });
 
   @override
@@ -13,7 +15,12 @@ class PaymentSuccessButton extends StatelessWidget {
       child: FractionallySizedBox(
         widthFactor: 0.7, // 원하는 비율로 조절
         child: InkWell(
-          onTap: () {},
+          onTap: () {
+            Navigator.pushNamed(
+              context,
+              Move.myCampingListPage,
+            );
+          },
           child: Container(
             height: 60,
             decoration: BoxDecoration(

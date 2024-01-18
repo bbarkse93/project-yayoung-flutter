@@ -18,12 +18,13 @@ class MyPageProfile extends ConsumerWidget {
   @override
   Widget build(BuildContext context, WidgetRef ref) {
     UserUpdateModel? model = ref.watch(userUpdateProvider);
-
-    // Logger().d("닉네임은? ${sessionUser.user?.nickname}");
     if (model == null) {
-      return CircularProgressIndicator();
+      return
+        Center(
+          child: CircularProgressIndicator(),
+        );
     }
-
+    
     return Padding(
       padding: const EdgeInsets.all(gapMain),
       child: Row(

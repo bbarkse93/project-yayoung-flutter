@@ -4,11 +4,11 @@ import 'package:intl/intl.dart';
 import 'package:team_project/_core/constants/size.dart';
 import 'package:team_project/ui/pages/payment/payment_view_model.dart';
 
-class PaymentReservationForm extends ConsumerWidget {
+class PaymentSuccessReservationForm extends ConsumerWidget {
   final int campId;
   final ReservationData reservationData;
 
-  const PaymentReservationForm({required this.campId, required this.reservationData});
+  const PaymentSuccessReservationForm({required this.campId, required this.reservationData});
 
   @override
   Widget build(BuildContext context, WidgetRef ref) {

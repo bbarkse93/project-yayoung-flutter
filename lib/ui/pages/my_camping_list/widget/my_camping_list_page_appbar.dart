@@ -18,7 +18,7 @@ class MyCampingListPageAppBar extends StatelessWidget implements PreferredSize  
       backgroundColor: kBackWhite,
       leading: IconButton(
           onPressed: () {
-            Navigator.pop(context);
+            Navigator.popUntil(context, (route) => route.isFirst);
           },
           icon: iconArrowBack(mColor: kBlack,mSize: gapSemiMedium)),
       title: Text(

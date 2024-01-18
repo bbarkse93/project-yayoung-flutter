@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:team_project/_core/constants/color.dart';
 import 'package:team_project/_core/constants/icon.dart';
+import 'package:team_project/_core/constants/move.dart';
 import 'package:team_project/_core/constants/size.dart';
 import 'package:team_project/ui/pages/payment/payment_view_model.dart';
 import 'package:team_project/ui/pages/payment/widget/kakao_payment.dart';
@@ -72,10 +73,12 @@ class _PaymentPageState extends State<PaymentPage> {
                   onPressed: () {
                     if (isChecked1 && isChecked2) {
                       // 약관 동의가 모두 선택된 경우에만 onPressed 로직 추가
-                      Navigator.push(
+                      Navigator.popAndPushNamed(
                         context,
-                        MaterialPageRoute(builder: (context) => KakaoPayment()),
+                        Move.kakaoPayment,  // 이동할 페이지의 이름
+                        arguments: {'campId': widget.campId},  // 필요한 인자 전달
                       );
+
                     } else {
                       // 약관 동의가 하나라도 선택되지 않은 경우 스낵바 표시
                       ScaffoldMessenger.of(context).showSnackBar(
