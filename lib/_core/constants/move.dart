@@ -15,6 +15,7 @@ import 'package:team_project/ui/pages/my_page/my_page_notice_page/my_page_notice
 import 'package:team_project/ui/pages/my_page/my_page_setting/my_page_setting_page.dart';
 import 'package:team_project/ui/pages/my_page/my_page_user_update/my_page_user_update.dart';
 import 'package:team_project/ui/pages/payment/payment_page.dart';
+import 'package:team_project/ui/pages/payment_success/payment_success_page.dart';
 import 'package:team_project/ui/pages/refund/refund_page.dart';
 import 'package:team_project/ui/pages/reservation/reservation_page.dart';
 import 'package:team_project/ui/pages/review/review_page.dart';
@@ -47,8 +48,8 @@ class Move {
   static String refundPage = "/refund";
   static String datePage = "/date";
   static String reservationPage = "/reservation";
-  static String reservationSuccessPage = "/reservationSuccess";
   static String paymentPage = "/payment";
+  static String paymentSuccessPage = "/paymentSuccess";
   static String reviewPage = "/review";
 }
 
@@ -77,14 +78,14 @@ Map<String, Widget Function(BuildContext)> getRouters() {
       final campId = arguments['campId'] as int;
       return ReservationPage(campId: campId);
     },
-    Move.reservationSuccessPage: (p0) {
-      return ReservationPage(campId: 1);
-    },
     Move.paymentPage: (p0) {
       final int campId = ModalRoute.of(p0)?.settings.arguments as int? ?? 1;
       return PaymentPage(campId: campId);
     },
-
+    Move.paymentSuccessPage: (p0) {
+      final int campId = ModalRoute.of(p0)?.settings.arguments as int? ?? 1;
+      return PaymentSuccessPage(campId: 1);
+    },
     // Move.campsiteMapPage: (p0) => CampsiteMapPage(),
     Move.campsiteCall:(p0) => CampsiteCall(),
     Move.reviewPage:(p0) => ReviewPage(),

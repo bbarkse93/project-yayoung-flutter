@@ -111,7 +111,7 @@ class KakaoPayment extends ConsumerWidget {
           if (responseDTO.success == true) {
             Navigator.pushReplacementNamed(
               context,
-              Move.reservationPage,
+              Move.paymentSuccessPage,
               arguments: result,
             );
           } else {
