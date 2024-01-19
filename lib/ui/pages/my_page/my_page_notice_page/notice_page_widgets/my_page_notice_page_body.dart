@@ -78,7 +78,7 @@ class _NoticePageBodyState extends State<NoticePageBody> {
                     Consumer(builder: (context, ref, child){
                       FaqModel? model = ref.watch(faqProvider);
                       if (model == null) {
-                        return SliverToBoxAdapter(child: CircularProgressIndicator());
+                        return SliverToBoxAdapter(child: Center(child: CircularProgressIndicator()));
                       }
 
                       return SliverFillRemaining(

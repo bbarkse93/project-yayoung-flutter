@@ -15,8 +15,8 @@ class _HomeCarouselSliderState extends State<HomeCarouselSlider> {
   int _current = 0;
   final CarouselController _controller = CarouselController();
   List<String> imageList = [
-    "assets/images/camping_record.png",
-    "assets/images/camping_schedule.png",
+    "assets/images/my_camping_list.png",
+    "assets/images/my_camping_schedule.png",
     "assets/images/yay_carousel.png",
   ];
 

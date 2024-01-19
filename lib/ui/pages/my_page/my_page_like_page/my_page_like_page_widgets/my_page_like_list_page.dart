@@ -19,7 +19,7 @@ class LikeListPage extends ConsumerWidget {
     LikePageModel? model = ref.watch(likePageProvider);
 
     if (model == null) {
-      return CircularProgressIndicator();
+      return Center(child: CircularProgressIndicator());
     }
 
     return CustomScrollView(
@@ -30,10 +30,8 @@ class LikeListPage extends ConsumerWidget {
                if(model.campBookmarkList!.isEmpty) {
                 return Column(
                   children: [
-                    SizedBox(height: gapXxLarge),
-                    SizedBox(height: gapXxLarge),
                     Container(
-                      height: getScreenWidth(context) * 1.0,
+                      height: getScreenHeight(context) * 0.9,
                       width: getScreenWidth(context) * 1.0,
                       child: imageLikePage(),
                     ),

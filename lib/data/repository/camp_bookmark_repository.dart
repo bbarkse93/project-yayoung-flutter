@@ -10,9 +10,11 @@ import '../dto/camp_request_dto.dart';
 
 class CampBookmarkRepository {
 
-  Future<ResponseDTO> fetchLikeInfo(String jwt) async {
+  Future<ResponseDTO> fetchLikeInfo(String token) async {
     try {
-      Response response = await dio.get("/camp/bookmark-list", options: Options(headers: {'Authorization': jwt}));
+      Response response = await dio.get("/camp/bookmark-list",
+          options: Options(headers: {"Authorization": token}));
+
 
       ResponseDTO responseDTO = ResponseDTO.fromJson(response.data);
       Logger().d(responseDTO.response);
