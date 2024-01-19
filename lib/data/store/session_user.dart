@@ -1,4 +1,6 @@
 
+import 'dart:ffi';
+
 import 'package:flutter/material.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:logger/logger.dart';
@@ -9,19 +11,18 @@ import 'package:team_project/data/dto/user_request_dto.dart';
 import 'package:team_project/data/model/user.dart';
 import 'package:team_project/data/repository/user_repository.dart';
 import 'package:team_project/main.dart';
+import 'package:team_project/ui/pages/my_page/my_page_user_update/my_page_user_update_view_model.dart';
 
 class SessionUser {
   // context 접근
   final mContext = navigatorKey.currentContext;
-
+  Ref? ref;
   User? user;
   String? jwt;
   bool isLogin; // jwt의 존재보다 유효에 따른 true/false
 
-  SessionUser({this.user, this.jwt, this.isLogin = false});
+  SessionUser({this.user, this.jwt, this.isLogin = false, this.ref});
 
-  String token =
-      "Bearer eyJhbGciOiJIUzUxMiIsInR5cCI6IkpXVCJ9.eyJzdWIiOiJwcm9qZWN0LWtleSIsImlkIjoxLCJ1c2VybmFtZSI6bnVsbCwiZXhwIjo0ODU5MDUzNDgyfQ.Ky2-BLYTjxlouBRsY1HScpc3fC3FOhpK0OrCKy3MFFW6KkCC19B2KsZrd9NIYLoeYY1YEB2BQNLT_KjPETTPMw";
 
   Future<void> login(LoginReqDTO loginReqDTO, String token) async {
 
@@ -43,6 +44,7 @@ class SessionUser {
       // 디바이스에 JWT 저장 : 자동로그인
       await secureStorage.write(key: "jwt", value: responseDTO.token);
 
+
       // 메인으로 화면 이동
       // TODO 은혜 : 메인 페이지 완성 시 이동
       Navigator.popAndPushNamed(mContext!, Move.mainScreenPage);
@@ -55,10 +57,12 @@ class SessionUser {
   Future<void> userUpdate(UserUpdateReqDTO userUpdateReqDTO) async {
     String jwt = await secureStorage.read(key: 'jwt') as String;
     ResponseDTO responseDTO =
-    await UserRepository().fetchUserUpdate(userUpdateReqDTO, jwt);
+    await UserRepository().fetchUserUpdate(userUpdateReqDTO);
 
     if (responseDTO.success == true) {
-      Navigator.pop(mContext!);
+      ref?.read(userUpdateProvider);
+      Navigator.popUntil(mContext!, (route) => route.isFirst);
+
     } else {
       ScaffoldMessenger.of(mContext!)
           .showSnackBar(SnackBar(content: Text(responseDTO.error)));

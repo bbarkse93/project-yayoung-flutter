@@ -62,12 +62,10 @@ class MyCampingScheduleViewModel extends StateNotifier<MyCampingScheduleModel?> 
   Ref ref;
 
   Future<void> notifyInit() async {
-    String jwt = await secureStorage.read(key: 'jwt') as String;
 
-    Logger().d("화면 초기화 ${jwt}");
     Logger().d("화면 초기화");
     // Logger().d("my_camping_schedule 토큰 값 전달한다 ${sessionUser.jwt}");
-    ResponseDTO responseDTO = await MyCampingScheduleRepository().fetchMyCampingSchedule(jwt);
+    ResponseDTO responseDTO = await MyCampingScheduleRepository().fetchMyCampingSchedule();
 
     Logger().d("response는 ?? $responseDTO");
 

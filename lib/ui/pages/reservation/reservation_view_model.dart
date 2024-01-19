@@ -37,6 +37,7 @@ class ReservationViewModel extends StateNotifier<ReservationModel?> {
   final mContext = navigatorKey.currentContext;
 
   Future<void> notifyInit() async {
+
     ResponseDTO responseDTO =
     await ReservationRepository().fetchReservation(campId);
 

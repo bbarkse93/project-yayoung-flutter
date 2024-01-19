@@ -5,7 +5,10 @@ import 'package:team_project/data/dto/response_dto.dart';
 import 'package:team_project/ui/pages/my_camping_schedule/my_camping_schedule_view_model.dart';
 
 class MyCampingScheduleRepository {
-  Future<ResponseDTO> fetchMyCampingSchedule(String jwt) async {
+  Future<ResponseDTO> fetchMyCampingSchedule() async {
+
+    String jwt = await secureStorage.read(key: 'jwt') as String;
+
     try {
       final response = await dio.get("/order/campSchedule"
       ,options: Options(headers: {"Authorization": jwt}),);

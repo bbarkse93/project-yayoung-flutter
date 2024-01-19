@@ -1,5 +1,5 @@
 class MyCamping {
-  final String totalRating;
+  final int totalRating;
   final String checkInDate;
   final String checkOutDate;
   final String campAddress;
