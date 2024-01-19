@@ -9,6 +9,7 @@ import 'package:team_project/data/dto/review_request_dto.dart';
 import 'package:team_project/data/model/camp_review_list.dart';
 import 'package:team_project/data/repository/review_repository.dart';
 import 'package:team_project/main.dart';
+import 'package:team_project/ui/pages/campsite/campsite_detail/campsite_detail_view_model.dart';
 import 'package:team_project/ui/pages/review/review_page.dart';
 
 class ReviewListModel {
@@ -32,24 +33,23 @@ class ReviewListViewModel extends StateNotifier<ReviewListModel?> {
     Logger().d(state!.campReviewList.toString());
   }
 
-Future<void> fetchSave(ReviewWriteDTO reviewWriteDTO, int campId) async {
+  Future<void> fetchSave(ReviewWriteDTO reviewWriteDTO, int campId) async {
+    ResponseDTO responseDTO =
+        await ReviewRepository().fetchReviewSave(reviewWriteDTO, campId);
 
-  ResponseDTO responseDTO =
-  await ReviewRepository().fetchReviewSave(reviewWriteDTO, campId);
-
-  if (responseDTO.success == true) {
-    state = ReviewListModel(responseDTO.response);
-    // Navigator.pop(mContext!);
-  } else {
-    ScaffoldMessenger.of(mContext!)
-        .showSnackBar(SnackBar(content: Text(responseDTO.error)));
+    if (responseDTO.success == true) {
+      ref.read(campsiteDetailProvider(campId).notifier).notifyInit(campId);
+      ref.read(reviewListProvider(campId).notifier).notifyInit(campId);
+      Navigator.pop(mContext!);
+    } else {
+      ScaffoldMessenger.of(mContext!)
+          .showSnackBar(SnackBar(content: Text(responseDTO.error)));
+    }
   }
 }
 
-}
-
 // 3. 창고 관리자
-final reviewListProvider =
-    StateNotifierProvider.family.autoDispose<ReviewListViewModel, ReviewListModel?, int>((ref, campId) {
+final reviewListProvider = StateNotifierProvider.family
+    .autoDispose<ReviewListViewModel, ReviewListModel?, int>((ref, campId) {
   return ReviewListViewModel(null, ref)..notifyInit(campId);
 });
