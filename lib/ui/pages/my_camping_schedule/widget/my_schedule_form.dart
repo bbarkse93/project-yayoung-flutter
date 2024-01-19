@@ -52,7 +52,7 @@ class MyScheduleForm extends ConsumerWidget {
                 ),
                 IconButton(
                   onPressed: () {
-                    _showAlertDialog(context);
+                    _showAlertDialog(context, campingScheduleList[index].campId);
                   },
                   icon: iconClose(),
                 ),
@@ -116,7 +116,7 @@ class MyScheduleForm extends ConsumerWidget {
                 ),
                 TextButton(
                   onPressed: () {
-                    Navigator.pushNamed(context, Move.refundPage);
+                    Navigator.pushNamed(context, Move.refundPage, arguments: campId);
                   },
                   child: Text(
                     '예약 취소',
