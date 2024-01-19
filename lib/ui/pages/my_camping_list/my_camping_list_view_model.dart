@@ -19,6 +19,8 @@ class MyCampingListViewModel extends StateNotifier<MyCampingListModel?> {
   Ref ref;
 
   Future<void> notifyInit() async {
+
+
     Logger().d("화면 초기화");
     ResponseDTO responseDTO = await MyCampingListRepository().fetchMyCampingList();
 

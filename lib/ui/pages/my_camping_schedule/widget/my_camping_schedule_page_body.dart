@@ -1,5 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
+import 'package:logger/logger.dart';
+import 'package:team_project/_core/constants/icon.dart';
 import 'package:team_project/_core/constants/size.dart';
 import 'package:team_project/ui/pages/my_camping_schedule/my_camping_schedule_view_model.dart';
 import 'package:team_project/ui/pages/my_camping_schedule/widget/my_schedule_form.dart';
@@ -19,7 +21,9 @@ class MyCampingSchedulePageBody extends ConsumerWidget {
 
     return Padding(
       padding: EdgeInsets.symmetric(horizontal: gapMain),
-      child: Column(
+      child:
+      myCampingScheduleModel.campingScheduleList.isNotEmpty
+      ? Column(
         crossAxisAlignment: CrossAxisAlignment.start,
         children: [
           SizedBox(height: gapMain),
@@ -29,7 +33,8 @@ class MyCampingSchedulePageBody extends ConsumerWidget {
           ),
           SizedBox(height: gapMain),
           Expanded(
-            child: ListView.builder(
+            child:
+            ListView.builder(
               itemCount: myCampingScheduleModel.campingScheduleList.length,
               itemBuilder: (context, index) {
                 return Column(
@@ -39,6 +44,19 @@ class MyCampingSchedulePageBody extends ConsumerWidget {
                   ],
                 );
               },
+            )
+          ),
+        ],
+      )
+      // 리스트가 공백이면
+      : Column(
+        crossAxisAlignment: CrossAxisAlignment.start,
+        children: [
+          Expanded(
+            child: Container(
+              height: getScreenHeight(context) * 1.0,
+              width: getScreenWidth(context) * 1.0,
+              child: imageMyCampingSchedulePage(),
             ),
           ),
         ],

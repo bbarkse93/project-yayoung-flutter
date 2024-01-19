@@ -17,7 +17,7 @@ class MyPageProfile extends ConsumerWidget {
 
   @override
   Widget build(BuildContext context, WidgetRef ref) {
-    UserUpdateModel? model = ref.watch(userUpdateProvider);
+    UserUpdateModel? model = ref.watch(userUpdateProvider.notifier).state;
     if (model == null) {
       return
         Center(

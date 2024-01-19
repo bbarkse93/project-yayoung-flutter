@@ -41,7 +41,7 @@ class SessionUser {
 
       // 메인으로 화면 이동
       // TODO 은혜 : 메인 페이지 완성 시 이동
-      Navigator.pushNamed(mContext!, Move.mainScreenPage);
+      Navigator.popAndPushNamed(mContext!, Move.mainScreenPage);
     } else {
       ScaffoldMessenger.of(mContext!)
           .showSnackBar(SnackBar(content: Text(responseDTO.error)));

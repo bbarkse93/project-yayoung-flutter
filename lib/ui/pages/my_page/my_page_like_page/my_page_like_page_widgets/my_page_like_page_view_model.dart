@@ -4,6 +4,7 @@ import 'dart:ffi';
 
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:logger/logger.dart';
+import 'package:team_project/_core/constants/http.dart';
 import 'package:team_project/data/dto/response_dto.dart';
 import 'package:team_project/data/repository/camp_bookmark_repository.dart';
 import 'package:team_project/data/repository/user_repository.dart';
@@ -60,9 +61,10 @@ class LikePageViewModel extends StateNotifier<LikePageModel?> {
   LikePageViewModel(super._state, this.ref);
 
   Future<void> notifyInit() async {
-   // SessionUser sessionUser = ref.read(sessionStore);
+    String jwt = await secureStorage.read(key: 'jwt') as String;
+
     //TODO 언약 : 세션에서 토큰 꺼내서 info 넘기기
-    ResponseDTO responseDTO = await CampBookmarkRepository().fetchLikeInfo();
+    ResponseDTO responseDTO = await CampBookmarkRepository().fetchLikeInfo(jwt);
     Logger().d("값 받니? ${responseDTO.response}");
     LikePageModel model = responseDTO.response;
     state = LikePageModel(

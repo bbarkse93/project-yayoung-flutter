@@ -21,6 +21,8 @@ class _CustomSearchFormFieldState extends ConsumerState<CustomSearchFormField> {
   @override
   Widget build(BuildContext context) {
     final searchViewModel = ref.watch(searchProvider.notifier);
+
+
     return Expanded(
       child: SizedBox(
         height: gapSemiLarge,

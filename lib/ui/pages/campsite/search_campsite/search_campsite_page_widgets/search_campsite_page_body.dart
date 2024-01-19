@@ -22,9 +22,12 @@ class SearchCampsitePageBody extends ConsumerWidget {
       );
     }
 campList = model!.campList!;
+    
+    
     return Container(
       decoration: BoxDecoration(color: kSubColor),
-      child: ListView.builder(
+      child: campList.isNotEmpty 
+       ? ListView.builder(
         itemCount: campList.length,
         itemBuilder: (context, index) {
           return ListTile(
@@ -41,7 +44,8 @@ campList = model!.campList!;
             ),
           );
         },
-      ),
+      )
+          : Center(child: Text("캠핑장 이름을 2글자 이상 입력해주세요.", style: TextStyle(color: kFontContent),))
     );
   }
 }

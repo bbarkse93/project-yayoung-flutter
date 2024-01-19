@@ -21,11 +21,11 @@ class CampingListCardForm extends ConsumerWidget {
     List<MyCamping>? campingList = model?.campingList;
 
     if (campingList == null) {
-      return Center(child: Text('캠핑 기록이 없어요: $index'));
-    }
-    if (index < 0 || index >= campingList.length) {
       return Center(child: CircularProgressIndicator());
     }
+    // if (index < 0 || index >= campingList.length) {
+    //   return Center(child: CircularProgressIndicator());
+    // }
 
     return Container(
       width: MediaQuery.of(context).size.width,
