@@ -1,11 +1,9 @@
 import 'package:flutter/material.dart';
 import 'package:logger/logger.dart';
-import 'package:team_project/data/store/param_store.dart';
 import 'package:team_project/ui/pages/auth/login_page.dart';
 import 'package:team_project/ui/pages/campsite/campsite_detail/campsite_detail_page.dart';
 import 'package:team_project/ui/pages/campsite/campsite_list/campsite_list_page.dart';
 import 'package:team_project/ui/pages/campsite/campsite_map/campsite_call.dart';
-import 'package:team_project/ui/pages/campsite/campsite_map/campsite_map_page.dart';
 import 'package:team_project/ui/pages/campsite/search_campsite/search_campsite_page.dart';
 import 'package:team_project/ui/pages/home/home_page.dart';
 import 'package:team_project/ui/pages/my_page/main_page.dart';
@@ -78,7 +76,12 @@ Map<String, Widget Function(BuildContext)> getRouters() {
       return CampsiteDetailPage(campId: campId ?? 1);
     },
     Move.campsiteListPage: (p0) => CampsiteListPage(),
-    Move.refundPage: (context) => RefundPage(),
+    Move.refundPage: (context) {
+      final arguments = ModalRoute.of(context)!.settings.arguments as Map<String, dynamic>;
+      final int campId = arguments['campId'] as int;
+      final int orderId = arguments['orderId'] as int;
+      return RefundPage(campId: campId, orderId: orderId);
+    },
     Move.reservationPage: (context) {
       final arguments = ModalRoute.of(context)!.settings.arguments as Map<String, dynamic>;
       final campId = arguments['campId'] as int;

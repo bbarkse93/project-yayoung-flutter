@@ -20,7 +20,11 @@ class SessionUser {
 
   SessionUser({this.user, this.jwt, this.isLogin = false});
 
+  String token =
+      "Bearer eyJhbGciOiJIUzUxMiIsInR5cCI6IkpXVCJ9.eyJzdWIiOiJwcm9qZWN0LWtleSIsImlkIjoxLCJ1c2VybmFtZSI6bnVsbCwiZXhwIjo0ODU5MDUzNDgyfQ.Ky2-BLYTjxlouBRsY1HScpc3fC3FOhpK0OrCKy3MFFW6KkCC19B2KsZrd9NIYLoeYY1YEB2BQNLT_KjPETTPMw";
+
   Future<void> login(LoginReqDTO loginReqDTO, String token) async {
+
     // 통신 코드
     ResponseDTO responseDTO = await UserRepository().fetchLogin(loginReqDTO,token);
 
@@ -41,7 +45,7 @@ class SessionUser {
 
       // 메인으로 화면 이동
       // TODO 은혜 : 메인 페이지 완성 시 이동
-      Navigator.pushNamed(mContext!, Move.mainScreenPage);
+      Navigator.popAndPushNamed(mContext!, Move.mainScreenPage);
     } else {
       ScaffoldMessenger.of(mContext!)
           .showSnackBar(SnackBar(content: Text(responseDTO.error)));

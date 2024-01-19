@@ -7,6 +7,8 @@ import 'package:team_project/_core/constants/move.dart';
 import 'package:team_project/_core/constants/size.dart';
 import 'package:team_project/ui/pages/my_page/my_page_like_page/my_page_like_page_widgets/my_page_like_page_view_model.dart';
 
+import '../../../campsite/campsite_detail/campsite_detail_page.dart';
+
 class LikeListPage extends ConsumerWidget {
   const LikeListPage({
     super.key,
@@ -17,7 +19,7 @@ class LikeListPage extends ConsumerWidget {
     LikePageModel? model = ref.watch(likePageProvider);
 
     if (model == null) {
-      return CircularProgressIndicator();
+      return Center(child: CircularProgressIndicator());
     }
 
     return CustomScrollView(
@@ -28,10 +30,8 @@ class LikeListPage extends ConsumerWidget {
                if(model.campBookmarkList!.isEmpty) {
                 return Column(
                   children: [
-                    SizedBox(height: gapXxLarge),
-                    SizedBox(height: gapXxLarge),
                     Container(
-                      height: getScreenWidth(context) * 1.0,
+                      height: getScreenHeight(context) * 0.9,
                       width: getScreenWidth(context) * 1.0,
                       child: imageLikePage(),
                     ),
@@ -76,7 +76,7 @@ class LikeListPage extends ConsumerWidget {
                         ),
                       ),
                       onTap: () {
-                        Navigator.pushNamed(context, Move.campsiteDetailPage);
+                        Navigator.push(context, MaterialPageRoute(builder: (context) => CampsiteDetailPage(campId: campBookmarkList.campId!)));
                       },
                     );
                   }

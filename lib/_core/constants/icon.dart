@@ -351,13 +351,24 @@ Image imageSettingOffButton({double mWidth = 25, double mHeight = 25}) {
 
 // 관심페이지 빈 이미지
 Image imageLikePage({double mWidth = 25, double mHeight = 25}) {
-  return Image.asset("assets/images/like_page.png", width: mWidth, height: mHeight);
+  return Image.asset("assets/images/like_list.png", width: mWidth, height: mHeight);
 }
 
 // 필터 빈 이미지
 Image imageFilerPage({double mWidth = 25, double mHeight = 25}) {
   return Image.asset("assets/images/filter_page.png", width: mWidth, height: mHeight);
 }
+
+// 내캠핑장 빈 이미지
+Image imageMyCampingListPage({double mWidth = 25, double mHeight = 25}) {
+  return Image.asset("assets/images/my_camping_list.png", width: mWidth, height: mHeight);
+}
+
+// 다녀온 캠핑장 빈 이미지
+Image imageMyCampingSchedulePage({double mWidth = 25, double mHeight = 25}) {
+  return Image.asset("assets/images/my_camping_schedule.png", width: mWidth, height: mHeight);
+}
+
 
 // 검색 빈 이미지
 Image imageSearchPage({double mWidth = 25, double mHeight = 25}) {

@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:logger/logger.dart';
 import 'package:team_project/_core/constants/color.dart';
 import 'package:team_project/_core/constants/http.dart';
@@ -7,16 +8,20 @@ import 'package:team_project/_core/constants/move.dart';
 import 'package:team_project/_core/constants/size.dart';
 import 'package:team_project/data/model/camp.dart';
 import 'package:team_project/data/model/campsite_detail.dart';
+import 'package:team_project/ui/pages/campsite/campsite_detail/campsite_detail_view_model.dart';
 import 'package:team_project/ui/pages/campsite/campsite_map/campsite_map_page.dart';
 
-class CampsiteDetailHeader extends StatelessWidget {
+import '../../../../../data/dto/camp_request_dto.dart';
+
+class CampsiteDetailHeader extends ConsumerWidget {
   CampsiteDetail campInfo;
 
   CampsiteDetailHeader({Key? key, required this.campInfo}) : super(key: key);
 
   @override
-  Widget build(BuildContext context) {
-    return SliverAppBar(
+  Widget build(BuildContext context, WidgetRef ref) {
+
+      return SliverAppBar(
       scrolledUnderElevation: 0,
       automaticallyImplyLeading: false,
       leading: InkWell(
@@ -114,8 +119,15 @@ class CampsiteDetailHeader extends StatelessWidget {
               ),
               SizedBox(width: gapSmall),
               InkWell(
-                child: iconEmptyHeart(mColor: kFontGray),
-                onTap: () {},
+                child: campInfo.bookmark == false ? iconEmptyHeart(mColor: kFontGray) : iconFullHeart(mColor: kFontRed),
+                onTap: () async {
+                  CampSaveOrDeleteDTO requestDTO = CampSaveOrDeleteDTO(campInfo!.id!);
+                  if(campInfo.bookmark == false){
+                    ref.read(campsiteDetailProvider(campInfo!.id!).notifier).saveBookmark(requestDTO);
+                  }else{
+                    ref.read(campsiteDetailProvider(campInfo!.id!).notifier).deleteBookmark(requestDTO);
+                  }
+                },
               ),
             ],
           ),
