@@ -1,12 +1,18 @@
 import 'package:dio/dio.dart';
 import 'package:logger/logger.dart';
 import 'package:team_project/_core/constants/http.dart';
+import 'package:team_project/data/dto/camp_request_dto.dart';
 import 'package:team_project/data/dto/response_dto.dart';
+import 'package:team_project/data/model/camp_bookmark_state.dart';
 import 'package:team_project/data/model/camp_image.dart';
 import 'package:team_project/data/model/campsite_detail.dart';
+import 'package:team_project/data/repository/camp_bookmark_repository.dart';
 
 void main() async {
-  await fetchCampDetail(1);
+  String jwt =
+      "Bearer eyJhbGciOiJIUzUxMiIsInR5cCI6IkpXVCJ9.eyJzdWIiOiJwcm9qZWN0LWtleSIsImlkIjoxLCJ1c2VybmFtZSI6bnVsbCwiZXhwIjo0ODU5MDUzNDgyfQ.Ky2-BLYTjxlouBRsY1HScpc3fC3FOhpK0OrCKy3MFFW6KkCC19B2KsZrd9NIYLoeYY1YEB2BQNLT_KjPETTPMw";
+  CampSaveOrDeleteDTO requestDTO = CampSaveOrDeleteDTO(7);
+  await fetchDeleteBookmark(requestDTO, jwt);
 }
 
 class CampInfo {
@@ -327,5 +333,20 @@ Future<ResponseDTO> fetchCampDetail(int id) async {
     return responseDTO;
   } catch (e) {
     return ResponseDTO(false, "캠핑장 불러오기 실패", null);
+  }
+}
+
+Future<ResponseDTO> fetchDeleteBookmark(CampSaveOrDeleteDTO requestDTO, String jwt) async {
+  try{
+    // 통신
+    Response response = await dio.delete("/camp/bookmark", options: Options(headers: {'Authorization': jwt}), data: requestDTO.toJson());
+    // 응답 받은 데이터 파싱
+    ResponseDTO responseDTO = ResponseDTO.fromJson(response.data);
+    responseDTO.response = CampBookmarkState.fromJson(responseDTO.response);
+
+    return responseDTO;
+
+  }catch(e){
+    return ResponseDTO(false, "북마크 삭제 실패", null);
   }
 }
