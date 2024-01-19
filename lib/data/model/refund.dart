@@ -10,19 +10,23 @@ class Refund {
   String? checkOutDate;
   String? fieldName;
   String? totalPrice;
+  int? nights;
+  String? orderNumber;
 
   Refund(
       {this.campName,
-        this.campAddress,
-        this.minPrice,
-        this.maxPrice,
-        this.isOpen,
-        this.campImage,
-        this.campFieldImage,
-        this.checkInDate,
-        this.checkOutDate,
-        this.fieldName,
-        this.totalPrice});
+      this.campAddress,
+      this.minPrice,
+      this.maxPrice,
+      this.isOpen,
+      this.campImage,
+      this.campFieldImage,
+      this.checkInDate,
+      this.checkOutDate,
+      this.fieldName,
+      this.totalPrice,
+      this.nights,
+      this.orderNumber});
 
   Refund.fromJson(Map<String, dynamic> json)
       : campName = json["campInfoDTO"]["campName"],
@@ -35,8 +39,9 @@ class Refund {
         checkInDate = json["checkInDate"],
         checkOutDate = json["checkOutDate"],
         fieldName = json["fieldName"],
-        totalPrice = json["totalPrice"];
-
+        totalPrice = json["totalPrice"],
+        nights = json["nights"],
+        orderNumber = json["orderNumber"];
 
   @override
   String toString() {
@@ -51,6 +56,8 @@ class Refund {
         'checkOutDate: $checkOutDate, '
         'fieldName: $fieldName, '
         'campFieldImage: $campFieldImage, '
-        'totalPrice: $totalPrice}';
+        'totalPrice: $totalPrice, '
+        'nights: $nights, '
+        'orderNumber: $orderNumber}';
   }
 }

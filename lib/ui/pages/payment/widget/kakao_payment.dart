@@ -9,10 +9,8 @@ import 'package:iamport_flutter/model/payment_data.dart';
 import 'package:intl/intl.dart';
 import 'package:logger/logger.dart';
 import 'package:team_project/_core/constants/icon.dart';
-import 'package:team_project/_core/constants/move.dart';
+import 'package:team_project/data/dto/payment_request_dto.dart';
 import 'package:team_project/data/dto/response_dto.dart';
-import 'package:team_project/data/dto/user_request_dto.dart';
-import 'package:team_project/data/model/campsite_detail.dart';
 import 'package:team_project/data/repository/payment_repository.dart';
 import 'package:team_project/ui/pages/payment/payment_view_model.dart';
 import 'package:team_project/ui/pages/payment_success/payment_success_page.dart';
@@ -91,8 +89,17 @@ class KakaoPayment extends ConsumerWidget {
             checkIn: reservationData.startDate!,
             checkOut: reservationData.endDate!,
             fieldName: reservationData.campField,
-            // totalPrice: reservationData.totalAmount,
+            totalPrice: reservationData.totalAmount,
+            orderNumber: '', // 일단 빈 값으로 생성
           );
+
+          // 결제가 성공했을 때 orderNumber 채우기
+          if (result['imp_success'] == 'true') {
+            requestDTO = requestDTO.copyWith(
+              orderNumber: 'mid_${DateTime.now().millisecondsSinceEpoch}',
+            );
+          }
+
           print("PaymentReqDTO 통과했나요?");
           Logger().d("요청 전 campId: ${requestDTO.campId}");
           Logger().d("요청 전 checkIn: ${requestDTO.checkIn}");
@@ -111,14 +118,12 @@ class KakaoPayment extends ConsumerWidget {
           Logger().d("성공했니?? ${responseDTO.success}");
 
           if (responseDTO.success == true) {
-            // Navigator.popUntil(context, (route) => route.settings.name == Move.campsiteDetailPage);
             Navigator.pushReplacement(
               context,
               MaterialPageRoute(
                 builder: (context) => PaymentSuccessPage(campId: campId),
               ),
             );
-
           } else {
             // 실패한 경우에 대한 처리
             showDialog(

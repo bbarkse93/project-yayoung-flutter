@@ -1,9 +1,8 @@
 import 'package:dio/dio.dart';
 import 'package:logger/logger.dart';
 import 'package:team_project/_core/constants/http.dart';
-import 'package:team_project/data/dto/refund_request_dto.dart';
+import 'package:team_project/data/dto/payment_request_dto.dart';
 import 'package:team_project/data/dto/response_dto.dart';
-import 'package:team_project/data/dto/user_request_dto.dart';
 
 class PaymentRepository {
   Future<ResponseDTO> fetchPayment(PaymentReqDTO dto) async {

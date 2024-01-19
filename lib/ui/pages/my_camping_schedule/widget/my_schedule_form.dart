@@ -7,11 +7,15 @@ import 'package:team_project/_core/constants/size.dart';
 import 'package:team_project/ui/pages/my_camping_schedule/my_camping_schedule_view_model.dart';
 
 class MyScheduleForm extends ConsumerWidget {
+  final int index;
+  final int campId;
+  final int orderId;
+
   const MyScheduleForm({Key? key,
     required this.index,
+    required this.campId,
+    required this.orderId,
   }) : super(key: key);
-
-  final int index;
 
   @override
   Widget build(BuildContext context, WidgetRef ref) {
@@ -52,7 +56,7 @@ class MyScheduleForm extends ConsumerWidget {
                 ),
                 IconButton(
                   onPressed: () {
-                    _showAlertDialog(context, campingScheduleList[index].campId);
+                    _showAlertDialog(context);
                   },
                   icon: iconClose(),
                 ),
@@ -116,7 +120,7 @@ class MyScheduleForm extends ConsumerWidget {
                 ),
                 TextButton(
                   onPressed: () {
-                    Navigator.pushNamed(context, Move.refundPage, arguments: campId);
+                    Navigator.pushNamed(context, Move.refundPage, arguments: {'campId': campId, 'orderId': orderId});
                   },
                   child: Text(
                     '예약 취소',
