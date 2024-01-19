@@ -1,25 +1,21 @@
 import 'package:flutter/material.dart';
+import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:team_project/_core/constants/color.dart';
 import 'package:team_project/_core/constants/size.dart';
+import 'package:team_project/ui/pages/refund/refund_view_model.dart';
+import 'package:tuple/tuple.dart';
 
-class RefundReservationForm extends StatelessWidget {
-  final String startDate;
-  final String endDate;
-  final String area;
-  final int refundPrice;
-  final int countDay;
+class RefundReservationForm extends ConsumerWidget {
+  final int orderId;
+  final int campId;
 
-  const RefundReservationForm({
+  const RefundReservationForm(this.campId, this.orderId, {
     super.key,
-    required this.startDate,
-    required this.endDate,
-    required this.area,
-    required this.refundPrice,
-    required this.countDay,
   });
 
   @override
-  Widget build(BuildContext context) {
+  Widget build(BuildContext context, WidgetRef ref) {
+    final refundViewModel = ref.watch(refundProvider(Tuple2(campId, orderId)));
     return Container(
       width: double.infinity,
       height: 160,
@@ -45,7 +41,7 @@ class RefundReservationForm extends StatelessWidget {
                   style: subTitle3(mFontWeight: FontWeight.normal),
                 ),
                 Text(
-                  "${startDate} ~ ${endDate}/${countDay}박",
+                  "${refundViewModel?.refund?.checkInDate} ~ ${refundViewModel?.refund?.checkOutDate}/${refundViewModel?.refund?.nights}박",
                   style: subTitle3(mFontWeight: FontWeight.normal),
                 ),
               ],
@@ -59,7 +55,7 @@ class RefundReservationForm extends StatelessWidget {
                   style: subTitle3(mFontWeight: FontWeight.normal),
                 ),
                 Text(
-                  "${area}",
+                  "${refundViewModel?.refund?.fieldName}",
                   style: subTitle3(mFontWeight: FontWeight.normal),
                 ),
               ],
@@ -73,7 +69,7 @@ class RefundReservationForm extends StatelessWidget {
                   style: subTitle2(mColor: kFontRed),
                 ),
                 Text(
-                  "₩${refundPrice}",
+                  "₩${refundViewModel?.refund?.totalPrice}",
                   style: subTitle2(mColor: kFontRed),
                 ),
               ],
