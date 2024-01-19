@@ -9,6 +9,8 @@ import 'package:team_project/data/store/session_user.dart';
 import 'package:team_project/main.dart';
 
 class MyCampingScheduleDTO {
+  final int campId;
+  final int orderId;
   final String campName;
   final String campAddress;
   final String checkInDate;
@@ -16,6 +18,8 @@ class MyCampingScheduleDTO {
   final String campField;
 
   MyCampingScheduleDTO({
+    required this.campId,
+    required this.orderId,
     required this.campName,
     required this.campAddress,
     required this.checkInDate,
@@ -24,6 +28,8 @@ class MyCampingScheduleDTO {
   });
 
   factory MyCampingScheduleDTO.fromJson(Map<String, dynamic> json) => MyCampingScheduleDTO(
+    campId: json["campId"],
+    orderId: json["orderId"],
     campName: json["campName"],
     campAddress: json["campAddress"],
     checkInDate: json["checkInDate"],
@@ -32,6 +38,8 @@ class MyCampingScheduleDTO {
   );
 
   Map<String, dynamic> toJson() => {
+    "campId": campId,
+    "orderId": orderId,
     "campName": campName,
     "campAddress": campAddress,
     "checkInDate": checkInDate,

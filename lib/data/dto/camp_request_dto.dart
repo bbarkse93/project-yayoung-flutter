@@ -14,5 +14,14 @@ class CampListDTO {
       if (optionNames != null) 'optionNames': optionNames!.join(','),
     };
   }
+}
+
+class CampSaveOrDeleteDTO {
+  late final int campId;
+  CampSaveOrDeleteDTO(this.campId);
+
+  Map<String, dynamic> toJson() => {
+    "campId": campId,
+  };
 
 }

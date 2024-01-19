@@ -1,20 +1,37 @@
 import 'package:flutter/material.dart';
+import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:team_project/_core/constants/color.dart';
 import 'package:team_project/_core/constants/move.dart';
 import 'package:team_project/_core/constants/size.dart';
+import 'package:team_project/data/dto/refund_request_dto.dart';
+import 'package:team_project/data/dto/response_dto.dart';
+import 'package:team_project/data/repository/refund_repository.dart';
+import 'package:team_project/ui/pages/refund/refund_view_model.dart';
+import 'package:tuple/tuple.dart';
 
-class RefundButton extends StatelessWidget {
-  const RefundButton({
+class RefundButton extends ConsumerWidget {
+  final int campId;
+  final int orderId;
+
+  const RefundButton(this.campId, this.orderId, {
     super.key,
   });
 
   @override
-  Widget build(BuildContext context) {
+  Widget build(BuildContext context, WidgetRef ref) {
+    final refundViewModel = ref.watch(refundProvider(Tuple2(campId, orderId)));
     return FractionallySizedBox(
       widthFactor: 0.7, // 원하는 비율로 조절
       child: InkWell(
         onTap: () {
-          _showAlertDialog(context);
+          RefundReqDTO reqDTO = RefundReqDTO(
+              orderId: orderId,
+              orderNumber:"${refundViewModel!.refund!.orderNumber ?? 0}",
+              refund: "${refundViewModel!.refund!.totalPrice ?? 0}",
+          );
+
+          ref.read(refundProvider(Tuple2(campId, orderId)).notifier)
+              .refundRequest(reqDTO);
         },
         child: Container(
           height: 60,

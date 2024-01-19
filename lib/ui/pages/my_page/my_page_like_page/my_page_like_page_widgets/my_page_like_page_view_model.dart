@@ -60,6 +60,9 @@ class LikePageViewModel extends StateNotifier<LikePageModel?> {
   Ref ref;
   LikePageViewModel(super._state, this.ref);
 
+  String jwt =
+      "Bearer eyJhbGciOiJIUzUxMiIsInR5cCI6IkpXVCJ9.eyJzdWIiOiJwcm9qZWN0LWtleSIsImlkIjoxLCJ1c2VybmFtZSI6bnVsbCwiZXhwIjo0ODU5MDUzNDgyfQ.Ky2-BLYTjxlouBRsY1HScpc3fC3FOhpK0OrCKy3MFFW6KkCC19B2KsZrd9NIYLoeYY1YEB2BQNLT_KjPETTPMw";
+
   Future<void> notifyInit() async {
     String jwt = await secureStorage.read(key: 'jwt') as String;
 

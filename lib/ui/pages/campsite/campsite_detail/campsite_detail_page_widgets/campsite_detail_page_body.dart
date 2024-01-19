@@ -24,7 +24,7 @@ class CampsiteDetailPageBody extends ConsumerWidget {
         child: CircularProgressIndicator(),
       );
     }
-    campInfo = model.campInfo;
+    campInfo = model.campInfo!;
 
     return CustomScrollView(
         slivers: [

@@ -39,7 +39,12 @@ class MyCampingSchedulePageBody extends ConsumerWidget {
               itemBuilder: (context, index) {
                 return Column(
                   children: [
-                    MyScheduleForm(index: index),
+                    MyScheduleForm(
+                        index: index,
+                        campId: myCampingScheduleModel
+                            .campingScheduleList[index].campId,
+                        orderId: myCampingScheduleModel
+                            .campingScheduleList[index].orderId),
                     SizedBox(height: gapLarge),
                   ],
                 );

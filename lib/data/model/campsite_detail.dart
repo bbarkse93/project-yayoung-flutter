@@ -13,6 +13,7 @@ class CampsiteDetail {
   String? campRefundPolicy;
   bool? campWater;
   bool? campGarbageBag;
+  bool? bookmark;
   String? holiday;
   String? campCheckIn;
   String? campCheckOut;
@@ -44,6 +45,7 @@ class CampsiteDetail {
       this.campRefundPolicy,
       this.campWater,
       this.campGarbageBag,
+      this.bookmark,
       this.holiday,
       this.campCheckIn,
       this.campCheckOut,
@@ -76,6 +78,7 @@ class CampsiteDetail {
         campRefundPolicy = json["campInfo"]["campRefundPolicy"],
         campWater = json["campInfo"]["campWater"],
         campGarbageBag = json["campInfo"]["campGarbageBag"],
+        bookmark = json["campInfo"]["bookmark"],
         holiday = json["campInfo"]["holiday"],
         campCheckIn = json["campInfo"]["campCheckIn"],
         campCheckOut = json["campInfo"]["campCheckOut"],
@@ -120,7 +123,7 @@ class CampsiteDetail {
 
   @override
   String toString() {
-    return 'CampInfo{id: $id, campName: $campName, campAddress: $campAddress, campCallNumber: $campCallNumber, campWebsite: $campWebsite, campRefundPolicy: $campRefundPolicy, campWater: $campWater, campGarbageBag: $campGarbageBag, holiday: $holiday, campCheckIn: $campCheckIn, campCheckOut: $campCheckOut, campFieldImage: $campFieldImage, minPrice: $minPrice, maxPrice: $maxPrice, totalRating: $totalRating, cleanlinessAverage: $cleanlinessAverage, managementnessAverage: $managementnessAverage, friendlinessAverage: $friendlinessAverage, reviewCount: $reviewCount, images: $images, environment: $environment, type: $type, site: $site, mainFacility: $mainFacility, haveFacility: $haveFacility, exerciseFacility: $exerciseFacility, sell: $sell, rental: $rental}';
+    return 'CampInfo{id: $id, campName: $campName, campAddress: $campAddress, campCallNumber: $campCallNumber, campWebsite: $campWebsite, campRefundPolicy: $campRefundPolicy, campWater: $campWater, campGarbageBag: $campGarbageBag, bookmark: $bookmark ,holiday: $holiday, campCheckIn: $campCheckIn, campCheckOut: $campCheckOut, campFieldImage: $campFieldImage, minPrice: $minPrice, maxPrice: $maxPrice, totalRating: $totalRating, cleanlinessAverage: $cleanlinessAverage, managementnessAverage: $managementnessAverage, friendlinessAverage: $friendlinessAverage, reviewCount: $reviewCount, images: $images, environment: $environment, type: $type, site: $site, mainFacility: $mainFacility, haveFacility: $haveFacility, exerciseFacility: $exerciseFacility, sell: $sell, rental: $rental}';
   }
 }
 

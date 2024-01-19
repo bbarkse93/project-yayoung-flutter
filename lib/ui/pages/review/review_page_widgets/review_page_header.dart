@@ -2,9 +2,11 @@ import 'package:flutter/material.dart';
 import 'package:team_project/_core/constants/color.dart';
 import 'package:team_project/_core/constants/icon.dart';
 import 'package:team_project/_core/constants/size.dart';
+import 'package:team_project/ui/pages/review/review_page_view_model.dart';
 
 class ReviewPageHeader extends StatelessWidget {
-  const ReviewPageHeader({super.key});
+  ReviewListModel? model;
+  ReviewPageHeader({super.key, required this.model});
 
   @override
   Widget build(BuildContext context) {
@@ -17,7 +19,7 @@ class ReviewPageHeader extends StatelessWidget {
         child: Column(
           children: [
             Text(
-              "캠핑장 이름",
+              "${model?.campReviewList?.campName}",
               style:
                   TextStyle(fontSize: fontLarge, fontWeight: FontWeight.bold),
             ),
