@@ -1,12 +1,15 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
+import 'package:logger/logger.dart';
 import 'package:team_project/_core/constants/color.dart';
 import 'package:team_project/_core/constants/icon.dart';
 import 'package:team_project/_core/constants/size.dart';
+import 'package:team_project/data/dto/review_request_dto.dart';
 import 'package:team_project/data/model/campsite_detail.dart';
 import 'package:team_project/ui/pages/campsite/campsite_detail/campsite_detail_view_model.dart';
+import 'package:team_project/ui/pages/review/review_page_view_model.dart';
 
-class ReviewBottomSheet extends ConsumerWidget {
+class ReviewBottomSheet extends ConsumerStatefulWidget {
   int? campId;
 
   ReviewBottomSheet({
@@ -15,15 +18,31 @@ class ReviewBottomSheet extends ConsumerWidget {
   });
 
   @override
-  Widget build(BuildContext context, WidgetRef ref) {
-    final reviewContent = TextEditingController();
-    CampDetailModel? campInfo = ref.watch(campsiteDetailProvider(campId ?? 0));
+  ConsumerState<ReviewBottomSheet> createState() => _ReviewBottomSheetState();
+}
+
+class _ReviewBottomSheetState extends ConsumerState<ReviewBottomSheet> {
+  final reviewContent = TextEditingController();
+  CampDetailModel? campInfo;
+  int cleanlinessRating = 0;
+  int managementnessRating = 0;
+  int friendlinessRating = 0;
+
+
+
+
+  @override
+  Widget build(BuildContext context) {
+    campInfo = ref.watch(campsiteDetailProvider(widget.campId ?? 0));
     if (campInfo == null) {
       return Center(
         child: CircularProgressIndicator(),
       );
     }
-    CampsiteDetail campDetail = campInfo.campInfo;
+    CampsiteDetail campDetail = campInfo!.campInfo;
+
+
+
     return Container(
       height: MediaQuery.of(context).size.height * 0.9,
       decoration: BoxDecoration(
@@ -62,72 +81,22 @@ class ReviewBottomSheet extends ConsumerWidget {
             ),
             const Divider(),
             const SizedBox(height: gapSmall),
-            Row(
-              mainAxisAlignment: MainAxisAlignment.spaceBetween,
-              children: [
-                const Text(
-                  "청결도",
-                  style: TextStyle(fontSize: fontSemiMedium),
-                ),
-                InkWell(
-                  child: Row(
-                    children: [
-                      iconEmptyStar(),
-                      iconEmptyStar(),
-                      iconEmptyStar(),
-                      iconEmptyStar(),
-                      iconEmptyStar(),
-                    ],
-                  ),
-                  onTap: () {},
-                ),
-              ],
-            ),
-            const SizedBox(height: gapSmall),
-            Row(
-              mainAxisAlignment: MainAxisAlignment.spaceBetween,
-              children: [
-                const Text(
-                  "관리수준",
-                  style: TextStyle(fontSize: fontSemiMedium),
-                ),
-                InkWell(
-                  child: Row(
-                    children: [
-                      iconEmptyStar(),
-                      iconEmptyStar(),
-                      iconEmptyStar(),
-                      iconEmptyStar(),
-                      iconEmptyStar(),
-                    ],
-                  ),
-                  onTap: () {},
-                ),
-              ],
-            ),
-            const SizedBox(height: gapSmall),
-            Row(
-              mainAxisAlignment: MainAxisAlignment.spaceBetween,
-              children: [
-                const Text(
-                  "친절도",
-                  style: TextStyle(fontSize: fontSemiMedium),
-                ),
-                InkWell(
-                  child: Row(
-                    children: List.generate(
-                      5,
-                          (index) => index < ref.watch(starRatingProvider)
-                          ? iconFullStar()
-                          : iconEmptyStar(),
-                    ),
-                  ),
-                  onTap: () {
-                    ref.read(starRatingProvider.notifier).setRating(1);
-                  },
-                ),
-              ],
-            ),
+            StarRating(
+                ratingName: "청결도",
+                onRatingChanged: (rating) {
+                    cleanlinessRating = rating;
+                }),
+            StarRating(
+                ratingName: "관리수준",
+                onRatingChanged: (rating) {
+                  managementnessRating = rating;
+                  Logger().d("managementnessRating : $managementnessRating");
+                }),
+            StarRating(
+                ratingName: "친절도",
+                onRatingChanged: (rating) {
+                    friendlinessRating = rating;
+                }),
             const SizedBox(height: gapSmall),
             Container(
               decoration: BoxDecoration(
@@ -182,24 +151,64 @@ class ReviewBottomSheet extends ConsumerWidget {
                   ),
                 ),
               ),
-              onTap: () {},
+              onTap: () {
+                ReviewWriteDTO reviewDTO = ReviewWriteDTO(
+                  content: reviewContent.text,
+                  cleanliness: cleanlinessRating,
+                  managementness: managementnessRating,
+                  friendliness: friendlinessRating,
+                );
+                Logger().d(
+                    "content = ${reviewDTO.content}, cleanliness = ${reviewDTO.cleanliness}, managementness = ${reviewDTO.managementness}, friendliness = ${reviewDTO.friendliness}");
+                ref.watch(reviewListProvider(campInfo!.campInfo.id ?? 0).notifier).fetchSave(reviewDTO, campInfo!.campInfo.id ?? 0);
+              },
             )
           ],
         ),
       ),
     );
   }
+
+
 }
 
+class StarRating extends StatefulWidget {
+  final String ratingName;
+  final Function(int) onRatingChanged;
 
-final starRatingProvider = StateNotifierProvider<StarRatingNotifier, int>((ref) {
-  return StarRatingNotifier();
-});
+  StarRating({required this.ratingName, required this.onRatingChanged});
 
-class StarRatingNotifier extends StateNotifier<int> {
-  StarRatingNotifier() : super(0);
+  @override
+  _StarRatingState createState() => _StarRatingState();
+}
 
-  void setRating(int rating) {
-    state = rating;
+class _StarRatingState extends State<StarRating> {
+  int rating = 0;
+
+  @override
+  Widget build(BuildContext context) {
+    return Row(
+      mainAxisAlignment: MainAxisAlignment.spaceBetween,
+      children: [
+        Text(
+          "${widget.ratingName}",
+          style: TextStyle(fontSize: fontSemiMedium),
+        ),
+        Row(
+          children: List.generate(5, (index) {
+            return InkWell(
+              child: index < rating ? iconFullStar() : iconEmptyStar(),
+              onTap: () {
+                setState(() {
+                  rating = index + 1;
+                  widget.onRatingChanged(rating);
+                  Logger().d("별점 - ${widget.ratingName}: $rating");
+                });
+              },
+            );
+          }),
+        ),
+      ],
+    );
   }
 }

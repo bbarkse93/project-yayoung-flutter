@@ -1,12 +1,15 @@
 import 'package:dio/dio.dart';
+import 'package:flutter/material.dart';
 import 'package:logger/logger.dart';
 import 'package:riverpod/riverpod.dart';
 import 'package:team_project/_core/constants/http.dart';
+import 'package:team_project/_core/constants/move.dart';
 import 'package:team_project/data/dto/response_dto.dart';
 import 'package:team_project/data/dto/review_request_dto.dart';
 import 'package:team_project/data/model/camp_review_list.dart';
 import 'package:team_project/data/repository/review_repository.dart';
 import 'package:team_project/main.dart';
+import 'package:team_project/ui/pages/review/review_page.dart';
 
 class ReviewListModel {
   CampReviewList? campReviewList;
@@ -23,25 +26,25 @@ class ReviewListViewModel extends StateNotifier<ReviewListModel?> {
 
   Future<void> notifyInit(campId) async {
     ResponseDTO responseDTO = await ReviewRepository().fetchReviewList(campId);
+    Logger().d("${responseDTO.response}");
+
     state = ReviewListModel(responseDTO.response);
     Logger().d(state!.campReviewList.toString());
   }
 
-  Future<ResponseDTO> fetchSave(ReviewWriteDTO reviewWriteDTO, int campId) async {
-    try {
+Future<void> fetchSave(ReviewWriteDTO reviewWriteDTO, int campId) async {
 
-      Response<dynamic> response = await dio.post("/review/$campId",
-          // options: Options(headers: {"Authorization": "${jwt}"}),
-          data: reviewWriteDTO.toJson());
+  ResponseDTO responseDTO =
+  await ReviewRepository().fetchReviewSave(reviewWriteDTO, campId);
 
-      ResponseDTO responseDTO = ResponseDTO.fromJson(response.data);
-      Logger().d("responseDTO : ${responseDTO}");
-
-      return responseDTO;
-    } catch (e) {
-      return ResponseDTO(false, "리뷰를 등록할 수 없습니다.", null);
-    }
+  if (responseDTO.success == true) {
+    state = ReviewListModel(responseDTO.response);
+    // Navigator.pop(mContext!);
+  } else {
+    ScaffoldMessenger.of(mContext!)
+        .showSnackBar(SnackBar(content: Text(responseDTO.error)));
   }
+}
 
 }
 
