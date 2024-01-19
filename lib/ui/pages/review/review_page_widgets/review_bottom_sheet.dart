@@ -1,16 +1,48 @@
 import 'package:flutter/material.dart';
+import 'package:flutter_riverpod/flutter_riverpod.dart';
+import 'package:logger/logger.dart';
 import 'package:team_project/_core/constants/color.dart';
 import 'package:team_project/_core/constants/icon.dart';
 import 'package:team_project/_core/constants/size.dart';
+import 'package:team_project/data/dto/review_request_dto.dart';
+import 'package:team_project/data/model/campsite_detail.dart';
+import 'package:team_project/ui/pages/campsite/campsite_detail/campsite_detail_view_model.dart';
+import 'package:team_project/ui/pages/review/review_page_view_model.dart';
 
-class ReviewBottomSheet extends StatelessWidget {
-  const ReviewBottomSheet({
+class ReviewBottomSheet extends ConsumerStatefulWidget {
+  int? campId;
+
+  ReviewBottomSheet({
     super.key,
+    required this.campId,
   });
 
   @override
+  ConsumerState<ReviewBottomSheet> createState() => _ReviewBottomSheetState();
+}
+
+class _ReviewBottomSheetState extends ConsumerState<ReviewBottomSheet> {
+  final reviewContent = TextEditingController();
+  CampDetailModel? campInfo;
+  int cleanlinessRating = 0;
+  int managementnessRating = 0;
+  int friendlinessRating = 0;
+
+
+
+
+  @override
   Widget build(BuildContext context) {
-    final reviewContent = TextEditingController();
+    campInfo = ref.watch(campsiteDetailProvider(widget.campId ?? 0));
+    if (campInfo == null) {
+      return Center(
+        child: CircularProgressIndicator(),
+      );
+    }
+    CampsiteDetail campDetail = campInfo!.campInfo;
+
+
+
     return Container(
       height: MediaQuery.of(context).size.height * 0.9,
       decoration: BoxDecoration(
@@ -28,12 +60,12 @@ class ReviewBottomSheet extends StatelessWidget {
                   crossAxisAlignment: CrossAxisAlignment.start,
                   children: [
                     Text(
-                      "캠핑장 이름",
+                      "${campDetail.campName}",
                       style: TextStyle(
                           fontSize: fontLarge, fontWeight: FontWeight.bold),
                     ),
                     Text(
-                      "캠핑장 주소",
+                      "${campDetail.campAddress}",
                       style: TextStyle(
                           fontSize: fontMedium, fontWeight: FontWeight.bold),
                     ),
@@ -45,96 +77,26 @@ class ReviewBottomSheet extends StatelessWidget {
                     Navigator.pop(context);
                   },
                 ),
-                // 사진 넣을 때 살리면 됨
-                // InkWell(
-                //   child: Container(
-                //     decoration: BoxDecoration(
-                //         color: kBackLightGray,
-                //         borderRadius: BorderRadius.circular(gapSmall)),
-                //     child: Padding(
-                //       padding: const EdgeInsets.all(gapSmall),
-                //       child: Row(
-                //         children: [
-                //           iconPicture(),
-                //           SizedBox(
-                //             width: gapXSmall,
-                //           ),
-                //           Text("추가하기"),
-                //         ],
-                //       ),
-                //     ),
-                //   ),
-                //   onTap: () {},
-                // )
               ],
             ),
             const Divider(),
             const SizedBox(height: gapSmall),
-            Row(
-              mainAxisAlignment: MainAxisAlignment.spaceBetween,
-              children: [
-                const Text(
-                  "청결도",
-                  style: TextStyle(fontSize: fontSemiMedium),
-                ),
-                InkWell(
-                  child: Row(
-                    children: [
-                      iconFullStar(),
-                      iconFullStar(),
-                      iconFullStar(),
-                      iconFullStar(),
-                      iconFullStar(),
-                    ],
-                  ),
-                  onTap: () {},
-                ),
-              ],
-            ),
-            const SizedBox(height: gapSmall),
-            Row(
-              mainAxisAlignment: MainAxisAlignment.spaceBetween,
-              children: [
-                const Text(
-                  "관리수준",
-                  style: TextStyle(fontSize: fontSemiMedium),
-                ),
-                InkWell(
-                  child: Row(
-                    children: [
-                      iconFullStar(),
-                      iconFullStar(),
-                      iconFullStar(),
-                      iconFullStar(),
-                      iconFullStar(),
-                    ],
-                  ),
-                  onTap: () {},
-                ),
-              ],
-            ),
-            const SizedBox(height: gapSmall),
-            Row(
-              mainAxisAlignment: MainAxisAlignment.spaceBetween,
-              children: [
-                const Text(
-                  "친절도",
-                  style: TextStyle(fontSize: fontSemiMedium),
-                ),
-                InkWell(
-                  child: Row(
-                    children: [
-                      iconFullStar(),
-                      iconFullStar(),
-                      iconFullStar(),
-                      iconFullStar(),
-                      iconFullStar(),
-                    ],
-                  ),
-                  onTap: () {},
-                ),
-              ],
-            ),
+            StarRating(
+                ratingName: "청결도",
+                onRatingChanged: (rating) {
+                    cleanlinessRating = rating;
+                }),
+            StarRating(
+                ratingName: "관리수준",
+                onRatingChanged: (rating) {
+                  managementnessRating = rating;
+                  Logger().d("managementnessRating : $managementnessRating");
+                }),
+            StarRating(
+                ratingName: "친절도",
+                onRatingChanged: (rating) {
+                    friendlinessRating = rating;
+                }),
             const SizedBox(height: gapSmall),
             Container(
               decoration: BoxDecoration(
@@ -190,12 +152,63 @@ class ReviewBottomSheet extends StatelessWidget {
                 ),
               ),
               onTap: () {
-
+                ReviewWriteDTO reviewDTO = ReviewWriteDTO(
+                  content: reviewContent.text,
+                  cleanliness: cleanlinessRating,
+                  managementness: managementnessRating,
+                  friendliness: friendlinessRating,
+                );
+                Logger().d(
+                    "content = ${reviewDTO.content}, cleanliness = ${reviewDTO.cleanliness}, managementness = ${reviewDTO.managementness}, friendliness = ${reviewDTO.friendliness}");
+                ref.watch(reviewListProvider(campInfo!.campInfo.id ?? 0).notifier).fetchSave(reviewDTO, campInfo!.campInfo.id ?? 0);
               },
             )
           ],
         ),
       ),
+    );
+  }
+
+
+}
+
+class StarRating extends StatefulWidget {
+  final String ratingName;
+  final Function(int) onRatingChanged;
+
+  StarRating({required this.ratingName, required this.onRatingChanged});
+
+  @override
+  _StarRatingState createState() => _StarRatingState();
+}
+
+class _StarRatingState extends State<StarRating> {
+  int rating = 0;
+
+  @override
+  Widget build(BuildContext context) {
+    return Row(
+      mainAxisAlignment: MainAxisAlignment.spaceBetween,
+      children: [
+        Text(
+          "${widget.ratingName}",
+          style: TextStyle(fontSize: fontSemiMedium),
+        ),
+        Row(
+          children: List.generate(5, (index) {
+            return InkWell(
+              child: index < rating ? iconFullStar() : iconEmptyStar(),
+              onTap: () {
+                setState(() {
+                  rating = index + 1;
+                  widget.onRatingChanged(rating);
+                  Logger().d("별점 - ${widget.ratingName}: $rating");
+                });
+              },
+            );
+          }),
+        ),
+      ],
     );
   }
 }

@@ -75,7 +75,8 @@ class CampDetailViewModel extends StateNotifier<CampDetailModel?> {
 
 //창고 관리자
 final campsiteDetailProvider =
-    StateNotifierProvider.family<CampDetailViewModel, CampDetailModel?, int>(
+
+StateNotifierProvider.family.autoDispose<CampDetailViewModel, CampDetailModel?, int>(
         (ref, campId) {
   return CampDetailViewModel(null, ref)..notifyInit(campId);
 });

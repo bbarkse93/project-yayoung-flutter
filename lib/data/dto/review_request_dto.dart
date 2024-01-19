@@ -1,8 +1,8 @@
 class ReviewWriteDTO {
   final String? content;
-  final double? cleanliness;
-  final double? managementness;
-  final double? friendliness;
+  final int? cleanliness;
+  final int? managementness;
+  final int? friendliness;
 
   ReviewWriteDTO({
     this.content,

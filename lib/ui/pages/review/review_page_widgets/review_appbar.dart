@@ -6,9 +6,10 @@ import 'package:team_project/ui/pages/review/review_page_view_model.dart';
 import 'package:team_project/ui/pages/review/review_page_widgets/review_bottom_sheet.dart';
 
 class ReviewAppbar extends StatelessWidget implements PreferredSize{
-
-  const ReviewAppbar({
+int? campId;
+  ReviewAppbar({
     super.key,
+    required this.campId,
   });
   @override
   Size get preferredSize => Size.fromHeight(kToolbarHeight);
@@ -61,7 +62,7 @@ class ReviewAppbar extends StatelessWidget implements PreferredSize{
       isScrollControlled: true,
       context: context,
       builder: (BuildContext context) {
-        return ReviewBottomSheet();
+        return ReviewBottomSheet(campId: campId);
       },
     );
   }

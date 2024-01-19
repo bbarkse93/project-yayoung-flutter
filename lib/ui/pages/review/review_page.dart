@@ -16,12 +16,12 @@ class ReviewPage extends ConsumerWidget {
 
   @override
   Widget build(BuildContext context, WidgetRef ref) {
-    ReviewListModel? model = ref.watch(reviewListProvider(campId ?? 0));
+    ReviewListModel? reviewList = ref.watch(reviewListProvider(campId ?? 0));
 
-  if (model != null) {
+  if (reviewList != null) {
     return Scaffold(
-      appBar: ReviewAppbar(),
-      body: ReviewBody(model: model),
+      appBar: ReviewAppbar(campId: campId,),
+      body: ReviewBody(model: reviewList, campId: campId),
     );
   }
     return Center(
