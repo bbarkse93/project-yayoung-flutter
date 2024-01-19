@@ -4,6 +4,7 @@ import 'package:team_project/_core/constants/color.dart';
 import 'package:team_project/_core/constants/http.dart';
 import 'package:team_project/_core/constants/icon.dart';
 import 'package:team_project/_core/constants/size.dart';
+import 'package:team_project/_core/utils/format_util.dart';
 import 'package:team_project/ui/pages/campsite/campsite_detail/campsite_detail_view_model.dart';
 import 'package:team_project/ui/pages/review/review_page_view_model.dart';
 
@@ -39,11 +40,11 @@ class ReviewPageItems extends ConsumerWidget {
                             "${model?.campReviewList?.campReviewList?[index].nickname}"),
                         Row(
                           children: [
-                            iconFullStar(mSize: fontMedium),
-                            iconFullStar(mSize: fontMedium),
-                            iconFullStar(mSize: fontMedium),
-                            iconFullStar(mSize: fontMedium),
-                            iconFullStar(mSize: fontMedium),
+                            getStarIcon(0, model?.campReviewList?.campReviewList?[index].totalRating),
+                            getStarIcon(1, model?.campReviewList?.campReviewList?[index].totalRating),
+                            getStarIcon(2, model?.campReviewList?.campReviewList?[index].totalRating),
+                            getStarIcon(3, model?.campReviewList?.campReviewList?[index].totalRating),
+                            getStarIcon(4, model?.campReviewList?.campReviewList?[index].totalRating),
                           ],
                         )
                       ],
@@ -52,7 +53,7 @@ class ReviewPageItems extends ConsumerWidget {
                       mainAxisAlignment: MainAxisAlignment.spaceBetween,
                       children: [
                         Text(
-                            "${model?.campReviewList?.campReviewList?[index].createdAt}"),
+                            formatDateString(model?.campReviewList?.campReviewList?[index].createdAt ?? "0000/00/00")),
                       ],
                     ),
                   ),

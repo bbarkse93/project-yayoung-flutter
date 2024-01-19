@@ -6,6 +6,7 @@ import 'package:team_project/_core/constants/http.dart';
 import 'package:team_project/_core/constants/icon.dart';
 import 'package:team_project/_core/constants/move.dart';
 import 'package:team_project/_core/constants/size.dart';
+import 'package:team_project/_core/utils/format_util.dart';
 import 'package:team_project/data/model/camp.dart';
 import 'package:team_project/data/model/campsite_detail.dart';
 import 'package:team_project/ui/pages/campsite/campsite_detail/campsite_detail_view_model.dart';
@@ -52,7 +53,7 @@ class CampsiteDetailHeader extends ConsumerWidget {
                               style: TextStyle(fontSize: fontSmall),
                             ),
                             Text(
-                              "₩${campInfo.minPrice} ~ ${campInfo.maxPrice}",
+                              "₩${formatNumber(campInfo.minPrice ?? 0)} ~ ${formatNumber(campInfo.maxPrice ?? 0)}",
                               style: TextStyle(fontSize: fontSmall),
                             ),
                           ],

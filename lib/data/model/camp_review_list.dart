@@ -20,8 +20,8 @@ class CampReviewList {
 
   CampReviewList.fromJson(Map<String, dynamic> json)
       : campReviewList = (json["campReviewDTO"] as List<dynamic>? ?? [])
-      .map((i) => CampReviewDTO.fromJson(i))
-      .toList(),
+            .map((i) => CampReviewDTO.fromJson(i))
+            .toList(),
         campId = json["campId"],
         campName = json["campName"],
         campReviewCount = json["campReviewCount"];
@@ -40,6 +40,7 @@ class CampReviewDTO {
   double? friendliness;
   String? nickname;
   String? userImage;
+  double? totalRating;
   String? createdAt;
 
   CampReviewDTO({
@@ -50,6 +51,7 @@ class CampReviewDTO {
     this.friendliness,
     this.nickname,
     this.userImage,
+    this.totalRating,
     this.createdAt,
   });
 
@@ -61,6 +63,7 @@ class CampReviewDTO {
         friendliness = json["friendliness"],
         nickname = json["nickname"],
         userImage = json["userImage"],
+        totalRating = json["totalRating"],
         createdAt = json["createdAt"];
 
   @override
