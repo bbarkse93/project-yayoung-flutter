@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:team_project/_core/constants/size.dart';
 import 'package:team_project/ui/pages/refund/widget/campsite_info_form.dart';
 import 'package:team_project/ui/pages/refund/widget/refund_button.dart';
@@ -6,15 +7,20 @@ import 'package:team_project/ui/pages/refund/widget/refund_reservation_form.dart
 import 'package:team_project/ui/pages/refund/widget/refund_rule_form.dart';
 
 class RefundPageBody extends StatelessWidget {
+  final int campId;
+  final int orderId;
+
   const RefundPageBody({
     super.key,
+    required this.campId,
+    required this.orderId,
   });
 
   @override
   Widget build(BuildContext context) {
     return ListView(
       children: [
-        CampsiteInfoForm(campId: 1),
+        CampsiteInfoForm(campId: campId),
         SizedBox(height: gapXLarge),
         Padding(
           padding: const EdgeInsets.symmetric(horizontal: gapMain),
@@ -26,19 +32,14 @@ class RefundPageBody extends StatelessWidget {
                 style: subTitle1(),
               ),
               SizedBox(height: gapSmall),
-              RefundReservationForm(
-                  startDate: "2024-01-12",
-                  endDate: "2024-01-14",
-                  countDay: 2,
-                  area: "A1",
-                  refundPrice: 100000),
+              RefundReservationForm(campId, orderId),
               SizedBox(height: gapXLarge),
               RefundRuleForm(),
             ],
           ),
         ),
         SizedBox(height: gapXLarge),
-        RefundButton(),
+        RefundButton(campId, orderId),
         SizedBox(height: gapXLarge),
       ],
     );
