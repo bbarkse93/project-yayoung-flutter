@@ -1,7 +1,9 @@
 import 'package:logger/logger.dart';
 import 'package:team_project/data/dto/camp_request_dto.dart';
 import 'package:team_project/data/dto/response_dto.dart';
+import 'package:team_project/data/model/banner.dart';
 import 'package:team_project/data/model/camp.dart';
+import 'package:team_project/data/repository/banner_repository.dart';
 import 'package:team_project/data/repository/campsite_list_repository.dart';
 import 'package:riverpod/riverpod.dart';
 import 'package:team_project/main.dart';
@@ -38,16 +40,19 @@ class CampListViewModel extends StateNotifier<CampListModel?> {
   final mContext = navigatorKey.currentContext;
   Ref ref;
 
+  String jwt =
+      "Bearer eyJhbGciOiJIUzUxMiIsInR5cCI6IkpXVCJ9.eyJzdWIiOiJwcm9qZWN0LWtleSIsImlkIjoxLCJ1c2VybmFtZSI6bnVsbCwiZXhwIjo0ODU5MDUzNDgyfQ.Ky2-BLYTjxlouBRsY1HScpc3fC3FOhpK0OrCKy3MFFW6KkCC19B2KsZrd9NIYLoeYY1YEB2BQNLT_KjPETTPMw";
+
   Future<void> notifyInit() async {
     Logger().d("뷰모델 진입");
-    ResponseDTO responseDTO = await CampListRepository().fetchCampList();
+    ResponseDTO responseDTO = await CampListRepository().fetchCampList(jwt);
     Logger().d("모델에 값 담기 전 :${responseDTO.response}");
     state = CampListModel(responseDTO.response);
   }
 
   Future<void> campListFilter(CampListDTO campListDTO) async {
     Logger().d("뷰모델 진입 ${campListDTO.optionNames}");
-    ResponseDTO responseDTO = await CampListRepository().fetchCampListFilter(campListDTO);
+    ResponseDTO responseDTO = await CampListRepository().fetchCampListFilter(campListDTO, jwt);
     state = CampListModel(responseDTO.response);
   }
 

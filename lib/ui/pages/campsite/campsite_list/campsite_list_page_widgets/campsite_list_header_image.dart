@@ -3,9 +3,11 @@ import 'package:flutter/material.dart';
 
 class CampsiteListHeaderImage extends StatelessWidget {
   final List<String> imageUrls = [
-    "https://picsum.photos/200",
-    "https://picsum.photos/201",
-    "https://picsum.photos/202",
+    "assets/images/banner/banner1.jpg",
+    "assets/images/banner/banner2.jpg",
+    "assets/images/banner/banner3.jpg",
+    "assets/images/banner/banner4.jpg",
+    "assets/images/banner/banner5.jpg",
     // Add more image URLs as needed
   ];
 
@@ -37,7 +39,7 @@ class CampsiteListHeaderImage extends StatelessWidget {
               child: Container(
                 decoration: BoxDecoration(
                   image: DecorationImage(
-                    image: NetworkImage(url),
+                    image: AssetImage(url),
                     fit: BoxFit.cover,
                   ),
                 ),

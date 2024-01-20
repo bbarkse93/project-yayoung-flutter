@@ -6,13 +6,13 @@ import 'package:team_project/data/dto/response_dto.dart';
 import 'package:team_project/data/model/camp.dart';
 
 class CampListRepository {
-  Future<ResponseDTO> fetchCampList() async {
+  Future<ResponseDTO> fetchCampList(String jwt) async {
 
     try {
       Logger().d("통신하기 전");
 
       // 통신
-      final response = await dio.get("/camp/list");
+      final response = await dio.get("/camp/list", options: Options(headers: {'Authorization': jwt}));
       Logger().d("통신완료 ${response.data}");
 
 
@@ -30,13 +30,13 @@ class CampListRepository {
   }
 
 
-  Future<ResponseDTO> fetchCampListFilter(CampListDTO campListDTO) async {
+  Future<ResponseDTO> fetchCampListFilter(CampListDTO campListDTO, String jwt) async {
     try {
       Logger().d("필터 통신됨 ${campListDTO.optionNames}");
 
       // 통신
       final response = await dio.get(
-          "/camp/list", queryParameters: campListDTO.toQueryParameters());
+          "/camp/list", queryParameters: campListDTO.toQueryParameters(), options: Options(headers: {'Authorization': jwt}));
 
 
       // ResponseDTO파싱
@@ -52,11 +52,11 @@ class CampListRepository {
   }
 
 
-  Future<ResponseDTO> fetchSearchCamp(String keyword) async {
+  Future<ResponseDTO> fetchSearchCamp(String keyword, String jwt) async {
     try {
 
       // 통신
-      final response = await dio.get("/camp/search?keyword=$keyword");
+      final response = await dio.get("/camp/search?keyword=$keyword", options: Options(headers: {'Authorization': jwt}));
       Logger().d("response는? : $response");
       // ResponseDTO파싱
       ResponseDTO responseDTO = ResponseDTO.fromJson(response.data);

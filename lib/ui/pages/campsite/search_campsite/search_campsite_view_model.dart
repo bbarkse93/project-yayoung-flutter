@@ -20,13 +20,18 @@ class SearchViewModel extends StateNotifier<SearchModel?> {
   final mContext = navigatorKey.currentContext;
   Ref ref;
 
+  String jwt =
+      "Bearer eyJhbGciOiJIUzUxMiIsInR5cCI6IkpXVCJ9.eyJzdWIiOiJwcm9qZWN0LWtleSIsImlkIjoxLCJ1c2VybmFtZSI6bnVsbCwiZXhwIjo0ODU5MDUzNDgyfQ.Ky2-BLYTjxlouBRsY1HScpc3fC3FOhpK0OrCKy3MFFW6KkCC19B2KsZrd9NIYLoeYY1YEB2BQNLT_KjPETTPMw";
+
   void updateSearchKeyword(String newKeyword) {
     state = SearchModel(keyword: newKeyword ?? "", campList: state?.campList ?? []);
   }
 
 
   Future<void> campSearch() async {
-    ResponseDTO responseDTO = await CampListRepository().fetchSearchCamp(state!.keyword!);
+    String jwt =
+        "Bearer eyJhbGciOiJIUzUxMiIsInR5cCI6IkpXVCJ9.eyJzdWIiOiJwcm9qZWN0LWtleSIsImlkIjoxLCJ1c2VybmFtZSI6bnVsbCwiZXhwIjo0ODU5MDUzNDgyfQ.Ky2-BLYTjxlouBRsY1HScpc3fC3FOhpK0OrCKy3MFFW6KkCC19B2KsZrd9NIYLoeYY1YEB2BQNLT_KjPETTPMw";
+    ResponseDTO responseDTO = await CampListRepository().fetchSearchCamp(state!.keyword!, jwt);
     Logger().d(responseDTO.response);
     state = SearchModel(campList: responseDTO.response);
   }
