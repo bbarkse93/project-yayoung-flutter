@@ -41,8 +41,7 @@ class UserRepository {
 
   // 업데이트 요청
   // TODO : 언약 -> 매겨변수 추가하기 (String jwt,)
-  Future<ResponseDTO> fetchUserUpdate(
-      UserUpdateReqDTO userUpdateReqDTO) async {
+  Future<ResponseDTO> fetchUserUpdate(UserUpdateReqDTO userUpdateReqDTO) async {
     String jwt = await secureStorage.read(key: 'jwt') as String;
 
     Logger().d("유저 통신 전 : ${userUpdateReqDTO.userImage}");
@@ -64,12 +63,12 @@ class UserRepository {
 
   // 화면 요청
   // TODO 언약 : 토큰 매개변수 받기
-  Future<ResponseDTO> fetchUserInfo(String token) async {
-    Logger().d("토큰 값 잘 왔나? $token");
+  Future<ResponseDTO> fetchUserInfo() async {
+    String jwt = await secureStorage.read(key: 'jwt') as String;
 
     try {
       Response response = await dio.get("/user/my-page/profile",
-          options: Options(headers: {"Authorization": token}));
+          options: Options(headers: {"Authorization": jwt}));
 
       ResponseDTO responseDTO = ResponseDTO.fromJson(response.data);
 

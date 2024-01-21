@@ -6,12 +6,9 @@ import 'package:team_project/data/model/camp.dart';
 import 'package:team_project/data/repository/campsite_list_repository.dart';
 import 'package:team_project/main.dart';
 
-
-
 class CampListModel {
   List<Camp> campList;
   CampListModel(this.campList);
-
 }
 
 // campDTO
@@ -39,26 +36,24 @@ class CampListViewModel extends StateNotifier<CampListModel?> {
   final mContext = navigatorKey.currentContext;
   Ref ref;
 
-  String jwt =
-      "Bearer eyJhbGciOiJIUzUxMiIsInR5cCI6IkpXVCJ9.eyJzdWIiOiJwcm9qZWN0LWtleSIsImlkIjoxLCJ1c2VybmFtZSI6bnVsbCwiZXhwIjo0ODU5MDUzNDgyfQ.Ky2-BLYTjxlouBRsY1HScpc3fC3FOhpK0OrCKy3MFFW6KkCC19B2KsZrd9NIYLoeYY1YEB2BQNLT_KjPETTPMw";
-
   Future<void> notifyInit() async {
     Logger().d("뷰모델 진입");
-    ResponseDTO responseDTO = await CampListRepository().fetchCampList(jwt);
+    ResponseDTO responseDTO = await CampListRepository().fetchCampList();
     Logger().d("모델에 값 담기 전 :${responseDTO.response}");
     state = CampListModel(responseDTO.response);
   }
 
   Future<void> campListFilter(CampListDTO campListDTO) async {
     Logger().d("뷰모델 진입 ${campListDTO.optionNames}");
-    ResponseDTO responseDTO = await CampListRepository().fetchCampListFilter(campListDTO, jwt);
+    ResponseDTO responseDTO =
+        await CampListRepository().fetchCampListFilter(campListDTO);
     state = CampListModel(responseDTO.response);
   }
-
 }
 
 // 3. 창고 관리자
-final campListProvider = StateNotifierProvider.autoDispose<CampListViewModel, CampListModel?>(
-        (ref) { Logger().d("프로바이더 진입");
-          return CampListViewModel(null, ref)..notifyInit();
-    });
+final campListProvider =
+    StateNotifierProvider.autoDispose<CampListViewModel, CampListModel?>((ref) {
+  Logger().d("프로바이더 진입");
+  return CampListViewModel(null, ref)..notifyInit();
+});
