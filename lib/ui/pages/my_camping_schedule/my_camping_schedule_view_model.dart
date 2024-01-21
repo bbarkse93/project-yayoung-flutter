@@ -1,11 +1,8 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:logger/logger.dart';
-import 'package:team_project/_core/constants/http.dart';
 import 'package:team_project/data/dto/response_dto.dart';
-import 'package:team_project/data/model/user.dart';
 import 'package:team_project/data/repository/my_camping_schedule_repository.dart';
-import 'package:team_project/data/store/session_user.dart';
 import 'package:team_project/main.dart';
 
 class MyCampingScheduleDTO {

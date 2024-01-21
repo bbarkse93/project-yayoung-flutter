@@ -8,7 +8,8 @@ import 'package:team_project/data/model/camp.dart';
 class CampListRepository {
   Future<ResponseDTO> fetchCampList() async {
     String jwt = await secureStorage.read(key: 'jwt') as String;
-
+// String jwt =
+//         "Bearer eyJhbGciOiJIUzUxMiIsInR5cCI6IkpXVCJ9.eyJzdWIiOiJwcm9qZWN0LWtleSIsImlkIjoxLCJ1c2VybmFtZSI6bnVsbCwiZXhwIjo0ODU5MDUzNDgyfQ.Ky2-BLYTjxlouBRsY1HScpc3fC3FOhpK0OrCKy3MFFW6KkCC19B2KsZrd9NIYLoeYY1YEB2BQNLT_KjPETTPMw";
     try {
       // 통신
       final response = await dio.get("/camp/list",

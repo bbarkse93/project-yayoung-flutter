@@ -14,7 +14,7 @@ import 'package:team_project/ui/pages/my_page/my_page_notice_page/my_page_notice
 import 'package:team_project/ui/pages/my_page/my_page_setting/my_page_setting_page.dart';
 import 'package:team_project/ui/pages/my_page/my_page_user_update/my_page_user_update.dart';
 import 'package:team_project/ui/pages/payment/payment_page.dart';
-import 'package:team_project/ui/pages/payment/widget/kakao_payment.dart';
+import 'package:team_project/ui/pages/payment/payment_page_widgets/kakao_payment.dart';
 import 'package:team_project/ui/pages/payment_success/payment_success_page.dart';
 import 'package:team_project/ui/pages/refund/refund_page.dart';
 import 'package:team_project/ui/pages/reservation/reservation_page.dart';

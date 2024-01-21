@@ -4,8 +4,8 @@ import 'package:team_project/_core/constants/icon.dart';
 import 'package:team_project/_core/constants/move.dart';
 import 'package:team_project/_core/constants/size.dart';
 import 'package:team_project/ui/pages/payment/payment_view_model.dart';
+import 'package:team_project/ui/pages/reservation/reservation_page_widgets/reservation_range_data_provider.dart';
 import 'package:team_project/ui/pages/reservation/reservation_view_model.dart';
-import 'package:team_project/ui/pages/reservation/widget/reservation_range_data_provider.dart';
 
 class ReservationPageAppBar extends ConsumerWidget {
   final int campId;

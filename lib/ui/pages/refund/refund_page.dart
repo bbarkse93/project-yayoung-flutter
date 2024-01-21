@@ -1,6 +1,6 @@
 import 'package:flutter/material.dart';
-import 'package:team_project/ui/pages/refund/widget/refund_page_appbar.dart';
-import 'package:team_project/ui/pages/refund/widget/refund_page_body.dart';
+import 'package:team_project/ui/pages/refund/refund-page_widgets/refund_page_appbar.dart';
+import 'package:team_project/ui/pages/refund/refund-page_widgets/refund_page_body.dart';
 
 class RefundPage extends StatelessWidget {
   final int campId;

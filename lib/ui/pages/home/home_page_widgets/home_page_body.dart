@@ -3,7 +3,7 @@ import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:team_project/_core/constants/color.dart';
 import 'package:team_project/_core/constants/move.dart';
 import 'package:team_project/_core/constants/size.dart';
-import 'package:team_project/ui/pages/home/widget/home_page_click_button.dart';
+import 'package:team_project/ui/pages/home/home_page_widgets/home_page_click_button.dart';
 import 'package:team_project/ui/pages/my_camping_schedule/my_camping_schedule_view_model.dart';
 
 import 'explain_bar_form.dart';

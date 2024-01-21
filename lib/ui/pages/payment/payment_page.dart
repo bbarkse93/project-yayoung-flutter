@@ -3,12 +3,11 @@ import 'package:team_project/_core/constants/color.dart';
 import 'package:team_project/_core/constants/icon.dart';
 import 'package:team_project/_core/constants/move.dart';
 import 'package:team_project/_core/constants/size.dart';
+import 'package:team_project/ui/pages/payment/payment_page_widgets/payment_button.dart';
+import 'package:team_project/ui/pages/payment/payment_page_widgets/payment_reservation_form.dart';
+import 'package:team_project/ui/pages/payment/payment_page_widgets/payment_terms_form.dart';
 import 'package:team_project/ui/pages/payment/payment_view_model.dart';
-import 'package:team_project/ui/pages/payment/widget/kakao_payment.dart';
-import 'package:team_project/ui/pages/payment/widget/payment_button.dart';
-import 'package:team_project/ui/pages/payment/widget/payment_reservation_form.dart';
-import 'package:team_project/ui/pages/payment/widget/payment_terms_form.dart';
-import 'package:team_project/ui/pages/refund/widget/campsite_info_form.dart';
+import 'package:team_project/ui/pages/refund/refund-page_widgets/campsite_info_form.dart';
 
 class PaymentPage extends StatefulWidget {
   final int campId;
