@@ -106,6 +106,7 @@ class KakaoPayment extends ConsumerWidget {
           print("PaymentRepository 접근했나요?");
 
           if (responseDTO.success == true) {
+
             Navigator.pushReplacement(
               context,
               MaterialPageRoute(
