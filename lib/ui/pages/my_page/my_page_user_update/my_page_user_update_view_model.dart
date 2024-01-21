@@ -34,11 +34,9 @@ class UserUpdateViewModel extends StateNotifier<UserUpdateModel?> {
   final mContext = navigatorKey.currentContext;
   Ref ref;
 
-  String jwt =
-      "Bearer eyJhbGciOiJIUzUxMiIsInR5cCI6IkpXVCJ9.eyJzdWIiOiJwcm9qZWN0LWtleSIsImlkIjoxLCJ1c2VybmFtZSI6bnVsbCwiZXhwIjo0ODU5MDUzNDgyfQ.Ky2-BLYTjxlouBRsY1HScpc3fC3FOhpK0OrCKy3MFFW6KkCC19B2KsZrd9NIYLoeYY1YEB2BQNLT_KjPETTPMw";
 
   Future<void> notifyInit() async {
-    // String jwt = await secureStorage.read(key: 'jwt') as String;
+     String jwt = await secureStorage.read(key: 'jwt') as String;
 
     Logger().d("토큰 있나?? $jwt ");
 

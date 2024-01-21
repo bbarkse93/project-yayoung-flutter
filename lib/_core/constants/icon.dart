@@ -360,12 +360,12 @@ Image imageFilerPage({double mWidth = 25, double mHeight = 25}) {
 }
 
 // 내캠핑장 빈 이미지
-Image imageMyCampingListPage({double mWidth = 25, double mHeight = 25}) {
+Image imageMyCampingSchedulePage({double mWidth = 25, double mHeight = 25}) {
   return Image.asset("assets/images/my_camping_list.png", width: mWidth, height: mHeight);
 }
 
 // 다녀온 캠핑장 빈 이미지
-Image imageMyCampingSchedulePage({double mWidth = 25, double mHeight = 25}) {
+Image imageMyCampingListPage({double mWidth = 25, double mHeight = 25}) {
   return Image.asset("assets/images/my_camping_schedule.png", width: mWidth, height: mHeight);
 }
 

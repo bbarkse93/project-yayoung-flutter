@@ -5,7 +5,7 @@ import 'package:team_project/data/dto/response_dto.dart';
 import 'package:team_project/data/model/refund.dart';
 import 'package:team_project/data/repository/refund_repository.dart';
 import 'package:team_project/main.dart';
-import 'package:tuple/tuple.dart'; // 올바른 import 문 추가
+import 'package:tuple/tuple.dart';
 
 class RefundModel {
   Refund? refund;

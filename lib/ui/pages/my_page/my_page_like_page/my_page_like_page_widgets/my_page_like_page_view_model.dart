@@ -67,7 +67,7 @@ class LikePageViewModel extends StateNotifier<LikePageModel?> {
     String jwt = await secureStorage.read(key: 'jwt') as String;
 
     //TODO 언약 : 세션에서 토큰 꺼내서 info 넘기기
-    ResponseDTO responseDTO = await CampBookmarkRepository().fetchLikeInfo(jwt);
+    ResponseDTO responseDTO = await CampBookmarkRepository().fetchLikeInfo();
     Logger().d("값 받니? ${responseDTO.response}");
     LikePageModel model = responseDTO.response;
     state = LikePageModel(

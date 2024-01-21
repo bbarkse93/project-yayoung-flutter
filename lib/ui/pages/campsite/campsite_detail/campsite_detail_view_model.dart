@@ -37,23 +37,20 @@ class CampDetailViewModel extends StateNotifier<CampDetailModel?> {
   final mContext = navigatorKey.currentContext;
   Ref ref;
 
-  String jwt =
-      "Bearer eyJhbGciOiJIUzUxMiIsInR5cCI6IkpXVCJ9.eyJzdWIiOiJwcm9qZWN0LWtleSIsImlkIjoxLCJ1c2VybmFtZSI6bnVsbCwiZXhwIjo0ODU5MDUzNDgyfQ.Ky2-BLYTjxlouBRsY1HScpc3fC3FOhpK0OrCKy3MFFW6KkCC19B2KsZrd9NIYLoeYY1YEB2BQNLT_KjPETTPMw";
+
 
   Future<void> notifyInit(int campId) async {
 
-    // String jwt = secureStorage.read(key: 'jwt').toString();
     ResponseDTO responseDTO =
-        await CampDetailRepository().fetchCampDetail(campId, jwt);
+        await CampDetailRepository().fetchCampDetail(campId);
 
     state = CampDetailModel(responseDTO.response);
   }
 
   Future<void> saveBookmark(CampSaveOrDeleteDTO requestDTO) async {
 
-    // String jwt = secureStorage.read(key: 'jwt').toString();
     ResponseDTO responseDTO =
-        await CampBookmarkRepository().fetchSaveBookmark(requestDTO, jwt);
+        await CampBookmarkRepository().fetchSaveBookmark(requestDTO);
     CampDetailModel? model = state;
     model!.campInfo.bookmark = CampBookMark(responseDTO.response).campBookmarkState.bookmark;
     // 깊은 복사
@@ -63,9 +60,8 @@ class CampDetailViewModel extends StateNotifier<CampDetailModel?> {
 
   Future<void> deleteBookmark(CampSaveOrDeleteDTO requestDTO) async {
 
-    // String jwt = secureStorage.read(key: 'jwt').toString();
     ResponseDTO responseDTO =
-    await CampBookmarkRepository().fetchDeleteBookmark(requestDTO, jwt);
+    await CampBookmarkRepository().fetchDeleteBookmark(requestDTO);
     CampDetailModel? model = state;
     model!.campInfo.bookmark = CampBookMark(responseDTO.response).campBookmarkState.bookmark;
     // 깊은 복사

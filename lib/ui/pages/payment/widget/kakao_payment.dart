@@ -99,25 +99,14 @@ class KakaoPayment extends ConsumerWidget {
               orderNumber: 'mid_${DateTime.now().millisecondsSinceEpoch}',
             );
           }
-
           print("PaymentReqDTO 통과했나요?");
-          Logger().d("요청 전 campId: ${requestDTO.campId}");
-          Logger().d("요청 전 checkIn: ${requestDTO.checkIn}");
-          Logger().d("요청 전 checkOut: ${requestDTO.checkOut}");
-          // Logger().d("요청 전 totalPrice: ${requestDTO.totalPrice}");
-          Logger().d("요청 전 fieldName: ${requestDTO.fieldName}");
+
           ResponseDTO responseDTO =
               await PaymentRepository().fetchPayment(requestDTO);
           print("PaymentRepository 접근했나요?");
 
-          Logger().d("campId ${requestDTO.campId}");
-          Logger().d("checkIn ${requestDTO.checkIn}");
-          Logger().d("checkOut ${requestDTO.checkOut}");
-          // Logger().d("totalPrice ${requestDTO.totalPrice}");
-          Logger().d("fieldName ${requestDTO.fieldName}");
-          Logger().d("성공했니?? ${responseDTO.success}");
-
           if (responseDTO.success == true) {
+
             Navigator.pushReplacement(
               context,
               MaterialPageRoute(

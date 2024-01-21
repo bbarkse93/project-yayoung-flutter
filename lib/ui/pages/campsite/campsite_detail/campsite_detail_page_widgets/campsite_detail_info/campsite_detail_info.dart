@@ -216,7 +216,7 @@ class CampsiteDetailInfo extends StatelessWidget {
                   ),
                 ),
                   onTap: () {
-                    Navigator.popAndPushNamed(
+                    Navigator.pushNamed(
                       context,
                       Move.reservationPage,  // 이동할 페이지의 이름
                       arguments: {'campId': campInfo.id!},  // 필요한 인자 전달

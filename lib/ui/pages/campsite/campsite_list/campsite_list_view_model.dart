@@ -1,17 +1,16 @@
 import 'package:logger/logger.dart';
+import 'package:riverpod/riverpod.dart';
 import 'package:team_project/data/dto/camp_request_dto.dart';
 import 'package:team_project/data/dto/response_dto.dart';
-import 'package:team_project/data/model/banner.dart';
 import 'package:team_project/data/model/camp.dart';
-import 'package:team_project/data/repository/banner_repository.dart';
 import 'package:team_project/data/repository/campsite_list_repository.dart';
-import 'package:riverpod/riverpod.dart';
 import 'package:team_project/main.dart';
+
+
 
 class CampListModel {
   List<Camp> campList;
   CampListModel(this.campList);
-
 
 }
 

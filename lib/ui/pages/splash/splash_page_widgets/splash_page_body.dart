@@ -1,6 +1,6 @@
 import 'package:animated_splash_screen/animated_splash_screen.dart';
 import 'package:flutter/material.dart';
-import 'package:team_project/ui/pages/home/home_page.dart';
+import 'package:team_project/ui/pages/auth/login_page.dart';
 
 class SplashPageBody extends StatelessWidget {
   const SplashPageBody({super.key});
@@ -17,7 +17,7 @@ class SplashPageBody extends StatelessWidget {
             fit: BoxFit.fill,
           ),
         ),
-        nextScreen: HomePage(),
+        nextScreen: LoginPage(),
         duration: 3000,
       ),
     );
