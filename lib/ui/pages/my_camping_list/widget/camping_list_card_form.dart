@@ -23,9 +23,6 @@ class CampingListCardForm extends ConsumerWidget {
     if (campingList == null) {
       return Center(child: CircularProgressIndicator());
     }
-    // if (index < 0 || index >= campingList.length) {
-    //   return Center(child: CircularProgressIndicator());
-    // }
 
     return Container(
       width: MediaQuery.of(context).size.width,
