@@ -6,11 +6,11 @@ import 'package:team_project/data/dto/response_dto.dart';
 import 'package:team_project/data/model/refund.dart';
 
 class RefundRepository {
-  Future<ResponseDTO> fetchRefundPage(int? campId, int? orderId) async {
+  Future<ResponseDTO> fetchRefundPage(int campId, int orderId, String jwt) async {
     try {
       // 통신
-      Logger().d("id는? $campId");
-      Response response = await dio.get("/order/refund-info?orderId=$orderId&campId=$campId");
+      Logger().d("campId는? $campId");
+      Response response = await dio.get("/order/refund-info?orderId=$orderId&campId=$campId", options: Options(headers: {"Authorization": jwt}));
       // 응답 받은 데이터 파싱
       ResponseDTO responseDTO = ResponseDTO.fromJson(response.data);
       Logger().d("그만둬 ${responseDTO.response}");
@@ -25,7 +25,7 @@ class RefundRepository {
 
   Future<ResponseDTO> fetchRefund(RefundReqDTO dto) async {
     String jwt = await secureStorage.read(key: 'jwt') as String;
-;
+
     try {
       Logger().d("=================1번");
       Response response = await dio.post(
