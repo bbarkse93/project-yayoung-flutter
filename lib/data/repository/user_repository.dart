@@ -42,10 +42,11 @@ class UserRepository {
   // 업데이트 요청
   // TODO : 언약 -> 매겨변수 추가하기 (String jwt,)
   Future<ResponseDTO> fetchUserUpdate(
-      UserUpdateReqDTO userUpdateReqDTO, String jwt) async {
+      UserUpdateReqDTO userUpdateReqDTO) async {
+    String jwt = await secureStorage.read(key: 'jwt') as String;
+
     Logger().d("유저 통신 전 : ${userUpdateReqDTO.userImage}");
     Logger().d("유저 통신 전 : ${userUpdateReqDTO.nickname}");
-    Logger().d("유저 통신 전 : $jwt");
     try {
       final response = await dio.put("/user/my-page/profile",
           options: Options(headers: {"Authorization": jwt}),

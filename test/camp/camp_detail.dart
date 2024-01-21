@@ -12,7 +12,7 @@ void main() async {
   String jwt =
       "Bearer eyJhbGciOiJIUzUxMiIsInR5cCI6IkpXVCJ9.eyJzdWIiOiJwcm9qZWN0LWtleSIsImlkIjoxLCJ1c2VybmFtZSI6bnVsbCwiZXhwIjo0ODU5MDUzNDgyfQ.Ky2-BLYTjxlouBRsY1HScpc3fC3FOhpK0OrCKy3MFFW6KkCC19B2KsZrd9NIYLoeYY1YEB2BQNLT_KjPETTPMw";
   CampSaveOrDeleteDTO requestDTO = CampSaveOrDeleteDTO(7);
-  await fetchDeleteBookmark(requestDTO, jwt);
+  await fetchDeleteBookmark(requestDTO);
 }
 
 class CampInfo {
@@ -336,7 +336,9 @@ Future<ResponseDTO> fetchCampDetail(int id) async {
   }
 }
 
-Future<ResponseDTO> fetchDeleteBookmark(CampSaveOrDeleteDTO requestDTO, String jwt) async {
+Future<ResponseDTO> fetchDeleteBookmark(CampSaveOrDeleteDTO requestDTO) async {
+  String jwt = await secureStorage.read(key: 'jwt') as String;
+
   try{
     // 통신
     Response response = await dio.delete("/camp/bookmark", options: Options(headers: {'Authorization': jwt}), data: requestDTO.toJson());

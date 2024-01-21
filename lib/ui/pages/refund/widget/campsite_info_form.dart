@@ -16,6 +16,7 @@ class CampsiteInfoForm extends ConsumerWidget {
 
   @override
   Widget build(BuildContext context, WidgetRef ref) {
+    Logger().d("캠프 ID 잘 전달됨? ${campId}");
     final reservationModel = ref.watch(reservationProvider(campId));
     Logger().d("reservationModel = ${reservationModel?.reservation.toString()}");
     Logger().d("campImage = ${reservationModel?.reservation.campImage}");
