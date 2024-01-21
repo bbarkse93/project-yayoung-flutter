@@ -1,16 +1,14 @@
 import 'package:logger/logger.dart';
+import 'package:riverpod/riverpod.dart';
 import 'package:team_project/data/dto/camp_request_dto.dart';
 import 'package:team_project/data/dto/response_dto.dart';
 import 'package:team_project/data/model/camp.dart';
 import 'package:team_project/data/repository/campsite_list_repository.dart';
-import 'package:riverpod/riverpod.dart';
 import 'package:team_project/main.dart';
 
 class CampListModel {
   List<Camp> campList;
   CampListModel(this.campList);
-
-
 }
 
 // campDTO
@@ -47,14 +45,15 @@ class CampListViewModel extends StateNotifier<CampListModel?> {
 
   Future<void> campListFilter(CampListDTO campListDTO) async {
     Logger().d("뷰모델 진입 ${campListDTO.optionNames}");
-    ResponseDTO responseDTO = await CampListRepository().fetchCampListFilter(campListDTO);
+    ResponseDTO responseDTO =
+        await CampListRepository().fetchCampListFilter(campListDTO);
     state = CampListModel(responseDTO.response);
   }
-
 }
 
 // 3. 창고 관리자
-final campListProvider = StateNotifierProvider.autoDispose<CampListViewModel, CampListModel?>(
-        (ref) { Logger().d("프로바이더 진입");
-          return CampListViewModel(null, ref)..notifyInit();
-    });
+final campListProvider =
+    StateNotifierProvider.autoDispose<CampListViewModel, CampListModel?>((ref) {
+  Logger().d("프로바이더 진입");
+  return CampListViewModel(null, ref)..notifyInit();
+});

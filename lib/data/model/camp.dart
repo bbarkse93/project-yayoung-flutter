@@ -14,12 +14,13 @@ class Camp {
   String? campCheckIn;
   String? campCheckOut;
   String? campFieldImage;
-  List<CampImage>? campImageList;
-  List<CampRating>? campRatingList;
   String? campImage;
   String? campRating;
+  List<CampImage>? campImageList;
+  List<CampRating>? campRatingList;
 
-  Camp({this.id,
+  Camp({
+    this.id,
     this.campName,
     this.campAddress,
     this.campCallNumber,
@@ -31,13 +32,13 @@ class Camp {
     this.campCheckIn,
     this.campCheckOut,
     this.campFieldImage,
+    this.campImage,
+    this.campRating,
     this.campImageList,
     this.campRatingList,
-    this.campImage,
-    this.campRating});
+  });
 
-  Map<String, dynamic> toJson() =>
-      {
+  Map<String, dynamic> toJson() => {
         "id": id,
         "campName": campName,
         "campAddress": campAddress,
@@ -50,10 +51,10 @@ class Camp {
         "campCheckIn": campCheckIn,
         "campCheckOut": campCheckOut,
         "campFieldImage": campFieldImage,
-        "campImageList": campImageList,
-        "campRatingList": campRatingList,
         "campImage": campImage,
         "campRating": campRating,
+        "campImageList": campImageList,
+        "campRatingList": campRatingList,
       };
 
   Camp.fromJson(Map<String, dynamic> json)
@@ -69,13 +70,12 @@ class Camp {
         campCheckIn = json["campCheckIn"],
         campCheckOut = json["campCheckOut"],
         campFieldImage = json["campFieldImage"],
+        campImage = json["campImage"],
+        campRating = json["campRating"],
         campImageList = (json["campImageList"] as List<dynamic>? ?? [])
             .map((item) => CampImage.fromJson(item))
             .toList(),
         campRatingList = (json["campRatingList"] as List<dynamic>? ?? [])
             .map((e) => CampRating.fromJson(e))
-            .toList(),
-        campImage = json["campImage"],
-        campRating = json["campRating"];
-
+            .toList();
 }

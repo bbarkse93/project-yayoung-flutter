@@ -9,7 +9,9 @@ import '../dto/camp_request_dto.dart';
 
 class CampDetailRepository {
 
-  Future<ResponseDTO> fetchCampDetail(int? id, String jwt) async {
+  Future<ResponseDTO> fetchCampDetail(int? id) async {
+    String jwt = await secureStorage.read(key: 'jwt') as String;
+
     try {
       // 통신
       Logger().d("id는? $id");

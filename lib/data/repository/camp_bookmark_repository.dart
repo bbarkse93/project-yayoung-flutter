@@ -10,10 +10,12 @@ import '../dto/camp_request_dto.dart';
 
 class CampBookmarkRepository {
 
-  Future<ResponseDTO> fetchLikeInfo(String token) async {
+  Future<ResponseDTO> fetchLikeInfo() async {
+    String jwt = await secureStorage.read(key: 'jwt') as String;
+
     try {
       Response response = await dio.get("/camp/bookmark-list",
-          options: Options(headers: {"Authorization": token}));
+          options: Options(headers: {"Authorization": jwt}));
 
 
       ResponseDTO responseDTO = ResponseDTO.fromJson(response.data);
@@ -28,7 +30,10 @@ class CampBookmarkRepository {
     }
   }
 
-  Future<ResponseDTO> fetchSaveBookmark(CampSaveOrDeleteDTO requestDTO, String jwt) async {
+  Future<ResponseDTO> fetchSaveBookmark(CampSaveOrDeleteDTO requestDTO) async {
+
+    String jwt = await secureStorage.read(key: 'jwt') as String;
+
     try{
       // 통신
       Response response = await dio.post("/camp/bookmark", options: Options(headers: {'Authorization': jwt}), data: requestDTO.toJson());
@@ -43,7 +48,9 @@ class CampBookmarkRepository {
     }
   }
 
-  Future<ResponseDTO> fetchDeleteBookmark(CampSaveOrDeleteDTO requestDTO, String jwt) async {
+  Future<ResponseDTO> fetchDeleteBookmark(CampSaveOrDeleteDTO requestDTO) async {
+    String jwt = await secureStorage.read(key: 'jwt') as String;
+
     try{
       // 통신
       Response response = await dio.delete("/camp/bookmark", options: Options(headers: {'Authorization': jwt}), data: requestDTO.toJson());

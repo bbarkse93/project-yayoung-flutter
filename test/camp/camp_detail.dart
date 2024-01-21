@@ -6,13 +6,10 @@ import 'package:team_project/data/dto/response_dto.dart';
 import 'package:team_project/data/model/camp_bookmark_state.dart';
 import 'package:team_project/data/model/camp_image.dart';
 import 'package:team_project/data/model/campsite_detail.dart';
-import 'package:team_project/data/repository/camp_bookmark_repository.dart';
 
 void main() async {
-  String jwt =
-      "Bearer eyJhbGciOiJIUzUxMiIsInR5cCI6IkpXVCJ9.eyJzdWIiOiJwcm9qZWN0LWtleSIsImlkIjoxLCJ1c2VybmFtZSI6bnVsbCwiZXhwIjo0ODU5MDUzNDgyfQ.Ky2-BLYTjxlouBRsY1HScpc3fC3FOhpK0OrCKy3MFFW6KkCC19B2KsZrd9NIYLoeYY1YEB2BQNLT_KjPETTPMw";
   CampSaveOrDeleteDTO requestDTO = CampSaveOrDeleteDTO(7);
-  await fetchDeleteBookmark(requestDTO, jwt);
+  await fetchDeleteBookmark(requestDTO);
 }
 
 class CampInfo {
@@ -110,15 +107,18 @@ class CampInfo {
         site = (json["options"]["site"] as List<dynamic>? ?? [])
             .map((i) => SiteDTO.fromJson(i))
             .toList(),
-        mainFacility = (json["options"]["main_facility"] as List<dynamic>? ?? [])
-            .map((i) => MainFacilityDTO.fromJson(i))
-            .toList(),
-        haveFacility = (json["options"]["have_facility"] as List<dynamic>? ?? [])
-            .map((i) => HaveFacilityDTO.fromJson(i))
-            .toList(),
-        exerciseFacility = (json["options"]["exercise_facility"] as List<dynamic>? ?? [])
-            .map((i) => ExerciseFacilityDTO.fromJson(i))
-            .toList(),
+        mainFacility =
+            (json["options"]["main_facility"] as List<dynamic>? ?? [])
+                .map((i) => MainFacilityDTO.fromJson(i))
+                .toList(),
+        haveFacility =
+            (json["options"]["have_facility"] as List<dynamic>? ?? [])
+                .map((i) => HaveFacilityDTO.fromJson(i))
+                .toList(),
+        exerciseFacility =
+            (json["options"]["exercise_facility"] as List<dynamic>? ?? [])
+                .map((i) => ExerciseFacilityDTO.fromJson(i))
+                .toList(),
         program = (json["options"]["program"] as List<dynamic>? ?? [])
             .map((i) => ProgramDTO.fromJson(i))
             .toList(),
@@ -336,17 +336,20 @@ Future<ResponseDTO> fetchCampDetail(int id) async {
   }
 }
 
-Future<ResponseDTO> fetchDeleteBookmark(CampSaveOrDeleteDTO requestDTO, String jwt) async {
-  try{
+Future<ResponseDTO> fetchDeleteBookmark(CampSaveOrDeleteDTO requestDTO) async {
+  String jwt = await secureStorage.read(key: 'jwt') as String;
+
+  try {
     // 통신
-    Response response = await dio.delete("/camp/bookmark", options: Options(headers: {'Authorization': jwt}), data: requestDTO.toJson());
+    Response response = await dio.delete("/camp/bookmark",
+        options: Options(headers: {'Authorization': jwt}),
+        data: requestDTO.toJson());
     // 응답 받은 데이터 파싱
     ResponseDTO responseDTO = ResponseDTO.fromJson(response.data);
     responseDTO.response = CampBookmarkState.fromJson(responseDTO.response);
 
     return responseDTO;
-
-  }catch(e){
+  } catch (e) {
     return ResponseDTO(false, "북마크 삭제 실패", null);
   }
 }

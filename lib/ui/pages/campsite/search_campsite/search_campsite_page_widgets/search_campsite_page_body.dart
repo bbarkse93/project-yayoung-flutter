@@ -1,8 +1,10 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:team_project/_core/constants/color.dart';
+import 'package:team_project/_core/constants/move.dart';
 import 'package:team_project/_core/constants/size.dart';
 import 'package:team_project/data/model/camp.dart';
+import 'package:team_project/ui/pages/campsite/campsite_detail/campsite_detail_page.dart';
 import 'package:team_project/ui/pages/campsite/search_campsite/search_campsite_view_model.dart';
 
 class SearchCampsitePageBody extends ConsumerWidget {
@@ -30,18 +32,30 @@ campList = model!.campList!;
        ? ListView.builder(
         itemCount: campList.length,
         itemBuilder: (context, index) {
-          return ListTile(
-            title: Text(
-              // "안녕",
-              "${campList[index].campName}",
-              style:
-                  TextStyle(fontSize: fontLarge, fontWeight: FontWeight.bold),
+          return InkWell(
+            child: Container(
+              child: ListTile(
+                title: Text(
+                  "${campList[index].campName}",
+                  style:
+                      TextStyle(fontSize: fontLarge, fontWeight: FontWeight.bold),
+                ),
+                subtitle: Text(
+                  "${campList[index].campAddress}",
+                  style: TextStyle(fontSize: fontSemiMedium),
+                ),
+              ),
             ),
-            subtitle: Text(
-              // "만나서 반가워",
-              "${campList[index].campAddress}",
-              style: TextStyle(fontSize: fontSemiMedium),
-            ),
+            onTap: () {
+              Navigator.push(
+                context,
+                MaterialPageRoute(
+                  builder: (context) => CampsiteDetailPage(
+                    campId: campList[index].id ?? 0,
+                  ),
+                ),
+              );
+            },
           );
         },
       )

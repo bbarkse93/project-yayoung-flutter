@@ -1,14 +1,8 @@
-
 // 모델
-import 'package:flutter/material.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:logger/logger.dart';
-import 'package:team_project/_core/constants/http.dart';
-import 'package:team_project/_core/constants/move.dart';
 import 'package:team_project/data/dto/response_dto.dart';
-import 'package:team_project/data/dto/user_request_dto.dart';
 import 'package:team_project/data/repository/user_repository.dart';
-import 'package:team_project/data/store/session_user.dart';
 import 'package:team_project/main.dart';
 
 class UserUpdateModel {
@@ -17,10 +11,7 @@ class UserUpdateModel {
   final String nickname;
 
   UserUpdateModel(
-      {
-        required this.userId,
-        required this.userImage,
-        required this.nickname});
+      {required this.userId, required this.userImage, required this.nickname});
 
   UserUpdateModel.fromJson(Map<String, dynamic> json)
       : userId = json["userId"],
@@ -34,17 +25,9 @@ class UserUpdateViewModel extends StateNotifier<UserUpdateModel?> {
   final mContext = navigatorKey.currentContext;
   Ref ref;
 
-  String jwt =
-      "Bearer eyJhbGciOiJIUzUxMiIsInR5cCI6IkpXVCJ9.eyJzdWIiOiJwcm9qZWN0LWtleSIsImlkIjoxLCJ1c2VybmFtZSI6bnVsbCwiZXhwIjo0ODU5MDUzNDgyfQ.Ky2-BLYTjxlouBRsY1HScpc3fC3FOhpK0OrCKy3MFFW6KkCC19B2KsZrd9NIYLoeYY1YEB2BQNLT_KjPETTPMw";
-
   Future<void> notifyInit() async {
-    // String jwt = await secureStorage.read(key: 'jwt') as String;
-
-    Logger().d("토큰 있나?? $jwt ");
-
     // TODO 언약 : 세션에서 토큰 꺼내서 info 넘기기
-    ResponseDTO responseDTO =
-    await UserRepository().fetchUserInfo(jwt);
+    ResponseDTO responseDTO = await UserRepository().fetchUserInfo();
     Logger().d("값 받니? ${responseDTO.response}");
     UserUpdateModel model = responseDTO.response;
     state = UserUpdateModel(
@@ -69,13 +52,11 @@ class UserUpdateViewModel extends StateNotifier<UserUpdateModel?> {
   //         .showSnackBar(SnackBar(content: Text(responseDTO.error)));
   //   }
   // }
-
 }
 
 // 창고 관리자
-final userUpdateProvider = StateNotifierProvider.autoDispose<
-    UserUpdateViewModel, UserUpdateModel?>((ref) {
+final userUpdateProvider =
+    StateNotifierProvider.autoDispose<UserUpdateViewModel, UserUpdateModel?>(
+        (ref) {
   return UserUpdateViewModel(null, ref)..notifyInit();
 });
-
-
