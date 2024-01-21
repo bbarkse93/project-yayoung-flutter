@@ -10,6 +10,7 @@ import 'package:team_project/data/model/camp_review_list.dart';
 import 'package:team_project/data/repository/review_repository.dart';
 import 'package:team_project/main.dart';
 import 'package:team_project/ui/pages/campsite/campsite_detail/campsite_detail_view_model.dart';
+import 'package:team_project/ui/pages/campsite/campsite_list/campsite_list_view_model.dart';
 import 'package:team_project/ui/pages/review/review_page.dart';
 
 class ReviewListModel {
@@ -38,6 +39,7 @@ class ReviewListViewModel extends StateNotifier<ReviewListModel?> {
         await ReviewRepository().fetchReviewSave(reviewWriteDTO, campId);
 
     if (responseDTO.success == true) {
+      ref.read(campListProvider.notifier).notifyInit();
       ref.read(campsiteDetailProvider(campId).notifier).notifyInit(campId);
       ref.read(reviewListProvider(campId).notifier).notifyInit(campId);
       Navigator.pop(mContext!);
