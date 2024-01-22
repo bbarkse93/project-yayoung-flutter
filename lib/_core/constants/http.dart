@@ -8,10 +8,14 @@ final Dio dio = Dio(
     // baseUrl: "http://192.168.188.35:8080", // 메인 서버
     // baseUrl: "http://192.168.0.43:8080", // 세환 서버
     // baseUrl: "http://192.168.0.48:8080", // 우진 서버
-    // baseUrl: "http://192.168.0.41:8080", // 은혜 서버
+    baseUrl: "http://192.168.0.41:8080", // 은혜 서버
     // baseUrl: "http://192.168.0.48:8080", // 승신 서버
     // baseUrl: "http://192.168.0.46:8080",  // 대욱 서버
+<<<<<<< HEAD
       baseUrl: "http://192.168.0.134:8080", // 언약 서버
+=======
+    //  baseUrl: "http://192.168.0.134:8080", // 언약 서버
+>>>>>>> dev
 
     contentType: "application/json; charset=utf-8",
   ),

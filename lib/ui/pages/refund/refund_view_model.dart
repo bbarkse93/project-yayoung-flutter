@@ -30,8 +30,7 @@ class RefundViewModel extends StateNotifier<RefundModel?> {
 
   Future<void> notifyInit() async {
     Logger().d("뷰모델 진입");
-    String jwt = await secureStorage.read(key: 'jwt') as String;
-    ResponseDTO responseDTO = await RefundRepository().fetchRefundPage(campId, orderId, jwt);
+    ResponseDTO responseDTO = await RefundRepository().fetchRefundPage(campId, orderId);
 
     if (responseDTO.success) {
       dynamic refund = responseDTO.response;
