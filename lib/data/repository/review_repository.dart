@@ -7,10 +7,12 @@ import 'package:team_project/data/model/camp_review.dart';
 import 'package:team_project/data/model/camp_review_list.dart';
 
 class ReviewRepository {
+
   Future<ResponseDTO> fetchReviewList(campId) async {
+    String jwt = await secureStorage.read(key: 'jwt') as String;
     try {
       final response = await dio.get("/camp/review/${campId}");
-      // options: Options(headers: {"Authorization": "${jwt}"}));
+      options: Options(headers: {"Authorization": "${jwt}"});
 
       ResponseDTO responseDTO = ResponseDTO.fromJson(response.data);
 
@@ -23,9 +25,10 @@ class ReviewRepository {
   }
 
   Future<ResponseDTO> fetchReviewSave(reviewWriteDTO, campId) async {
+    String jwt = await secureStorage.read(key: 'jwt') as String;
     try {
       Response<dynamic> response = await dio.post("/camp/review/$campId",
-          // options: Options(headers: {"Authorization": "${jwt}"}),
+          options: Options(headers: {"Authorization": "${jwt}"}),
           data: reviewWriteDTO.toJson());
       ResponseDTO responseDTO = ResponseDTO.fromJson(response.data);
       Logger().d("responseDTO : ${responseDTO}");

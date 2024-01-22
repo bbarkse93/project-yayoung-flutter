@@ -1,10 +1,16 @@
+import 'package:flutter/material.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:logger/logger.dart';
+import 'package:team_project/_core/constants/color.dart';
+import 'package:team_project/_core/constants/http.dart';
+import 'package:team_project/_core/constants/move.dart';
+import 'package:team_project/_core/constants/size.dart';
 import 'package:team_project/data/dto/refund_request_dto.dart';
 import 'package:team_project/data/dto/response_dto.dart';
 import 'package:team_project/data/model/refund.dart';
 import 'package:team_project/data/repository/refund_repository.dart';
 import 'package:team_project/main.dart';
+import 'package:team_project/ui/pages/my_camping_schedule/my_camping_schedule_view_model.dart';
 import 'package:tuple/tuple.dart';
 
 class RefundModel {
@@ -23,7 +29,9 @@ class RefundViewModel extends StateNotifier<RefundModel?> {
   final mContext = navigatorKey.currentContext;
 
   Future<void> notifyInit() async {
-    ResponseDTO responseDTO = await RefundRepository().fetchRefundPage(campId, orderId);
+    Logger().d("뷰모델 진입");
+    String jwt = await secureStorage.read(key: 'jwt') as String;
+    ResponseDTO responseDTO = await RefundRepository().fetchRefundPage(campId, orderId, jwt);
 
     if (responseDTO.success) {
       dynamic refund = responseDTO.response;
@@ -34,15 +42,53 @@ class RefundViewModel extends StateNotifier<RefundModel?> {
     }
   }
 
-  Future<void> refundRequest(RefundReqDTO reqDTO) async {
+  Future<void> refundRequest(BuildContext context, RefundReqDTO reqDTO) async {
     ResponseDTO response = await RefundRepository().fetchRefund(reqDTO);
     // 환불이 성공한 경우에만 다이얼로그를 보여줌
     if (response.success) {
-      // _showAlertDialog(context);
+      ref.read(myCampingScheduleProvider.notifier).notifyInit();
+      _showRefundAlertDialog(context);
     } else {
       print("환불 실패");
     }
+
   }
+  Future<void> _showRefundAlertDialog(BuildContext context) async {
+    return showDialog<void>(
+      context: context,
+      builder: (BuildContext context) {
+        return AlertDialog(
+          backgroundColor: kBackWhite,
+          title: Center(
+            child: Column(
+              children: [
+                SizedBox(height: gapMain),
+                Text(
+                  '환불이 완료되었습니다',
+                  style: subTitle1(mColor: kFontRed),
+                ),
+              ],
+            ),
+          ),
+          actions: [
+            Center(
+              child: TextButton(
+                onPressed: () {
+                  Navigator.popAndPushNamed(
+                      context, Move.myCampingSchedulePage);
+                },
+                child: Text(
+                  '확인',
+                  style: subTitle1(mColor: kFontContent),
+                ),
+              ),
+            ),
+          ],
+        );
+      },
+    );
+  }
+
 }
 
 final refundProvider = StateNotifierProviderFamily<

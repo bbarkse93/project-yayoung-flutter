@@ -31,7 +31,7 @@ class RefundButton extends ConsumerWidget {
           );
 
           ref.read(refundProvider(Tuple2(campId, orderId)).notifier)
-              .refundRequest(reqDTO);
+              .refundRequest(context, reqDTO);
         },
         child: Container(
           height: 60,
@@ -48,39 +48,4 @@ class RefundButton extends ConsumerWidget {
     );
   }
 
-  Future<void> _showAlertDialog(BuildContext context) async {
-    return showDialog<void>(
-      context: context,
-      builder: (BuildContext context) {
-        return AlertDialog(
-          backgroundColor: kBackWhite,
-          title: Center(
-            child: Column(
-              children: [
-                SizedBox(height: gapMain),
-                Text(
-                  '환불이 완료되었습니다',
-                  style: subTitle1(mColor: kFontRed),
-                ),
-              ],
-            ),
-          ),
-          actions: [
-            Center(
-              child: TextButton(
-                onPressed: () {
-                  Navigator.popAndPushNamed(
-                      context, Move.myCampingSchedulePage);
-                },
-                child: Text(
-                  '확인',
-                  style: subTitle1(mColor: kFontContent),
-                ),
-              ),
-            ),
-          ],
-        );
-      },
-    );
-  }
 }

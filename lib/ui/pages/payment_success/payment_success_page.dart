@@ -33,7 +33,7 @@ class _PaymentSuccessPageState extends State<PaymentSuccessPage> {
         appBar: AppBar(
           leading: InkWell(
             onTap: () {
-              Navigator.popAndPushNamed(context, Move.homePage);
+              Navigator.popAndPushNamed(context, Move.mainScreenPage);
             },
             child: Image.asset(
               "assets/images/logo.png",
