@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
+import 'package:logger/logger.dart';
 import 'package:team_project/_core/constants/color.dart';
 import 'package:team_project/_core/constants/size.dart';
 import 'package:team_project/ui/pages/refund/refund_view_model.dart';
@@ -16,6 +17,8 @@ class RefundReservationForm extends ConsumerWidget {
   @override
   Widget build(BuildContext context, WidgetRef ref) {
     final refundViewModel = ref.watch(refundProvider(Tuple2(campId, orderId)));
+    Logger().d("결제내용 출력 ${refundViewModel!.refund.toString()}");
+
     return Container(
       width: double.infinity,
       height: 160,
