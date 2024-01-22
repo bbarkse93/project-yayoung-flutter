@@ -10,17 +10,19 @@ class PaymentRepository {
     String jwt = await secureStorage.read(key: 'jwt') as String;
 
     try {
-      Logger().d("=================1번");
+      Logger().d("=================1번 ${dto.orderNumber}");
       Response response = await dio.post(
         "/order/payment",
         data: dto.toJson(),
         options: Options(headers: {"Authorization": "${jwt}"}),
       );
+
       // );
 
-      Logger().d("$response");
 
       ResponseDTO responseDTO = new ResponseDTO.fromJson(response.data);
+      Logger().d("${responseDTO.response}");
+
       return responseDTO;
     } catch (e) {
       Logger().d("dio 통신 돼? ${e.toString()}");
