@@ -1,6 +1,6 @@
 import 'package:flutter/material.dart';
-import 'package:team_project/ui/pages/home/widget/home_page_appbar.dart';
-import 'package:team_project/ui/pages/home/widget/home_page_body.dart';
+import 'package:team_project/ui/pages/home/home_page_widgets/home_page_appbar.dart';
+import 'package:team_project/ui/pages/home/home_page_widgets/home_page_body.dart';
 
 
 class HomePage extends StatelessWidget {

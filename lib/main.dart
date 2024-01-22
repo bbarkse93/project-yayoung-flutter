@@ -1,8 +1,10 @@
+import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:kakao_flutter_sdk/kakao_flutter_sdk.dart';
 import 'package:team_project/_core/constants/move.dart';
 import 'package:team_project/_core/constants/theme.dart';
+import 'package:flutter_localizations/flutter_localizations.dart';
 
 GlobalKey<NavigatorState> navigatorKey = GlobalKey<NavigatorState>();
 
@@ -32,6 +34,17 @@ class MyApp extends StatelessWidget {
       initialRoute: Move.splashPage,
       routes: getRouters(),
       theme: theme(),
+      // 앱 전체에 대한 한글 로케일 설정
+      locale: const Locale('ko', 'KR'),
+      localizationsDelegates: [
+        GlobalMaterialLocalizations.delegate,
+        GlobalWidgetsLocalizations.delegate,
+        DefaultCupertinoLocalizations.delegate, // 추가
+        GlobalCupertinoLocalizations.delegate,
+      ],
+      supportedLocales: [
+        const Locale('ko', 'KR'),
+      ],
     );
   }
 }

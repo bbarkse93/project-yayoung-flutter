@@ -2,10 +2,10 @@ import 'package:flutter/material.dart';
 import 'package:team_project/_core/constants/move.dart';
 import 'package:team_project/_core/constants/size.dart';
 import 'package:team_project/ui/pages/payment/payment_view_model.dart';
-import 'package:team_project/ui/pages/payment_success/widget/payment_success_button.dart';
-import 'package:team_project/ui/pages/payment_success/widget/payment_success_reservation_form.dart';
-import 'package:team_project/ui/pages/refund/widget/campsite_info_form.dart';
-import 'package:team_project/ui/pages/reservation/widget/campsite_area_map.dart';
+import 'package:team_project/ui/pages/payment_success/payment_success_page_widgets/payment_success_button.dart';
+import 'package:team_project/ui/pages/payment_success/payment_success_page_widgets/payment_success_reservation_form.dart';
+import 'package:team_project/ui/pages/refund/refund-page_widgets/campsite_info_form.dart';
+import 'package:team_project/ui/pages/reservation/reservation_page_widgets/campsite_area_map.dart';
 
 class PaymentSuccessPage extends StatefulWidget {
   final int campId;

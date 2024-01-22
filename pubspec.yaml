@@ -61,6 +61,7 @@ dependencies:
   iamport_flutter: ^0.10.0
   webview_flutter: ^4.4.4
   tuple: ^2.0.2
+  flutter_localization: ^0.2.0
 #  location: ^5.0.3 # 주소 라이브러리
 
   geolocator: ^10.1.0 #GPS

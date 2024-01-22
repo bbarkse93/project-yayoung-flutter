@@ -1,10 +1,9 @@
 import 'package:flutter/material.dart';
-import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:team_project/_core/constants/size.dart';
-import 'package:team_project/ui/pages/refund/widget/campsite_info_form.dart';
-import 'package:team_project/ui/pages/refund/widget/refund_button.dart';
-import 'package:team_project/ui/pages/refund/widget/refund_reservation_form.dart';
-import 'package:team_project/ui/pages/refund/widget/refund_rule_form.dart';
+import 'package:team_project/ui/pages/refund/refund-page_widgets/campsite_info_form.dart';
+import 'package:team_project/ui/pages/refund/refund-page_widgets/refund_button.dart';
+import 'package:team_project/ui/pages/refund/refund-page_widgets/refund_reservation_form.dart';
+import 'package:team_project/ui/pages/refund/refund-page_widgets/refund_rule_form.dart';
 
 class RefundPageBody extends StatelessWidget {
   final int campId;
