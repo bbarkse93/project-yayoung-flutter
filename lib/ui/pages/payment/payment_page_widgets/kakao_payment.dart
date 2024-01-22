@@ -24,6 +24,8 @@ class KakaoPayment extends ConsumerWidget {
   Widget build(BuildContext context, WidgetRef ref) {
     final reservationData = ref.read(reservationDataProvider);
 
+    String orderName = 'mid_${DateTime.now().millisecondsSinceEpoch}';
+
     return IamportPayment(
       appBar: AppBar(
           leading: IconButton(
@@ -58,7 +60,7 @@ class KakaoPayment extends ConsumerWidget {
         // 주문명
         name: '${reservationData.campField}',
         // 주문번호
-        merchantUid: 'mid_${DateTime.now().millisecondsSinceEpoch}',
+        merchantUid: orderName,
         // 결제금액
         amount: int.parse(reservationData.totalAmount.toString()),
         // 구매자 이름
@@ -96,14 +98,14 @@ class KakaoPayment extends ConsumerWidget {
           // 결제가 성공했을 때 orderNumber 채우기
           if (result['imp_success'] == 'true') {
             requestDTO = requestDTO.copyWith(
-              orderNumber: 'mid_${DateTime.now().millisecondsSinceEpoch}',
+              orderNumber: orderName,
             );
           }
-          print("PaymentReqDTO 통과했나요?");
+          print("PaymentReqDTO 통과했나요? ${requestDTO.orderNumber}");
 
           ResponseDTO responseDTO =
               await PaymentRepository().fetchPayment(requestDTO);
-          print("PaymentRepository 접근했나요?");
+          print("PaymentRepository 접근했나요? ${responseDTO.response.toString()}");
 
           if (responseDTO.success == true) {
 

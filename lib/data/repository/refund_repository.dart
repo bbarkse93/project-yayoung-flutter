@@ -27,11 +27,11 @@ class RefundRepository {
     String jwt = await secureStorage.read(key: 'jwt') as String;
 
     try {
-      Logger().d("=================1번");
+      Logger().d("=================1번 ${dto.orderId},${dto.orderNumber}, ${dto.refund}  ");
       Response response = await dio.post(
         "/user/refund",
+        options: Options(headers: {"Authorization": jwt}),
         data: dto.toJson(),
-        options: Options(headers: {"Authorization": "${jwt}"}),
       );
       // );
 
