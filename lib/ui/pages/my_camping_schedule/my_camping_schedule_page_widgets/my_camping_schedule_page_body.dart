@@ -1,10 +1,9 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
-import 'package:logger/logger.dart';
 import 'package:team_project/_core/constants/icon.dart';
 import 'package:team_project/_core/constants/size.dart';
+import 'package:team_project/ui/pages/my_camping_schedule/my_camping_schedule_page_widgets/my_schedule_form.dart';
 import 'package:team_project/ui/pages/my_camping_schedule/my_camping_schedule_view_model.dart';
-import 'package:team_project/ui/pages/my_camping_schedule/widget/my_schedule_form.dart';
 
 class MyCampingSchedulePageBody extends ConsumerWidget {
   const MyCampingSchedulePageBody({Key? key}) : super(key: key);

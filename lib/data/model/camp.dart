@@ -1,4 +1,3 @@
-import 'package:team_project/data/model/banner.dart';
 import 'package:team_project/data/model/camp_image.dart';
 import 'package:team_project/data/model/camp_rating.dart';
 

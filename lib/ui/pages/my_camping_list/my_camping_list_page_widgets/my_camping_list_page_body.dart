@@ -3,9 +3,9 @@ import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:team_project/_core/constants/icon.dart';
 import 'package:team_project/_core/constants/size.dart';
 import 'package:team_project/data/model/my_camping.dart';
+import 'package:team_project/ui/pages/my_camping_list/my_camping_list_page_widgets/camping_list_slider.dart';
+import 'package:team_project/ui/pages/my_camping_list/my_camping_list_page_widgets/select_year_button.dart';
 import 'package:team_project/ui/pages/my_camping_list/my_camping_list_view_model.dart';
-import 'package:team_project/ui/pages/my_camping_list/widget/camping_list_slider.dart';
-import 'package:team_project/ui/pages/my_camping_list/widget/select_year_button.dart';
 
 class MyCampingListPageBody extends StatefulWidget {
   const MyCampingListPageBody({Key? key});
