@@ -52,33 +52,21 @@ YaYoung은 캠핑장의 정보를 한눈에 볼 수 있고 일정을 등록해�
 ## 기술스택
 
 ### Backend
-<img src="https://img.shields.io/badge/Language-%23121011?style=for-the-badge">
-<br>
-<img src="https://img.shields.io/badge/java-437291?style=for-the-badge&logo=openjdk&logoColor=black"><img src="https://img.shields.io/badge/17-515151?style=for-the-badge">
-<br></br>
-<img src="https://img.shields.io/badge/Framework-%23121011?style=for-the-badge">
-<br>
-<img src="https://img.shields.io/badge/springboot-6DB33F?style=for-the-badge&logo=springboot&logoColor=white"><img src="https://img.shields.io/badge/3.2-515151?style=for-the-badge">
-<br></br>
-<img src="https://img.shields.io/badge/Build-%23121011?style=for-the-badge">
-<br>
-<img src="https://img.shields.io/badge/Gradle-02303A?style=for-the-badge&logo=Gradle&logoColor=white">
+<img src="https://img.shields.io/badge/Language-%23121011?style=for-the-badge"> <img src="https://img.shields.io/badge/java-437291?style=for-the-badge&logo=openjdk&logoColor=black"><img src="https://img.shields.io/badge/17-515151?style=for-the-badge">
+
+<img src="https://img.shields.io/badge/Framework-%23121011?style=for-the-badge"> <img src="https://img.shields.io/badge/springboot-6DB33F?style=for-the-badge&logo=springboot&logoColor=white"><img src="https://img.shields.io/badge/3.2-515151?style=for-the-badge">
+
+<img src="https://img.shields.io/badge/Build-%23121011?style=for-the-badge"> <img src="https://img.shields.io/badge/Gradle-02303A?style=for-the-badge&logo=Gradle&logoColor=white">
 
 
 ### Frontend
-<img src="https://img.shields.io/badge/Language-%23121011?style=for-the-badge">
-<br>
-<img src="https://img.shields.io/badge/dart-02569B?style=for-the-badge&logo=dart&logoColor=white"><img src="https://img.shields.io/badge/3.2.3-515151?style=for-the-badge">
+<img src="https://img.shields.io/badge/Language-%23121011?style=for-the-badge"> <img src="https://img.shields.io/badge/dart-02569B?style=for-the-badge&logo=dart&logoColor=white"><img src="https://img.shields.io/badge/3.2.3-515151?style=for-the-badge">
 <img src="https://img.shields.io/badge/javascript-F7DF1E?style=for-the-badge&logo=javascript&logoColor=black">
-<br></br>
-<img src="https://img.shields.io/badge/Framework-%23121011?style=for-the-badge">
-<br>
-<img src="https://img.shields.io/badge/flutter-02569B?style=for-the-badge&logo=flutter&logoColor=white"><img src="https://img.shields.io/badge/3.13.9-515151?style=for-the-badge">
+
+<img src="https://img.shields.io/badge/Framework-%23121011?style=for-the-badge"> <img src="https://img.shields.io/badge/flutter-02569B?style=for-the-badge&logo=flutter&logoColor=white"><img src="https://img.shields.io/badge/3.13.9-515151?style=for-the-badge">
 <img src="https://img.shields.io/badge/jquery-0769AD?style=for-the-badge&logo=jquery&logoColor=white">
-<br></br>
-<img src="https://img.shields.io/badge/Build-%23121011?style=for-the-badge">
-<br>
-<img src="https://img.shields.io/badge/pub-02569B?style=for-the-badge&logo=dart&logoColor=white">
+
+<img src="https://img.shields.io/badge/Build-%23121011?style=for-the-badge"> <img src="https://img.shields.io/badge/pub-02569B?style=for-the-badge&logo=dart&logoColor=white">
 <img src="https://img.shields.io/badge/Gradle-02303A?style=for-the-badge&logo=Gradle&logoColor=white">
 
 ### IDE
@@ -87,6 +75,8 @@ YaYoung은 캠핑장의 정보를 한눈에 볼 수 있고 일정을 등록해�
 ### 협업도구
 <img src="https://img.shields.io/badge/Git-F05032?style=for-the-badge&logo=Git&logoColor=white"> <img src="https://img.shields.io/badge/GitHub-181717?style=for-the-badge&logo=GitHub&logoColor=white"> <img src="https://img.shields.io/badge/postman-FF6C37?style=for-the-badge&logo=postman&logoColor=white"> <img src="https://img.shields.io/badge/figma-C11920?style=for-the-badge&logo=figma&logoColor=white"> <img src="https://img.shields.io/badge/Notion-000000?style=for-the-badge&logo=Notion&logoColor=white"> <img src="https://img.shields.io/badge/slack-764ABC?style=for-the-badge&logo=slack&logoColor=white">
 
+### 데이터베이스
+<img src="https://img.shields.io/badge/MySQL-4479A1?style=for-the-badge&logo=MySQL&logoColor=white"><img src="https://img.shields.io/badge/8.0-515151?style=for-the-badge"> <img src="https://img.shields.io/badge/h2-F9DC3E?style=for-the-badge&logo=h2&logoColor=white">
 ### 데이터베이스
 <img src="https://img.shields.io/badge/MySQL-4479A1?style=for-the-badge&logo=MySQL&logoColor=white"><img src="https://img.shields.io/badge/8.0-515151?style=for-the-badge"> <img src="https://img.shields.io/badge/h2-F9DC3E?style=for-the-badge&logo=h2&logoColor=white">
 
@@ -131,6 +121,7 @@ geolocator: ^10.1.0
 ## ERD
 [ERD 바로가기](https://dbdiagram.io/d/yayoung-6595042bac844320ae252152)
 ![img_4.png](img_4.png)
+
 
 ## 일정관리
 [Notion 바로가기](https://paper-danthus-c42.notion.site/1-d1049a409e494da0a0cb1475f7978c13?pvs=4)
