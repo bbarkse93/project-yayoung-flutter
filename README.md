@@ -131,12 +131,15 @@ geolocator: ^10.1.0
 ## ERD
 [ERD 바로가기](https://dbdiagram.io/d/yayoung-6595042bac844320ae252152)
 ![img_4.png](img_4.png)
-<hr></hr>
 
 ## 일정관리
 [Notion 바로가기](https://paper-danthus-c42.notion.site/1-d1049a409e494da0a0cb1475f7978c13?pvs=4)
 ![img_5.png](img_5.png)
 
-## 보안할 점
+## 보완할 점
+
+- 
 
 ## 느낀 점 
+
+- 
