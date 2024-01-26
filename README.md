@@ -27,6 +27,9 @@
 YaYoung은 캠핑장의 정보를 한눈에 볼 수 있고 일정을 등록해서 관리할 수 있으며 리뷰를 통해 다른 사람의 평가를 확인 할 수 있는 캠핑장 앱으로써 해당 앱을 클론 코딩 했습니다.
 
 ## 시연 영상
+[<img src="https://img.shields.io/badge/YouTube바로가기-YouTube바로가기?logo=youtube&logoColor=F24E1E&color=lightgrey">](https://www.youtube.com/watch?v=DnakjiCeETY&t=14s)
+
+[![Video Label](http://img.youtube.com/vi/DnakjiCeETY/maxresdefault.jpg)](https://youtu.be/DnakjiCeETY)
 
 ## 구현 기능
 
@@ -110,20 +113,20 @@ geolocator: ^10.1.0
 ```
 
 ## 화면구성
-[Figma 바로가기](https://www.figma.com/file/Ptkc7WCoBYO1di2kKHL7Z4/YAYoung?type=design&mode=design&t=Pxxgh3MPpkGZiqRn-0)
-![img.png](img.png)
-![img_1.png](img_1.png)
-![img_2.png](img_2.png)
-![img_3.png](img_3.png)
+[<img src="https://img.shields.io/badge/Figma바로가기-Figma바로가기?logo=figma&logoColor=F24E1E&color=lightgrey">](https://www.figma.com/file/Ptkc7WCoBYO1di2kKHL7Z4/YAYoung?type=design&mode=design&t=Pxxgh3MPpkGZiqRn-0)
+![img.png](assets/readme/img.png)
+![img_1.png](assets/readme/img_1.png)
+![img_2.png](assets/readme/img_2.png)
+![img_3.png](assets/readme/img_3.png)
 
 ## ERD
-[ERD 바로가기](https://dbdiagram.io/d/yayoung-6595042bac844320ae252152)
-![img_4.png](img_4.png)
+[<img src="https://img.shields.io/badge/ERD바로가기-ERD바로가기?logo=google-chrome&logoColor=4285F4&color=lightgrey">](https://dbdiagram.io/d/yayoung-6595042bac844320ae252152)
+![img_4.png](assets/readme/img_4.png)
 
 
 ## 일정관리
-[Notion 바로가기](https://paper-danthus-c42.notion.site/1-d1049a409e494da0a0cb1475f7978c13?pvs=4)
-![img_5.png](img_5.png)
+[<img src="https://img.shields.io/badge/Notion바로가기-Notion바로가기?logo=notion&logoColor=000000&color=lightgrey">](https://paper-danthus-c42.notion.site/1-d1049a409e494da0a0cb1475f7978c13?pvs=4)
+![img_5.png](assets/readme/img_5.png)
 
 ## 보완할 점
 
