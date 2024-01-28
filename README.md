@@ -7,7 +7,7 @@
 - [화면구성](#화면구성)
 - [ERD](#erd)
 - [일정관리](#일정관리)
-- [보안할 점](#보안할-점)
+- [보완할 점](#보완할-점)
 - [느낀 점](#느낀-점)
 
 ## 프로젝트 소개
@@ -29,7 +29,7 @@ YaYoung은 캠핑장의 정보를 한눈에 볼 수 있고 일정을 등록해�
 ## 시연 영상
 [<img src="https://img.shields.io/badge/YouTube바로가기-YouTube바로가기?logo=youtube&logoColor=F24E1E&color=lightgrey">](https://www.youtube.com/watch?v=DnakjiCeETY&t=14s)
 
-[![Video Label](http://img.youtube.com/vi/DnakjiCeETY/maxresdefault.jpg)](https://youtu.be/DnakjiCeETY)
+https://github.com/bbarkse93/project-yayoung-flutter/assets/135561618/85171b99-c839-4303-a5db-e949a1457619
 
 ## 구현 기능
 
